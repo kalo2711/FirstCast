@@ -15,7 +15,8 @@ const App = () => {
   const [species, setSpecies] = useState("");
   const [location, setLocation] = useState("");
   const [temperature, setTemperature] = useState("");
-  const [dateTime, setDateTime] = useState("");
+  const [date, setDate] = useState("");
+  const [hour, setHour] = useState("");
   const [isSunny, setIsSunny] = useState(false);
   const [isRaining, setIsRaining] = useState(false);
   const [waterClarity, setWaterClarity] = useState("Stained");
@@ -26,12 +27,41 @@ const App = () => {
       species,
       location,
       temperature,
-      dateTime,
+      date,
+      hour,
       isSunny,
       isRaining,
       waterClarity,
       biometricPressure,
     });
+  };
+
+  const handleDateChange = (text) => {
+    const sanitizedText = text.replace(/[^0-9]/g, "");
+    let formattedText = "";
+    if (sanitizedText.length > 2) {
+      formattedText += sanitizedText.substring(0, 2) + "/";
+      if (sanitizedText.length > 4) {
+        formattedText += sanitizedText.substring(2, 4) + "/";
+        if (sanitizedText.length > 6) {
+          formattedText += sanitizedText.substring(4, 8);
+        } else {
+          formattedText += sanitizedText.substring(4);
+        }
+      } else {
+        formattedText += sanitizedText.substring(2);
+      }
+    } else {
+      formattedText = sanitizedText;
+    }
+    setDate(formattedText);
+  };
+  const handleHourChange = (text) => {
+    const sanitizedText = text.replace(/[^0-9]/g, "");
+    const hourValue = parseInt(sanitizedText);
+    if (sanitizedText === "" || (hourValue >= 1 && hourValue <= 24)) {
+      setHour(sanitizedText);
+    }
   };
 
   return (
@@ -54,18 +84,43 @@ const App = () => {
       <TextInput
         placeholder="Temperature (°C)"
         value={temperature}
-        onChangeText={setTemperature}
+        onChangeText={(text) => {
+          const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
+          setTemperature(sanitizedText);
+        }}
         keyboardType="numeric"
+        onBlur={() => {
+          if (temperature) {
+            setTemperature(`${temperature}°C`);
+          }
+        }}
+        onFocus={() => {
+          setTemperature(temperature.replace(" °C", ""));
+        }}
+        maxLength={2}
         style={styles.input}
         placeholderTextColor="#8db5a4"
       />
-      <TextInput
-        placeholder="Date + Time"
-        value={dateTime}
-        onChangeText={setDateTime}
-        style={styles.input}
-        placeholderTextColor="#8db5a4"
-      />
+      <View style={styles.dateTimeContainer}>
+        <TextInput
+          placeholder="DD/MM/YYYY"
+          value={date}
+          onChangeText={handleDateChange}
+          style={[styles.input, styles.dateInput]}
+          placeholderTextColor="#8db5a4"
+          keyboardType="numeric"
+          maxLength={10}
+        />
+        <TextInput
+          placeholder="Time (24h)"
+          value={hour}
+          onChangeText={handleHourChange}
+          keyboardType="numeric"
+          maxLength={2}
+          style={[styles.input, styles.timeInput]}
+          placeholderTextColor="#8db5a4"
+        />
+      </View>
       <Text style={styles.toggleLabel}>Weather & Biometric Pressure</Text>
       <View style={styles.switchContainer}>
         <Text style={styles.switchText}>Sun</Text>
@@ -167,6 +222,18 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: -25,
+  },
+  dateTimeContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  dateInput: {
+    flex: 1,
+    marginRight: 5,
+  },
+  timeInput: {
+    flex: 1,
+    marginLeft: 5,
   },
 });
 
