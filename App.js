@@ -12,7 +12,7 @@ import {
   Platform,
 } from "react-native";
 import { btn_style, flex_style, form_style, margin_styles, padding_styles, text_style } from './global/global-styles'
-import { primary_color, green_color, width } from './global/global-constants'
+import { primary_color, green_color, width, black } from './global/global-constants'
 import * as Font from 'expo-font';
 
 const App = () => {
@@ -96,14 +96,14 @@ const App = () => {
         value={species}
         onChangeText={setSpecies}
         style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
-        placeholderTextColor={primary_color}
+        placeholderTextColor={black}
       />
       <TextInput
         placeholder="Location"
         value={location}
         onChangeText={setLocation}
         style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
-        placeholderTextColor={primary_color}
+        placeholderTextColor={black}
       />
       <TextInput
         placeholder="Temperature (°C)"
@@ -123,7 +123,7 @@ const App = () => {
         }}
         maxLength={2}
         style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
-        placeholderTextColor={primary_color}
+        placeholderTextColor={black}
       />
       <View style={[flex_style.flex, flex_style.spaceBetween, flex_style.one, margin_styles.bottom_md]}>
         <TextInput
@@ -131,7 +131,7 @@ const App = () => {
           value={date}
           onChangeText={handleDateChange}
           style={[form_style.formControl, styles.dateInput, , text_style.sm]}
-          placeholderTextColor={primary_color}
+          placeholderTextColor={black}
           keyboardType="numeric"
           maxLength={10}
         />
@@ -142,37 +142,37 @@ const App = () => {
           keyboardType="numeric"
           maxLength={2}
           style={[form_style.formControl, text_style.sm, styles.timeInput]}
-          placeholderTextColor={primary_color}
+          placeholderTextColor={black}
         />
       </View>
       <Text style={[text_style.primaryColor, text_style.sm, text_style.bold, flex_style.width100, text_style.alignCenter]}>Weather</Text>
       <View style={[styles.switchContainer, margin_styles.vertical_space_md, flex_style.width100]}>
-        <Text style={[text_style.sm, text_style.primaryColor, flex_style.one, text_style.alignCenter]}>Sun</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Sun</Text>
         <Switch
           value={isSunny}
           onValueChange={setIsSunny}
           trackColor={{ false: primary_color, true: green_color }}
           thumbColor={isSunny ? "#f4f3f4" : "#f4f3f4"}
         />
-        <Text style={[text_style.sm, text_style.primaryColor, flex_style.one, text_style.alignCenter]}>Cloudy</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Cloudy</Text>
       </View>
 
       <View style={[styles.switchContainer, margin_styles.vertical_space_md, flex_style.width100]}>
-        <Text style={[text_style.sm, text_style.primaryColor, flex_style.one, text_style.alignCenter]}>Dry</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Dry</Text>
         <Switch
           value={isRaining}
           onValueChange={setIsRaining}
           trackColor={{ false: primary_color, true: green_color }}
           thumbColor={isRaining ? "#f4f3f4" : "#f4f3f4"}
         />
-        <Text style={[text_style.sm, text_style.primaryColor, flex_style.one, text_style.alignCenter]}>Raining</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Raining</Text>
       </View>
 
 
       <Text style={[text_style.primaryColor, text_style.sm, text_style.bold, flex_style.width100, text_style.alignCenter ]}>Biometric Pressure</Text>
 
       <View style={[styles.switchContainer, margin_styles.vertical_space_md, flex_style.width100]}>
-        <Text style={[text_style.sm, text_style.primaryColor, flex_style.one, text_style.alignCenter]}>Low</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Low</Text>
         <Switch
           value={isHighPressure}
           onValueChange={setIsHighPressure}
@@ -180,7 +180,7 @@ const App = () => {
           trackColor={{ false: primary_color, true: green_color }}
           thumbColor={isHighPressure ? "#f4f3f4" : "#f4f3f4"}
         />
-        <Text style={[text_style.sm, text_style.primaryColor, flex_style.one, text_style.alignCenter]}>High</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>High</Text>
       </View>
 
       <View style={[flex_style.flex, flex_style.column, flex_style.width100, margin_styles.bottom_lg]}>
@@ -198,7 +198,7 @@ const App = () => {
 
 
       <TouchableOpacity onPress={handleFormSubmit} style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}>
-        <Text style={[text_style.fontColorWhite, text_style.bold]}>Cast Away!</Text>
+        <Text style={[text_style.fontColorWhite, text_style.bold, flex_style.width100, text_style.alignCenter]}>Cast Away!</Text>
       </TouchableOpacity>
 
     </ScrollView>
