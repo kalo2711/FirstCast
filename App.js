@@ -1,4 +1,6 @@
 import { StatusBar } from "expo-status-bar";
+import { loadTranslations } from './global/localiztion.js'
+
 import React, { useEffect, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import {
@@ -90,23 +92,23 @@ const App = () => {
 
   return (
     <ScrollView contentContainerStyle={[flex_style.flex, flex_style.flexContainer, padding_styles.safetyTop, padding_styles.space_md, {flexWrap: 'wrap'}]}>
-      <Text style={[text_style.sm, text_style.primaryColor, margin_styles.bottom_md, text_style.bold, text_style.alignCenter]}>How are you fishing?</Text>
+      <Text style={[text_style.sm, text_style.primaryColor, margin_styles.bottom_md, text_style.bold, text_style.alignCenter]}>{loadTranslations("howAreYouFishing")}</Text>
       <TextInput
-        placeholder="Species"
+        placeholder={loadTranslations("species")}
         value={species}
         onChangeText={setSpecies}
         style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
         placeholderTextColor={black}
       />
       <TextInput
-        placeholder="Location"
+        placeholder={loadTranslations("location")}
         value={location}
         onChangeText={setLocation}
         style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
         placeholderTextColor={black}
       />
       <TextInput
-        placeholder="Temperature (°C)"
+        placeholder={loadTranslations("temperature")}
         value={temperature}
         onChangeText={(text) => {
           const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
@@ -145,34 +147,34 @@ const App = () => {
           placeholderTextColor={black}
         />
       </View>
-      <Text style={[text_style.primaryColor, text_style.sm, text_style.bold, flex_style.width100, text_style.alignCenter]}>Weather</Text>
+      <Text style={[text_style.primaryColor, text_style.sm, text_style.bold, flex_style.width100, text_style.alignCenter]}>{loadTranslations("weather")}</Text>
       <View style={[styles.switchContainer, margin_styles.vertical_space_md, flex_style.width100]}>
-        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Sun</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>{loadTranslations("sun")}</Text>
         <Switch
           value={isSunny}
           onValueChange={setIsSunny}
           trackColor={{ false: primary_color, true: green_color }}
           thumbColor={isSunny ? "#f4f3f4" : "#f4f3f4"}
         />
-        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Cloudy</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>{loadTranslations("cloudy")}</Text>
       </View>
 
       <View style={[styles.switchContainer, margin_styles.vertical_space_md, flex_style.width100]}>
-        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Dry</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>{loadTranslations("dry")}</Text>
         <Switch
           value={isRaining}
           onValueChange={setIsRaining}
           trackColor={{ false: primary_color, true: green_color }}
           thumbColor={isRaining ? "#f4f3f4" : "#f4f3f4"}
         />
-        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Raining</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>{loadTranslations("raining")}</Text>
       </View>
 
 
-      <Text style={[text_style.primaryColor, text_style.sm, text_style.bold, flex_style.width100, text_style.alignCenter ]}>Biometric Pressure</Text>
+      <Text style={[text_style.primaryColor, text_style.sm, text_style.bold, flex_style.width100, text_style.alignCenter ]}>{loadTranslations("bioPressure")}</Text>
 
       <View style={[styles.switchContainer, margin_styles.vertical_space_md, flex_style.width100]}>
-        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>Low</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>{loadTranslations("low")}</Text>
         <Switch
           value={isHighPressure}
           onValueChange={setIsHighPressure}
@@ -180,25 +182,25 @@ const App = () => {
           trackColor={{ false: primary_color, true: green_color }}
           thumbColor={isHighPressure ? "#f4f3f4" : "#f4f3f4"}
         />
-        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>High</Text>
+        <Text style={[text_style.sm, text_style.black, flex_style.one, text_style.alignCenter]}>{loadTranslations("high")}</Text>
       </View>
 
       <View style={[flex_style.flex, flex_style.column, flex_style.width100, margin_styles.bottom_lg]}>
-      <Text style={[text_style.sm, text_style.bold, text_style.primaryColor, text_style.alignCenter]}>Water Clarity</Text>
+      <Text style={[text_style.sm, text_style.bold, text_style.primaryColor, text_style.alignCenter]}>{loadTranslations("waterClarity")}</Text>
       <Picker
           selectedValue={waterClarity}
           style={[{ height: 50}, Platform.OS === 'ios'? {height: 200, zIndex: 0}: null]}
           onValueChange={(itemValue, itemIndex) =>setWaterClarity(itemValue)}>
-            <Picker.Item label="Murky" value="Murky" />
-          <Picker.Item label="Stained" value="Stained" />
-          <Picker.Item label="Clear" value="Clear" />
+            <Picker.Item label={loadTranslations("murky")} value="Murky" />
+          <Picker.Item label={loadTranslations("stained")} value="Stained" />
+          <Picker.Item label={loadTranslations("clear")} value="Clear" />
         </Picker>
       </View>
 
 
 
       <TouchableOpacity onPress={handleFormSubmit} style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}>
-        <Text style={[text_style.fontColorWhite, text_style.bold, flex_style.width100, text_style.alignCenter]}>Cast Away!</Text>
+        <Text style={[text_style.fontColorWhite, text_style.bold, flex_style.width100, text_style.alignCenter]}>{loadTranslations("castAway")}</Text>
       </TouchableOpacity>
 
     </ScrollView>
