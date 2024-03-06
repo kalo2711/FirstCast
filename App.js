@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { loadTranslations } from "./global/localiztion.js";
+import { loadTranslations } from "./i18n/localization.js";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useEffect, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
+import AddressAutofill from "./AddressAutofill";
 import {
   StyleSheet,
   View,
@@ -109,12 +110,15 @@ const App = () => {
         style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
         placeholderTextColor={black}
       />
-      <TextInput
+      <AddressAutofill
+        addToListOfLocations={setLocation}
         placeholder={loadTranslations("location")}
-        value={location}
-        onChangeText={setLocation}
-        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
-        placeholderTextColor={black}
+        route={{
+          params: {
+            location: { lat: "45.46498616653648", long: "-73.79416660341609" },
+            radius: "100",
+          },
+        }}
       />
       <TextInput
         placeholder={loadTranslations("temperature")}
