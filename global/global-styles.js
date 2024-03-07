@@ -252,6 +252,9 @@ export const btn_style = StyleSheet.create({
   buttonFixedWidth: {
     width: 150
   },
+  buttonSmall: {
+    width: 200
+  },
   buttonFullWidth: {
     width: '100%'
   },
@@ -419,7 +422,7 @@ export const padding_styles = StyleSheet.create({
     padding: 0
   },
   safetyTop: {
-    paddingTop: 40
+    paddingTop: 50
   },
   space_xs: {
     padding: SpacingExtraSmall

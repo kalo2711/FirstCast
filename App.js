@@ -22,11 +22,13 @@ import {
   padding_styles,
   text_style,
 } from "./global/global-styles";
+import {reactIfView} from "./global/global-functions";
 import {
   primary_color,
   green_color,
   width,
   black,
+  IOS,
 } from "./global/global-constants";
 import * as Font from "expo-font";
 
@@ -40,6 +42,8 @@ const App = () => {
   const [isRaining, setIsRaining] = useState(false);
   const [waterClarity, setWaterClarity] = useState("Murky");
   const [isHighPressure, setIsHighPressure] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(Platform.OS === IOS ? true : false);
+  const [showTimePicker, setShowTimePicker] = useState(Platform.OS === IOS ? true : false);
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -78,6 +82,7 @@ const App = () => {
   //Date + Time picker functions
   const onChange = (e, selectedDate) => {
     setDate(selectedDate);
+    setShowDatePicker(false);
   };
   //Return values
 
@@ -97,7 +102,6 @@ const App = () => {
           text_style.primaryColor,
           margin_styles.bottom_md,
           text_style.bold,
-          text_style.alignCenter,
         ]}
       >
         {loadTranslations("howAreYouFishing")}
@@ -106,14 +110,14 @@ const App = () => {
         placeholder={loadTranslations("species")}
         value={species}
         onChangeText={setSpecies}
-        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
+        style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
         placeholderTextColor={black}
       />
       <TextInput
         placeholder={loadTranslations("location")}
         value={location}
         onChangeText={setLocation}
-        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
+        style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
         placeholderTextColor={black}
       />
       <TextInput
@@ -133,7 +137,7 @@ const App = () => {
           setTemperature(temperature.replace(" °C", ""));
         }}
         maxLength={2}
-        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
+        style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
         placeholderTextColor={black}
       />
       <View
@@ -144,148 +148,60 @@ const App = () => {
           margin_styles.bottom_md,
         ]}
       >
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={"date"}
-          is24Hour={true}
-          onChange={onChange}
-        />
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={"time"}
-          is24Hour={true}
-          onChange={onChange}
-        />
-      </View>
-      <Text
-        style={[
-          text_style.primaryColor,
-          text_style.sm,
-          text_style.bold,
-          flex_style.width100,
-          text_style.alignCenter,
-        ]}
-      >
-        {loadTranslations("weather")}
-      </Text>
-      <View
-        style={[
-          styles.switchContainer,
-          margin_styles.vertical_space_md,
-          flex_style.width100,
-        ]}
-      >
-        <Text
-          style={[
-            text_style.sm,
-            text_style.black,
-            flex_style.one,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("sun")}
-        </Text>
-        <Switch
-          value={isSunny}
-          onValueChange={setIsSunny}
-          trackColor={{ false: primary_color, true: green_color }}
-          thumbColor={isSunny ? "#f4f3f4" : "#f4f3f4"}
-        />
-        <Text
-          style={[
-            text_style.sm,
-            text_style.black,
-            flex_style.one,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("cloudy")}
-        </Text>
-      </View>
+        <View style={[
+          flex_style.flex,
+          flex_style.column,
+          flex_style.width100
+        ]}>
+          {reactIfView(showDatePicker,  
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={"date"}
+              is24Hour={true}
+              onChange={onChange}
+            />)}
+          
+          <TouchableOpacity
+          onPress={() => {setShowDatePicker(true)}}
+          style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed]}
+          >
+            <Text
+              style={[
+                text_style.primaryColor,
+                text_style.bold,
+                text_style.alignCenter,
+              ]}
+            >
+              {date.toDateString()}
+            </Text>
+          </TouchableOpacity>
 
-      <View
-        style={[
-          styles.switchContainer,
-          margin_styles.vertical_space_md,
-          flex_style.width100,
-        ]}
-      >
-        <Text
-          style={[
-            text_style.sm,
-            text_style.black,
-            flex_style.one,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("dry")}
-        </Text>
-        <Switch
-          value={isRaining}
-          onValueChange={setIsRaining}
-          trackColor={{ false: primary_color, true: green_color }}
-          thumbColor={isRaining ? "#f4f3f4" : "#f4f3f4"}
-        />
-        <Text
-          style={[
-            text_style.sm,
-            text_style.black,
-            flex_style.one,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("raining")}
-        </Text>
-      </View>
-
-      <Text
-        style={[
-          text_style.primaryColor,
-          text_style.sm,
-          text_style.bold,
-          flex_style.width100,
-          text_style.alignCenter,
-        ]}
-      >
-        {loadTranslations("bioPressure")}
-      </Text>
-
-      <View
-        style={[
-          styles.switchContainer,
-          margin_styles.vertical_space_md,
-          flex_style.width100,
-        ]}
-      >
-        <Text
-          style={[
-            text_style.sm,
-            text_style.black,
-            flex_style.one,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("low")}
-        </Text>
-        <Switch
-          value={isHighPressure}
-          onValueChange={setIsHighPressure}
-          style={styles.switch}
-          trackColor={{ false: primary_color, true: green_color }}
-          thumbColor={isHighPressure ? "#f4f3f4" : "#f4f3f4"}
-        />
-        <Text
-          style={[
-            text_style.sm,
-            text_style.black,
-            flex_style.one,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("high")}
-        </Text>
+            {reactIfView(showTimePicker,
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={"time"}
+                is24Hour={true}
+                onChange={onChange}
+              />)}
+            <TouchableOpacity
+            onPress={() => {setShowDatePicker(true)}}
+            style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed, margin_styles.vertical_space_l]}
+          >
+            <Text
+              style={[
+                text_style.primaryColor,
+                text_style.bold,
+                flex_style.width100,
+                text_style.alignCenter,
+              ]}
+            >
+              {date.getHours() + ":" + date.getMinutes()}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        
       </View>
 
       <View
@@ -293,7 +209,7 @@ const App = () => {
           flex_style.flex,
           flex_style.column,
           flex_style.width100,
-          margin_styles.bottom_lg,
+          margin_styles.bottom_md,
         ]}
       >
         <Text
@@ -319,6 +235,138 @@ const App = () => {
           <Picker.Item label={loadTranslations("clear")} value="Clear" />
         </Picker>
       </View>
+
+
+      {reactIfView(date.getDate() > ((new Date().getDate()) + 7),
+        <View styles={[flex_style.flex, flex_style.column, flex_style.width100]}>
+        <Text
+          style={[
+            text_style.primaryColor,
+            text_style.sm,
+            text_style.bold,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("weather")}
+        </Text>
+        <View
+          style={[
+            styles.switchContainer,
+            margin_styles.vertical_space_md,
+            flex_style.width100,
+          ]}
+        >
+          <Text
+            style={[
+              text_style.sm,
+              text_style.black,
+              flex_style.one,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("sun")}
+          </Text>
+          <Switch
+            value={isSunny}
+            onValueChange={setIsSunny}
+            trackColor={{ false: primary_color, true: green_color }}
+            thumbColor={isSunny ? "#f4f3f4" : "#f4f3f4"}
+          />
+          <Text
+            style={[
+              text_style.sm,
+              text_style.black,
+              flex_style.one,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("cloudy")}
+          </Text>
+        </View>
+
+        <View
+          style={[
+            styles.switchContainer,
+            margin_styles.vertical_space_md,
+            flex_style.width100,
+          ]}
+        >
+          <Text
+            style={[
+              text_style.sm,
+              text_style.black,
+              flex_style.one,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("dry")}
+          </Text>
+          <Switch
+            value={isRaining}
+            onValueChange={setIsRaining}
+            trackColor={{ false: primary_color, true: green_color }}
+            thumbColor={isRaining ? "#f4f3f4" : "#f4f3f4"}
+          />
+          <Text
+            style={[
+              text_style.sm,
+              text_style.black,
+              flex_style.one,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("raining")}
+          </Text>
+        </View>
+
+        <Text
+          style={[
+            text_style.primaryColor,
+            text_style.sm,
+            text_style.bold,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("bioPressure")}
+        </Text>
+
+        <View
+          style={[
+            styles.switchContainer,
+            margin_styles.vertical_space_md,
+            flex_style.width100,
+          ]}
+        >
+          <Text
+            style={[
+              text_style.sm,
+              text_style.black,
+              flex_style.one,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("low")}
+          </Text>
+          <Switch
+            value={isHighPressure}
+            onValueChange={setIsHighPressure}
+            style={styles.switch}
+            trackColor={{ false: primary_color, true: green_color }}
+            thumbColor={isHighPressure ? "#f4f3f4" : "#f4f3f4"}
+          />
+          <Text
+            style={[
+              text_style.sm,
+              text_style.black,
+              flex_style.one,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("high")}
+          </Text>
+          </View>
+        </View>
+      )}
 
       <TouchableOpacity
         onPress={handleFormSubmit}
