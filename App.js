@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import { loadTranslations } from "./global/localiztion.js";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useEffect, useState } from "react";
-import { Picker } from "@react-native-picker/picker";
 import {
   StyleSheet,
   View,
@@ -13,11 +12,13 @@ import {
   ScrollView,
   Platform,
   Button,
+  Image
 } from "react-native";
 import {
   btn_style,
   flex_style,
   form_style,
+  img_styles,
   margin_styles,
   padding_styles,
   text_style,
@@ -29,23 +30,33 @@ import {
   width,
   black,
   IOS,
+  secondary_color,
 } from "./global/global-constants";
 import * as Font from "expo-font";
+import FishSelect from "./fish-select.js";
+import FishSelectItem from "./fish-select-item.js";
 
 const App = () => {
-  const [species, setSpecies] = useState("");
+  const [species, setSpecies] = useState(null);
+  const [speciesModalVisible, setSpeciesModalVisible] = useState(false);
   const [location, setLocation] = useState("");
   const [temperature, setTemperature] = useState("");
   const [date, setDate] = useState(new Date());
   const [hour, setHour] = useState("");
   const [isSunny, setIsSunny] = useState(false);
   const [isRaining, setIsRaining] = useState(false);
-  const [waterClarity, setWaterClarity] = useState("Murky");
+  const [waterClarity, setWaterClarity] = useState("Muddy");
   const [isHighPressure, setIsHighPressure] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === IOS ? true : false);
   const [showTimePicker, setShowTimePicker] = useState(Platform.OS === IOS ? true : false);
   const [fontLoaded, setFontLoaded] = useState(false);
 
+  const waterClarities = [
+    { id: 1, name: loadTranslations('muddy'), image: require('./assets/muddy-water.jpg') },
+    { id: 2, name: loadTranslations('stained'), image: require('./assets/stained-water.jpg') },
+    { id: 3, name: loadTranslations('clear'), image: require('./assets/clear-water.jpg') },
+  ]
+  
   useEffect(() => {
     const loadFonts = async () => {
       await Font.loadAsync({
@@ -56,18 +67,25 @@ const App = () => {
         // Add more font variations if needed
       });
     };
-
+  
     const loadAsyncData = async () => {
       await loadFonts();
       setFontLoaded(true);
     };
-
+  
     loadAsyncData();
-  });
+  }, []); // Empty dependency array to run only once
+  
+
+  const onSelectFish = (selectedFish) => {
+    setSpeciesModalVisible(false)
+    setSpecies(selectedFish)
+  }
 
   const handleFormSubmit = () => {
+    const speciesName = species.name
     console.log({
-      species,
+      speciesName,
       location,
       temperature,
       date,
@@ -84,6 +102,8 @@ const App = () => {
     setDate(selectedDate);
     setShowDatePicker(false);
   };
+
+
   //Return values
 
   return (
@@ -106,13 +126,8 @@ const App = () => {
       >
         {loadTranslations("howAreYouFishing")}
       </Text>
-      <TextInput
-        placeholder={loadTranslations("species")}
-        value={species}
-        onChangeText={setSpecies}
-        style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
-        placeholderTextColor={black}
-      />
+
+
       <TextInput
         placeholder={loadTranslations("location")}
         value={location}
@@ -140,6 +155,28 @@ const App = () => {
         style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
         placeholderTextColor={black}
       />
+
+        <FishSelect visible={speciesModalVisible} selectedFish={species} onSelectFish={onSelectFish}></FishSelect>
+        <View style={[flex_style.width100, margin_styles.bottom_md]}>
+          {!species?.image ? 
+            <TouchableOpacity
+            onPress={() => {setSpeciesModalVisible(true)}}
+            style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed]}
+            >
+              <Text
+                style={[
+                  text_style.primaryColor,
+                  text_style.bold,
+                  text_style.alignCenter,
+                ]}
+              >
+                {loadTranslations("speciesSelect")}
+              </Text>
+          </TouchableOpacity> :
+            <FishSelectItem isSelected={true} fish={species} onSelectFish={event => setSpeciesModalVisible(true)}></FishSelectItem>
+          }
+        </View>
+
       <View
         style={[
           flex_style.flex,
@@ -222,18 +259,17 @@ const App = () => {
         >
           {loadTranslations("waterClarity")}
         </Text>
-        <Picker
-          selectedValue={waterClarity}
-          style={[
-            { height: 50 },
-            Platform.OS === "ios" ? { height: 200, zIndex: 0 } : null,
-          ]}
-          onValueChange={(itemValue, itemIndex) => setWaterClarity(itemValue)}
-        >
-          <Picker.Item label={loadTranslations("murky")} value="Murky" />
-          <Picker.Item label={loadTranslations("stained")} value="Stained" />
-          <Picker.Item label={loadTranslations("clear")} value="Clear" />
-        </Picker>
+
+        <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.vertical_space_md]}>
+          {waterClarities.map(waterClarityItem => {
+            return (
+              <TouchableOpacity style={[flex_style.flex, flex_style.column, flex_style.center]} onPress={event => setWaterClarity(waterClarityItem.name)}>
+                <Image source={waterClarityItem.image} style={[img_styles.rectangle_image_xxs, waterClarity == waterClarityItem.name ? btn_style.buttonReversed : null]}></Image>
+                <Text style={[waterClarity == waterClarityItem.name ? text_style.bold : null]}>{waterClarityItem.name}</Text>
+              </TouchableOpacity>
+            )
+          })}
+        </View>
       </View>
 
 

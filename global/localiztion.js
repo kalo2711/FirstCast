@@ -5,7 +5,7 @@ import { en, fr } from './supportedLanguages.json'
 
 export function loadTranslations(key) {
   let lang = getDeviceLanguage()
-  return loadSpecificKeyTranslation(key, lang)
+  return loadSpecificKeyTranslation(key.charAt(0).toLowerCase() + key.slice(1), lang)
 }
 
 export function getEnglishNameForIcon(name) {

@@ -1,0 +1,5764 @@
+{
+    "pike": [
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "midday",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "white",
+                    "silver",
+                    "yellow",
+                    "silver",
+                    "orange",
+                    "red"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "medium",
+                "water_column": [
+                    "middle"
+                ],
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "spinnerbait",
+                    "chatterbait",
+                    "jerkbait"
+                ]
+            }
+        },
+        {
+            "time": "earlylate",
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "weed"
+                ],
+                "colors": [
+                    "black",
+                    "grey"
+                ],
+                "size": "large",
+                "water_column": [
+                    "middle",
+                    "top"
+                ],
+                "depth": 3,
+                "speed": "slow",
+                "lure_type": [
+                    "natural_sucker",
+                    "natural_shiner",
+                    "rattle_jig",
+                    "spoon"
+                ]
+            }
+        }
+    ]
+}

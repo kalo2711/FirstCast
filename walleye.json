@@ -1,0 +1,2564 @@
+{
+    "walleye": [
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 25,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 13,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 25,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 13,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 25,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 13,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 25,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 13,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 25,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 13,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 25,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 13,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 12,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Dry",
+            "optimal_conditions": {
+                "structure": [
+                    "drop"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 20,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "High",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "small",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "slow",
+                "lure_type": [
+                    "jerkbait",
+                    "jig",
+                    "softbait",
+                    "natural_worm"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Sunny",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Murky",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "pink"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Clear",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white",
+                    "silver"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "FALL",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Summer",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 15,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Spring",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 10,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbait"
+                ]
+            }
+        },
+        {
+            "season": "Winter",
+            "water_clarity": "Stained",
+            "weather": "Cloudy",
+            "barometric_pressure": "Low",
+            "precipitation": "Rain",
+            "optimal_conditions": {
+                "structure": [
+                    "drop",
+                    "trees"
+                ],
+                "colors": [
+                    "chartreuse",
+                    "white"
+                ],
+                "size": "medium",
+                "water_column": "bottom",
+                "depth": 7,
+                "speed": "medium",
+                "lure_type": [
+                    "natural_worm",
+                    "jerkbait",
+                    "crankbaitg"
+                ]
+            }
+        }
+    ]
+}

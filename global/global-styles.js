@@ -399,6 +399,16 @@ export const img_styles = StyleSheet.create({
     height: 150,
     borderRadius: 150
   },
+  rectangle_image_xxs: {
+    width: 100,
+    height: 50,
+    resizeMode: 'contain'
+  },
+  rectangle_image_s: {
+    width: 200,
+    height: 100,
+    resizeMode: 'contain'
+  },
   square_image_s: {
     width: 50,
     height: 50
