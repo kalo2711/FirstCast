@@ -20,9 +20,11 @@ import { primary_color, black, green_color } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { responseDataHandler } from "../global/global-functions";
+import AddLureModal from "../add-lure-modal"
 
 export default function LuresForm({ navigation }) {
   const [lure, setLure] = useState("");
+  const [visible, setVisible] = useState(false);
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
   const [brandAndModelText, setBrandAndModelText] = useState("");
   const [lureOptions, setLureOptions] = useState({
@@ -191,7 +193,7 @@ export default function LuresForm({ navigation }) {
           {loadTranslations("submit")}
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => setVisible(true)}>
+      <TouchableOpacity style={[btn_style.button, btn_style.buttonBlack, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => setVisible(true)}>
         <Text style={[text_style.bold, text_style.fontColorWhite]}>{loadTranslations("requestNewLure")}</Text>
       </TouchableOpacity>
       <AddLureModal setVisible={setVisible} visible={visible}></AddLureModal>
