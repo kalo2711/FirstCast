@@ -15,17 +15,13 @@ function AppNavigator() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <RootStack.Navigator
-          initialRouteName="ConditionsResults"
-          screenOptions={{ headerShown: false }}
-        >
+        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+          <RootStack.Screen name="Lures" component={LuresForm} />
           <RootStack.Screen
             name="ConditionsResults"
             component={ConditionsResults}
           />
           <RootStack.Screen name="Conditions" component={ConditionsForm} />
-          <RootStack.Screen name="Lures" component={LuresForm} />
-
           <RootStack.Screen name="LuresResults" component={LuresResults} />
         </RootStack.Navigator>
         <Navigation />

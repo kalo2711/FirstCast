@@ -1,33 +1,363 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import { loadTranslations } from "../global/localization";
+import { Picker } from "@react-native-picker/picker";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Switch,
+  ScrollView,
+  Platform,
+} from "react-native";
+import {
+  btn_style,
+  flex_style,
+  form_style,
+  margin_styles,
+  padding_styles,
+  text_style,
+} from "../global/global-styles";
+import {
+  primary_color,
+  green_color,
+  width,
+  black,
+} from "../global/global-constants";
+import * as Font from "expo-font";
 
 export default function ConditionsForm({ navigation }) {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [species, setSpecies] = useState("");
+  const [location, setLocation] = useState("");
+  const [temperature, setTemperature] = useState("");
+  const [date, setDate] = useState("");
+  const [hour, setHour] = useState("");
+  const [isSunny, setIsSunny] = useState(false);
+  const [isRaining, setIsRaining] = useState(false);
+  const [waterClarity, setWaterClarity] = useState("Murky");
+  const [isHighPressure, setIsHighPressure] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
 
-  const handleSubmit = () => {
-    navigation.navigate("ConditionsResults", { name, age });
+  // // useEffect(() => {
+  // //   const loadFonts = async () => {
+  // //     await Font.loadAsync({
+  // //       // "open-sans-light": require("./assets/fonts/OpenSans-Light.ttf"),
+  // //       // "open-sans-regular": require("./assets/fonts/OpenSans-Regular.ttf"),
+  // //       // "open-sans-medium": require("./assets/fonts/OpenSans-Medium.ttf"),
+  // //       // "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  // //     });
+  // //   };
+
+  //   const loadAsyncData = async () => {
+  //     await loadFonts();
+  //     setFontLoaded(true);
+  //   };
+
+  //   loadAsyncData();
+  // });
+  const handleFormSubmit = () => {
+    navigation.navigate("ConditionsResults", {
+      species,
+      location,
+      temperature,
+      date,
+      hour,
+      isSunny,
+      isRaining,
+      waterClarity,
+      biometricPressure,
+    });
+  };
+
+  const handleDateChange = (text) => {
+    const sanitizedText = text.replace(/[^0-9]/g, "");
+    let formattedText = "";
+    if (sanitizedText.length > 2) {
+      formattedText += sanitizedText.substring(0, 2) + "/";
+      if (sanitizedText.length > 4) {
+        formattedText += sanitizedText.substring(2, 4) + "/";
+        if (sanitizedText.length > 6) {
+          formattedText += sanitizedText.substring(4, 8);
+        } else {
+          formattedText += sanitizedText.substring(4);
+        }
+      } else {
+        formattedText += sanitizedText.substring(2);
+      }
+    } else {
+      formattedText = sanitizedText;
+    }
+    setDate(formattedText);
+  };
+  const handleHourChange = (text) => {
+    const sanitizedText = text.replace(/[^0-9]/g, "");
+    const hourValue = parseInt(sanitizedText);
+    if (sanitizedText === "" || (hourValue >= 1 && hourValue <= 24)) {
+      setHour(sanitizedText);
+    }
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Name:</Text>
+    <ScrollView
+      contentContainerStyle={[
+        flex_style.flex,
+        flex_style.flexContainer,
+        padding_styles.safetyTop,
+        padding_styles.space_md,
+        { flexWrap: "wrap" },
+      ]}
+    >
+      <Text
+        style={[
+          text_style.sm,
+          text_style.primaryColor,
+          margin_styles.bottom_md,
+          text_style.bold,
+          text_style.alignCenter,
+        ]}
+      >
+        {loadTranslations("howAreYouFishing")}
+      </Text>
       <TextInput
-        style={styles.input}
-        value={name}
-        onChangeText={setName}
-        placeholder="Enter your name"
+        placeholder={loadTranslations("species")}
+        value={species}
+        onChangeText={setSpecies}
+        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
+        placeholderTextColor={black}
       />
-      <Text>Age:</Text>
       <TextInput
-        style={styles.input}
-        value={age}
-        onChangeText={setAge}
-        placeholder="Enter your age"
+        placeholder={loadTranslations("location")}
+        value={location}
+        onChangeText={setLocation}
+        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
+        placeholderTextColor={black}
+      />
+      <TextInput
+        placeholder={loadTranslations("temperature")}
+        value={temperature}
+        onChangeText={(text) => {
+          const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
+          setTemperature(sanitizedText);
+        }}
         keyboardType="numeric"
+        onBlur={() => {
+          if (temperature) {
+            setTemperature(`${temperature}°C`);
+          }
+        }}
+        onFocus={() => {
+          setTemperature(temperature.replace(" °C", ""));
+        }}
+        maxLength={2}
+        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
+        placeholderTextColor={black}
       />
-      <Button title="Submit" onPress={handleSubmit} />
-    </View>
+      <View
+        style={[
+          flex_style.flex,
+          flex_style.spaceBetween,
+          flex_style.one,
+          margin_styles.bottom_md,
+        ]}
+      >
+        <TextInput
+          placeholder="DD/MM/YYYY"
+          value={date}
+          onChangeText={handleDateChange}
+          style={[form_style.formControl, styles.dateInput, , text_style.sm]}
+          placeholderTextColor={black}
+          keyboardType="numeric"
+          maxLength={10}
+        />
+        <TextInput
+          placeholder="Time (24h)"
+          value={hour}
+          onChangeText={handleHourChange}
+          keyboardType="numeric"
+          maxLength={2}
+          style={[form_style.formControl, text_style.sm, styles.timeInput]}
+          placeholderTextColor={black}
+        />
+      </View>
+      <Text
+        style={[
+          text_style.primaryColor,
+          text_style.sm,
+          text_style.bold,
+          flex_style.width100,
+          text_style.alignCenter,
+        ]}
+      >
+        {loadTranslations("weather")}
+      </Text>
+      <View
+        style={[
+          styles.switchContainer,
+          margin_styles.vertical_space_md,
+          flex_style.width100,
+        ]}
+      >
+        <Text
+          style={[
+            text_style.sm,
+            text_style.black,
+            flex_style.one,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("sun")}
+        </Text>
+        <Switch
+          value={isSunny}
+          onValueChange={setIsSunny}
+          trackColor={{ false: primary_color, true: green_color }}
+          thumbColor={isSunny ? "#f4f3f4" : "#f4f3f4"}
+        />
+        <Text
+          style={[
+            text_style.sm,
+            text_style.black,
+            flex_style.one,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("cloudy")}
+        </Text>
+      </View>
+
+      <View
+        style={[
+          styles.switchContainer,
+          margin_styles.vertical_space_md,
+          flex_style.width100,
+        ]}
+      >
+        <Text
+          style={[
+            text_style.sm,
+            text_style.black,
+            flex_style.one,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("dry")}
+        </Text>
+        <Switch
+          value={isRaining}
+          onValueChange={setIsRaining}
+          trackColor={{ false: primary_color, true: green_color }}
+          thumbColor={isRaining ? "#f4f3f4" : "#f4f3f4"}
+        />
+        <Text
+          style={[
+            text_style.sm,
+            text_style.black,
+            flex_style.one,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("raining")}
+        </Text>
+      </View>
+
+      <Text
+        style={[
+          text_style.primaryColor,
+          text_style.sm,
+          text_style.bold,
+          flex_style.width100,
+          text_style.alignCenter,
+        ]}
+      >
+        {loadTranslations("bioPressure")}
+      </Text>
+
+      <View
+        style={[
+          styles.switchContainer,
+          margin_styles.vertical_space_md,
+          flex_style.width100,
+        ]}
+      >
+        <Text
+          style={[
+            text_style.sm,
+            text_style.black,
+            flex_style.one,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("low")}
+        </Text>
+        <Switch
+          value={isHighPressure}
+          onValueChange={setIsHighPressure}
+          style={styles.switch}
+          trackColor={{ false: primary_color, true: green_color }}
+          thumbColor={isHighPressure ? "#f4f3f4" : "#f4f3f4"}
+        />
+        <Text
+          style={[
+            text_style.sm,
+            text_style.black,
+            flex_style.one,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("high")}
+        </Text>
+      </View>
+
+      <View
+        style={[
+          flex_style.flex,
+          flex_style.column,
+          flex_style.width100,
+          margin_styles.bottom_lg,
+        ]}
+      >
+        <Text
+          style={[
+            text_style.sm,
+            text_style.bold,
+            text_style.primaryColor,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("waterClarity")}
+        </Text>
+        <Picker
+          selectedValue={waterClarity}
+          style={[
+            { height: 50 },
+            Platform.OS === "ios" ? { height: 200, zIndex: 0 } : null,
+          ]}
+          onValueChange={(itemValue, itemIndex) => setWaterClarity(itemValue)}
+        >
+          <Picker.Item label={loadTranslations("murky")} value="Murky" />
+          <Picker.Item label={loadTranslations("stained")} value="Stained" />
+          <Picker.Item label={loadTranslations("clear")} value="Clear" />
+        </Picker>
+      </View>
+
+      <TouchableOpacity
+        onPress={handleFormSubmit}
+        style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
+      >
+        <Text
+          style={[
+            text_style.fontColorWhite,
+            text_style.bold,
+            flex_style.width100,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("castAway")}
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 }
 

@@ -26,6 +26,7 @@ export function navigateBack() {
 export async function responseDataHandler(response, navigateIfNotauth = true) {
   try {
     responseJSON = await response.json();
+    console.log(responseJSON);
     if (responseJSON.status === RES_VALID) {
       return responseJSON.data;
     } else {
