@@ -191,6 +191,10 @@ export default function LuresForm({ navigation }) {
           {loadTranslations("submit")}
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => setVisible(true)}>
+        <Text style={[text_style.bold, text_style.fontColorWhite]}>{loadTranslations("requestNewLure")}</Text>
+      </TouchableOpacity>
+      <AddLureModal setVisible={setVisible} visible={visible}></AddLureModal>
     </ScrollView>
   );
 }

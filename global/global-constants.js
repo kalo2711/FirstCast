@@ -25,6 +25,9 @@ const widthMinusMediumPadding =
 const SpacingLarge = 40;
 const SpacingXLarge = 50;
 
+const SpacingFormXLarge = 160
+
+
 // Text font size
 const headerLargeFont = 30;
 
@@ -52,11 +55,13 @@ const NAV_FILTERED_LIST = "FilteredList";
 const NAV_WHEEL_LOCATIONS = "LocationList";
 const NAV_GENERAL_PROFILE = "generalProfile";
 const NAV_TIME = "Time";
-const NAV_CUSTOM_LOC = "CustomLoc";
 const NAV_TUTORIAL = "Tutorial";
 const NAV_EDIT_PROFILE = "editProfile";
 const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
+const NAV_CONDITIONS_FORM = 'ConditionsForm'
+const NAV_LURES_FORM = 'Lures'
+const NAV_LURES_RESULTS = 'LuresResults'
 
 // Responses
 const RES_UNAUTHORIZED = "Unauthorized";
@@ -220,6 +225,7 @@ export {
   SpacingMedium,
   SpacingLarge,
   SpacingXLarge,
+  SpacingFormXLarge,
   ICON_SIZE_XXS,
   ICON_SIZE_XS,
   ICON_SIZE_S,
@@ -286,6 +292,9 @@ export {
   NAV_NEW_ADVERTISEMENT,
   NAV_TUTORIAL,
   NAV_TIME,
+  NAV_CONDITIONS_FORM,
+  NAV_LURES_FORM,
+  NAV_LURES_RESULTS,
   ADDRESS,
   MAX_BUDGET,
   PHOTO,

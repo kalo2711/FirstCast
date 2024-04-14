@@ -11,7 +11,8 @@ import {
   white,
   black,
   lightgrey,
-  grey_color
+  grey_color,
+  secondary_color
 } from './global-constants'
 import { StyleSheet } from 'react-native'
 
@@ -49,6 +50,12 @@ export const flex_style = StyleSheet.create({
   center: {
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
+  justifyCenter: {
+    justifyContent: 'center',
   },
   absoluteContainer: {
     position: 'absolute',
@@ -98,6 +105,9 @@ export const form_style = StyleSheet.create({
   formControlFullWidth: {
     width: '100%',
   },
+  formControlHalfWidth: {
+    width: '50%',
+  },
   form_button: {
     borderRadius: 100,
     alignItems: 'center',
@@ -118,6 +128,11 @@ export const form_style = StyleSheet.create({
   },
   form_control_flex: {
     flex: 1
+  },
+  form_control_required: {
+    color: 'red',
+    fontSize: 16,
+    marginLeft: 5
   }
 })
 
@@ -160,6 +175,9 @@ export const text_style = StyleSheet.create({
   },
   primaryColor: {
     color: primary_color
+  },
+  secondaryColor: {
+    color: secondary_color
   },
   alignCenter: {
     textAlign: 'center'
@@ -267,6 +285,10 @@ export const btn_style = StyleSheet.create({
   },
   buttonFullColor: {
     backgroundColor: primary_color_faded
+  },
+  disabled: {
+    backgroundColor: grey_color,
+    color: white
   },
   navButton: {
     backgroundColor: primary_color_faded,
