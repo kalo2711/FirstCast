@@ -7,12 +7,12 @@ import Photo from "./photo/photo";
 import { SpacingFormXLarge, SpacingMedium, SpacingXLarge, VALID, primary_color, secondary_color, white } from "./global/global-constants";
 import { environment } from "./global/environment";
 import { responseDataHandler } from "./global/global-functions";
+import { getAuthToken } from "./global/utils/auth.utils";
 
 const AddLureModal = (props) => {
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [type, setType] = useState('topwater');
-  const [email, setEmail] = useState('');
   const [color1, setColor1] = useState('');
   const [color2, setColor2] = useState('');
   const [size, setSize] = useState('');
@@ -62,7 +62,6 @@ const AddLureModal = (props) => {
     formData.append("brand", brand)
     formData.append("model", model)
     formData.append("type", type)
-    formData.append("email", email)
     formData.append("color1", color1)
     formData.append("color2", color2)
     formData.append("size", size)
@@ -82,12 +81,14 @@ const AddLureModal = (props) => {
     }
 
     const url = environment.host + '/api/custom/addLure'
+    const token = await getAuthToken(false)
+    console.log(token)
     const response = await fetch(url, {
       method: 'POST',
       body: formData,
       headers: {
         'Content-Type': 'multipart/form-data',
-        // 'x-app-auth': token
+        'x-app-auth': token
       },
     })
     resp = await responseDataHandler(response)
@@ -107,15 +108,6 @@ const AddLureModal = (props) => {
         <Text style={[text_style.sm, text_style.bold, margin_styles.bottom_md, text_style.primaryColor, text_style.alignCenter]}>
             {loadTranslations("requestNewLure")}
         </Text>
-        <View style={[flex_style.flex, flex_style.spaceBetween]}>
-          <Text style={[{marginRight: SpacingMedium, width: SpacingFormXLarge}]}>{loadTranslations("email")}</Text>
-          <TextInput
-            style={[form_style.formControl, form_style.formControlHalfWidth, margin_styles.bottom_md]}
-            placeholder={"xxxx@gmail.com"}
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
         <View style={[flex_style.flex, flex_style.spaceBetween]}>
           <Text style={[{marginRight: SpacingMedium, width: SpacingFormXLarge}]}>{loadTranslations("store")}</Text>
           <TextInput
