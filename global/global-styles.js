@@ -25,6 +25,9 @@ export const flex_style = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column'
   },
+  wrap: {
+    flexWrap: 'wrap'
+  },
   one: {
     flex: 1
   },
@@ -242,7 +245,7 @@ export const btn_style = StyleSheet.create({
   },
   button: {
     backgroundColor: primary_color_faded,
-    padding: 10,
+    paddingVertical: 10,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -370,13 +373,13 @@ export const margin_styles = StyleSheet.create({
 
 export const img_styles = StyleSheet.create({
   icon_xxs: {
-    width: width / 12,
-    height: width / 12,
+    width: height / 12,
+    height: height / 12,
     resizeMode: 'contain'
   },
   icon_xxxs: {
-    width: width / 14,
-    height: width / 14,
+    width: height / 14,
+    height: height / 14,
     resizeMode: 'contain'
   },
   imageHolder: {

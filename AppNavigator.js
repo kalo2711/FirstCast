@@ -26,7 +26,7 @@ function AppNavigator() {
             name="ConditionsResults"
             component={ConditionsResults}
           />
-          <RootStack.Screen name="Conditions" component={ConditionsForm} />
+          <RootStack.Screen name="ConditionsForm" component={ConditionsForm} />
           <RootStack.Screen name="LuresResults" component={LuresResults} />
         </RootStack.Navigator>
         <Navigation />

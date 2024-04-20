@@ -3,20 +3,21 @@ import { environment } from "../global/environment";
 import {
   View,
   Text,
-  TextInput,
+  Image,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import {
   btn_style,
   flex_style,
   form_style,
+  img_styles,
   margin_styles,
   padding_styles,
   text_style,
 } from "../global/global-styles";
-import { primary_color, black, green_color } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { reactIfView, responseDataHandler } from "../global/global-functions";
@@ -26,9 +27,10 @@ export default function LuresForm({ navigation }) {
   const [lure, setLure] = useState("");
   const [visible, setVisible] = useState(false);
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
-  const [brandAndModelText, setBrandAndModelText] = useState("");
+  const [chosenItem, setChosenItem] = useState(null);
   const [lureOptionId, setlureOptionId] = useState(null);
   const [lureOptions, setLureOptions] = useState(null);
+  const [brandAndModalVisible, setBrandAndModalVisible] = useState(false);
   const [selectedLureOption, setSelectedLureOption] = useState(null);
 
   const fetchLureOptions = async (lureId) => {
@@ -55,9 +57,7 @@ export default function LuresForm({ navigation }) {
   };
 
   async function onChangeText(text) {
-    setBrandAndModelText(text);
-    const url = environment.host + "/api/lure-autofill?lureName=" + text;
-    console.log(url);
+    const url = environment.host + "api/lure-autofill?lureName=" + text;
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -65,20 +65,21 @@ export default function LuresForm({ navigation }) {
         // 'x-app-auth': token
       },
     });
-    resp = await responseDataHandler(response);
+    resp = await responseDataHandler(response, false);
     if (resp) {
-      setBrandAndModelDataset(resp);
+      setBrandAndModelDataset(resp.map(lure => { return {title: lure.brand + ' ' + lure.model, image: lure.image, id: lure.id}}));
     }
   }
 
   function onBrandAndModelSelect(item) {
-    setBrandAndModelText(item.title);
+    setBrandAndModalVisible(false)
+    setChosenItem(item);
     setBrandAndModelDataset([]);
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={[
+    <View
+      style={[
         flex_style.flex,
         flex_style.flexContainer,
         padding_styles.safetyTop,
@@ -97,18 +98,42 @@ export default function LuresForm({ navigation }) {
       >
         {loadTranslations("selectLure")}
       </Text>
-      <View style={[flex_style.flex, flex_style.width100, flex_style.center]}>
-        <Text style={[form_style.formLabel, text_style.sm, text_style.bold]}>{loadTranslations("brandOrModel")}</Text>
-        <TextInput
+      <View style={[flex_style.flex, flex_style.width100, flex_style.center, { alignItems: 'flex-start' }, margin_styles.bottom_md]}>
+        {!brandAndModalVisible ?
+          <TouchableOpacity
+            onPress={() => { setBrandAndModalVisible(true) }}
+            style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed]}
+          >
+            <Text
+              style={[
+                text_style.primaryColor,
+                text_style.bold,
+                text_style.alignCenter,
+              ]}
+            >
+              {loadTranslations("brandOrModel")}
+            </Text>
+          </TouchableOpacity> : 
+          <View style={[flex_style.one]}>
+              <Modal visible={brandAndModalVisible} animationType="slide">
+                <View style={{ flex: 1, padding: 20 }}>
+                  <DropdownWithModal setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
+                </View>
+              </Modal>
+          </View>
+        }
+        {/* <TextInput
           value={lure}
           onChangeText={(text) => onChangeText(text)}
           style={[form_style.formControl, flex_style.one, text_style.sm, margin_styles.bottom_md]}
           placeholderTextColor={black}
           onBlur={() => handleLureSelect(lure)}
-        />
+        /> */}
       </View>
+          <Text style={[text_style.bold, text_style.xs]}>{chosenItem?.title}</Text>
+          <Image style={[img_styles.icon_md]} source={{uri: chosenItem?.image}}></Image>
       {reactIfView(lureOptionId,
-      <View>
+        <View>
         <View
           style={[
             flex_style.flex,
@@ -122,7 +147,7 @@ export default function LuresForm({ navigation }) {
             onValueChange={(itemValue) =>
               setLureOptions({ ...lureOptions, color1: itemValue })
             }
-            style={[form_style.formControl, text_style.sm]}
+            style={[form_style.formControl, text_style.cs]}
           >
             {lureOptions?.color1?.map((color) => (
               <Picker.Item key={color} label={color} value={color} />
@@ -192,6 +217,6 @@ export default function LuresForm({ navigation }) {
         <Text style={[text_style.bold, text_style.fontColorWhite]}>{loadTranslations("requestNewLure")}</Text>
       </TouchableOpacity>
       <AddLureModal setVisible={setVisible} visible={visible}></AddLureModal>
-    </ScrollView>
+    </View>
   );
 }

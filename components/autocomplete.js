@@ -9,30 +9,35 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
+  FlatList
 } from "react-native";
 import { reactIfView } from "../global/global-functions";
-import { SpacingLarge, height, width } from "../global/global-constants";
+import { flex_style, form_style, img_styles, margin_styles } from "../global/global-styles";
 
 const ItemModal = ({ isVisible, items, onSelectItem }) => {
+
   return (
     <View>
       {reactIfView(
         isVisible,
-        <TouchableWithoutFeedback onPress={onSelectItem}>
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              {items.map((item, index) => (
-                <TouchableOpacity
-                  key={index}
-                  style={styles.itemButton}
-                  onPress={() => onSelectItem(item)}
-                >
-                  <Text style={styles.itemText}>{item.brand + item.model}</Text>
-                </TouchableOpacity>
-              ))}
+              <FlatList
+                data={items.slice()}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={[styles.itemButton, flex_style.flex, ,flex_style.alignCenter]}
+                    onPress={(event) => onSelectItem(item)}
+                  >
+                    <Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{uri:item.image}}></Image>
+                    <Text style={[styles.itemText, flex_style.one, flex_style.wrap]}>{item.title}</Text>
+                  </TouchableOpacity>
+                )}
+                keyExtractor={(item, index) => index.toString()}
+              />
             </View>
           </View>
-        </TouchableWithoutFeedback>
       )}
     </View>
   );
@@ -50,8 +55,9 @@ const DropdownWithModal = ({
   const inputRef = useRef(null);
 
   useEffect(() => {
+    console.log('im getting DS')
     setItems([...dataset]);
-    if (dataset.length > 0) {
+    if (dataset?.length > 0) {
       openKeyboard();
     }
     return () => {
@@ -82,6 +88,8 @@ const DropdownWithModal = ({
   };
 
   const handleSelectItem = (item) => {
+    console.log('getting selected')
+    console.log(item)
     setSelectedItem(item);
     setInputValue("");
     setIsModalVisible(false);
@@ -92,19 +100,17 @@ const DropdownWithModal = ({
     <View style={styles.container}>
       <TextInput
         ref={inputRef}
-        style={[styles.input, { marginBottom: isModalVisible ? 0 : 50 }]}
+        style={[form_style.formControl]}
         value={inputValue}
         placeholder={placeholder}
         onFocus={toggleModal}
-        onChangeText={onType}
+        onChangeText={text => onType(text)}
       />
-      {isModalVisible && (
         <ItemModal
-          isVisible={isModalVisible}
+          isVisible={!!inputValue}
           items={items}
-          onSelectItem={handleSelectItem}
+          onSelectItem={item => handleSelectItem(item)}
         />
-      )}
     </View>
   );
 };
@@ -116,13 +122,6 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     height: 300, // Limit the height of the modal content
-  },
-  input: {
-    width: width - SpacingLarge,
-    height: 40,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 5,
   },
   itemButton: {
     padding: 10,
