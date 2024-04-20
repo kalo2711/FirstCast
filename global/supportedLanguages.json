@@ -2,6 +2,7 @@
     "en": {
         "bioPressure": "Biometric Pressure",
         "brand": "Lure brand",
+        "brandOrModel": "Brand Or Model",
         "cancel": "Cancel",
         "castAway": "Cast Away!",
         "clear": "Clear",
@@ -32,6 +33,7 @@
         "size": "Length (inches)",
         "species": "Species",
         "speciesSelect": "Select Species",
+        "selectLure": "Select lure",
         "stained": "Stained",
         "store": "Store",
         "submit": "Submit",
@@ -59,6 +61,7 @@
     "fr": {
         "bioPressure": "Pression biométrique",
         "brand": "Marque de leurre",
+        "brandOrModel": "Brand Ou Model",
         "cancel": "Annuler",
         "castAway": "Jeter à l'eau !",
         "clear": "Clair",
@@ -83,6 +86,7 @@
         "requestSucceed": "Votre demande a été reçue, nous vous contacterons dans les 24 heures ouvrables",
         "Raining": "Pluvieux",
         "requestNewLure": "Demander un nouveau leurre",
+        "selectLure": "Choisir un leurre",
         "signin": "Se connecter",
         "signup": "S'inscrire",
         "secondaryColor": "Couleur Secondaire",

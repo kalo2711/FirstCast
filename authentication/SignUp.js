@@ -68,12 +68,11 @@ function SignUp(props) {
         body: JSON.stringify(userInfor),
       })
       let responseJSON = await response.json()
-      Alert.alert(responseJSON.toString())
-
+      console.log(responseJSON)
       if (responseJSON[STATUS] == VALID) {
         const token = responseJSON[DATA][JWT]
         setAuthToken(token)
-        updateTokenInDatabase(token, props.socketId)
+        updateTokenInDatabase(token)
       } else {
         if (responseJSON[ERROR][CODE] == ER_DUP_ENTRY) {
           setError(loadTranslations('generalDuplicateEmailError')

@@ -7,6 +7,7 @@ import {
   NAV_EDIT_PROFILE,
   NAV_GENERAL_PROFILE,
   NAV_HOME_LIST,
+  NAV_LURES_FORM,
   NAV_TUTORIAL,
   PERSON,
   PERSON_OUTLINE,
@@ -29,6 +30,7 @@ import { loadTranslations } from "./global/localization";
 // import { getAuthToken } from "../../utils/auth.util";
 import { useNavigationState } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { setAuthToken } from "./global/utils/auth.utils";
 
 export default function Navigation() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -56,7 +58,7 @@ export default function Navigation() {
   });
 
   const handleProfilePress = () => {
-    navigate(authenticated ? NAV_GENERAL_PROFILE : NAV_AUTHENTICATION);
+    navigate(authenticated ? NAV_LURES_FORM : NAV_AUTHENTICATION);
   };
 
   const handleHomePress = () => {

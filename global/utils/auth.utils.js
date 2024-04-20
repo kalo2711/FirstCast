@@ -31,7 +31,7 @@ export async function setAuthToken(token) {
   }
 }
 
-export async function updateTokenInDatabase(token, socketId) {
+export async function updateTokenInDatabase(token) {
   const url = environment['host'] + 'api/user/post/updateToken'
   if (token != null) {
     try {

@@ -19,7 +19,7 @@ import {
 import { primary_color, black, green_color } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
-import { responseDataHandler } from "../global/global-functions";
+import { reactIfView, responseDataHandler } from "../global/global-functions";
 import AddLureModal from "../add-lure-modal"
 
 export default function LuresForm({ navigation }) {
@@ -27,13 +27,9 @@ export default function LuresForm({ navigation }) {
   const [visible, setVisible] = useState(false);
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
   const [brandAndModelText, setBrandAndModelText] = useState("");
-  const [lureOptions, setLureOptions] = useState({
-    color1: "",
-    color2: "",
-    size: "",
-    weight: "",
-    lureOptionsId: "",
-  });
+  const [lureOptionId, setlureOptionId] = useState(null);
+  const [lureOptions, setLureOptions] = useState(null);
+  const [selectedLureOption, setSelectedLureOption] = useState(null);
 
   const fetchLureOptions = async (lureId) => {
     // Fetch call to /api/lure-options-autofill with lureId
@@ -101,83 +97,82 @@ export default function LuresForm({ navigation }) {
       >
         {loadTranslations("selectLure")}
       </Text>
-      <TextInput
-        placeholder={loadTranslations("lure")}
-        value={lure}
-        onChangeText={(text) => setLure(text)}
-        style={[form_style.formControl, text_style.sm, margin_styles.bottom_md]}
-        placeholderTextColor={black}
-        onBlur={() => handleLureSelect(lure)}
-      />
-      <DropdownWithModal
-        dataset={brandAndModelDataset}
-        onChangeText={onChangeText}
-        placeholder={""}
-        setSelectedItem={onBrandAndModelSelect}
-      ></DropdownWithModal>
-      <View
-        style={[
-          flex_style.flex,
-          flex_style.spaceBetween,
-          flex_style.one,
-          margin_styles.bottom_md,
-        ]}
-      >
-        {/* <Picker
-          selectedValue={lureOptions.color1}
-          onValueChange={(itemValue) =>
-            setLureOptions({ ...lureOptions, color1: itemValue })
-          }
-          style={[form_style.formControl, text_style.sm]}
-        >
-          {lureOptions.color1?.map((color) => (
-            <Picker.Item key={color} label={color} value={color} />
-          ))}
-        </Picker>
-        <Picker
-          selectedValue={lureOptions.color2}
-          onValueChange={(itemValue) =>
-            setLureOptions({ ...lureOptions, color2: itemValue })
-          }
-          style={[form_style.formControl, text_style.sm]}
-        >
-          {lureOptions.color2?.map((color) => (
-            <Picker.Item key={color} label={color} value={color} />
-          ))}
-        </Picker> */}
+      <View style={[flex_style.flex, flex_style.width100, flex_style.center]}>
+        <Text style={[form_style.formLabel, text_style.sm, text_style.bold]}>{loadTranslations("brandOrModel")}</Text>
+        <TextInput
+          value={lure}
+          onChangeText={(text) => onChangeText(text)}
+          style={[form_style.formControl, flex_style.one, text_style.sm, margin_styles.bottom_md]}
+          placeholderTextColor={black}
+          onBlur={() => handleLureSelect(lure)}
+        />
       </View>
-      <View
-        style={[
-          flex_style.flex,
-          flex_style.spaceBetween,
-          flex_style.one,
-          margin_styles.bottom_md,
-        ]}
-      >
-        {/* <Picker
-          selectedValue={lureOptions.size}
-          onValueChange={(itemValue) =>
-            setLureOptions({ ...lureOptions, size: itemValue })
-          }
-          style={[form_style.formControl, text_style.sm]}
+      {reactIfView(lureOptionId,
+      <View>
+        <View
+          style={[
+            flex_style.flex,
+            flex_style.spaceBetween,
+            flex_style.one,
+            margin_styles.bottom_md,
+          ]}
         >
-          {lureOptions.size?.map((size) => (
-            <Picker.Item key={size} label={size} value={size} />
-          ))}
-        </Picker>
-        <Picker
-          selectedValue={lureOptions.weight}
-          onValueChange={(itemValue) =>
-            setLureOptions({ ...lureOptions, weight: itemValue })
-          }
-          style={[form_style.formControl, text_style.sm]}
+          <Picker
+            selectedValue={lureOptions?.color1}
+            onValueChange={(itemValue) =>
+              setLureOptions({ ...lureOptions, color1: itemValue })
+            }
+            style={[form_style.formControl, text_style.sm]}
+          >
+            {lureOptions?.color1?.map((color) => (
+              <Picker.Item key={color} label={color} value={color} />
+            ))}
+          </Picker>
+          <Picker
+            selectedValue={lureOptions?.color2}
+            onValueChange={(itemValue) =>
+              setLureOptions({ ...lureOptions, color2: itemValue })
+            }
+            style={[form_style.formControl, text_style.sm]}
+          >
+            {lureOptions?.color2?.map((color) => (
+              <Picker.Item key={color} label={color} value={color} />
+            ))}
+          </Picker>
+        </View>
+        <View
+          style={[
+            flex_style.flex,
+            flex_style.spaceBetween,
+            flex_style.one,
+            margin_styles.bottom_md,
+          ]}
         >
-          {lureOptions.weight?.map((weight) => (
-            <Picker.Item key={weight} label={weight} value={weight} />
-          ))}
-        </Picker> */}
+          {/* <Picker
+            selectedValue={lureOptions.size}
+            onValueChange={(itemValue) =>
+              setLureOptions({ ...lureOptions, size: itemValue })
+            }
+            style={[form_style.formControl, text_style.sm]}
+          >
+            {lureOptions.size?.map((size) => (
+              <Picker.Item key={size} label={size} value={size} />
+            ))}
+          </Picker>
+          <Picker
+            selectedValue={lureOptions.weight}
+            onValueChange={(itemValue) =>
+              setLureOptions({ ...lureOptions, weight: itemValue })
+            }
+            style={[form_style.formControl, text_style.sm]}
+          >
+            {lureOptions.weight?.map((weight) => (
+              <Picker.Item key={weight} label={weight} value={weight} />
+            ))}
+          </Picker> */}
+        </View>
       </View>
-
+      )}
       <TouchableOpacity
         onPress={handleFormSubmit}
         style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}

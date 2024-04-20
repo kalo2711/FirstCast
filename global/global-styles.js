@@ -102,6 +102,9 @@ export const form_style = StyleSheet.create({
     padding: SpacingExtraSmall,
     borderRadius: SpacingExtraSmall
   },
+  formLabel: {
+    marginRight: SpacingMedium
+  },
   formControlFullWidth: {
     width: '100%',
   },

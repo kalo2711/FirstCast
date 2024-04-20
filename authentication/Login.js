@@ -63,7 +63,7 @@ function LogIn(props) {
       if (resp) {
         const token = resp.jwt
         await setAuthToken(token)
-        updateTokenInDatabase(token, props.socketId)
+        updateTokenInDatabase(token)
       } else {
         setError(resp.message)
       }
