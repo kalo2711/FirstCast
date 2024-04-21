@@ -32,9 +32,9 @@ export async function responseDataHandler(response, navigateIfNotauth = true) {
       return null;
     }
   } catch (e) {
-    if (e.toString().includes(RES_UNAUTHORIZED) && navigateIfNotauth) {
-      await setAuthToken(null);
-      navigate(NAV_AUTHENTICATION);
-    }
+    // if (e.toString().includes(RES_UNAUTHORIZED) && navigateIfNotauth) {
+    //   await setAuthToken(null);
+    //   navigate(NAV_AUTHENTICATION);
+    // }
   }
 }

@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Navigation from "./navigation";
 import Authentication from "./authentication/auth";
 import { navigationRef } from './global/global-functions'
+import { NAV_AUTHENTICATION } from "./global/global-constants";
 
 const RootStack = createNativeStackNavigator();
 
@@ -20,7 +21,7 @@ function AppNavigator() {
           initialRouteName="Authentication"
           screenOptions={{ headerShown: false }}
         >
-          <RootStack.Screen name="Authentication" component={Authentication} />
+          <RootStack.Screen name={NAV_AUTHENTICATION} component={Authentication} />
           <RootStack.Screen name="Lures" component={LuresForm} />
           <RootStack.Screen
             name="ConditionsResults"

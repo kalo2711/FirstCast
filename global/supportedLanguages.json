@@ -43,7 +43,7 @@
         "store": "Store",
         "submit": "Submit",
         "sun": "Sun",
-        "temperature": "Temperature (°C)",
+        "temperature": "Temperature (°F)",
         "type": "Type of lure",
         "waterClarity": "Water Clarity",
         "weather": "Weather",
@@ -61,7 +61,13 @@
         "purple": "purple",
         "salmon": "salmon",
         "orange": "orange",
-        "yellow": "yellow"
+        "yellow": "yellow",
+        "tutSetLocation": "Select the location that you will be fishing",
+        "tutSetTemperature": "Select the water temperature that you will be fishing. This will determine the depth you will be fishing.",
+        "tutSetSpecies": "Select the fish species you will be targeting",
+        "tutSetDate": "Select the date and then time you will be fishing. This will be used to get the weather.",
+        "tutSetWater": "Click the image that is closest to the clarity of the water you will be fishing",
+        "tutConditionsSubmit": "Once you are sure of all of the information click submit to find the best lures for these conditions"
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -107,7 +113,7 @@
         "store": "Magasin",
         "submit": "Soumettre",
         "sun": "Soleil",
-        "temperature": "Température (°C)",
+        "temperature": "Température (°F)",
         "type": "Type de leurre",
         "waterClarity": "Clarté de l'eau",
         "weather": "Temps",
@@ -125,6 +131,13 @@
         "purple": "mauve",
         "salmon": "saumon",
         "orange": "orange",
-        "yellow": "jaune"
+        "yellow": "jaune",
+        "tutSetLocation": "Sélectionnez l'endroit où vous pêcherez",
+        "tutSetTemperature": "Sélectionnez la température de l’eau à laquelle vous pêcherez. Cela déterminera la profondeur à laquelle vous pêcherez.",
+        "tutSetSpecies": "Sélectionnez les espèces de poissons que vous ciblerez",
+        "tutSetDate": "Sélectionnez la date à laquelle vous pêcherez",
+        "tutSetTime": "Sélectionnez l'heur à laquelle vous pêcherez",
+        "tutSetWater": "Cliquez sur l'image la plus proche de la clarté de l'eau dans laquelle vous allez pêcher.",
+        "tutConditionsSubmit": "Une fois que vous êtes sûr de toutes les informations, cliquez sur Soumettre pour trouver les meilleurs leurres pour ces conditions."
     }
 }

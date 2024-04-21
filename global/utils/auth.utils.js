@@ -5,18 +5,13 @@ import { navigate, responseDataHandler } from '../global-functions'
 import { loadTranslations } from '../localization'
 import { Alert } from "react-native"
 
-export async function getAuthToken(navigateIfNotAuth = true, socketId = null) {
+export async function getAuthToken(navigateIfNotAuth = true) {
   const token = await SecureStore.getItemAsync(SECURE_STORE_ITEM_KEY)
   if (token) {
     return token
   } else {
     if (navigateIfNotAuth) {
-      if (socketId) {
-        // navigate(NAV_AUTHENTICATION, {socketId: socketId})
-      }
-      else {
-        // navigate(NAV_AUTHENTICATION)
-      }
+        navigate(NAV_AUTHENTICATION)
     }
     return null
   }

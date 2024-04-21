@@ -82,7 +82,6 @@ const AddLureModal = (props) => {
 
     const url = environment.host + '/api/custom/addLure'
     const token = await getAuthToken(false)
-    console.log(token)
     const response = await fetch(url, {
       method: 'POST',
       body: formData,
@@ -97,7 +96,7 @@ const AddLureModal = (props) => {
     Alert.alert('', resp != null ? loadTranslations("requestSucceed") : loadTranslations("requestFailed"), [
       {
         text: 'OK',
-        onPress: () => resp != null ? props.setVisible(false) : console.log('clo'),
+        onPress: () => resp != null ? props.setVisible(false) : null,
       },
     ]);
   }

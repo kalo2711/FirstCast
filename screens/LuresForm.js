@@ -77,7 +77,6 @@ export default function LuresForm({ navigation }) {
 
   async function onBrandAndModelSelect(item) {
     setBrandAndModalVisible(false)
-    console.log(item)
     setChosenItem(item);
     setBrandAndModelDataset([]);
     setIsLoading(true)

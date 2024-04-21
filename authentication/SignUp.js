@@ -68,7 +68,6 @@ function SignUp(props) {
         body: JSON.stringify(userInfor),
       })
       let responseJSON = await response.json()
-      console.log(responseJSON)
       if (responseJSON[STATUS] == VALID) {
         const token = responseJSON[DATA][JWT]
         setAuthToken(token)
