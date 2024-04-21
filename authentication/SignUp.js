@@ -91,15 +91,13 @@ function SignUp(props) {
   const onRegisterTap = (inputData) => {
     Alert.alert(loadTranslations("generalTerm"), term, [
       {
-        text: loadTranslations("generalNo"),
-        style: NO,
+        text: loadTranslations("cancel"),
+        style: 'cancel',
       },
       {
-        text: loadTranslations("generalCancel"),
-      },
-      {
-        text: loadTranslations("generalTermAgree"),
+        text: loadTranslations("termAgree"),
         onPress: () => registerOption(inputData),
+        style: 'default',
       },
     ])
   }

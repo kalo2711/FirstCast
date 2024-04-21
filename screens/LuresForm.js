@@ -8,6 +8,7 @@ import {
   ScrollView,
   Modal,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import {
@@ -102,8 +103,7 @@ export default function LuresForm({ navigation }) {
         contentContainerStyle={[
           flex_style.flex,
           flex_style.flexContainer,
-          padding_styles.safetyTop,
-          { flexWrap: "wrap"},
+          padding_styles.safetyTop
         ]}
       >
         <Text
@@ -135,7 +135,7 @@ export default function LuresForm({ navigation }) {
             </TouchableOpacity> : 
             <View style={[flex_style.one]}>
                 <Modal visible={brandAndModalVisible} animationType="slide">
-                  <View style={{ flex: 1, padding: 20 }}>
+                  <View style={[{ flex: 1, height: height, padding: 20, paddingTop: Platform.OS == 'ios' ? 80 : 0 }]}>
                     <DropdownWithModal noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
                   </View>
                 </Modal>
