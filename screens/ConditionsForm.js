@@ -122,6 +122,8 @@ const ConditionsForm = () => {
           text_style.primaryColor,
           margin_styles.bottom_md,
           text_style.bold,
+          flex_style.width100,
+          text_style.alignCenter
         ]}
       >
         {loadTranslations("howAreYouFishing")}
@@ -168,6 +170,7 @@ const ConditionsForm = () => {
                   text_style.primaryColor,
                   text_style.bold,
                   text_style.alignCenter,
+                  flex_style.width100,
                 ]}
               >
                 {loadTranslations("speciesSelect")}
