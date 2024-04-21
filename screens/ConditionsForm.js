@@ -416,7 +416,7 @@ const ConditionsForm = () => {
             text_style.alignCenter,
           ]}
         >
-          {loadTranslations("castAway")}
+          {loadTranslations("findLures")}
         </Text>
       </TouchableOpacity>
     </ScrollView>

@@ -220,6 +220,10 @@ export const text_style = StyleSheet.create({
     fontFamily: 'open-sans-regular',
     color: black
   },
+  fontColorRed: {
+    fontFamily: 'open-sans-regular',
+    color: 'red'
+  },
   fontColorGrey: {
     fontFamily: 'open-sans-regular',
     color: grey_color
@@ -244,7 +248,7 @@ export const btn_style = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   button: {
-    backgroundColor: primary_color_faded,
+    backgroundColor: primary_color,
     paddingVertical: 10,
     borderRadius: 10,
     justifyContent: 'center',

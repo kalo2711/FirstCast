@@ -1,12 +1,13 @@
 import { Dimensions } from "react-native";
 
-const height = Dimensions.get("screen").height - 50;
+const height = Dimensions.get("screen").height - 60;
 const width = Dimensions.get("screen").width;
 const primary_color = "rgba(0,51,98,255)";
-const primary_color_faded = "rgba(0,51,98,255)";
+const primary_color_faded = "rgba(0,51,98,0.5)";
 const green_color = "rgba(0, 255, 168, 1)";
 const orange_color = "rgb(255, 87, 52)";
 const secondary_color = "rgba(0, 255, 200, 1)";
+const secondary_color_faded = "rgba(0, 255, 200, 0.2)";
 const tertiary_color = "rgba(0, 255, 230, 1)";
 const white = "rgb(255, 255, 255)";
 const honeydew = "rgba(245, 255, 229, 1)";
@@ -211,6 +212,7 @@ export {
   green_color,
   orange_color,
   secondary_color,
+  secondary_color_faded,
   tertiary_color,
   white,
   honeydew,
