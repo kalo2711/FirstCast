@@ -38,7 +38,6 @@ export default function LuresForm({ navigation }) {
   useEffect(() => {
     const getTut = async () => {
       const tut = await getNextTutorialForPage(NAV_LURES_FORM)
-      console.log(tut)
      setCurrentTutorial(tut)
     }
    if (initialLoad) {
