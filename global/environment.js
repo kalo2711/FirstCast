@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  host: "http://192.168.0.145:3000/",
-  authHost: "http://192.168.0.145:3001/",
-  messagingHost: "http://192.168.0.145:3002/",
+  host: "http://192.168.12.12:3000/",
+  authHost: "http://192.168.12.12:3001/",
+  messagingHost: "http://192.168.12.12:3002/",
   imageBucket: "https://storage.googleapis.com/puggum-bucket/",
 };
 

@@ -74,7 +74,18 @@
         "tutSelectOptions": "Select the lure with the options you want details on",
         "tutOptionDetails": "View the lures colors, size and weight here",
         "tutRequestNewLure": "If you dont see the lure you've searched for request it here",
-        "tutSubmit":"Once your lure is selected and has a green background click here to get the best conditions to use it in"
+        "tutSubmit":"Once your lure is selected and has a green background click here to get the best conditions to use it in",
+        
+        "tutLureStore":"Enter the name of the store your lure can be found at",
+        "tutLureBrand":"Enter the name of the brand of your lure",
+        "tutLureModel":"Enter the lure's model name",
+        "tutLurePrice":"Enter its price",
+        "tutLureDimensions":"Enter the lure's length (in inches) and weight (in ounces)",
+        "tutLureType":"Make sure to select the type of lure you're requestion",
+        "tutLurePrimaryColor":"Enter the lure's primary color",
+        "tutLureSecondaryColor":"Enter the lure's secondary color",
+        "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
+        "tutLureSubmit":"Once all required details are provided, click here to request the lure."
     },
     "fr": {
         "bioPressure": "Pression biométrique",

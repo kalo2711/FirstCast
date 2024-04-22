@@ -1,13 +1,38 @@
-import React, { useState } from 'react';
-import { ScrollView, TextInput, Modal, Text, View, TouchableOpacity, Alert, ActivityIndicator} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { 
+  ScrollView,
+   TextInput,
+    Modal,
+    Text,
+    View,
+    TouchableOpacity, 
+    Alert, 
+    ActivityIndicator, 
+    Platform
+} from 'react-native';
 import { loadTranslations } from "./global/localization";
 import { btn_style, flex_style, form_style, margin_styles, text_style } from "./global/global-styles";
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import Photo from "./photo/photo";
-import { SpacingFormXLarge, SpacingMedium, SpacingXLarge, VALID, primary_color, secondary_color, white } from "./global/global-constants";
+import { 
+  SpacingFormXLarge, 
+  SpacingMedium, 
+  SpacingXLarge, 
+  VALID, 
+  primary_color, 
+  secondary_color, 
+  white,
+  IOS,
+  NAV_REQUEST_LURE_FORM,
+  width
+} from "./global/global-constants";
 import { environment } from "./global/environment";
 import { navigateBack, responseDataHandler } from "./global/global-functions";
 import { getAuthToken } from "./global/utils/auth.utils";
+import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
+import {reactIfView} from "./global/global-functions";
+import { getNextTutorialForPage, updateTutorialAndGetNext } from "./global/utils/tutorial.utils";
+
 
 const AddLureModal = (props) => {
   const [brand, setBrand] = useState('');
@@ -21,6 +46,8 @@ const AddLureModal = (props) => {
   const [store, setStore] = useState('');
   const [photoURI, setPhotoURI] = useState('');
   const [loading, setLoading] = useState(false);
+  const [currentTutorial, setCurrentTutorial] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const lure_type = [
   {id: 0, lureType: "topwater"},
@@ -51,6 +78,19 @@ const AddLureModal = (props) => {
     {id: 12, color: "orange"},
     {id: 13, color: "yellow"}
   ];
+
+  useEffect(() => {
+    const getTut = async () => {
+     const tut = await getNextTutorialForPage(NAV_REQUEST_LURE_FORM)
+     console.log("hello")
+     console.log(tut)
+     setCurrentTutorial(tut)
+    }
+   if (initialLoad) {
+     getTut();
+     setInitialLoad(false)
+    }
+  }, []);
 
   function onCancel() {
     navigateBack()
@@ -106,8 +146,26 @@ const AddLureModal = (props) => {
         <Text style={[text_style.sm, text_style.bold, margin_styles.bottom_md, text_style.primaryColor, text_style.alignCenter]}>
             {loadTranslations("requestNewLure")}
         </Text>
+        {reactIfView(currentTutorial == 'store', <Tooltip
+            contentStyle={[{backgroundColor: primary_color, height: 60}]}
+            backgroundColor={'rgba(0,0,0,0)'}
+            isVisible={currentTutorial == 'store'}
+            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureStore")}</Text>}
+            placement="top"
+            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('store', NAV_REQUEST_LURE_FORM))}}
+          >
+            <TooltipChildrenContext.Consumer>
+                {({ tooltipDuplicate }) => (
+                  reactIfView(!tooltipDuplicate,
+                    <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                    )
+              )}
+            </TooltipChildrenContext.Consumer>
+          </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween]}>
           <Text style={[{marginRight: SpacingMedium, width: SpacingFormXLarge}]}>{loadTranslations("store")}</Text>
+          
           <TextInput
             style={[form_style.formControl, form_style.formControlHalfWidth , margin_styles.bottom_md]}
             value={store}
