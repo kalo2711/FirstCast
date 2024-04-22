@@ -11,7 +11,8 @@ import {
   white,
   black,
   lightgrey,
-  grey_color
+  grey_color,
+  secondary_color
 } from './global-constants'
 import { StyleSheet } from 'react-native'
 
@@ -23,6 +24,9 @@ export const flex_style = StyleSheet.create({
   flexColumn: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  wrap: {
+    flexWrap: 'wrap'
   },
   one: {
     flex: 1
@@ -49,6 +53,12 @@ export const flex_style = StyleSheet.create({
   center: {
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
+  justifyCenter: {
+    justifyContent: 'center',
   },
   absoluteContainer: {
     position: 'absolute',
@@ -95,8 +105,14 @@ export const form_style = StyleSheet.create({
     padding: SpacingExtraSmall,
     borderRadius: SpacingExtraSmall
   },
+  formLabel: {
+    marginRight: SpacingMedium
+  },
   formControlFullWidth: {
     width: '100%',
+  },
+  formControlHalfWidth: {
+    width: '50%',
   },
   form_button: {
     borderRadius: 100,
@@ -118,6 +134,11 @@ export const form_style = StyleSheet.create({
   },
   form_control_flex: {
     flex: 1
+  },
+  form_control_required: {
+    color: 'red',
+    fontSize: 16,
+    marginLeft: 5
   }
 })
 
@@ -161,6 +182,9 @@ export const text_style = StyleSheet.create({
   primaryColor: {
     color: primary_color
   },
+  secondaryColor: {
+    color: secondary_color
+  },
   alignCenter: {
     textAlign: 'center'
   },
@@ -196,9 +220,17 @@ export const text_style = StyleSheet.create({
     fontFamily: 'open-sans-regular',
     color: black
   },
+  fontColorRed: {
+    fontFamily: 'open-sans-regular',
+    color: 'red'
+  },
   fontColorGrey: {
     fontFamily: 'open-sans-regular',
     color: grey_color
+  },
+  fontColorPrimary: {
+    fontFamily: 'open-sans-regular',
+    color: primary_color
   }
 })
 
@@ -220,8 +252,8 @@ export const btn_style = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   button: {
-    backgroundColor: primary_color_faded,
-    padding: 10,
+    backgroundColor: primary_color,
+    paddingVertical: 10,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -252,6 +284,9 @@ export const btn_style = StyleSheet.create({
   buttonFixedWidth: {
     width: 150
   },
+  buttonSmall: {
+    width: 200
+  },
   buttonFullWidth: {
     width: '100%'
   },
@@ -264,6 +299,10 @@ export const btn_style = StyleSheet.create({
   },
   buttonFullColor: {
     backgroundColor: primary_color_faded
+  },
+  disabled: {
+    backgroundColor: grey_color,
+    color: white
   },
   navButton: {
     backgroundColor: primary_color_faded,
@@ -342,13 +381,13 @@ export const margin_styles = StyleSheet.create({
 
 export const img_styles = StyleSheet.create({
   icon_xxs: {
-    width: width / 12,
-    height: width / 12,
+    width: height / 12,
+    height: height / 12,
     resizeMode: 'contain'
   },
   icon_xxxs: {
-    width: width / 14,
-    height: width / 14,
+    width: height / 14,
+    height: height / 14,
     resizeMode: 'contain'
   },
   imageHolder: {
@@ -396,6 +435,16 @@ export const img_styles = StyleSheet.create({
     height: 150,
     borderRadius: 150
   },
+  rectangle_image_xxs: {
+    width: 100,
+    height: 50,
+    resizeMode: 'contain'
+  },
+  rectangle_image_s: {
+    width: 200,
+    height: 100,
+    resizeMode: 'contain'
+  },
   square_image_s: {
     width: 50,
     height: 50
@@ -419,7 +468,7 @@ export const padding_styles = StyleSheet.create({
     padding: 0
   },
   safetyTop: {
-    paddingTop: 40
+    paddingTop: 50
   },
   space_xs: {
     padding: SpacingExtraSmall
