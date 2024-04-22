@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { loadTranslations } from "../global/localization";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useEffect, useState } from "react";
@@ -8,10 +7,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Switch,
   ScrollView,
   Platform,
-  TouchableHighlight,
   Image
 } from "react-native";
 import {
@@ -30,10 +27,8 @@ import {
   width,
   black,
   IOS,
-  secondary_color,
   NAV_CONDITIONS_FORM,
 } from "../global/global-constants";
-import * as Font from "expo-font";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';

@@ -10,11 +10,9 @@ import {
   ActivityIndicator,
   Platform,
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
 import {
   btn_style,
   flex_style,
-  form_style,
   img_styles,
   margin_styles,
   padding_styles,
@@ -23,14 +21,11 @@ import {
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import AddLureModal from '../add-lure-modal';
 import { NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 
 export default function LuresForm({ navigation }) {
-  const [lure, setLure] = useState("");
-  const [visible, setVisible] = useState(false);
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
   const [chosenItem, setChosenItem] = useState(null);
   const [lureOptionIdSelected, setLureOptionIdSelected] = useState(null);
