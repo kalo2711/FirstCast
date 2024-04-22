@@ -68,7 +68,13 @@
         "tutSetSpecies": "Select the fish species you will be targeting",
         "tutSetDate": "Select the date and then time you will be fishing. This will be used to get the weather.",
         "tutSetWater": "Click the image that is closest to the clarity of the water you will be fishing",
-        "tutConditionsSubmit": "Once you are sure of all of the information click submit to find the best lures for these conditions"
+        "tutConditionsSubmit": "Once you are sure of all of the information click submit to find the best lures for these conditions",
+        "tutBrandOrModel": "Tap to select the brand or model you want the information on",
+        "tutOptions": "Type the brand or name of a lure and then select it from the dropdown. If you cannot find it go back to request it.",
+        "tutSelectOptions": "Select the lure with the options you want details on",
+        "tutOptionDetails": "View the lures colors, size and weight here",
+        "tutRequestNewLure": "If you dont see the lure you've searched for request it here",
+        "tutSubmit":"Once your lure is selected and has a green background click here to get the best conditions to use it in"
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -140,6 +146,12 @@
         "tutSetDate": "Sélectionnez la date à laquelle vous pêcherez",
         "tutSetTime": "Sélectionnez l'heur à laquelle vous pêcherez",
         "tutSetWater": "Cliquez sur l'image la plus proche de la clarté de l'eau dans laquelle vous allez pêcher.",
-        "tutConditionsSubmit": "Une fois que vous êtes sûr de toutes les informations, cliquez sur Soumettre pour trouver les meilleurs leurres pour ces conditions."
+        "tutConditionsSubmit": "Une fois que vous êtes sûr de toutes les informations, cliquez sur Soumettre pour trouver les meilleurs leurres pour ces conditions.",
+        "tutBrandOrModel": "Appuyez pour sélectionner la marque ou le modèle sur lequel vous souhaitez obtenir des informations",
+        "tutOptions": "Tapez la marque ou le nom d'un leurre, puis sélectionnez-le dans la liste déroulante. Si vous ne le trouvez pas, revenez le demander",
+        "tutSelectOptions": "Sélectionnez le leurre avec les options sur lesquelles vous souhaitez des détails",
+        "tutOptionDetails": "Voir les couleurs, la taille et le poids des leurres ici",
+        "tutRequestNewLure": "Si vous ne voyez pas le leurre que vous avez recherché, demandez-le ici",
+        "tutSubmit":"Une fois votre leurre sélectionné et doté d'un fond vert cliquez ici pour connaître les meilleures conditions d'utilisation"
     }
 }

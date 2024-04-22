@@ -100,11 +100,6 @@ const ConditionsForm = () => {
     setShowDatePicker(false);
   };
 
-  function setCurrentTutorialAndLog(tut) {
-    setCurrentTutorial(tut)
-  }
-
-
   //Return values
 
   return (
@@ -133,17 +128,17 @@ const ConditionsForm = () => {
         <Text style={[text_style.xs]}>{loadTranslations("location")}</Text>
         {reactIfView(currentTutorial == 'location',
         <Tooltip
-        contentStyle={[{backgroundColor: 'lightgrey', height: 50}]}
+        contentStyle={[{backgroundColor: primary_color, height: 50}]}
         backgroundColor={'rgba(0,0,0,0)'}
         isVisible={currentTutorial == 'location'}
-        content={<Text>{loadTranslations("tutSetLocation")}</Text>}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetLocation")}</Text>}
         placement="top"
-        onClose={async () => {setCurrentTutorialAndLog(await updateTutorialAndGetNext('location', NAV_CONDITIONS_FORM))}}
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('location', NAV_CONDITIONS_FORM))}}
         >
           <TooltipChildrenContext.Consumer>
               {({ tooltipDuplicate }) => (
                 reactIfView(!tooltipDuplicate,
-                  <View style={[{height:50, width: width}]}></View>
+                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
                   )
             )}
           </TooltipChildrenContext.Consumer>
@@ -160,17 +155,17 @@ const ConditionsForm = () => {
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(currentTutorial == 'waterTemp',
           <Tooltip
-            contentStyle={[{ backgroundColor: 'lightgrey', height: 80 }]}
+            contentStyle={[{ backgroundColor: primary_color, height: 80 }]}
             backgroundColor={'rgba(0,0,0,0)'}
             isVisible={currentTutorial == 'waterTemp'}
-            content={<Text>{loadTranslations("tutSetTemperature")}</Text>}
+            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetTemperature")}</Text>}
             placement="top"
-            onClose={async () => {setCurrentTutorialAndLog(await updateTutorialAndGetNext('waterTemp', NAV_CONDITIONS_FORM))}}
+            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('waterTemp', NAV_CONDITIONS_FORM))}}
           >
             <TooltipChildrenContext.Consumer>
               {({ tooltipDuplicate }) => (
                 reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: 50, width: width }]}></View>
+                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
                 )
               )}
             </TooltipChildrenContext.Consumer>
@@ -199,17 +194,17 @@ const ConditionsForm = () => {
       <View style={[flex_style.flex, flex_style.width100]}>
       {reactIfView(currentTutorial == 'selectSpecies',
         <Tooltip
-            contentStyle={[{backgroundColor: 'lightgrey', height: 50}]}
+            contentStyle={[{backgroundColor: primary_color, height: 50}]}
             backgroundColor={'rgba(0,0,0,0)'}
             isVisible={currentTutorial == 'selectSpecies'}
-            content={<Text>{loadTranslations("tutSetSpecies")}</Text>}
+            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetSpecies")}</Text>}
             placement="top"
-            onClose={async () => {setCurrentTutorialAndLog(await updateTutorialAndGetNext('selectSpecies', NAV_CONDITIONS_FORM))}}
+            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('selectSpecies', NAV_CONDITIONS_FORM))}}
         >
           <TooltipChildrenContext.Consumer>
               {({ tooltipDuplicate }) => (
                 reactIfView(!tooltipDuplicate,
-                  <View style={[{height:50, width: width}]}></View>
+                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
                   )
             )}
           </TooltipChildrenContext.Consumer>
@@ -252,81 +247,88 @@ const ConditionsForm = () => {
           flex_style.width100
         ]}>
           {reactIfView(showDatePicker,  
-            <DateTimePicker
+            <View style={[flex_style.flex, flex_style.center]}>
+              <DateTimePicker
               testID="dateTimePicker"
               value={date}
               mode={"date"}
               is24Hour={true}
               onChange={onChange}
-            />)}
+              />
+            </View>
+            )}
           <View style={[flex_style.flex, flex_style.width100]}>
 
             {reactIfView(currentTutorial == 'date',
           <Tooltip
-            contentStyle={[{ backgroundColor: 'lightgrey', height: 60 }]}
+            contentStyle={[{ backgroundColor: primary_color, height: 60 }]}
             backgroundColor={'rgba(0,0,0,0)'}
             isVisible={currentTutorial == 'date'}
-            content={<Text>{loadTranslations("tutSetDate")}</Text>}
+            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetDate")}</Text>}
             placement="top"
-            onClose={async () => {setCurrentTutorialAndLog(await updateTutorialAndGetNext('date', NAV_CONDITIONS_FORM))}}
+            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('date', NAV_CONDITIONS_FORM))}}
           >
             <TooltipChildrenContext.Consumer>
               {({ tooltipDuplicate }) => (
                 reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: 50, width: width }]}></View>
+                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
                 )
               )}
             </TooltipChildrenContext.Consumer>
           </Tooltip>
             )}
           </View>
-          
-          <TouchableOpacity
-          onPress={() => {setShowDatePicker(true)}}
-          style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed]}
-          >
-            <Text
-              style={[
-                text_style.primaryColor,
-                text_style.bold,
-                text_style.alignCenter,
-              ]}
+          {reactIfView(Platform.OS !== "ios",
+            <TouchableOpacity
+            onPress={() => {setShowDatePicker(true)}}
+            style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed]}
             >
-              {date.toDateString()}
-            </Text>
-          </TouchableOpacity>
-
+              <Text
+                style={[
+                  text_style.primaryColor,
+                  text_style.bold,
+                  text_style.alignCenter,
+                ]}
+              >
+                {date.toDateString()}
+              </Text>
+            </TouchableOpacity>
+          )}
             {reactIfView(showTimePicker,
+            <View style={[flex_style.flex, flex_style.center, margin_styles.vertical_space_md]}>         
               <DateTimePicker
                 testID="dateTimePicker"
                 value={date}
                 mode={"time"}
                 is24Hour={true}
                 onChange={onChange}
-              />)}
+              />
+            </View>
+              )}
           
           <View style={[flex_style.flex, flex_style.width100]}>
 
           {reactIfView(currentTutorial == 'time',
           <Tooltip
-          contentStyle={[{ backgroundColor: 'lightgrey', height: 50 }]}
+          contentStyle={[{ backgroundColor: primary_color, height: 50 }]}
           backgroundColor={'rgba(0,0,0,0)'}
           isVisible={currentTutorial == 'time'}
-          content={<Text>{loadTranslations("tutSetTime")}</Text>}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetTime")}</Text>}
           placement="top"
-          onClose={async () => {setCurrentTutorialAndLog(await updateTutorialAndGetNext('time', NAV_CONDITIONS_FORM))}}
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('time', NAV_CONDITIONS_FORM))}}
           >
             <TooltipChildrenContext.Consumer>
               {({ tooltipDuplicate }) => (
                 reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: 50, width: width }]}></View>
+                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
                 )
               )}
             </TooltipChildrenContext.Consumer>
           </Tooltip>
           )}
           </View>
-          
+  
+          {reactIfView(Platform.OS != 'ios',
             <TouchableOpacity
             onPress={() => {setShowDatePicker(true)}}
             style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed, margin_styles.vertical_space_l]}
@@ -342,6 +344,8 @@ const ConditionsForm = () => {
               {date.getHours() + ":" + date.getMinutes()}
             </Text>
           </TouchableOpacity>
+          )}
+
         </View>
         
       </View>
@@ -367,17 +371,17 @@ const ConditionsForm = () => {
 
         {reactIfView(currentTutorial == 'waterClarity',
           <Tooltip
-            contentStyle={[{ backgroundColor: 'lightgrey', height: 60 }]}
+            contentStyle={[{ backgroundColor: primary_color, height: 60 }]}
             backgroundColor={'rgba(0,0,0,0)'}
             isVisible={currentTutorial == 'waterClarity'}
-            content={<Text>{loadTranslations("tutSetWater")}</Text>}
+            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetWater")}</Text>}
             placement="top"
-            onClose={async () => {setCurrentTutorialAndLog(await updateTutorialAndGetNext('waterClarity', NAV_CONDITIONS_FORM))}}
+            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('waterClarity', NAV_CONDITIONS_FORM))}}
           >
             <TooltipChildrenContext.Consumer>
               {({ tooltipDuplicate }) => (
                 reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: 50, width: width }]}></View>
+                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
                 )
               )}
             </TooltipChildrenContext.Consumer>
@@ -385,9 +389,9 @@ const ConditionsForm = () => {
         )}
 
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.vertical_space_md]}>
-          {waterClarities.map(waterClarityItem => {
+          {waterClarities.map((waterClarityItem, index) => {
             return (
-              <TouchableOpacity style={[flex_style.flex, flex_style.column, flex_style.center]} onPress={event => setWaterClarity(waterClarityItem.name)}>
+              <TouchableOpacity index={waterClarityItem.name} style={[flex_style.flex, flex_style.column, flex_style.center]} onPress={event => setWaterClarity(waterClarityItem.name)}>
                 <Image source={waterClarityItem.image} style={[img_styles.rectangle_image_xxs, waterClarity == waterClarityItem.name ? btn_style.buttonReversed : null]}></Image>
                 <Text style={[waterClarity == waterClarityItem.name ? text_style.bold : null]}>{waterClarityItem.name}</Text>
               </TouchableOpacity>
@@ -530,17 +534,17 @@ const ConditionsForm = () => {
         <View style={[flex_style.flex, flex_style.width100]}>
         {reactIfView(currentTutorial == 'findLures',
         <Tooltip
-        contentStyle={[{backgroundColor: 'lightgrey', height: 80}]}
+        contentStyle={[{backgroundColor: primary_color, height: 80}]}
         backgroundColor={'rgba(0,0,0,0)'}
         isVisible={currentTutorial == 'findLures'}
-        content={<Text>{loadTranslations("tutConditionsSubmit")}</Text>}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsSubmit")}</Text>}
         placement="top"
-        onClose={async () => {setCurrentTutorialAndLog(await updateTutorialAndGetNext('findLures', NAV_CONDITIONS_FORM))}}
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('findLures', NAV_CONDITIONS_FORM))}}
         >
           <TooltipChildrenContext.Consumer>
               {({ tooltipDuplicate }) => (
                 reactIfView(!tooltipDuplicate,
-                  <View style={[{height:50, width: width}]}></View>
+                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
                   )
             )}
           </TooltipChildrenContext.Consumer>

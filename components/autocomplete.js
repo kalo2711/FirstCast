@@ -77,7 +77,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
   }
 
   return (
-      <View style={styles.container}>
+      <View style={[styles.container, {justifyContent: 'space-between'}]}>
         <TextInput
           ref={inputRef}
           style={[styles.input, { marginBottom: isModalVisible ? 0 : 50}]}
@@ -91,7 +91,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
         style={styles.modalContainer}
         data={items}
         renderItem={renderItem}
-        keyExtractor={(item) => item.title + item.image}
+        keyExtractor={(item, index) => index}
       />
       )}
       {reactIfView(!!inputValue && items?.length < 1,

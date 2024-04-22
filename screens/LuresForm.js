@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { environment } from "../global/environment";
 import {
   View,
@@ -22,10 +22,11 @@ import {
 } from "../global/global-styles";
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
-import { reactIfView, responseDataHandler } from "../global/global-functions";
+import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
 import AddLureModal from '../add-lure-modal';
-import { isLoading } from "expo-font";
-import { SpacingExtraSmall, SpacingMedium, SpacingSmall, height, primary_color, primary_color_faded, secondary_color, secondary_color_faded } from "../global/global-constants";
+import { NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
+import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
+import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 
 export default function LuresForm({ navigation }) {
   const [lure, setLure] = useState("");
@@ -35,29 +36,25 @@ export default function LuresForm({ navigation }) {
   const [lureOptionIdSelected, setLureOptionIdSelected] = useState(null);
   const [lureOptions, setLureOptions] = useState(null);
   const [brandAndModalVisible, setBrandAndModalVisible] = useState(false);
-  const [selectedLureOption, setSelectedLureOption] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentTutorial, setCurrentTutorial] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
 
-  const fetchLureOptions = async (lureId) => {
-    // Fetch call to /api/lure-options-autofill with lureId
-
-    return {
-      color1: ["Red", "Green", "Blue"],
-      color2: ["Yellow", "White", "Black"],
-      size: ["Small", "Medium", "Large"],
-      weight: ["10g", "20g", "30g"],
-      lureOptionsId: "some-id",
-    };
-  };
-
-  const handleLureSelect = async (selectedLureId) => {
-    const options = await fetchLureOptions(selectedLureId);
-    setLureOptions(options);
-  };
+  useEffect(() => {
+    const getTut = async () => {
+      const tut = await getNextTutorialForPage(NAV_LURES_FORM)
+      console.log(tut)
+     setCurrentTutorial(tut)
+    }
+   if (initialLoad) {
+     getTut();
+     setInitialLoad(false)
+    }
+ }, []);
 
   const handleFormSubmit = () => {
     navigation.navigate("LuresResults", {
-      lureOptionsId: lureOptions.lureOptionsId,
+      lureOptionsId: lureOptionIdSelected ? lureOptionIdSelected : 3581,
     });
   };
 
@@ -103,7 +100,7 @@ export default function LuresForm({ navigation }) {
         contentContainerStyle={[
           flex_style.flex,
           flex_style.flexContainer,
-          padding_styles.safetyTop
+          padding_styles.safetyTop,
         ]}
       >
         <Text
@@ -117,7 +114,26 @@ export default function LuresForm({ navigation }) {
         >
           {loadTranslations("selectLure")}
         </Text>
-        <View style={[flex_style.flex, flex_style.width100, flex_style.center, { alignItems: 'flex-start' }, margin_styles.bottom_md]}>
+          {reactIfView(currentTutorial == 'brandOrModel',
+          <View style={[flex_style.flex, flex_style.width100]}>
+          <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 50}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'brandOrModel'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBrandOrModel")}</Text>}
+          placement="top"
+              onClose={async () => { setBrandAndModalVisible(true); setCurrentTutorial(await updateTutorialAndGetNext('brandOrModel', NAV_LURES_FORM))}}
+          >
+            <TooltipChildrenContext.Consumer>
+                {({ tooltipDuplicate }) => (
+                  reactIfView(!tooltipDuplicate,
+                    <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                    )
+              )}
+            </TooltipChildrenContext.Consumer>
+            </Tooltip>
+          </View>
+          )}
           {!brandAndModalVisible ?
             <TouchableOpacity
               onPress={() => { setBrandAndModalVisible(true) }}
@@ -140,33 +156,117 @@ export default function LuresForm({ navigation }) {
                   </View>
                 </Modal>
             </View>
-          }
-        </View>
+        }
+          {reactIfView(currentTutorial == 'selectOptions' && lureOptions?.length > 0,
+          <View style={[flex_style.flex, flex_style.width100]}>
+          <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 50}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'selectOptions'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSelectOptions")}</Text>}
+          placement="top"
+              onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('selectOptions', NAV_LURES_FORM))}}
+          >
+            <TooltipChildrenContext.Consumer>
+                {({ tooltipDuplicate }) => (
+                  reactIfView(!tooltipDuplicate,
+                    <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                    )
+              )}
+            </TooltipChildrenContext.Consumer>
+            </Tooltip>
+          </View>
+          )}
         {reactIfView(chosenItem?.id && !isLoading,
           <View style={[flex_style.flex, flex_style.column, flex_style.center, flex_style.width100]}>
-            {lureOptions?.map(option => 
-              <TouchableOpacity style={[flex_style.flex, flex_style.column, flex_style.center, flex_style.width100, padding_styles.vertical_space_md, {paddingBottom:SpacingMedium, backgroundColor: lureOptionIdSelected == option.id ? secondary_color_faded : 'transparent'}]}
-              onPress={() => setLureOptionIdSelected(option.id)}>
-                <Image style={[img_styles.rectangle_image_s]} source={{uri: option?.image}}></Image>
-                <Text style={[text_style.bold, text_style.xs]}>{option?.brand}</Text>
-                <Text style={[text_style.bold, text_style.xs]}>{option?.model}</Text>
-                <Text style={[text_style.bold, text_style.xs]}>{option?.color1} , {option?.color2}</Text>
-                <Text style={[text_style.bold, text_style.xs]}>{option?.size} {loadTranslations("inch")}</Text>
-                <Text style={[text_style.bold, text_style.xs]}>{option?.weight} {loadTranslations("pound")}</Text>
-              </TouchableOpacity>
+            {lureOptions?.map((option, index) => 
+              <View key={index} style={[flex_style.flex, flex_style.column, flex_style.center]}>
+                <TouchableOpacity style={[flex_style.flex, flex_style.column, flex_style.center, flex_style.width100, padding_styles.vertical_space_md, {paddingBottom:SpacingMedium, backgroundColor: lureOptionIdSelected == option.id ? secondary_color_faded : 'transparent'}]}
+                onPress={() => setLureOptionIdSelected(option.id)}>
+                  <Image style={[img_styles.rectangle_image_s]} source={{uri: option?.image}}></Image>
+                  <Text style={[text_style.bold, text_style.xs]}>{option?.brand}</Text>
+                  <Text style={[text_style.bold, text_style.xs]}>{option?.model}</Text>
+                  {reactIfView(index==0 && currentTutorial == 'optionDescritpion',
+                  <View style={[flex_style.flex, flex_style.width100]}>
+                  <Tooltip
+                  contentStyle={[{backgroundColor: primary_color, height: 50}]}
+                  backgroundColor={'rgba(0,0,0,0)'}
+                  isVisible={currentTutorial == 'optionDescritpion'}
+                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutOptionDetails")}</Text>}
+                  placement="top"
+                      onClose={async () => setCurrentTutorial(await updateTutorialAndGetNext('optionDescritpion', NAV_LURES_FORM))}
+                  >
+                    <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                            )
+                      )}
+                    </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                  </View>
+                )}
+                  <Text style={[text_style.bold, text_style.xs]}>{option?.color1}  {option?.color2 != option?.color1 ? ', '+option?.color2:''}</Text>
+                  <Text style={[text_style.bold, text_style.xs]}>{option?.size} {loadTranslations("inch")}</Text>
+                  <Text style={[text_style.bold, text_style.xs]}>{option?.weight} {loadTranslations("pound")}</Text>
+                </TouchableOpacity>
+              </View>
             )}
           </View>
         )}
         {reactIfView(!!isLoading && chosenItem?.id,
           <ActivityIndicator style={[margin_styles.bottom_lg]} size="large" color={primary_color} />
         )}
-        </ScrollView>
+      </ScrollView>
+      {reactIfView(currentTutorial == 'requestNewLure',
+                  <View style={[flex_style.flex, flex_style.width100]}>
+                  <Tooltip
+                  contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                  backgroundColor={'rgba(0,0,0,0)'}
+                  isVisible={currentTutorial == 'requestNewLure'}
+                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRequestNewLure")}</Text>}
+                  placement="top"
+                      onClose={async () => setCurrentTutorial(await updateTutorialAndGetNext('requestNewLure', NAV_LURES_FORM))}
+                  >
+                    <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                            )
+                      )}
+                    </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                  </View>
+        )}
+        <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => navigate(NAV_REQUEST_LURE_FORM)}>
+          <Text style={[text_style.bold, text_style.fontColorPrimary]}>{loadTranslations("requestNewLure")}</Text>
+      </TouchableOpacity>
+      {reactIfView(currentTutorial == 'submitButton',
+                  <View style={[flex_style.flex, flex_style.width100]}>
+                  <Tooltip
+                  contentStyle={[{backgroundColor: primary_color, height: 80}]}
+                  backgroundColor={'rgba(0,0,0,0)'}
+                  isVisible={currentTutorial == 'submitButton'}
+                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSubmit")}</Text>}
+                  placement="top"
+                      onClose={async () => setCurrentTutorial(await updateTutorialAndGetNext('submitButton', NAV_LURES_FORM))}
+                  >
+                    <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                            )
+                      )}
+                    </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                  </View>
+        )}
         <TouchableOpacity
           onPress={handleFormSubmit}
           style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
         >
           <Text
-            style={[
+          style={[
               text_style.fontColorWhite,
               text_style.bold,
               flex_style.width100,
@@ -176,10 +276,6 @@ export default function LuresForm({ navigation }) {
             {loadTranslations("findConditions")}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[btn_style.button, btn_style.buttonBlack, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => setVisible(true)}>
-          <Text style={[text_style.bold, text_style.fontColorWhite]}>{loadTranslations("requestNewLure")}</Text>
-        </TouchableOpacity>
-        <AddLureModal setVisible={setVisible} visible={visible}></AddLureModal>
       </View>
   );
 }

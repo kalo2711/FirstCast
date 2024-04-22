@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 
-const height = Dimensions.get("screen").height - 60;
+const height = Dimensions.get("screen").height - (Dimensions.get("screen").height/15);
 const width = Dimensions.get("screen").width;
 const primary_color = "rgba(0,51,98,255)";
 const primary_color_faded = "rgba(0,51,98,0.5)";
@@ -62,6 +62,7 @@ const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
 const NAV_CONDITIONS_FORM = 'ConditionsForm'
 const NAV_LURES_FORM = 'Lures'
+const NAV_REQUEST_LURE_FORM = 'RequestLure'
 const NAV_LURES_RESULTS = 'LuresResults'
 
 // Responses
@@ -296,6 +297,7 @@ export {
   NAV_TIME,
   NAV_CONDITIONS_FORM,
   NAV_LURES_FORM,
+  NAV_REQUEST_LURE_FORM,
   NAV_LURES_RESULTS,
   ADDRESS,
   MAX_BUDGET,

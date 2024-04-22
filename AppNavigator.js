@@ -9,7 +9,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Navigation from "./navigation";
 import Authentication from "./authentication/auth";
 import { navigationRef } from './global/global-functions'
-import { NAV_AUTHENTICATION } from "./global/global-constants";
+import { NAV_AUTHENTICATION, NAV_CONDITIONS_FORM, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM } from "./global/global-constants";
+import AddLureModal from "./add-lure-modal";
 
 const RootStack = createNativeStackNavigator();
 
@@ -22,12 +23,13 @@ function AppNavigator() {
           screenOptions={{ headerShown: false }}
         >
           <RootStack.Screen name={NAV_AUTHENTICATION} component={Authentication} />
-          <RootStack.Screen name="Lures" component={LuresForm} />
+          <RootStack.Screen name={NAV_LURES_FORM} component={LuresForm} />
           <RootStack.Screen
             name="ConditionsResults"
             component={ConditionsResults}
           />
-          <RootStack.Screen name="ConditionsForm" component={ConditionsForm} />
+          <RootStack.Screen name={NAV_CONDITIONS_FORM} component={ConditionsForm} />
+          <RootStack.Screen name={NAV_REQUEST_LURE_FORM} component={AddLureModal} />
           <RootStack.Screen name="LuresResults" component={LuresResults} />
         </RootStack.Navigator>
         <Navigation />

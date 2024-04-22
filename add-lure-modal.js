@@ -6,7 +6,7 @@ import { Picker as NativePicker } from '@react-native-picker/picker';
 import Photo from "./photo/photo";
 import { SpacingFormXLarge, SpacingMedium, SpacingXLarge, VALID, primary_color, secondary_color, white } from "./global/global-constants";
 import { environment } from "./global/environment";
-import { responseDataHandler } from "./global/global-functions";
+import { navigateBack, responseDataHandler } from "./global/global-functions";
 import { getAuthToken } from "./global/utils/auth.utils";
 
 const AddLureModal = (props) => {
@@ -53,7 +53,7 @@ const AddLureModal = (props) => {
   ];
 
   function onCancel() {
-    props.setVisible(false)
+    navigateBack()
   }
 
   async function onSubmit() {
@@ -96,13 +96,12 @@ const AddLureModal = (props) => {
     Alert.alert('', resp != null ? loadTranslations("requestSucceed") : loadTranslations("requestFailed"), [
       {
         text: 'OK',
-        onPress: () => resp != null ? props.setVisible(false) : null,
+        onPress: () => resp != null ? navigateBack() : null,
       },
     ]);
   }
 
   return (
-    <Modal visible={props.visible} animationType="slide">
       <ScrollView style={{ flex: 1, padding: 20 }}>
         <Text style={[text_style.sm, text_style.bold, margin_styles.bottom_md, text_style.primaryColor, text_style.alignCenter]}>
             {loadTranslations("requestNewLure")}
@@ -250,7 +249,6 @@ const AddLureModal = (props) => {
           </TouchableOpacity>
         : <ActivityIndicator style={[margin_styles.bottom_lg]} size="large" color={primary_color} />}
       </ScrollView>
-    </Modal>
   );
 };
 

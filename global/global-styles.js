@@ -227,6 +227,10 @@ export const text_style = StyleSheet.create({
   fontColorGrey: {
     fontFamily: 'open-sans-regular',
     color: grey_color
+  },
+  fontColorPrimary: {
+    fontFamily: 'open-sans-regular',
+    color: primary_color
   }
 })
 
