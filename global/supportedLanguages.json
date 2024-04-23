@@ -80,7 +80,8 @@
         "tutLureBrand":"Enter the name of the brand of your lure",
         "tutLureModel":"Enter the lure's model name",
         "tutLurePrice":"Enter its price",
-        "tutLureDimensions":"Enter the lure's length (in inches) and weight (in ounces)",
+        "tutLureLength":"Enter the lure's length (in inches)",
+        "tutLureWeight":"Enter the lure's length weight (in ounces)",
         "tutLureType":"Make sure to select the type of lure you're requestion",
         "tutLurePrimaryColor":"Enter the lure's primary color",
         "tutLureSecondaryColor":"Enter the lure's secondary color",
@@ -163,6 +164,17 @@
         "tutSelectOptions": "Sélectionnez le leurre avec les options sur lesquelles vous souhaitez des détails",
         "tutOptionDetails": "Voir les couleurs, la taille et le poids des leurres ici",
         "tutRequestNewLure": "Si vous ne voyez pas le leurre que vous avez recherché, demandez-le ici",
-        "tutSubmit":"Une fois votre leurre sélectionné et doté d'un fond vert cliquez ici pour connaître les meilleures conditions d'utilisation"
+        "tutSubmit":"Une fois votre leurre sélectionné et doté d'un fond vert cliquez ici pour connaître les meilleures conditions d'utilisation",
+        "tutLureStore":"Indiquez le nom du magasin où se trouve votre leurre",
+        "tutLureBrand":"Indiquez la marque de votre leurre",
+        "tutLureModel":"Indiquez le modèle de votre leurre",
+        "tutLurePrice":"Indiquez le prix",
+        "tutLureLength":"Indiquez la longueur de votre leurre (en pouces)",
+        "tutLureWeight":"Indiquez le poids de votre leurre (en onces)",
+        "tutLureType":"Assurez-vous de choisir le type de votre leurre",
+        "tutLurePrimaryColor":"Indiquez la primaire couleur de votre leurre",
+        "tutLureSecondaryColor":"Indiquez la secondaire couleur de votre leurre",
+        "tutLurePhoto":"Dernièrement, prenez une photo de votre leurre",
+        "tutLureSubmit":"Quand tous les détails requis sont fournis, cliquez ici pour soumettre la demande"
     }
 }
