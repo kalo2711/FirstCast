@@ -487,7 +487,7 @@ const ConditionsForm = () => {
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.vertical_space_md]}>
           {waterClarities.map((waterClarityItem, index) => {
             return (
-              <TouchableOpacity index={waterClarityItem.name} style={[flex_style.flex, flex_style.column, flex_style.center]} onPress={event => setWaterClarity(waterClarityItem.name)}>
+              <TouchableOpacity key={waterClarityItem.name} style={[flex_style.flex, flex_style.column, flex_style.center]} onPress={event => setWaterClarity(waterClarityItem.name)}>
                 <Image source={waterClarityItem.image} style={[img_styles.rectangle_image_xxs, waterClarity == waterClarityItem.name ? btn_style.buttonReversed : null]}></Image>
                 <Text style={[waterClarity == waterClarityItem.name ? text_style.bold : null]}>{waterClarityItem.name}</Text>
               </TouchableOpacity>

@@ -88,6 +88,8 @@
         "tutLureSecondaryColor":"Enter the lure's secondary color",
         "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
         "tutLureSubmit":"Once all required details are provided, click here to request the lure."
+        "navLures": "Lures",
+        "navConditions": "Conditions"
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -178,5 +180,7 @@
         "tutLureSecondaryColor":"Indiquez la secondaire couleur de votre leurre",
         "tutLurePhoto":"Dernièrement, prenez une photo de votre leurre",
         "tutLureSubmit":"Quand tous les détails requis sont fournis, cliquez ici pour soumettre la demande"
+        "navLures": "Leurres",
+        "navConditions": "Conditions"
     }
 }
