@@ -60,7 +60,7 @@ const ConditionsForm = () => {
   //Contains the lon & lat of either the device or the location picked.
   const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.630001', lon: '-73.519997' })
   //Contains the location object currently selected. 
-  //Used for Modal Placeholder values after picking one.
+  //Also used for Modal Placeholder values after picking one.
   const [location, setLocation] = useState("");
 
   const waterClarities = [
@@ -177,15 +177,11 @@ const ConditionsForm = () => {
       let locationData = json.data.locationDetails;
       
       //Check for two different coord types (Cities & addresses store them in different places)
-      let coords = locationData.geometry ? {
-        //The below is to change 'lng' to 'lon' for consistency with our DB.
-        lat: locationData.geometry.location.lat,
-        lon: locationData.geometry.location.lng
-      } : {
-        lat: locationData.lat,
-        lon: locationData.lon
-      }
-
+      //checks if locationData.geometry.location.lat/lon exists, else, locationData.lat
+      let coords = {
+        lat: locationData.geometry?.location?.lat ?? locationData.lat,
+        lon: locationData.geometry?.location?.lng ?? locationData.lon
+      };
       setGeoCoordinates(coords);  
       setLocation(locationData);
      
@@ -269,13 +265,16 @@ const ConditionsForm = () => {
         </View>
 
         <DropdownWithModal
-            placeholder={location.title}
+            placeholder={location.formatted_address}
             onChangeText={getAutofilledLocations}
             noItemsPlaceholder='locationFetchError'
             dataset={autofilledLocations}
             parentSetModalVisible={setModalVisible}
             setSelectedItem={onLocationSelected}
         />
+        
+        <Text>Geo: {JSON.stringify(geoCoordinates)}</Text>
+        <Text>Loc: {JSON.stringify(location)}</Text>
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(currentTutorial == 'waterTemp',
