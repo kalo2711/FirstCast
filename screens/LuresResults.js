@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, ScrollView, Image, FlatList, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, ScrollView, Image, FlatList, StyleSheet, Platform } from "react-native";
 import {
   btn_style,
   flex_style,
@@ -10,6 +10,10 @@ import {
 import { primary_color, black } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
+import {reactIfView} from "../global/global-functions";
+import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
+
 
 export default function LuresResults({ route }) {
   const [previousWeather, setPreviousWeather] = useState({
@@ -951,7 +955,21 @@ export default function LuresResults({ route }) {
     "type": "crankbait",
     "price": 34.99
     }
-    ])
+  ])
+  const [currentTutorial, setCurrentTutorial] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
+  
+
+  useEffect(() => {
+    const getTut = async () => {
+      const tut = await getNextTutorialForPage(NAV_REQUEST_LURE_FORM)
+      setCurrentTutorial(tut)
+    }
+    if (initialLoad) {
+      getTut();
+      setInitialLoad(false)
+    }
+  }, []);
 
   const moonPhaseLabels = {
     1: 'New Moon',
@@ -960,7 +978,24 @@ export default function LuresResults({ route }) {
     4: 'Last Quarter'
   };
 
-  const WeatherAndMoonPhase = ({ weather, moonPhase }) => (
+  const WeatherAndMoonPhase = ({ weather, moonPhase }) => (<>
+    {reactIfView(currentTutorial == 'store', <Tooltip
+      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+      backgroundColor={'rgba(0,0,0,0)'}
+      isVisible={currentTutorial == 'store'}
+      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureStore")}</Text>}
+      placement="top"
+      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('store', NAV_REQUEST_LURE_FORM))}}
+    >
+      <TooltipChildrenContext.Consumer>
+        {({ tooltipDuplicate }) => (
+          reactIfView(!tooltipDuplicate,
+            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+          )
+        )}
+      </TooltipChildrenContext.Consumer>
+    </Tooltip>
+    )}
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <MaterialIcons name="dark-mode" size={22} color="black" />
@@ -976,9 +1011,11 @@ export default function LuresResults({ route }) {
     </View>
     
   </View>
-  );
+  </>);
 
   const renderItem = ({ item }) => (
+  // maybe add tooltip here
+  // will have to adjust for weird overlaying/layout shifting
   <View style={styles.itemContainer }>
     <Image source={{ uri: item.image }} style={styles.image} />
     <View style={styles.detailsContainer}>
