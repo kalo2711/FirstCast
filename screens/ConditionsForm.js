@@ -57,7 +57,10 @@ const ConditionsForm = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [autofilledLocations, setAutofilledLocations] = useState([]);
 
+  //Contains the lon & lat of either the device or the location picked.
   const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.630001', lon: '-73.519997' })
+  //Contains the location object currently selected. 
+  //Used for Modal Placeholder values after picking one.
   const [location, setLocation] = useState("");
 
   const waterClarities = [
@@ -85,14 +88,12 @@ const ConditionsForm = () => {
           return;
         }
         let location = await Location.getCurrentPositionAsync({});
-        console.log(location);
         setGeoCoordinates({
-          lat: location.latitude,
-          lon: location.longitude
+          lat: location.coords.latitude,
+          lon: location.coords.longitude
         });
       }
       catch (e) {
-        //Set some sort of error if needed.
         //If location can't be obtained, keep placeholder lon/lat
         console.error('Unable to fetch location: ' + e);
       }
@@ -140,14 +141,13 @@ const ConditionsForm = () => {
     resp = updateName(
       resp?.autocompletedLocations ? resp?.autocompletedLocations : []
     );
-    console.log(resp);
     setAutofilledLocations(resp);
   };
 
   function updateName(array) {
     print(array);
     array = array.map((x) => ({
-      title: x.name + ", " + x.secondaryName,
+      title: x.title,
       id: x.place_id,
       place_id: x.place_id,
       secondaryName: x.secondaryName,
@@ -158,12 +158,8 @@ const ConditionsForm = () => {
   const onLocationSelected = (loc) =>{
     //Called when a location is picked from the location dropdown modal
 
-    setLocation(loc);
-    console.log(loc);
-    //get lon/lat coords and put them in the geoCoordinates statevar
-    //(they should really be a part of the location tbh)
+    //get lon/lat coords and put them in the geoCoordinates & location statevar
     const url =`${environment.host}api/placeIdToLatLong/?placeId=${loc.place_id}`
-    console.log(url);
     fetch(url, {
       method: "GET",
       headers: {
@@ -177,11 +173,24 @@ const ConditionsForm = () => {
       }
       return resp.json();
     }).then(json => {
+      
+      let locationData = json.data.locationDetails;
+      
+      //Check for two different coord types (Cities & addresses store them in different places)
+      let coords = locationData.geometry ? {
+        //The below is to change 'lng' to 'lon' for consistency with our DB.
+        lat: locationData.geometry.location.lat,
+        lon: locationData.geometry.location.lng
+      } : {
+        lat: locationData.lat,
+        lon: locationData.lon
+      }
 
-      console.warn(JSON.stringify(json));
-      setGeoCoordinates(json.location);
-
+      setGeoCoordinates(coords);  
+      setLocation(locationData);
+     
     }).catch(e => {
+      
       console.error(e);
     })
     
@@ -267,15 +276,6 @@ const ConditionsForm = () => {
             parentSetModalVisible={setModalVisible}
             setSelectedItem={onLocationSelected}
         />
-        <Text>{JSON.stringify(geoCoordinates)}</Text>
-        <Text>{JSON.stringify(location)}</Text>
-        {/* OLD PLACEHOLDER LOCATION INPUT
-        <TextInput
-          value={location}
-          onChangeText={setLocation}
-          style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
-          placeholderTextColor={black}
-      />*/}
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(currentTutorial == 'waterTemp',
