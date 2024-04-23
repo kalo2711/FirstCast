@@ -28,6 +28,7 @@ import {
   black,
   IOS,
   NAV_CONDITIONS_FORM,
+  VALID,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
@@ -41,7 +42,6 @@ import { responseDataHandler } from "../global/global-functions";
 const ConditionsForm = () => {
   const [species, setSpecies] = useState(null);
   const [speciesModalVisible, setSpeciesModalVisible] = useState(false);
-  const [location, setLocation] = useState("");
   const [temperature, setTemperature] = useState("");
   const [date, setDate] = useState(new Date());
   const [hour, setHour] = useState("");
@@ -54,9 +54,11 @@ const ConditionsForm = () => {
   const [showTimePicker, setShowTimePicker] = useState(Platform.OS === IOS ? true : false);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
-  const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.630001', lon: '-73.519997' }) //temp
   const [isModalVisible, setModalVisible] = useState(false);
   const [autofilledLocations, setAutofilledLocations] = useState([]);
+
+  const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.630001', lon: '-73.519997' })
+  const [location, setLocation] = useState("");
 
   const waterClarities = [
     { id: 1, name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
@@ -141,6 +143,7 @@ const ConditionsForm = () => {
     console.log(resp);
     setAutofilledLocations(resp);
   };
+
   function updateName(array) {
     print(array);
     array = array.map((x) => ({
@@ -150,6 +153,38 @@ const ConditionsForm = () => {
       secondaryName: x.secondaryName,
     }));
     return array;
+  }
+
+  const onLocationSelected = (loc) =>{
+    //Called when a location is picked from the location dropdown modal
+
+    setLocation(loc);
+    console.log(loc);
+    //get lon/lat coords and put them in the geoCoordinates statevar
+    //(they should really be a part of the location tbh)
+    const url =`${environment.host}api/placeIdToLatLong/?placeId=${loc.place_id}`
+    console.log(url);
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+      
+    }).then(resp => {
+      if (!resp === VALID) {
+        //Handle error
+        throw new Error(resp.json())
+      }
+      return resp.json();
+    }).then(json => {
+
+      console.warn(JSON.stringify(json));
+      setGeoCoordinates(json.location);
+
+    }).catch(e => {
+      console.error(e);
+    })
+    
   }
 
   const onSelectFish = (selectedFish) => {
@@ -225,14 +260,15 @@ const ConditionsForm = () => {
         </View>
 
         <DropdownWithModal
+            placeholder={location.title}
             onChangeText={getAutofilledLocations}
-            placeholder='woag'
-            noItemsPlaceholder="lol"
+            noItemsPlaceholder='locationFetchError'
             dataset={autofilledLocations}
             parentSetModalVisible={setModalVisible}
-            setSelectedItem={()=>{}}
+            setSelectedItem={onLocationSelected}
         />
-
+        <Text>{JSON.stringify(geoCoordinates)}</Text>
+        <Text>{JSON.stringify(location)}</Text>
         {/* OLD PLACEHOLDER LOCATION INPUT
         <TextInput
           value={location}
