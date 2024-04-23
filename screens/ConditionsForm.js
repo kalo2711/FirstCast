@@ -1,5 +1,4 @@
-import { loadTranslations } from "../global/localization";
-import * as Location from 'expo-location';
+import { getDeviceLanguage, loadTranslations } from "../global/localization";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useEffect, useState } from "react";
 import {
@@ -35,6 +34,9 @@ import FishSelectItem from "../fish-select-item.js";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import DropdownWithModal from "../components/autocomplete.js";
+import * as Location from 'expo-location';
+import { environment } from "../global/environment";
+import { responseDataHandler } from "../global/global-functions";
 
 const ConditionsForm = () => {
   const [species, setSpecies] = useState(null);
@@ -54,6 +56,7 @@ const ConditionsForm = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.630001', lon: '-73.519997' }) //temp
   const [isModalVisible, setModalVisible] = useState(false);
+  const [autofilledLocations, setAutofilledLocations] = useState([]);
 
   const waterClarities = [
     { id: 1, name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
@@ -93,7 +96,61 @@ const ConditionsForm = () => {
       }
     })();
   }, []); // Empty dependency array to run only once
+
+  const createQueryParametersForAutofill = (lat, lang, radius, value) => {
+    return (
+      "lat=" +
+      lat +
+      "&lang=" +
+      lang +
+      "&radius=" +
+      radius +
+      "&input=" +
+      value +
+      "&language=" +
+      getDeviceLanguage()
+    );
+  };
   
+  const getAutofilledLocations = async (value) => {
+    let params = {};
+
+    //PLACEHOLDER DO NOT SHIP
+    params.radius = 1000
+
+    const url =
+      environment.host +
+      "api/locations/autofillLocations?" +
+      createQueryParametersForAutofill(
+        geoCoordinates.lat,
+        geoCoordinates.lon,
+        params.radius,
+        value
+      );
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let resp = await responseDataHandler(response);
+    resp = updateName(
+      resp?.autocompletedLocations ? resp?.autocompletedLocations : []
+    );
+    console.log(resp);
+    setAutofilledLocations(resp);
+  };
+  function updateName(array) {
+    print(array);
+    array = array.map((x) => ({
+      title: x.name + ", " + x.secondaryName,
+      id: x.place_id,
+      place_id: x.place_id,
+      secondaryName: x.secondaryName,
+    }));
+    return array;
+  }
 
   const onSelectFish = (selectedFish) => {
     setSpeciesModalVisible(false)
@@ -168,10 +225,10 @@ const ConditionsForm = () => {
         </View>
 
         <DropdownWithModal
-            onChangeText={()=>{}}
+            onChangeText={getAutofilledLocations}
             placeholder='woag'
             noItemsPlaceholder="lol"
-            dataset={[{id:1, title:'lol'}]}
+            dataset={autofilledLocations}
             parentSetModalVisible={setModalVisible}
             setSelectedItem={()=>{}}
         />
