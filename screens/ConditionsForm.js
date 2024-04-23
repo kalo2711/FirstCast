@@ -1,4 +1,5 @@
 import { loadTranslations } from "../global/localization";
+import * as Location from 'expo-location';
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useEffect, useState } from "react";
 import {
@@ -33,6 +34,7 @@ import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
+import DropdownWithModal from "../components/autocomplete.js";
 
 const ConditionsForm = () => {
   const [species, setSpecies] = useState(null);
@@ -50,6 +52,8 @@ const ConditionsForm = () => {
   const [showTimePicker, setShowTimePicker] = useState(Platform.OS === IOS ? true : false);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
+  const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.630001', lon: '-73.519997' }) //temp
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const waterClarities = [
     { id: 1, name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
@@ -65,7 +69,29 @@ const ConditionsForm = () => {
     if (initialLoad) {
       getTut();
       setInitialLoad(false)
-     }
+    }
+
+    //Get location of userdevice
+    (async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+        let location = await Location.getCurrentPositionAsync({});
+        console.log(location);
+        setGeoCoordinates({
+          lat: location.latitude,
+          lon: location.longitude
+        });
+      }
+      catch (e) {
+        //Set some sort of error if needed.
+        //If location can't be obtained, keep placeholder lon/lat
+        console.error('Unable to fetch location: ' + e);
+      }
+    })();
   }, []); // Empty dependency array to run only once
   
 
@@ -140,12 +166,23 @@ const ConditionsForm = () => {
         </Tooltip>
         )}
         </View>
+
+        <DropdownWithModal
+            onChangeText={()=>{}}
+            placeholder='woag'
+            noItemsPlaceholder="lol"
+            dataset={[{id:1, title:'lol'}]}
+            parentSetModalVisible={setModalVisible}
+            setSelectedItem={()=>{}}
+        />
+
+        {/* OLD PLACEHOLDER LOCATION INPUT
         <TextInput
           value={location}
           onChangeText={setLocation}
           style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
           placeholderTextColor={black}
-      />
+      />*/}
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(currentTutorial == 'waterTemp',
