@@ -1,5 +1,5 @@
 import { ScrollView, View } from 'react-native'
-import { NAV_CONDITIONS_FORM, NAV_GENERAL_PROFILE, NAV_LURES_FORM} from '../global/global-constants'
+import { NAV_CONDITIONS_FORM, NAV_GENERAL_PROFILE, NAV_LURES_FORM, NAV_LURES_RESULTS} from '../global/global-constants'
 import { flex_style, margin_styles, padding_styles } from '../global/global-styles'
 import { useState, useRef, useEffect } from 'react'
 import { navigate, reactIfView } from '../global/global-functions'
@@ -21,7 +21,7 @@ export default function Authentication(props) {
     if (!authenticated) {
       checkAuthentication()
     } else {
-      navigate(NAV_CONDITIONS_FORM)
+      navigate(NAV_LURES_RESULTS)
     }
   }, [authenticated])
 

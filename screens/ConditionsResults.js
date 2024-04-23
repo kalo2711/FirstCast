@@ -27,7 +27,7 @@ const ConditionsResults = ({ route }) => {
 
   const fetchConditionsForLure = async () => {
     const response = await fetch(
-      `environment.host + "/api/conditions-for-lure?lureOptionsId=" + lureOptionsId`,
+      `${environment.host}/api/conditions-for-lure?lureOptionsId=${lureOptionsId}`,
       {
         method: "GET",
         headers: {
