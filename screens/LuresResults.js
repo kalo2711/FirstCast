@@ -1038,8 +1038,6 @@ export default function LuresResults({ route }) {
   </>);
 
   const renderItem = ({ item, index }) => (
-  // maybe add tooltip here
-  // will have to adjust for weird overlaying/layout shifting
   <View style={styles.itemContainer }>
     <Image source={{ uri: item.image }} style={styles.image} />
     <View style={styles.detailsContainer}>
