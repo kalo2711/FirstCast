@@ -21,7 +21,7 @@ import {
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import { NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
+import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 
@@ -47,7 +47,7 @@ export default function LuresForm({ navigation }) {
  }, []);
 
   const handleFormSubmit = () => {
-    navigation.navigate("LuresResults", {
+    navigation.navigate(NAV_CONDITIONS_RESULTS, {
       lureOptionsId: lureOptionIdSelected ? lureOptionIdSelected : 3581,
     });
   };

@@ -317,6 +317,9 @@ export const btn_style = StyleSheet.create({
 })
 
 export const margin_styles = StyleSheet.create({
+  vertical_space_xxs: {
+    marginVertical: 2
+  },
   vertical_space_xs: {
     marginVertical: 5
   },
@@ -443,6 +446,11 @@ export const img_styles = StyleSheet.create({
   rectangle_image_s: {
     width: 200,
     height: 100,
+    resizeMode: 'contain'
+  },
+  rectangle_image_md: {
+    width: 300,
+    height: 200,
     resizeMode: 'contain'
   },
   square_image_s: {
