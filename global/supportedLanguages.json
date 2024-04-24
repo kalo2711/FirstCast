@@ -133,7 +133,18 @@
         "tutLurePrimaryColor":"Enter the lure's primary color",
         "tutLureSecondaryColor":"Enter the lure's secondary color",
         "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
-        "tutLureSubmit":"Once all required details are provided, click here to request the lure."
+        "tutLureSubmit":"Once all required details are provided, click here to request the lure.",
+
+        "tutSpecies":"Pick the kind of fish you're fishing for",
+        "tutConditionsGuide":"The guide that provided the following information",
+        "tutTimeOfDay":"The optimal time to catch this fish",
+        "tutConditionsClarity":"The clarity of the water you should be fishing in",
+        "tutConditionsWeather":"The weather at the best time to catch this fish",
+        "tutBaroPressure":"The optimal air pressure to catch this fish in",
+        "tutRain":"Whether it's better to fish in the rain or not",
+        "tutRetrievalSpeed":"The speed at which you should be reeling the fish in",
+        "tutDepth":"The depth at which you're likely to catch this fish",
+        "tutWaterColumn":""
     },
     "fr": {
         "bioPressure": "Pression biométrique",

@@ -11,7 +11,7 @@ import {
 import { getAuthToken } from "../global/utils/auth.utils";
 import { reactIfView, responseDataHandler } from "../global/global-functions";
 import { loadTranslations } from "../global/localization";
-import { FISH_STRUCTURES, SpacingMedium } from "../global/global-constants";
+import { FISH_STRUCTURES, SpacingMedium, NAV_CONDITIONS_RESULTS, width } from "../global/global-constants";
 
 const ConditionsResults = ({ route }) => {
   const { lureOptionsId } = route.params;
@@ -129,9 +129,22 @@ walleye:  [
     ],
     }]
 });
+const [currentTutorial, setCurrentTutorial] = useState(null);
+const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     // fetchConditionsForLure();
+  }, []);
+
+  useEffect(() => {
+    const getTut = async () => {
+     const tut = await getNextTutorialForPage(NAV_CONDITIONS_RESULTS)
+     setCurrentTutorial(tut)
+    }
+   if (initialLoad) {
+     getTut();
+     setInitialLoad(false)
+    }
   }, []);
 
   const toggleFishExpansion = (fish) => {
@@ -187,6 +200,7 @@ walleye:  [
                 <Text style={[text_style.xs, text_style.bold]}>{loadTranslations("presentedBy")}</Text>
               </View>}
               data={conditions[fishSpecies]}
+              // look here! add index and put tooltips 1 by 1
               renderItem={({ item }) => (
                 <View style={[margin_styles.vertical_space_md]}>
                   {Object.keys(item).map((keyString, index) => (
