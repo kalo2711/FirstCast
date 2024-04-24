@@ -154,17 +154,13 @@ const ConditionsForm = () => {
         }
       });
       let resp = await responseDataHandler(response);
-      if (resp) {
-        let locationData = responseJSON.data.locationDetails;
-        let coords = {
-          lat: locationData.geometry?.location?.lat ?? locationData.lat,
-          lon: locationData.geometry?.location?.lng ?? locationData.lon
-        };
-        setGeoCoordinates(coords);
-        return
-      }
+      if (!resp) {
         console.error('Unable to get geoCoordinates from location: API Response is not valid.')
         setLocationName('');
+        return
+      }
+      let locationData = responseJSON.data.locationDetails;
+      setGeoCoordinates(locationData); 
     }
     catch (e) {
       console.error('Unable to get geoCoordinates from location: ' + e);
