@@ -7,7 +7,7 @@ import {
   text_style,
   img_styles,
 } from "../global/global-styles";
-import { primary_color, black } from "../global/global-constants";
+import { primary_color, black, NAV_LURES_RESULTS, width } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
@@ -962,7 +962,7 @@ export default function LuresResults({ route }) {
 
   useEffect(() => {
     const getTut = async () => {
-      const tut = await getNextTutorialForPage(NAV_REQUEST_LURE_FORM)
+      const tut = await getNextTutorialForPage(NAV_LURES_RESULTS)
       setCurrentTutorial(tut)
     }
     if (initialLoad) {
@@ -979,13 +979,32 @@ export default function LuresResults({ route }) {
   };
 
   const WeatherAndMoonPhase = ({ weather, moonPhase }) => (<>
-    {reactIfView(currentTutorial == 'store', <Tooltip
-      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+    {reactIfView(currentTutorial == 'MoonPhase', <Tooltip
+      contentStyle={[{backgroundColor: primary_color, height: 80}]}
+      arrowStyle={[{marginRight: 100}]}
       backgroundColor={'rgba(0,0,0,0)'}
-      isVisible={currentTutorial == 'store'}
-      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureStore")}</Text>}
+      isVisible={currentTutorial == 'MoonPhase'}
+      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutMoonPhase")}</Text>}
       placement="top"
-      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('store', NAV_REQUEST_LURE_FORM))}}
+      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('MoonPhase', NAV_LURES_RESULTS))}}
+    >
+      <TooltipChildrenContext.Consumer>
+        {({ tooltipDuplicate }) => (
+          reactIfView(!tooltipDuplicate,
+            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+          )
+        )}
+      </TooltipChildrenContext.Consumer>
+    </Tooltip>
+    )}
+    {reactIfView(currentTutorial == 'PreviousWeather', <Tooltip
+      contentStyle={[{backgroundColor: primary_color, height: 80}]}
+      arrowStyle={[{marginRight: 100}]}
+      backgroundColor={'rgba(0,0,0,0)'}
+      isVisible={currentTutorial == 'PreviousWeather'}
+      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutPreviousWeather")}</Text>}
+      placement="top"
+      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('PreviousWeather', NAV_LURES_RESULTS))}}
     >
       <TooltipChildrenContext.Consumer>
         {({ tooltipDuplicate }) => (
@@ -997,32 +1016,153 @@ export default function LuresResults({ route }) {
     </Tooltip>
     )}
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
+      
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <MaterialIcons name="dark-mode" size={22} color="black" />
-      <Text style={{ marginLeft: 5 }}>{moonPhaseLabels[moonPhase.prevPhase.phase]}</Text>
-    </View>
+        <MaterialIcons name="dark-mode" size={22} color="black" />
+        <Text style={{ marginLeft: 5 }}>{moonPhaseLabels[moonPhase.prevPhase.phase]}</Text>
+      </View>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <MaterialIcons name="water-drop" size={24} color="black" />
-      <Text style={{ marginLeft: 5 }}>{weather.precipitation ? 'Yes' : 'No'}</Text>
-    </View>
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <MaterialIcons name="air" size={24} color="black" />
-      <Text style={{ marginLeft: 5 }}>{weather.windGust} mph</Text>
-    </View>
+        <MaterialIcons name="water-drop" size={24} color="black" />
+        <Text style={{ marginLeft: 5 }}>{weather.precipitation ? 'Yes' : 'No'}</Text>
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <MaterialIcons name="air" size={24} color="black" />
+        <Text style={{ marginLeft: 5 }}>{weather.windGust} mph</Text>
+      </View>
     
-  </View>
+    </View>
   </>);
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item, index }) => (
   // maybe add tooltip here
   // will have to adjust for weird overlaying/layout shifting
   <View style={styles.itemContainer }>
     <Image source={{ uri: item.image }} style={styles.image} />
     <View style={styles.detailsContainer}>
+      {reactIfView(currentTutorial == 'LureBrands' && index==0, <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 50}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'LureBrands'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBrands")}</Text>}
+        placement="top"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('LureBrands', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
+      {reactIfView(currentTutorial == 'LureModels' && index==0, <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 50}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'LureModels'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutModel")}</Text>}
+        placement="top"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('LureModels', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
       <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
+      {reactIfView(currentTutorial == 'LureType' && index==0, <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 50}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'LureType'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutType")}</Text>}
+        placement="top"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('LureType', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
       <Text>Type: {item.type}</Text>
+      {reactIfView(currentTutorial == 'LureColors' && index==0, <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 60}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'LureColors'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutColors")}</Text>}
+        placement="top"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('LureColors', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
       <Text>Colors: {item.color1}/{item.color2}</Text>
+      {reactIfView(currentTutorial == 'LureSize' && index==0, <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 45}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'LureSize'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSize")}</Text>}
+        placement="top"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('LureSize', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
+      {/* size attr here */}
+      {reactIfView(currentTutorial == 'LureWeight' && index==0, <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 60}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'LureWeight'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutWeight")}</Text>}
+        placement="top"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('LureWeight', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
       <Text>Weight: {item.weight}g</Text>
+      {reactIfView(currentTutorial == 'LurePrice' && index==0, <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 60}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'LurePrice'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutPrice")}</Text>}
+        placement="top"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('LurePrice', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
       <Text style={{ fontWeight: 'bold' }}>Price: ${item.price}</Text>
       <Text>Effectiveness: {item.effectiveness}%</Text>
     </View>
@@ -1068,6 +1208,23 @@ elevation: 3,
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
+      {reactIfView(currentTutorial == 'ResultsGuide', <Tooltip
+        contentStyle={[{backgroundColor: primary_color, height: 60}]}
+        backgroundColor={'rgba(0,0,0,0)'}
+        isVisible={currentTutorial == 'ResultsGuide'}
+        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutGuide")}</Text>}
+        placement="bottom"
+        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('ResultsGuide', NAV_LURES_RESULTS))}}
+      >
+        <TooltipChildrenContext.Consumer>
+          {({ tooltipDuplicate }) => (
+            reactIfView(!tooltipDuplicate,
+              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+            )
+          )}
+        </TooltipChildrenContext.Consumer>
+      </Tooltip>
+      )}
       <Image source={{ uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg" }} style={{ width: '100%', height: 330 }} />
       <WeatherAndMoonPhase weather={previousWeather} moonPhase={moonPhase} />
       <FlatList
