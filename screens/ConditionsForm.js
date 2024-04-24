@@ -56,10 +56,7 @@ const ConditionsForm = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
   const [autofilledLocations, setAutofilledLocations] = useState([]);
-
-  //Contains the lon & lat of either the device or the location picked. Default: Montreal
   const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.501886', lon: '-73.567391' })
-  //Location Name for Modal Placeholder value after selecting a location. Purely for visuals.
   const [locationName, setLocationName] = useState("");
 
   const waterClarities = [
@@ -78,7 +75,6 @@ const ConditionsForm = () => {
       setInitialLoad(false)
     }
 
-    //Get location of userdevice
     (async () => {
       try {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -93,7 +89,6 @@ const ConditionsForm = () => {
         });
       }
       catch (e) {
-        //If location can't be obtained, keep placeholder lon/lat
         console.error('Unable to fetch location: ' + e);
       }
     })();
@@ -141,19 +136,15 @@ const ConditionsForm = () => {
   };
 
   function updateName(array) {
-    print(array);
-    array = array.map((x) => ({
+    return array.map((x) => ({
       title: x.title,
       id: x.place_id,
       place_id: x.place_id,
     }));
-    return array;
   }
 
   const onLocationSelected = async (location) => {
-    //Called when a location is picked from the location dropdown modal
     setLocationName(location.title);
-    //get lon/lat coords from selected location and put them in the geoCoordinates state var
     const url = `${environment.host}api/placeIdToLatLong/?placeId=${location.place_id}`
     try {
       const response = await fetch(url, {
@@ -165,8 +156,6 @@ const ConditionsForm = () => {
       let resp = await responseDataHandler(response);
       if (resp) {
         let locationData = responseJSON.data.locationDetails;
-        //Check for two different coord types (Cities & addresses store them in different places)
-        //checks if locationData.geometry.location.lat/lon exists, else, locationData.lat
         let coords = {
           lat: locationData.geometry?.location?.lat ?? locationData.lat,
           lon: locationData.geometry?.location?.lng ?? locationData.lon
