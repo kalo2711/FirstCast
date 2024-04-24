@@ -7,7 +7,7 @@ import {
   text_style,
   img_styles,
 } from "../global/global-styles";
-import { primary_color, black, NAV_LURES_RESULTS, width } from "../global/global-constants";
+import { primary_color, tutorial_transparent, NAV_LURES_RESULTS, width, SINGLE_LINE, DOUBLE_LINE, WEATHER_MOON_LINE } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
@@ -978,11 +978,16 @@ export default function LuresResults({ route }) {
     4: 'Last Quarter'
   };
 
+  const tutorial_styles = {
+    singleLine: [{backgroundColor: primary_color, height: SINGLE_LINE}],
+    doubleLine: [{backgroundColor: primary_color, height: DOUBLE_LINE}],
+    weatherAndMoonLine: [{backgroundColor: primary_color, height: WEATHER_MOON_LINE}]
+  }
+
   const WeatherAndMoonPhase = ({ weather, moonPhase }) => (<>
     {reactIfView(currentTutorial == 'MoonPhase', <Tooltip
-      contentStyle={[{backgroundColor: primary_color, height: 80}]}
-      arrowStyle={[{marginRight: 100}]}
-      backgroundColor={'rgba(0,0,0,0)'}
+      contentStyle={tutorial_styles.weatherAndMoonLine}
+      backgroundColor={tutorial_transparent}
       isVisible={currentTutorial == 'MoonPhase'}
       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutMoonPhase")}</Text>}
       placement="top"
@@ -998,9 +1003,8 @@ export default function LuresResults({ route }) {
     </Tooltip>
     )}
     {reactIfView(currentTutorial == 'PreviousWeather', <Tooltip
-      contentStyle={[{backgroundColor: primary_color, height: 80}]}
-      arrowStyle={[{marginRight: 100}]}
-      backgroundColor={'rgba(0,0,0,0)'}
+      contentStyle={tutorial_styles.weatherAndMoonLine}
+      backgroundColor={tutorial_transparent}
       isVisible={currentTutorial == 'PreviousWeather'}
       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutPreviousWeather")}</Text>}
       placement="top"
@@ -1040,8 +1044,8 @@ export default function LuresResults({ route }) {
     <Image source={{ uri: item.image }} style={styles.image} />
     <View style={styles.detailsContainer}>
       {reactIfView(currentTutorial == 'LureBrands' && index==0, <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 50}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.singleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'LureBrands'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBrands")}</Text>}
         placement="top"
@@ -1057,8 +1061,8 @@ export default function LuresResults({ route }) {
       </Tooltip>
       )}
       {reactIfView(currentTutorial == 'LureModels' && index==0, <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 50}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.singleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'LureModels'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutModel")}</Text>}
         placement="top"
@@ -1075,8 +1079,8 @@ export default function LuresResults({ route }) {
       )}
       <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
       {reactIfView(currentTutorial == 'LureType' && index==0, <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 50}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.singleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'LureType'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutType")}</Text>}
         placement="top"
@@ -1093,8 +1097,8 @@ export default function LuresResults({ route }) {
       )}
       <Text>Type: {item.type}</Text>
       {reactIfView(currentTutorial == 'LureColors' && index==0, <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 60}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.doubleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'LureColors'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutColors")}</Text>}
         placement="top"
@@ -1111,8 +1115,8 @@ export default function LuresResults({ route }) {
       )}
       <Text>Colors: {item.color1}/{item.color2}</Text>
       {reactIfView(currentTutorial == 'LureSize' && index==0, <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 45}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.singleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'LureSize'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSize")}</Text>}
         placement="top"
@@ -1129,8 +1133,8 @@ export default function LuresResults({ route }) {
       )}
       {/* size attr here */}
       {reactIfView(currentTutorial == 'LureWeight' && index==0, <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 60}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.singleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'LureWeight'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutWeight")}</Text>}
         placement="top"
@@ -1147,8 +1151,8 @@ export default function LuresResults({ route }) {
       )}
       <Text>Weight: {item.weight}g</Text>
       {reactIfView(currentTutorial == 'LurePrice' && index==0, <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 60}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.doubleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'LurePrice'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutPrice")}</Text>}
         placement="top"
@@ -1209,8 +1213,8 @@ elevation: 3,
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
       {reactIfView(currentTutorial == 'ResultsGuide', <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 60}]}
-        backgroundColor={'rgba(0,0,0,0)'}
+        contentStyle={tutorial_styles.doubleLine}
+        backgroundColor={tutorial_transparent}
         isVisible={currentTutorial == 'ResultsGuide'}
         content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutGuide")}</Text>}
         placement="bottom"

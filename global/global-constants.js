@@ -16,6 +16,7 @@ const lightgrey = "lightgrey";
 const blackText = "black";
 const grey_color = "rgba(208, 208, 208, 1)";
 const grey_dark_color = "rgba(150, 150, 150, 1)";
+const tutorial_transparent = "rgba(0,0,0,0)"
 
 //Spacing
 const SpacingExtraSmall = 5;
@@ -49,6 +50,11 @@ const POPUP_WIDTH_L = 180;
 const POPUP_HEIGHT_S = 60;
 const POPUP_HEIGHT_M = 80;
 const POPUP_HEIGHT_L = 100;
+
+// Size for number of lines in tooltips
+const SINGLE_LINE = 50;
+const DOUBLE_LINE = 60;
+const WEATHER_MOON_LINE = 95
 
 // Navigation
 const NAV_HOME_LIST = "HomeList";
@@ -346,4 +352,8 @@ export {
   API_LOGIN_GOOGLE,
   LOCATION,
   GRANTED,
+  SINGLE_LINE,
+  DOUBLE_LINE,
+  WEATHER_MOON_LINE,
+  tutorial_transparent,
 };
