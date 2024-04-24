@@ -1,4 +1,4 @@
-import { loadTranslations } from "../global/localization";
+import { getDeviceLanguage, loadTranslations } from "../global/localization";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useEffect, useState } from "react";
 import {
@@ -28,16 +28,20 @@ import {
   black,
   IOS,
   NAV_CONDITIONS_FORM,
+  VALID,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
+import DropdownWithModal from "../components/autocomplete.js";
+import * as Location from 'expo-location';
+import { environment } from "../global/environment";
+import { responseDataHandler } from "../global/global-functions";
 
 const ConditionsForm = () => {
   const [species, setSpecies] = useState(null);
   const [speciesModalVisible, setSpeciesModalVisible] = useState(false);
-  const [location, setLocation] = useState("");
   const [temperature, setTemperature] = useState("");
   const [date, setDate] = useState(new Date());
   const [hour, setHour] = useState("");
@@ -50,6 +54,10 @@ const ConditionsForm = () => {
   const [showTimePicker, setShowTimePicker] = useState(Platform.OS === IOS ? true : false);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [autofilledLocations, setAutofilledLocations] = useState([]);
+  const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.501886', lon: '-73.567391' })
+  const [locationName, setLocationName] = useState("");
 
   const waterClarities = [
     { id: 1, name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
@@ -65,9 +73,99 @@ const ConditionsForm = () => {
     if (initialLoad) {
       getTut();
       setInitialLoad(false)
-     }
+    }
+
+    (async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+        let location = await Location.getCurrentPositionAsync({});
+        setGeoCoordinates({
+          lat: location.coords.latitude,
+          lon: location.coords.longitude
+        });
+      }
+      catch (e) {
+        console.error('Unable to fetch location: ' + e);
+      }
+    })();
   }, []); // Empty dependency array to run only once
+
+  const createQueryParametersForAutofill = (lat, lang, radius, value) => {
+    return (
+      "lat=" +
+      lat +
+      "&lang=" +
+      lang +
+      "&radius=" +
+      radius +
+      "&input=" +
+      value +
+      "&language=" +
+      getDeviceLanguage()
+    );
+  };
   
+  const getAutofilledLocations = async (value) => {
+    const radius = 100;
+
+    const url =
+      environment.host +
+      "api/locations/autofillLocations?" +
+      createQueryParametersForAutofill(
+        geoCoordinates.lat,
+        geoCoordinates.lon,
+        radius,
+        value
+      );
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let resp = await responseDataHandler(response);
+    resp = updateName(
+      resp?.autocompletedLocations ? resp?.autocompletedLocations : []
+    );
+    setAutofilledLocations(resp);
+  };
+
+  function updateName(array) {
+    return array.map((x) => ({
+      title: x.title,
+      id: x.place_id,
+      place_id: x.place_id,
+    }));
+  }
+
+  const onLocationSelected = async (location) => {
+    setLocationName(location.title);
+    const url = `${environment.host}api/placeIdToLatLong/?placeId=${location.place_id}`
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+      let resp = await responseDataHandler(response);
+      if (!resp) {
+        console.error('Unable to get geoCoordinates from location: API Response is not valid.')
+        setLocationName('');
+        return
+      }
+      let locationData = responseJSON.data.locationDetails;
+      setGeoCoordinates(locationData); 
+    }
+    catch (e) {
+      console.error('Unable to get geoCoordinates from location: ' + e);
+    }
+  }
 
   const onSelectFish = (selectedFish) => {
     setSpeciesModalVisible(false)
@@ -140,12 +238,15 @@ const ConditionsForm = () => {
         </Tooltip>
         )}
         </View>
-        <TextInput
-          value={location}
-          onChangeText={setLocation}
-          style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
-          placeholderTextColor={black}
-      />
+
+        <DropdownWithModal
+            placeholder={locationName}
+            onChangeText={getAutofilledLocations}
+            noItemsPlaceholder='locationFetchError'
+            dataset={autofilledLocations}
+            parentSetModalVisible={setModalVisible}
+            setSelectedItem={onLocationSelected}
+        />
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(currentTutorial == 'waterTemp',
