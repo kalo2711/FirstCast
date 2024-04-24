@@ -57,11 +57,10 @@ const ConditionsForm = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [autofilledLocations, setAutofilledLocations] = useState([]);
 
-  //Contains the lon & lat of either the device or the location picked.
-  const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.630001', lon: '-73.519997' })
-  //Contains the location object currently selected. 
-  //Also used for Modal Placeholder values after picking one.
-  const [location, setLocation] = useState("");
+  //Contains the lon & lat of either the device or the location picked. Default: Montreal
+  const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.501886', lon: '-73.567391' })
+  //Location Name for Modal Placeholder value after selecting a location. Purely for visuals.
+  const [locationName, setLocationName] = useState("");
 
   const waterClarities = [
     { id: 1, name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
@@ -118,8 +117,7 @@ const ConditionsForm = () => {
   const getAutofilledLocations = async (value) => {
     let params = {};
 
-    //PLACEHOLDER DO NOT SHIP
-    params.radius = 1000
+    params.radius = 100 
 
     const url =
       environment.host +
@@ -150,46 +148,42 @@ const ConditionsForm = () => {
       title: x.title,
       id: x.place_id,
       place_id: x.place_id,
-      secondaryName: x.secondaryName,
     }));
     return array;
   }
 
-  const onLocationSelected = (loc) =>{
+  const onLocationSelected = async (location) => {
     //Called when a location is picked from the location dropdown modal
-
-    //get lon/lat coords and put them in the geoCoordinates & location statevar
-    const url =`${environment.host}api/placeIdToLatLong/?placeId=${loc.place_id}`
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
+    setLocationName(location.title);
+    //get lon/lat coords from selected location and put them in the geoCoordinates state var
+    const url = `${environment.host}api/placeIdToLatLong/?placeId=${location.place_id}`
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+      let resp = await responseDataHandler(response);
+      if (resp) {
+        let locationData = responseJSON.data.locationDetails;
+        //Check for two different coord types (Cities & addresses store them in different places)
+        //checks if locationData.geometry.location.lat/lon exists, else, locationData.lat
+        let coords = {
+          lat: locationData.geometry?.location?.lat ?? locationData.lat,
+          lon: locationData.geometry?.location?.lng ?? locationData.lon
+        };
+        setGeoCoordinates(coords);
+        
       }
-      
-    }).then(resp => {
-      if (!resp === VALID) {
-        //Handle error
-        throw new Error(resp.json())
+      else {
+        console.error('Unable to get geoCoordinates from location.')
+        setLocationName('');
       }
-      return resp.json();
-    }).then(json => {
-      
-      let locationData = json.data.locationDetails;
-      
-      //Check for two different coord types (Cities & addresses store them in different places)
-      //checks if locationData.geometry.location.lat/lon exists, else, locationData.lat
-      let coords = {
-        lat: locationData.geometry?.location?.lat ?? locationData.lat,
-        lon: locationData.geometry?.location?.lng ?? locationData.lon
-      };
-      setGeoCoordinates(coords);  
-      setLocation(locationData);
-     
-    }).catch(e => {
-      
+    }
+    catch (e) {
       console.error(e);
-    })
-    
+    }
   }
 
   const onSelectFish = (selectedFish) => {
@@ -265,7 +259,7 @@ const ConditionsForm = () => {
         </View>
 
         <DropdownWithModal
-            placeholder={location.formatted_address}
+            placeholder={locationName}
             onChangeText={getAutofilledLocations}
             noItemsPlaceholder='locationFetchError'
             dataset={autofilledLocations}
@@ -274,7 +268,6 @@ const ConditionsForm = () => {
         />
         
         <Text>Geo: {JSON.stringify(geoCoordinates)}</Text>
-        <Text>Loc: {JSON.stringify(location)}</Text>
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(currentTutorial == 'waterTemp',
