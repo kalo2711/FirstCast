@@ -174,15 +174,13 @@ const ConditionsForm = () => {
           lon: locationData.geometry?.location?.lng ?? locationData.lon
         };
         setGeoCoordinates(coords);
-        
+        return
       }
-      else {
-        console.error('Unable to get geoCoordinates from location.')
+        console.error('Unable to get geoCoordinates from location: API Response is not valid.')
         setLocationName('');
-      }
     }
     catch (e) {
-      console.error(e);
+      console.error('Unable to get geoCoordinates from location: ' + e);
     }
   }
 
@@ -266,8 +264,6 @@ const ConditionsForm = () => {
             parentSetModalVisible={setModalVisible}
             setSelectedItem={onLocationSelected}
         />
-        
-        <Text>Geo: {JSON.stringify(geoCoordinates)}</Text>
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(currentTutorial == 'waterTemp',
