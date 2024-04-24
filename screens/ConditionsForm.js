@@ -115,9 +115,7 @@ const ConditionsForm = () => {
   };
   
   const getAutofilledLocations = async (value) => {
-    let params = {};
-
-    params.radius = 100 
+    const radius = 100;
 
     const url =
       environment.host +
@@ -125,7 +123,7 @@ const ConditionsForm = () => {
       createQueryParametersForAutofill(
         geoCoordinates.lat,
         geoCoordinates.lon,
-        params.radius,
+        radius,
         value
       );
 
