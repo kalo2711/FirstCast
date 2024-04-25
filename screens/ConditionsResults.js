@@ -12,15 +12,7 @@ import {
 import { getAuthToken } from "../global/utils/auth.utils";
 import { reactIfView, responseDataHandler } from "../global/global-functions";
 import { loadTranslations } from "../global/localization";
-import { 
-  FISH_STRUCTURES, 
-  SpacingMedium, 
-  NAV_CONDITIONS_RESULTS, 
-  width, 
-  primary_color,
-  tutorial_transparent,
-  tutorial_styles
-} from "../global/global-constants";
+import { FISH_STRUCTURES, SpacingMedium, NAV_CONDITIONS_RESULTS, width, primary_color } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 
@@ -195,8 +187,8 @@ const [initialLoad, setInitialLoad] = useState(true);
       {Object.keys(conditions).map((fishSpecies, index) => (
         <View key={index} style={{ marginBottom: 10 }}>
           {reactIfView(currentTutorial == 'Species' && index == 0, <Tooltip
-            contentStyle={tutorial_styles.doubleLine}
-            backgroundColor={tutorial_transparent}
+            contentStyle={[{backgroundColor: primary_color, height: 60}]}
+            backgroundColor={'rgba(0,0,0,0)'}
             isVisible={currentTutorial == 'Species'}
             content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSpecies")}</Text>}
             placement="top"
@@ -220,8 +212,8 @@ const [initialLoad, setInitialLoad] = useState(true);
             <FlatList
               ListHeaderComponent={<View style={[flex_style.flex, flex_style.center, flex_style.column, margin_styles.vertical_space_md]}>
                 {reactIfView(currentTutorial == 'ConditionsGuide' && index == 0, <Tooltip
-                  contentStyle={tutorial_styles.doubleLine}
-                  backgroundColor={tutorial_transparent}
+                  contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                  backgroundColor={'rgba(0,0,0,0)'}
                   isVisible={currentTutorial == 'ConditionsGuide'}
                   content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsGuide")}</Text>}
                   placement="top"
@@ -250,8 +242,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                 <View style={[margin_styles.vertical_space_md]}>
                   {Object.keys(item).map((keyString, keyIndex) => (<>
                     {reactIfView(currentTutorial == 'TimeOfDay' && keyString == 'time' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'TimeOfDay'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutTimeOfDay")}</Text>}
                       placement="top"
@@ -268,8 +260,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'Season' && keyString == 'season' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'Season'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSeason")}</Text>}
                       placement="top"
@@ -286,8 +278,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'ConditionsClarity' && keyString == 'water_clarity' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'ConditionsClarity'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsClarity")}</Text>}
                       placement="top"
@@ -304,8 +296,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'ConditionsWeather' && keyString == 'weather' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'ConditionsWeather'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsWeather")}</Text>}
                       placement="top"
@@ -322,8 +314,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'BarometricPressure' && keyString == 'barometric_pressure' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'BarometricPressure'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBaroPressure")}</Text>}
                       placement="top"
@@ -340,8 +332,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'Rain' && keyString == 'precipitation' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'Rain'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRain")}</Text>}
                       placement="top"
@@ -358,8 +350,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'SpeedOfRetrieval' && keyString == 'speed' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'SpeedOfRetrieval'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRetrievalSpeed")}</Text>}
                       placement="top"
@@ -376,8 +368,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'Depth' && keyString == 'depth' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'Depth'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutDepth")}</Text>}
                       placement="top"
@@ -394,8 +386,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'WaterColumn' && keyString == 'water_column' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'WaterColumn'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutWaterColumn")}</Text>}
                       placement="top"
@@ -412,8 +404,8 @@ const [initialLoad, setInitialLoad] = useState(true);
                     )}
 
                     {reactIfView(currentTutorial == 'Structures' && keyString == 'structure' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.weatherAndMoonLine}
-                      backgroundColor={tutorial_transparent}
+                      contentStyle={[{backgroundColor: primary_color, height: 90}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
                       isVisible={currentTutorial == 'Structures'}
                       content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutStructures")}</Text>}
                       placement="top"
