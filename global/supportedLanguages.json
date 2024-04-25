@@ -146,7 +146,17 @@
         "tutRetrievalSpeed":"The speed at which you should be reeling the fish in",
         "tutDepth":"The depth at which you're likely to catch this fish",
         "tutWaterColumn":"Where in the body of water the fish will be (top/middle/bottom)",
-        "tutStructures":"These are graphs of locations to fish in. A 2D view for weed locations, and a nautical chart for point/channel locations."
+        "tutStructures":"These are graphs of locations to fish in. A 2D view for weed locations, and a nautical chart for point/channel locations.",
+        "tutGuide": "The guide that has provided the information",
+        "tutMoonPhase": "Providing you information on the next and previous moon phase. These phases can affect fishing productivity",
+        "tutPreviousWeather": "Providing you information on the previous day's weather. This weather can affect fishing productivity",
+        "tutBrands": "The lure brand",
+        "tutModel": "The lure model",
+        "tutColors": "The first and second color most visible on the lure",
+        "tutSize": "The size of the lure in inches",
+        "tutWeight": "The weight of the lure in ounces",
+        "tutType": "The type of lure",
+        "tutPrice": "The price in CAD of the lure at our selected store"
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -294,6 +304,17 @@
         "tutRetrievalSpeed": "La vitesse à laquelle vous devez ramener le poisson",
         "tutDepth": "La profondeur à laquelle vous avez le plus de chances d'attraper ce poisson",
         "tutWaterColumn": "Où dans le plan d'eau le poisson se trouvera (surface/milieu/fond)",
-        "tutStructures": "Ceci sont des graphiques des endroits où pêcher. Une vue en 2D pour les emplacements d'herbes et une carte nautique pour les emplacements de point/canal."
+        "tutStructures": "Ceci sont des graphiques des endroits où pêcher. Une vue en 2D pour les emplacements d'herbes et une carte nautique pour les emplacements de point/canal.",
+        
+        "tutGuide": "Le guide qui vous a fourni ces détails",
+        "tutMoonPhase": "Fournit des détails sur la phase de lune suivante et précédente. Ces phases peuvent affecter la productivité de votre pêche",
+        "tutPreviousWeather": "Fournit des détails sur la météo de la veille. La météo peut affecter la productivité de votre pêche",
+        "tutBrands": "La marque du leurre",
+        "tutModel": "Le modèle du leurre",
+        "tutColors": "La première et la deuxième couleur les plus visibles sur le leurre",
+        "tutSize": "La taille du leurre en pouces",
+        "tutWeight": "Le poids du leurre en onces",
+        "tutType": "Le type de leurre",
+        "tutPrice": "Le prix en CAD du leurre dans notre magasin sélectionné"
     }
 }
