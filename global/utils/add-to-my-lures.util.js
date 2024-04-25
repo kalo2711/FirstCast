@@ -1,31 +1,31 @@
 import { environment } from "../environment";
 import { getAuthToken } from "./auth.utils";
-export async function addToMyLures(optionID, onPass, onFail, onFailDuplicate){
-    try{
-      const url = environment.host + '/api/add-to-user-lures'
-      const token = await getAuthToken(false)
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({lureOption:optionID}),
-        headers: {
-          'Content-Type': 'application/json',
-          'x-app-auth': token
-        },
-      });
-      const json = await response.json();
-      if(json?.error?.code === 'ER_DUP_ENTRY'){
-        onFailDuplicate();
-        return 
-      }
-      if(!json || json?.error){
-          const errorMsg = json?.error ? json.error : 'AddToUserLures failed.';
-          throw new Error(errorMsg)
-      }
-      console.log(json);
-      onPass();
+export async function addToMyLures(optionID, onPass, onFail, onFailDuplicate) {
+    try {
+        const url = environment.host + '/api/add-to-user-lures'
+        const token = await getAuthToken(false)
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({ lureOption: optionID }),
+            headers: {
+                'Content-Type': 'application/json',
+                'x-app-auth': token
+            },
+        });
+        const json = await response.json();
+        if (json?.error?.code === 'ER_DUP_ENTRY') {
+            onFailDuplicate();
+            return
+        }
+        if (!json || json?.error) {
+            const errorMsg = json?.error ? json.error : 'AddToUserLures failed.';
+            throw new Error(errorMsg)
+        }
+        console.log(json);
+        onPass();
     }
-    catch(e){
-      console.error(e.stack);
-      onFail();
+    catch (e) {
+        console.error(e.stack);
+        onFail();
     }
-  }
+}

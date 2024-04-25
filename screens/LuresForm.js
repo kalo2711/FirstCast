@@ -278,39 +278,38 @@ export default function LuresForm({ navigation }) {
 }
 
 
-function AddToMyLureButton({option}) {
+function AddToMyLureButton({ option }) {
   const [buttonContent, setButtonContent] = useState(loadTranslations("addToMyLures"));
   const [buttonIcon, setButtonIcon] = useState('add-plus-button')
   const [iconColor, setIconColor] = useState('black');
   const [isLoading, setLoading] = useState(false);
 
-  async function onButtonPress(){
-    try{
-     if(!isLoading){
-      console.log('load again');
-      setLoading(true);
-      await addToMyLures(option.id, onPass, onFail, onFailDupe);
-      setLoading(false);
-     }
+  async function onButtonPress() {
+    try {
+      if (!isLoading) {
+        setLoading(true);
+        await addToMyLures(option.id, onPass, onFail, onFailDupe);
+        setLoading(false);
+      }
     }
-    catch(e){
+    catch (e) {
       console.error(e);
       setLoading(false);
     }
   }
 
 
-  function onPass(){
+  function onPass() {
     setButtonContent(loadTranslations('addToMyLuresSucceed'));
     setButtonIcon('check-symbol');
     setIconColor('green');
   }
-  function onFail(){
+  function onFail() {
     setButtonContent(loadTranslations('addToMyLuresFail'));
     setButtonIcon('close-button');
     setIconColor('red');
   }
-  function onFailDupe(){
+  function onFailDupe() {
     setButtonContent(loadTranslations('addToMyLuresDupe'));
     setButtonIcon('close-button');
     setIconColor('red')
@@ -318,40 +317,19 @@ function AddToMyLureButton({option}) {
 
   return (
     <View>
-      {/* {isLoading? 
-      <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
-        <ActivityIndicator style={[margin_styles.bottom_lg, margin_styles.vertical_space_md]} size="large" color={primary_color} />
-        </View>
-      :
-      <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={!isLoading && onButtonPress}>
-        <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
-        <Icon style={[margin_styles.horizontal_space_s]} name={buttonIcon} color={iconColor}></Icon>
-        <Text style={[text_style.bold, text_style.fontColorPrimary]}>{buttonContent}</Text>
-      </View>
-    </TouchableOpacity>
-      } */}
-      
-     
-      
-      
-      <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={onButtonPress} activeOpacity={isLoading?1:0.2}>
-      {isLoading? 
-        <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
-        <ActivityIndicator style={[]} size="large" color={primary_color} />
-        </View>:
-        
-        <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
-        <Icon style={[margin_styles.horizontal_space_s]} name={buttonIcon} color={iconColor}></Icon>
-        <Text style={[text_style.bold, text_style.fontColorPrimary]}>{buttonContent}</Text>
-      </View>
-       }
-    </TouchableOpacity>
-     
-      
-
-    
-    
+      <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={onButtonPress} activeOpacity={isLoading ? 1 : 0.2}>
+        {isLoading ?
+          <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
+            <ActivityIndicator style={[]} size="large" color={primary_color} />
+          </View>
+          :
+          <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
+            <Icon style={[margin_styles.horizontal_space_s]} name={buttonIcon} color={iconColor}></Icon>
+            <Text style={[text_style.bold, text_style.fontColorPrimary]}>{buttonContent}</Text>
+          </View>
+        }
+      </TouchableOpacity>
     </View>
-    
+
   );
 }
