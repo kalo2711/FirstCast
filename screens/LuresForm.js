@@ -24,6 +24,7 @@ import { navigate, reactIfView, responseDataHandler } from "../global/global-fun
 import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
+import { getAuthToken } from "../global/utils/auth.utils";
 
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
@@ -85,6 +86,36 @@ export default function LuresForm({ navigation }) {
     setIsLoading(false)
     if (resp) {
       setLureOptions(resp);
+    }
+  }
+
+  //to be put into global/utils once we confirm it works
+  async function addToMyLures(optionID){
+    try{
+      const url = environment.host + '/api/add-to-user-lures'
+      const token = await getAuthToken(false)
+      const response = await fetch(url, {
+        method: 'POST',
+        body: {
+          lureOption:optionID
+        },
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'x-app-auth': token
+        },
+      })
+      
+      resp = await responseDataHandler(response)
+      console.log(resp)
+      if (!resp){
+        
+        
+        throw new Error('bad response code');
+      }
+
+    }
+    catch(e){
+      console.error(e.stack);
     }
   }
 
@@ -203,6 +234,12 @@ export default function LuresForm({ navigation }) {
                   <Text style={[text_style.bold, text_style.xs]}>{option?.color1}  {option?.color2 != option?.color1 ? ', '+option?.color2:''}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.size} {loadTranslations("inch")}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.weight} {loadTranslations("pound")}</Text>
+
+                  {/*'add to lure' button here */}
+                  <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => {addToMyLures(option.id)}}>
+                    <Text style={[text_style.bold, text_style.fontColorPrimary]}>{loadTranslations("addToMyLures")}</Text>
+                  </TouchableOpacity>
+                
                 </TouchableOpacity>
               </View>
             )}
