@@ -57,6 +57,7 @@ const NAV_WHEEL_LOCATIONS = "LocationList";
 const NAV_GENERAL_PROFILE = "generalProfile";
 const NAV_TIME = "Time";
 const NAV_TUTORIAL = "Tutorial";
+const NAV_PROFILE = "Profile";
 const NAV_EDIT_PROFILE = "editProfile";
 const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
@@ -275,6 +276,7 @@ export {
   API_REGISTER,
   API_GET_AD,
   API_GET_USER_INFO_AD,
+  NAV_PROFILE,
   NAV_EDIT_PROFILE,
   RES_UNAUTHORIZED,
   RES_VALID,

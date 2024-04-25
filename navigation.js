@@ -7,6 +7,7 @@ import {
   NAV_EDIT_PROFILE,
   NAV_GENERAL_PROFILE,
   NAV_HOME_LIST,
+  NAV_PROFILE,
   NAV_LURES_FORM,
   NAV_TUTORIAL,
   PERSON,
@@ -58,7 +59,7 @@ export default function Navigation() {
   });
 
   const handleProfilePress = () => {
-    navigate(authenticated ? NAV_LURES_FORM : NAV_AUTHENTICATION);
+    navigate(authenticated ? NAV_PROFILE : NAV_AUTHENTICATION);
   };
 
   const handleHomePress = () => {
