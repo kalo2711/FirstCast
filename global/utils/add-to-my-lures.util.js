@@ -1,12 +1,12 @@
 import { environment } from "../environment";
 import { getAuthToken } from "./auth.utils";
-export async function addToMyLures(optionID, onPass, onFail, onFailDuplicate) {
+export async function addToMyLures(lureID, onPass, onFail, onFailDuplicate) {
     try {
         const url = environment.host + '/api/add-to-user-lures'
         const token = await getAuthToken(false)
         const response = await fetch(url, {
             method: 'POST',
-            body: JSON.stringify({ lureOption: optionID }),
+            body: JSON.stringify({ lureOption: lureID }),
             headers: {
                 'Content-Type': 'application/json',
                 'x-app-auth': token
