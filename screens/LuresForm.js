@@ -26,6 +26,10 @@ import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-toolti
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import { getAuthToken } from "../global/utils/auth.utils";
 
+//DO NOT SHIP
+import * as SecureStore from 'expo-secure-store'
+import { SECURE_STORE_ITEM_KEY } from '../global/global-constants'
+
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
   const [chosenItem, setChosenItem] = useState(null);
@@ -89,6 +93,12 @@ export default function LuresForm({ navigation }) {
     }
   }
 
+  //DEBUG SETTING DO NOT PUSH TO MAIN
+  async function nukeCache(){
+    await SecureStore.setItemAsync(SECURE_STORE_ITEM_KEY, '');
+    alert('you done goofed')
+  }
+
   //to be put into global/utils once we confirm it works
   async function addToMyLures(optionID){
     try{
@@ -96,11 +106,9 @@ export default function LuresForm({ navigation }) {
       const token = await getAuthToken(false)
       const response = await fetch(url, {
         method: 'POST',
-        body: {
-          lureOption:optionID
-        },
+        body: JSON.stringify({lureOption:optionID}),
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
           'x-app-auth': token
         },
       })
@@ -108,8 +116,6 @@ export default function LuresForm({ navigation }) {
       resp = await responseDataHandler(response)
       console.log(resp)
       if (!resp){
-        
-        
         throw new Error('bad response code');
       }
 
@@ -238,6 +244,10 @@ export default function LuresForm({ navigation }) {
                   {/*'add to lure' button here */}
                   <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => {addToMyLures(option.id)}}>
                     <Text style={[text_style.bold, text_style.fontColorPrimary]}>{loadTranslations("addToMyLures")}</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={nukeCache}>
+                    <Text style={[text_style.bold, text_style.fontColorPrimary]}>{"nuke cache"}</Text>
                   </TouchableOpacity>
                 
                 </TouchableOpacity>
