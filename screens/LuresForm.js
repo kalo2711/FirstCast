@@ -29,6 +29,7 @@ import { getAuthToken } from "../global/utils/auth.utils";
 //DO NOT SHIP
 import * as SecureStore from 'expo-secure-store'
 import { SECURE_STORE_ITEM_KEY } from '../global/global-constants'
+import Icon from "react-native-ico-material-design";
 
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
@@ -99,31 +100,6 @@ export default function LuresForm({ navigation }) {
     alert('you done goofed')
   }
 
-  //to be put into global/utils once we confirm it works
-  async function addToMyLures(optionID){
-    try{
-      const url = environment.host + '/api/add-to-user-lures'
-      const token = await getAuthToken(false)
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({lureOption:optionID}),
-        headers: {
-          'Content-Type': 'application/json',
-          'x-app-auth': token
-        },
-      })
-      
-      resp = await responseDataHandler(response)
-      console.log(resp)
-      if (!resp){
-        throw new Error('bad response code');
-      }
-
-    }
-    catch(e){
-      console.error(e.stack);
-    }
-  }
 
   return (
     <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
@@ -240,16 +216,7 @@ export default function LuresForm({ navigation }) {
                   <Text style={[text_style.bold, text_style.xs]}>{option?.color1}  {option?.color2 != option?.color1 ? ', '+option?.color2:''}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.size} {loadTranslations("inch")}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.weight} {loadTranslations("pound")}</Text>
-
-                  {/*'add to lure' button here */}
-                  <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => {addToMyLures(option.id)}}>
-                    <Text style={[text_style.bold, text_style.fontColorPrimary]}>{loadTranslations("addToMyLures")}</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={nukeCache}>
-                    <Text style={[text_style.bold, text_style.fontColorPrimary]}>{"nuke cache"}</Text>
-                  </TouchableOpacity>
-                
+                  <AddToMyLureButton option={option}/>   
                 </TouchableOpacity>
               </View>
             )}
@@ -318,5 +285,61 @@ export default function LuresForm({ navigation }) {
           </Text>
         </TouchableOpacity>
       </View>
+  );
+}
+
+
+function AddToMyLureButton({option}) {
+  const [buttonContent, setButtonContent] = useState(loadTranslations("addToMyLures"));
+  const [buttonIcon, setButtonIcon] = useState('add-plus-button')
+  //to be put into global/utils once we confirm it works
+  async function addToMyLures(optionID, onPass, onFail, onFailDuplicate){
+    try{
+      const url = environment.host + '/api/add-to-user-lures'
+      const token = await getAuthToken(false)
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({lureOption:optionID}),
+        headers: {
+          'Content-Type': 'application/json',
+          'x-app-auth': token
+        },
+      });
+      const json = await response.json();
+      if(json?.error?.code === 'ER_DUP_ENTRY'){
+        onFailDuplicate();
+        return 
+      }
+      if(!json || json?.error){
+          const errorMsg = json?.error ? json.error : 'AddToUserLures failed.';
+          throw new Error(errorMsg)
+      }
+      console.log(json);
+      onPass();
+    }
+    catch(e){
+      console.error(e.stack);
+      onFail();
+    }
+  }
+  function onPass(){
+    setButtonContent('Adding success');
+    setButtonIcon('check-symbol');
+  }
+  function onFail(){
+    setButtonContent('Adding Failed');
+    setButtonIcon('close-button');
+  }
+  function onFailDupe(){
+    setButtonContent('Lure already added');
+    setButtonIcon('close-button');
+  }
+ 
+
+  return (
+    <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => { addToMyLures(option.id, onPass, onFail, onFailDupe) }}>
+      <Icon name={buttonIcon}></Icon>
+      <Text style={[text_style.bold, text_style.fontColorPrimary]}>{buttonContent}</Text>
+    </TouchableOpacity>
   );
 }
