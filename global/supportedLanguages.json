@@ -17,6 +17,7 @@
         "inch": "(in)",
         "howAreYouFishing": "How are you fishing?",
         "location": "Location",
+        "locationFetchError": "No locations were found.",
         "low": "Low",
         "time": "Time of day",
         "midday": "Between 12PM to 4PM",
@@ -133,7 +134,9 @@
         "tutLurePrimaryColor":"Enter the lure's primary color",
         "tutLureSecondaryColor":"Enter the lure's secondary color",
         "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
-        "tutLureSubmit":"Once all required details are provided, click here to request the lure."
+        "tutLureSubmit":"Once all required details are provided, click here to request the lure.",
+        "navLures": "Lures",
+        "navConditions": "Conditions"
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -154,6 +157,7 @@
         "howAreYouFishing": "Comment pêchez-vous ?",
         "length": "(pouces)",
         "location": "Emplacement",
+        "locationFetchError": "Aucun emplacement n'a été trouvé.",
         "low": "Faible",
         "model": "Modèle de leurre",
         "muddy": "Boueux",
@@ -268,6 +272,8 @@
         "speedSlow": "Lent",
         "speedMedium": "Moyen",
         "speedFast": "Rapide",
-        "depth": "Profondeur"
+        "depth": "Profondeur",
+        "navLures": "Leurres",
+        "navConditions": "Conditions"
     }
 }

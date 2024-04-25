@@ -19,7 +19,7 @@ const Item = ({item, onPress}) => (
   style={[styles.itemButton, flex_style.flex, ,flex_style.alignCenter]}
   onPress={(event) => onPress(item)}
 >
-  <Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{ uri: item.image }} />
+  {(reactIfView(item.image,<Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{ uri: item.image }} /> ))}
   <Text style={[styles.itemText, flex_style.one, flex_style.wrap]}>{item.title}</Text>
 </TouchableOpacity>
 );
