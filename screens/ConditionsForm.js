@@ -239,7 +239,8 @@ const ConditionsForm = () => {
         )}
         </View>
 
-        <DropdownWithModal
+      <DropdownWithModal
+            showCancelButton={false}
             placeholder={locationName}
             onChangeText={getAutofilledLocations}
             noItemsPlaceholder='locationFetchError'
