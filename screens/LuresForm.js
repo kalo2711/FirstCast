@@ -24,11 +24,6 @@ import { navigate, reactIfView, responseDataHandler } from "../global/global-fun
 import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
-
-
-//DO NOT SHIP
-import * as SecureStore from 'expo-secure-store'
-import { SECURE_STORE_ITEM_KEY } from '../global/global-constants'
 import Icon from "react-native-ico-material-design";
 import { addToMyLures } from "../global/utils/add-to-my-lures.util";
 
@@ -94,13 +89,6 @@ export default function LuresForm({ navigation }) {
       setLureOptions(resp);
     }
   }
-
-  //DEBUG SETTING DO NOT PUSH TO MAIN
-  async function nukeCache(){
-    await SecureStore.setItemAsync(SECURE_STORE_ITEM_KEY, '');
-    alert('you done goofed')
-  }
-
 
   return (
     <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
