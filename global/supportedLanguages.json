@@ -138,13 +138,15 @@
         "tutSpecies":"Pick the kind of fish you're fishing for",
         "tutConditionsGuide":"The guide that provided the following information",
         "tutTimeOfDay":"The optimal time to catch this fish",
+        "tutSeason":"The optimal season to catch this fish",
         "tutConditionsClarity":"The clarity of the water you should be fishing in",
         "tutConditionsWeather":"The weather at the best time to catch this fish",
         "tutBaroPressure":"The optimal air pressure to catch this fish in",
         "tutRain":"Whether it's better to fish in the rain or not",
         "tutRetrievalSpeed":"The speed at which you should be reeling the fish in",
         "tutDepth":"The depth at which you're likely to catch this fish",
-        "tutWaterColumn":""
+        "tutWaterColumn":"Where in the body of water the fish will be (top/middle/bottom)",
+        "tutStructures":"These are graphs of locations to fish in. A 2D view for weed locations, and a nautical chart for point/channel locations."
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -279,6 +281,19 @@
         "speedSlow": "Lent",
         "speedMedium": "Moyen",
         "speedFast": "Rapide",
-        "depth": "Profondeur"
+        "depth": "Profondeur",
+
+        "tutSpecies": "Choisissez le type de poisson que vous pêchez",
+        "tutConditionsGuide": "Le guide qui a fourni les informations suivantes",
+        "tutTimeOfDay": "L'heure de la journée optimale pour attraper ce poisson",
+        "tutSeason": "La saison optimale pour attraper ce poisson",
+        "tutConditionsClarity": "La clarté de l'eau dans laquelle vous devriez pêcher",
+        "tutConditionsWeather": "La météo optimale pour attraper ce poisson",
+        "tutBaroPressure": "La pression atmosphérique optimale pour attraper ce poisson",
+        "tutRain": "S'il est préférable de pêcher sous la pluie ou non",
+        "tutRetrievalSpeed": "La vitesse à laquelle vous devez ramener le poisson",
+        "tutDepth": "La profondeur à laquelle vous avez le plus de chances d'attraper ce poisson",
+        "tutWaterColumn": "Où dans le plan d'eau le poisson se trouvera (surface/milieu/fond)",
+        "tutStructures": "Ceci sont des graphiques des endroits où pêcher. Une vue en 2D pour les emplacements d'herbes et une carte nautique pour les emplacements de point/canal."
     }
 }

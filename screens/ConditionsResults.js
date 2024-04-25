@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, Image, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, Image, StyleSheet, 
+  FlatList, TouchableOpacity, Platform } from "react-native";
 import {
   btn_style,
   flex_style,
@@ -11,7 +12,9 @@ import {
 import { getAuthToken } from "../global/utils/auth.utils";
 import { reactIfView, responseDataHandler } from "../global/global-functions";
 import { loadTranslations } from "../global/localization";
-import { FISH_STRUCTURES, SpacingMedium, NAV_CONDITIONS_RESULTS, width } from "../global/global-constants";
+import { FISH_STRUCTURES, SpacingMedium, NAV_CONDITIONS_RESULTS, width, primary_color } from "../global/global-constants";
+import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
+import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 
 const ConditionsResults = ({ route }) => {
   const { lureOptionsId } = route.params;
@@ -133,7 +136,7 @@ const [currentTutorial, setCurrentTutorial] = useState(null);
 const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    // fetchConditionsForLure();
+    // fetchConditionsForLure();   
   }, []);
 
   useEffect(() => {
@@ -183,6 +186,23 @@ const [initialLoad, setInitialLoad] = useState(true);
     <View style={[flex_style.absoluteContainerFull, padding_styles.space_md, padding_styles.safetyTop]}>
       {Object.keys(conditions).map((fishSpecies, index) => (
         <View key={index} style={{ marginBottom: 10 }}>
+          {reactIfView(currentTutorial == 'Species' && index == 0, <Tooltip
+            contentStyle={[{backgroundColor: primary_color, height: 60}]}
+            backgroundColor={'rgba(0,0,0,0)'}
+            isVisible={currentTutorial == 'Species'}
+            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSpecies")}</Text>}
+            placement="top"
+            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Species', NAV_CONDITIONS_RESULTS))}}
+          >
+            <TooltipChildrenContext.Consumer>
+              {({ tooltipDuplicate }) => (
+                reactIfView(!tooltipDuplicate,
+                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                )
+              )}
+            </TooltipChildrenContext.Consumer>
+          </Tooltip>
+          )}
           <TouchableOpacity style={[btn_style.button, btn_style.round]} onPress={() => toggleFishExpansion(fishSpecies)}>
             <Text style={[text_style.bold, text_style.fontColorWhite]}>
               {loadTranslations(fishSpecies)}
@@ -191,6 +211,23 @@ const [initialLoad, setInitialLoad] = useState(true);
           {expandedFish.includes(fishSpecies) && (
             <FlatList
               ListHeaderComponent={<View style={[flex_style.flex, flex_style.center, flex_style.column, margin_styles.vertical_space_md]}>
+                {reactIfView(currentTutorial == 'ConditionsGuide' && index == 0, <Tooltip
+                  contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                  backgroundColor={'rgba(0,0,0,0)'}
+                  isVisible={currentTutorial == 'ConditionsGuide'}
+                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsGuide")}</Text>}
+                  placement="top"
+                  onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('ConditionsGuide', NAV_CONDITIONS_RESULTS))}}
+                >
+                  <TooltipChildrenContext.Consumer>
+                    {({ tooltipDuplicate }) => (
+                      reactIfView(!tooltipDuplicate,
+                        <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                      )
+                    )}
+                  </TooltipChildrenContext.Consumer>
+                </Tooltip>
+                )}
                 {reactIfView(expandedFish[0] == 'pike' || expandedFish[0] == 'walleye',
                   <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg"}}></Image>
                 )}
@@ -201,22 +238,201 @@ const [initialLoad, setInitialLoad] = useState(true);
               </View>}
               data={conditions[fishSpecies]}
               // look here! add index and put tooltips 1 by 1
-              renderItem={({ item }) => (
+              renderItem={({ item, index }) => (
                 <View style={[margin_styles.vertical_space_md]}>
-                  {Object.keys(item).map((keyString, index) => (
-                    <View key={index} style={[flex_style.flex, flex_style.center, margin_styles.vertical_space_xxs]}>                      
-                      {reactIfView(keyString != "structure" && keyString != "water_column"  && keyString != "depth",
+                  {Object.keys(item).map((keyString, keyIndex) => (<>
+                    {reactIfView(currentTutorial == 'TimeOfDay' && keyString == 'time' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'TimeOfDay'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutTimeOfDay")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('TimeOfDay', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'Season' && keyString == 'season' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'Season'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSeason")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Season', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'ConditionsClarity' && keyString == 'water_clarity' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'ConditionsClarity'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsClarity")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('ConditionsClarity', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'ConditionsWeather' && keyString == 'weather' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'ConditionsWeather'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsWeather")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('ConditionsWeather', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'BarometricPressure' && keyString == 'barometric_pressure' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'BarometricPressure'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBaroPressure")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('BarometricPressure', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'Rain' && keyString == 'precipitation' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'Rain'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRain")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Rain', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'SpeedOfRetrieval' && keyString == 'speed' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'SpeedOfRetrieval'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRetrievalSpeed")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('SpeedOfRetrieval', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'Depth' && keyString == 'depth' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'Depth'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutDepth")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Depth', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'WaterColumn' && keyString == 'water_column' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 60}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'WaterColumn'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutWaterColumn")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('WaterColumn', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    {reactIfView(currentTutorial == 'Structures' && keyString == 'structure' && index == 0, <Tooltip
+                      contentStyle={[{backgroundColor: primary_color, height: 90}]}
+                      backgroundColor={'rgba(0,0,0,0)'}
+                      isVisible={currentTutorial == 'Structures'}
+                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutStructures")}</Text>}
+                      placement="top"
+                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Structures', NAV_CONDITIONS_RESULTS))}}
+                    >
+                      <TooltipChildrenContext.Consumer>
+                        {({ tooltipDuplicate }) => (
+                          reactIfView(!tooltipDuplicate,
+                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                          )
+                        )}
+                      </TooltipChildrenContext.Consumer>
+                    </Tooltip>
+                    )}
+
+                    <View key={keyIndex} style={[flex_style.flex, flex_style.center, margin_styles.vertical_space_xxs]}>
+                      {reactIfView(keyString != "structure" && keyString != "water_column"  && keyString != "depth", <>
                       <Text style={[text_style.xs]}>
                         {loadTranslations(keyString) + ": "+ loadTranslations(JSON.stringify(item[keyString]).substring(1, JSON.stringify(item[keyString]).length -1))}
-                      </Text>
+                      </Text></>
                       )}
                       {reactIfView(keyString == "depth",
                       <Text style={[text_style.xs]}>
                         {loadTranslations(keyString) + ": "+ item[keyString] + loadTranslations("feet")}
                       </Text>
                       )}
-                      
-                    {keyString == "water_column" ? (
+                      {keyString == "water_column" ? (<>
                         <View style={[flex_style.flex, flex_style.center]}>
                           <Text style={[text_style.xs]}>
                             {loadTranslations(keyString) + ": "}
@@ -228,10 +444,10 @@ const [initialLoad, setInitialLoad] = useState(true);
                               </Text>
                             ))}
                           </View>
-                      </View>
-                      ) : null}
+                        </View>
+                      </>) : null}
                       
-                      {keyString == "structure" ? (
+                      {keyString == "structure" ? (<>
                         <View style={[flex_style.flex, flex_style.column, flex_style.center]}>
                           <Text style={[text_style.xs]}>
                             {loadTranslations(keyString)}
@@ -246,10 +462,10 @@ const [initialLoad, setInitialLoad] = useState(true);
                               <Image style={[img_styles.rectangle_image_md, {marginBottom: SpacingMedium}]} source={FISH_STRUCTURES.filter(item => item.name == value)[0]?.image}></Image>
                             </View>
                           ))}
-                      </View>
-                    ) : null}
-                  </View>
-                  ))}
+                        </View>
+                      </>) : null}
+                    </View>
+                  </>))}
                 </View>
               )}
               keyExtractor={(item, index) => index.toString()}
