@@ -4,13 +4,13 @@ import { loadTranslations } from '../localization'
 import { getAuthToken } from "./auth.utils"
 
 export async function getNextTutorialForPage(page) {
-  const url = environment['host'] + 'api/user/get/getNextUnseenTutorial?page='+page
+  const url = environment['host'] + 'api/user/get/getNextUnseenTutorial?page=' + page
   if (page != null) {
     try {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'x-app-auth': await getAuthToken(),
+          'x-app-auth': await getAuthToken(false),
           'Content-Type': 'application/json',
         },
       })     

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, Image, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
 import {
   btn_style,
   flex_style,
@@ -11,127 +11,17 @@ import {
 import { getAuthToken } from "../global/utils/auth.utils";
 import { reactIfView, responseDataHandler } from "../global/global-functions";
 import { loadTranslations } from "../global/localization";
-import { FISH_STRUCTURES, SpacingMedium } from "../global/global-constants";
+import { FISH_STRUCTURES, SpacingMedium, primary_color } from "../global/global-constants";
+import { environment } from "../global/environment";
 
 const ConditionsResults = ({ route }) => {
-  const { lureOptionsId } = route.params;
   const [loading, setLoading] = useState(false)
   const [expandedFish, setExpandedFish] = useState([]);
-  const [conditions, setConditions] = useState(        {pike: [
-    {
-        "time": "midday",
-        "season": "Spring",
-        "water_clarity": "Muddy",
-        "weather": "Sunny",
-        "barometric_pressure": "Low",
-        "precipitation": "Dry",
-        "speed": "medium",
-      "depth": 7,
-    "water_column": [
-        "middle"
-      ],
-      "structure": [
-        "weed",
-        "point",
-        "channel"
-    ],
-    },
-    {
-      "time": "midday",
-      "season": "Spring",
-      "water_clarity": "Muddy",
-      "weather": "Sunny",
-      "barometric_pressure": "Low",
-      "precipitation": "Dry",
-      "speed": "medium",
-      "depth": 7,
-    "water_column": [
-        "middle"
-      ],
-      "structure": [
-        "weed",
-        "point",
-        "channel"
-    ],
-    },
-    {
-      "time": "midday",
-      "season": "Spring",
-      "water_clarity": "Muddy",
-      "weather": "Sunny",
-      "barometric_pressure": "Low",
-      "precipitation": "Dry",
-      "speed": "medium",
-      "depth": 7,
-    "water_column": [
-        "middle"
-      ],
-      "structure": [
-        "weed",
-        "point",
-        "channel"
-    ],
-  },
-    
-    {
-        "time": "midday",
-        "season": "Spring",
-        "water_clarity": "Clear",
-        "weather": "Sunny",
-        "barometric_pressure": "Low",
-        "precipitation": "Dry",
-        "speed": "medium",
-      "depth": 7,
-    "water_column": [
-        "middle"
-      ],
-      "structure": [
-        "weed",
-        "point",
-        "channel"
-    ],
-    }],
-walleye:  [
-    {
-        "time": "midday",
-        "season": "Spring",
-        "water_clarity": "Muddy",
-        "weather": "Sunny",
-        "barometric_pressure": "Low",
-        "precipitation": "Dry",
-        "speed": "medium",
-    "depth": 7,
-  "water_column": [
-      "middle"
-    ],
-    "structure": [
-      "weed",
-      "point",
-      "channel"
-  ],
-    },
-    {
-        "time": "midday",
-        "season": "Spring",
-        "water_clarity": "Clear",
-        "weather": "Sunny",
-        "barometric_pressure": "Low",
-        "precipitation": "Dry",
-        "speed": "medium",
-      "depth": 7,
-    "water_column": [
-        "middle"
-      ],
-      "structure": [
-        "weed",
-        "point",
-        "channel"
-    ],
-    }]
-});
+  const [conditions, setConditions] = useState(null);
+  const [lureOptionsId, setLureOptionsId] = useState(route.params.lureOptionsId);
 
   useEffect(() => {
-    // fetchConditionsForLure();
+    fetchConditionsForLure();
   }, []);
 
   const toggleFishExpansion = (fish) => {
@@ -145,7 +35,7 @@ walleye:  [
   const fetchConditionsForLure = async () => {
     setLoading(true)
     const response = await fetch(
-      `${environment.host}/api/conditions-for-lure?lureOptionsId=${lureOptionsId}`,
+      `${environment.host}/api/conditions-for-lure?id=${lureOptionsId}`,
       {
         method: "GET",
         headers: {
@@ -156,19 +46,14 @@ walleye:  [
     );
 
     const res = await responseDataHandler(response)
-    
     setLoading(false)
-    if (res) {
-      setConditions(res);
-    } else {
-      console.error("Failed to fetch conditions:", data);
-    }
+    setConditions(res);
   };
 
 
   return (
     <View style={[flex_style.absoluteContainerFull, padding_styles.space_md, padding_styles.safetyTop]}>
-      {Object.keys(conditions).map((fishSpecies, index) => (
+      {(!!conditions && !loading) && Object.keys(conditions).map((fishSpecies, index) => (
         <View key={index} style={{ marginBottom: 10 }}>
           <TouchableOpacity style={[btn_style.button, btn_style.round]} onPress={() => toggleFishExpansion(fishSpecies)}>
             <Text style={[text_style.bold, text_style.fontColorWhite]}>
@@ -181,7 +66,7 @@ walleye:  [
                 {reactIfView(expandedFish[0] == 'pike' || expandedFish[0] == 'walleye',
                   <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg"}}></Image>
                 )}
-                {reactIfView(expandedFish[0] == 'lakeTrout' || expandedFish[0] == 'rainbowtrout' || expandedFish[0] == 'brookTrout' || expandedFish[0] == 'brownTrout',
+                {reactIfView(expandedFish[0] == 'lakeTrout' || expandedFish[0] == 'rainbowTrout' || expandedFish[0] == 'brookTrout' || expandedFish[0] == 'brownTrout',
                   <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg"}}></Image>
                 )}
                 <Text style={[text_style.xs, text_style.bold]}>{loadTranslations("presentedBy")}</Text>
@@ -243,6 +128,8 @@ walleye:  [
           )}
         </View>
       ))}
+      {conditions && (Object.keys(conditions).length === 0 && !loading) && <View style={[flex_style.flex, flex_style.center]}><Text style={[text_style.bold, text_style.alignCenter, text_style.fontColorRed]}>{loadTranslations("noInfoOnLure")}</Text></View>}
+      {loading && <ActivityIndicator style={[margin_styles.bottom_lg]} size="large" color={primary_color} />}
     </View>
   );
 };
