@@ -24,12 +24,13 @@ import { navigate, reactIfView, responseDataHandler } from "../global/global-fun
 import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
-import { getAuthToken } from "../global/utils/auth.utils";
+
 
 //DO NOT SHIP
 import * as SecureStore from 'expo-secure-store'
 import { SECURE_STORE_ITEM_KEY } from '../global/global-constants'
 import Icon from "react-native-ico-material-design";
+import { addToMyLures } from "../global/utils/add-to-my-lures.util";
 
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
@@ -292,49 +293,20 @@ export default function LuresForm({ navigation }) {
 function AddToMyLureButton({option}) {
   const [buttonContent, setButtonContent] = useState(loadTranslations("addToMyLures"));
   const [buttonIcon, setButtonIcon] = useState('add-plus-button')
-  //to be put into global/utils once we confirm it works
-  async function addToMyLures(optionID, onPass, onFail, onFailDuplicate){
-    try{
-      const url = environment.host + '/api/add-to-user-lures'
-      const token = await getAuthToken(false)
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({lureOption:optionID}),
-        headers: {
-          'Content-Type': 'application/json',
-          'x-app-auth': token
-        },
-      });
-      const json = await response.json();
-      if(json?.error?.code === 'ER_DUP_ENTRY'){
-        onFailDuplicate();
-        return 
-      }
-      if(!json || json?.error){
-          const errorMsg = json?.error ? json.error : 'AddToUserLures failed.';
-          throw new Error(errorMsg)
-      }
-      console.log(json);
-      onPass();
-    }
-    catch(e){
-      console.error(e.stack);
-      onFail();
-    }
-  }
+  
+  
   function onPass(){
-    setButtonContent(loadTranslations(addToMyLuresSucceed));
+    setButtonContent(loadTranslations('addToMyLuresSucceed'));
     setButtonIcon('check-symbol');
   }
   function onFail(){
-    setButtonContent(loadTranslations(addToMyLuresFail));
+    setButtonContent(loadTranslations('addToMyLuresFail'));
     setButtonIcon('close-button');
   }
   function onFailDupe(){
-    setButtonContent(loadTranslations(addToMyLuresDupe));
+    setButtonContent(loadTranslations('addToMyLuresDupe'));
     setButtonIcon('close-button');
   }
- 
 
   return (
     <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => { addToMyLures(option.id, onPass, onFail, onFailDupe) }}>
