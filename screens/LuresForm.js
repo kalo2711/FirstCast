@@ -323,15 +323,15 @@ function AddToMyLureButton({option}) {
     }
   }
   function onPass(){
-    setButtonContent('Adding success');
+    setButtonContent(loadTranslations(addToMyLuresSucceed));
     setButtonIcon('check-symbol');
   }
   function onFail(){
-    setButtonContent('Adding Failed');
+    setButtonContent(loadTranslations(addToMyLuresFail));
     setButtonIcon('close-button');
   }
   function onFailDupe(){
-    setButtonContent('Lure already added');
+    setButtonContent(loadTranslations(addToMyLuresDupe));
     setButtonIcon('close-button');
   }
  
