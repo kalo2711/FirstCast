@@ -54,11 +54,11 @@ const POPUP_HEIGHT_L = 100;
 // Size for number of lines in tooltips
 const SINGLE_LINE = 50;
 const DOUBLE_LINE = 60;
-const WEATHER_MOON_LINE = 95
+const MULTI_LINE = 100
 const tutorial_styles = {
   singleLine: [{backgroundColor: primary_color, height: SINGLE_LINE}],
   doubleLine: [{backgroundColor: primary_color, height: DOUBLE_LINE}],
-  weatherAndMoonLine: [{backgroundColor: primary_color, height: WEATHER_MOON_LINE}]
+  multiLine: [{backgroundColor: primary_color, height: MULTI_LINE}]
 }
 
 // Navigation

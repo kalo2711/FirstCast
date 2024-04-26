@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Image, StyleSheet, 
-  FlatList, TouchableOpacity, Platform } from "react-native";
+  FlatList, TouchableOpacity } from "react-native";
 import {
   btn_style,
   flex_style,
@@ -16,13 +16,10 @@ import {
   FISH_STRUCTURES, 
   SpacingMedium, 
   NAV_CONDITIONS_RESULTS, 
-  width, 
-  primary_color,
-  tutorial_transparent,
   tutorial_styles
 } from "../global/global-constants";
-import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
-import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
+import { getNextTutorialForPage } from "../global/utils/tutorial.utils";
+import TutorialTooltip from './TutorialTooltip';
 
 const ConditionsResults = ({ route }) => {
   const { lureOptionsId } = route.params;
@@ -144,10 +141,6 @@ const [currentTutorial, setCurrentTutorial] = useState(null);
 const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    // fetchConditionsForLure();   
-  }, []);
-
-  useEffect(() => {
     const getTut = async () => {
      const tut = await getNextTutorialForPage(NAV_CONDITIONS_RESULTS)
      setCurrentTutorial(tut)
@@ -194,23 +187,11 @@ const [initialLoad, setInitialLoad] = useState(true);
     <View style={[flex_style.absoluteContainerFull, padding_styles.space_md, padding_styles.safetyTop]}>
       {Object.keys(conditions).map((fishSpecies, index) => (
         <View key={index} style={{ marginBottom: 10 }}>
-          {reactIfView(currentTutorial == 'Species' && index == 0, <Tooltip
-            contentStyle={tutorial_styles.doubleLine}
-            backgroundColor={tutorial_transparent}
-            isVisible={currentTutorial == 'Species'}
-            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSpecies")}</Text>}
-            placement="top"
-            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Species', NAV_CONDITIONS_RESULTS))}}
-          >
-            <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                )
-              )}
-            </TooltipChildrenContext.Consumer>
-          </Tooltip>
-          )}
+
+          <TutorialTooltip conditions={currentTutorial == 'Species' && index == 0} style={tutorial_styles.doubleLine} 
+            tutorial='Species' translations='tutSpecies' tutRoute={NAV_CONDITIONS_RESULTS}
+            setCurrentTutorial={setCurrentTutorial}/>
+
           <TouchableOpacity style={[btn_style.button, btn_style.round]} onPress={() => toggleFishExpansion(fishSpecies)}>
             <Text style={[text_style.bold, text_style.fontColorWhite]}>
               {loadTranslations(fishSpecies)}
@@ -219,23 +200,11 @@ const [initialLoad, setInitialLoad] = useState(true);
           {expandedFish.includes(fishSpecies) && (
             <FlatList
               ListHeaderComponent={<View style={[flex_style.flex, flex_style.center, flex_style.column, margin_styles.vertical_space_md]}>
-                {reactIfView(currentTutorial == 'ConditionsGuide' && index == 0, <Tooltip
-                  contentStyle={tutorial_styles.doubleLine}
-                  backgroundColor={tutorial_transparent}
-                  isVisible={currentTutorial == 'ConditionsGuide'}
-                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsGuide")}</Text>}
-                  placement="top"
-                  onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('ConditionsGuide', NAV_CONDITIONS_RESULTS))}}
-                >
-                  <TooltipChildrenContext.Consumer>
-                    {({ tooltipDuplicate }) => (
-                      reactIfView(!tooltipDuplicate,
-                        <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                      )
-                    )}
-                  </TooltipChildrenContext.Consumer>
-                </Tooltip>
-                )}
+                
+                <TutorialTooltip conditions={currentTutorial == 'ConditionsGuide' && index == 0} style={tutorial_styles.doubleLine} 
+                  tutorial='ConditionsGuide' translations='tutConditionsGuide' tutRoute={NAV_CONDITIONS_RESULTS}
+                  setCurrentTutorial={setCurrentTutorial}/>
+
                 {reactIfView(expandedFish[0] == 'pike' || expandedFish[0] == 'walleye',
                   <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg"}}></Image>
                 )}
@@ -249,185 +218,45 @@ const [initialLoad, setInitialLoad] = useState(true);
               renderItem={({ item, index }) => (
                 <View style={[margin_styles.vertical_space_md]}>
                   {Object.keys(item).map((keyString, keyIndex) => (<>
-                    {reactIfView(currentTutorial == 'TimeOfDay' && keyString == 'time' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'TimeOfDay'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutTimeOfDay")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('TimeOfDay', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'TimeOfDay' && keyString == 'time' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='TimeOfDay' translations='tutTimeOfDay'
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'Season' && keyString == 'season' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'Season'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSeason")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Season', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'Season' && keyString == 'season' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='Season' translations='tutSeason' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'ConditionsClarity' && keyString == 'water_clarity' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'ConditionsClarity'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsClarity")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('ConditionsClarity', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'ConditionsClarity' && keyString == 'water_clarity' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='ConditionsClarity' translations='tutConditionsClarity' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'ConditionsWeather' && keyString == 'weather' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'ConditionsWeather'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsWeather")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('ConditionsWeather', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'ConditionsWeather' && keyString == 'weather' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='ConditionsWeather' translations='tutConditionsWeather' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'BarometricPressure' && keyString == 'barometric_pressure' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'BarometricPressure'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBaroPressure")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('BarometricPressure', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'BarometricPressure' && keyString == 'barometric_pressure' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='BarometricPressure' translations='tutBaroPressure' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'Rain' && keyString == 'precipitation' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'Rain'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRain")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Rain', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'Rain' && keyString == 'precipitation' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='Rain' translations='tutRain' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'SpeedOfRetrieval' && keyString == 'speed' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'SpeedOfRetrieval'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRetrievalSpeed")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('SpeedOfRetrieval', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'SpeedOfRetrieval' && keyString == 'speed' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='SpeedOfRetrieval' translations='tutRetrievalSpeed' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'Depth' && keyString == 'depth' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'Depth'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutDepth")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Depth', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'Depth' && keyString == 'depth' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='Depth' translations='tutDepth' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'WaterColumn' && keyString == 'water_column' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.doubleLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'WaterColumn'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutWaterColumn")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('WaterColumn', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'WaterColumn' && keyString == 'water_column' && index == 0} 
+                      style={tutorial_styles.doubleLine} tutorial='WaterColumn' translations='tutWaterColumn' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
-                    {reactIfView(currentTutorial == 'Structures' && keyString == 'structure' && index == 0, <Tooltip
-                      contentStyle={tutorial_styles.weatherAndMoonLine}
-                      backgroundColor={tutorial_transparent}
-                      isVisible={currentTutorial == 'Structures'}
-                      content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutStructures")}</Text>}
-                      placement="top"
-                      onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('Structures', NAV_CONDITIONS_RESULTS))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                          )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                    )}
+                    <TutorialTooltip conditions={currentTutorial == 'Structures' && keyString == 'structure' && index == 0} 
+                      style={tutorial_styles.multiLine} tutorial='Structures' translations='tutStructures' 
+                      tutRoute={NAV_CONDITIONS_RESULTS} setCurrentTutorial={setCurrentTutorial}/>
 
                     <View key={keyIndex} style={[flex_style.flex, flex_style.center, margin_styles.vertical_space_xxs]}>
                       {reactIfView(keyString != "structure" && keyString != "water_column"  && keyString != "depth", <>
