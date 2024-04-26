@@ -207,6 +207,7 @@
         "termAgree": "J'Accept",
         "type": "Type de leurre",
         "waterClarity": "Clarté de l'eau",
+        "water_clarity": "Clarté de l'eau",
         "weather": "Temps",
         "weight": "Poids (oz)",
         "blue": "bleu",
