@@ -84,8 +84,14 @@ export const flex_style = StyleSheet.create({
   width80: {
     width: '80%'
   },
+  width70: {
+    width: '70%'
+  },
   width50: {
     width: '50%'
+  },
+  width30: {
+    width: '30%'
   },
   flexBetweenContainer: {
     flexDirection: 'column',
