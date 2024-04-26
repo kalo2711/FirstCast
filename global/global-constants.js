@@ -373,7 +373,7 @@ export {
   GRANTED,
   SINGLE_LINE,
   DOUBLE_LINE,
-  WEATHER_MOON_LINE,
+  MULTI_LINE,
   tutorial_transparent,
   tutorial_styles,
 };
