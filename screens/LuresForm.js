@@ -94,9 +94,6 @@ export default function LuresForm({ navigation }) {
     }
   }
 
-  function kill(){
-    setAuthToken('')
-  }
 
   return (
     <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
@@ -107,7 +104,6 @@ export default function LuresForm({ navigation }) {
           padding_styles.safetyTop,
         ]}
       >
-        <Button title='kill' onPress={kill}></Button>
         <Text
           style={[
             text_style.sm,
