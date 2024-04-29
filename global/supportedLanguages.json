@@ -139,7 +139,6 @@
         "tutWeight": "The weight of the lure in ounces",
         "tutType": "The type of lure",
         "tutPrice": "The price in CAD of the lure at our selected store",
-        
         "tutLureStore":"Enter the name of the store your lure can be found at",
         "tutLureBrand":"Enter the name of the brand of your lure",
         "tutLureModel":"Enter the lure's model name",
@@ -151,7 +150,7 @@
         "tutLureSecondaryColor":"Enter the lure's secondary color",
         "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
         "tutLureSubmit":"Once all required details are provided, click here to request the lure.",
-
+        "tutLureSearch":"Type in this textbox to find the lure you want.",
         "tutSpecies":"Pick the kind of fish you're fishing for",
         "tutConditionsGuide":"The guide that provided the following information",
         "tutTimeOfDay":"The optimal time to catch this fish",
@@ -304,7 +303,7 @@
         "tutLureSecondaryColor":"Indiquez la secondaire couleur de votre leurre",
         "tutLurePhoto":"Dernièrement, prenez une photo de votre leurre",
         "tutLureSubmit":"Quand tous les détails requis sont fournis, cliquez ici pour soumettre la demande",
-        
+        "tutLureSearch":"Tapez cette zone de texte pour trouver le leurre que vous souhaitez.",
         "time": "Moment de la journée",
         "midday": "Entre 12h et 16h",
         "earlyLate": "Entre le lever du soleil et 12h. Entre 16h et le coucher du soleil",

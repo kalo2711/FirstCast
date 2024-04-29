@@ -9,6 +9,7 @@ import {
   Modal,
   ActivityIndicator,
   Platform,
+  Button
 } from "react-native";
 import {
   btn_style,
@@ -18,6 +19,7 @@ import {
   padding_styles,
   text_style,
 } from "../global/global-styles";
+
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
@@ -27,6 +29,7 @@ import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/util
 import Icon from "react-native-ico-material-design";
 import { addToMyLures } from "../global/utils/add-to-my-lures.util";
 import TutorialTooltip from "./TutorialTooltip";
+import { setAuthToken } from "../global/utils/auth.utils";
 
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
@@ -91,6 +94,10 @@ export default function LuresForm({ navigation }) {
     }
   }
 
+  function kill(){
+    setAuthToken('')
+  }
+
   return (
     <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
       <ScrollView
@@ -100,6 +107,7 @@ export default function LuresForm({ navigation }) {
           padding_styles.safetyTop,
         ]}
       >
+        <Button title='kill' onPress={kill}></Button>
         <Text
           style={[
             text_style.sm,
@@ -149,6 +157,15 @@ export default function LuresForm({ navigation }) {
             <View style={[flex_style.one]}>
                 <Modal visible={brandAndModalVisible} animationType="slide">
                   <View style={[{ flex: 1, height: height, padding: 20, paddingTop: Platform.OS == 'ios' ? 80 : 0 }]}>
+
+                  <TutorialTooltip conditions={currentTutorial == 'lureSearch'}                 
+                  style={tutorial_styles.doubleLine}
+                  tutorial='lureSearch'
+                  translations='tutLureSearch'
+                  tutRoute={NAV_LURES_FORM}
+                  setCurrentTutorial={setCurrentTutorial}
+                  />
+
                     <DropdownWithModal noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
                   </View>
                 </Modal>
