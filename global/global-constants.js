@@ -62,8 +62,9 @@ const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
 const NAV_CONDITIONS_FORM = 'ConditionsForm'
 const NAV_LURES_FORM = 'Lures'
-const NAV_REQUEST_LURE_FORM = 'RequestLure'
+const NAV_REQUEST_LURE_FORM = 'RequestNewLure'
 const NAV_LURES_RESULTS = 'LuresResults'
+const NAV_CONDITIONS_RESULTS = 'ConditionsResults'
 
 // Responses
 const RES_UNAUTHORIZED = "Unauthorized";
@@ -204,6 +205,17 @@ const NAV_AUTHENTICATION = "auth";
 
 const CANADIAN_CURRENCY = "CAD";
 
+const FISH_STRUCTURES = [
+    {name: 'rock', image: require('../assets/structures/Rock.jpg') },
+    {name: 'rock2d', image: require('../assets/structures/2d-Rock.jpg') },
+    {name: 'channel', image: require('../assets/structures/Channel.jpg') },
+    {name: 'drop', image: require('../assets/structures/Drop.jpg') },
+    {name: 'flat', image: require('../assets/structures/Flat.jpg') },
+    {name: 'submerged', image: require('../assets/structures/2d-Submerged_Items.png') },
+    {name: 'point', image: require('../assets/structures/Point.jpg') },
+    {name: 'weed', image: require('../assets/structures/2d-Weed.jpg') },
+]
+
 export {
   height,
   width,
@@ -299,6 +311,7 @@ export {
   NAV_LURES_FORM,
   NAV_REQUEST_LURE_FORM,
   NAV_LURES_RESULTS,
+  NAV_CONDITIONS_RESULTS,
   ADDRESS,
   MAX_BUDGET,
   PHOTO,
@@ -341,6 +354,7 @@ export {
   POPUP_HEIGHT_M,
   POPUP_HEIGHT_L,
   CANADIAN_CURRENCY,
+  FISH_STRUCTURES,
   AD_AMOUNT_VALUE,
   SUCCESS,
   API_LOGIN_GOOGLE,
