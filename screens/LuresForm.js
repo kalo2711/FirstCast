@@ -21,11 +21,12 @@ import {
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
+import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, tutorial_styles, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import Icon from "react-native-ico-material-design";
 import { addToMyLures } from "../global/utils/add-to-my-lures.util";
+import TutorialTooltip from "./TutorialTooltip";
 
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
@@ -205,28 +206,16 @@ export default function LuresForm({ navigation }) {
                   <Text style={[text_style.bold, text_style.xs]}>{option?.color1}  {option?.color2 != option?.color1 ? ', '+option?.color2:''}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.size} {loadTranslations("inch")}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.weight} {loadTranslations("pound")}</Text>
-                  {/*Add to my lures tuto, to be put into a tutorial component when that's finally done*/}
-                  {reactIfView(currentTutorial == 'addToLures' && lureOptions?.length > 0 && index === 0,
-                    <View style={[flex_style.flex, flex_style.width100]}>
-                    <Tooltip
-                    contentStyle={[{backgroundColor: primary_color, height: 50}]}
-                    backgroundColor={'rgba(0,0,0,0)'}
-                    isVisible={currentTutorial == 'addToLures'}
-                    content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutAddToLures")}</Text>}
-                    placement="top"
-                        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('addToLures', NAV_LURES_FORM))}}
-                    >
-                      <TooltipChildrenContext.Consumer>
-                          {({ tooltipDuplicate }) => (
-                            reactIfView(!tooltipDuplicate,
-                              <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                              )
-                        )}
-                      </TooltipChildrenContext.Consumer>
-                      </Tooltip>
-                    </View>
-                  )}
+                 
+                  <TutorialTooltip conditions={currentTutorial == 'addToLures' && lureOptions?.length > 0 && index === 0}                 
+                  style={tutorial_styles.singleLine}
+                  tutorial='addToLures'
+                  translations='tutAddToLures'
+                  tutRoute={NAV_LURES_FORM}
+                  setCurrentTutorial={setCurrentTutorial}
+                  />
                   <AddToMyLureButton option={option}/>   
+
                 </TouchableOpacity>
               </View>
             )}
