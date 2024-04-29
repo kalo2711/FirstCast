@@ -1,13 +1,38 @@
-import React, { useState } from 'react';
-import { ScrollView, TextInput, Modal, Text, View, TouchableOpacity, Alert, ActivityIndicator} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { 
+  ScrollView,
+   TextInput,
+    Modal,
+    Text,
+    View,
+    TouchableOpacity, 
+    Alert, 
+    ActivityIndicator, 
+    Platform
+} from 'react-native';
 import { loadTranslations } from "./global/localization";
 import { btn_style, flex_style, form_style, margin_styles, text_style } from "./global/global-styles";
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import Photo from "./photo/photo";
-import { SpacingFormXLarge, SpacingMedium, SpacingXLarge, VALID, primary_color, secondary_color, white } from "./global/global-constants";
+import { 
+  SpacingFormXLarge, 
+  SpacingMedium, 
+  SpacingXLarge, 
+  VALID, 
+  primary_color, 
+  secondary_color, 
+  white,
+  IOS,
+  NAV_REQUEST_LURE_FORM,
+  width
+} from "./global/global-constants";
 import { environment } from "./global/environment";
 import { navigateBack, responseDataHandler } from "./global/global-functions";
 import { getAuthToken } from "./global/utils/auth.utils";
+import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
+import {reactIfView} from "./global/global-functions";
+import { getNextTutorialForPage, updateTutorialAndGetNext } from "./global/utils/tutorial.utils";
+
 
 const AddLureModal = (props) => {
   const [brand, setBrand] = useState('');
@@ -21,6 +46,8 @@ const AddLureModal = (props) => {
   const [store, setStore] = useState('');
   const [photoURI, setPhotoURI] = useState('');
   const [loading, setLoading] = useState(false);
+  const [currentTutorial, setCurrentTutorial] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const lure_type = [
   {id: 0, lureType: "topwater"},
@@ -51,6 +78,17 @@ const AddLureModal = (props) => {
     {id: 12, color: "orange"},
     {id: 13, color: "yellow"}
   ];
+
+  useEffect(() => {
+    const getTut = async () => {
+     const tut = await getNextTutorialForPage(NAV_REQUEST_LURE_FORM)
+     setCurrentTutorial(tut)
+    }
+   if (initialLoad) {
+     getTut();
+     setInitialLoad(false)
+    }
+  }, []);
 
   function onCancel() {
     navigateBack()
@@ -106,8 +144,27 @@ const AddLureModal = (props) => {
         <Text style={[text_style.sm, text_style.bold, margin_styles.bottom_md, text_style.primaryColor, text_style.alignCenter]}>
             {loadTranslations("requestNewLure")}
         </Text>
+
+        {reactIfView(currentTutorial == 'store', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'store'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureStore")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('store', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween]}>
           <Text style={[{marginRight: SpacingMedium, width: SpacingFormXLarge}]}>{loadTranslations("store")}</Text>
+          
           <TextInput
             style={[form_style.formControl, form_style.formControlHalfWidth , margin_styles.bottom_md]}
             value={store}
@@ -115,6 +172,24 @@ const AddLureModal = (props) => {
             onChangeText={setStore}
             />
         </View>
+
+        {reactIfView(currentTutorial == 'brand', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'brand'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureBrand")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('brand', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween]}>
           <Text style={[{marginRight: SpacingMedium, width: SpacingFormXLarge}]}>{loadTranslations("brand")}</Text>
           <TextInput
@@ -124,6 +199,24 @@ const AddLureModal = (props) => {
             onChangeText={setBrand}
             />
         </View>
+
+        {reactIfView(currentTutorial == 'model', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'model'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureModel")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('model', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween]}>
           <Text style={[{marginRight: SpacingMedium, width: SpacingFormXLarge}]}>{loadTranslations("model")}</Text>
           <TextInput
@@ -133,6 +226,23 @@ const AddLureModal = (props) => {
             />
         </View>
 
+        {reactIfView(currentTutorial == 'price', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'price'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLurePrice")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('price', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween]}>
           <Text style={[{marginRight: SpacingMedium, width: SpacingFormXLarge}]}>{loadTranslations("price")}</Text>
           <TextInput
@@ -142,6 +252,24 @@ const AddLureModal = (props) => {
             onChangeText={setPrice}
             />
         </View>
+
+        {reactIfView(currentTutorial == 'length', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'length'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureLength")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('length', NAV_REQUEST_LURE_FORM))}}
+          >
+            <TooltipChildrenContext.Consumer>
+              {({ tooltipDuplicate }) => (
+                reactIfView(!tooltipDuplicate,
+                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+                )
+              )}
+            </TooltipChildrenContext.Consumer>
+          </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween, flex_style.width100]}>
           <View style={[flex_style.flex, {width: SpacingFormXLarge}]}>
             <Text>{loadTranslations("size")}</Text>
@@ -155,8 +283,25 @@ const AddLureModal = (props) => {
             keyboardType="numeric"
             />
         </View>
+        
+        {reactIfView(currentTutorial == 'weight', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'weight'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureWeight")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('weight', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween]}>
-
           <View style={[flex_style.flex, {width: SpacingFormXLarge}]}>
             <Text>{loadTranslations("weight")}</Text>
             <Text style={[form_style.form_control_required]}>*</Text>
@@ -170,6 +315,23 @@ const AddLureModal = (props) => {
             />
         </View>
 
+        {reactIfView(currentTutorial == 'type', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'type'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureType")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('type', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.bottom_sm]}>
           <View style={[flex_style.flex, {width: SpacingFormXLarge}]}>
 
@@ -190,21 +352,55 @@ const AddLureModal = (props) => {
           </NativePicker>
         </View>
         
+        {reactIfView(currentTutorial == 'primaryColor', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 40}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'primaryColor'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLurePrimaryColor")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('primaryColor', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.bottom_sm]}>
-        <Text style={[text_style.xs, text_style.bold]}>
-            {loadTranslations("primaryColor")}
-          </Text>
-          <NativePicker
-            style={[{width: 200}]}
-            selectedValue={color1}
-            onValueChange={(itemValue, itemIndex) => setColor1(itemValue)}
-          >
-            {color_options.map((option) => (
-              <NativePicker.Item key={option.id} label={loadTranslations(option.color)} value={option.color} />
-            ))}
+          <Text style={[text_style.xs, text_style.bold]}>
+              {loadTranslations("primaryColor")}
+            </Text>
+            <NativePicker
+              style={[{width: 200}]}
+              selectedValue={color1}
+              onValueChange={(itemValue, itemIndex) => setColor1(itemValue)}
+            >
+              {color_options.map((option) => (
+                <NativePicker.Item key={option.id} label={loadTranslations(option.color)} value={option.color} />
+              ))}
             </NativePicker>
           </View>
-
+        
+        {reactIfView(currentTutorial == 'secondaryColor', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 40}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'secondaryColor'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureSecondaryColor")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('secondaryColor', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.bottom_sm]}>
           <Text style={[text_style.xs, text_style.bold]}>
             {loadTranslations("secondaryColor")}
@@ -219,6 +415,24 @@ const AddLureModal = (props) => {
             ))}
           </NativePicker>
         </View>
+
+        {reactIfView(currentTutorial == 'photo', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'photo'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLurePhoto")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('photo', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         <View style={[margin_styles.bottom_lg]}>
           <View style={[flex_style.flex, {width: SpacingFormXLarge}]}>
             <Text>{loadTranslations("lurePhoto")}</Text>
@@ -236,7 +450,23 @@ const AddLureModal = (props) => {
           </Text>
         </TouchableOpacity>
         
-
+        {reactIfView(currentTutorial == 'submit', <Tooltip
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
+          backgroundColor={'rgba(0,0,0,0)'}
+          isVisible={currentTutorial == 'submit'}
+          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutLureSubmit")}</Text>}
+          placement="top"
+          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('submit', NAV_REQUEST_LURE_FORM))}}
+        >
+          <TooltipChildrenContext.Consumer>
+            {({ tooltipDuplicate }) => (
+              reactIfView(!tooltipDuplicate,
+                <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
+              )
+            )}
+          </TooltipChildrenContext.Consumer>
+        </Tooltip>
+        )}
         {!loading ?
           <TouchableOpacity
             disabled={!photoURI || !type || !size || !weight}

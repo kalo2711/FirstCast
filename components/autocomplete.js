@@ -19,13 +19,13 @@ const Item = ({item, onPress}) => (
   style={[styles.itemButton, flex_style.flex, ,flex_style.alignCenter]}
   onPress={(event) => onPress(item)}
 >
-  <Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{ uri: item.image }} />
+  {(reactIfView(item.image,<Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{ uri: item.image }} /> ))}
   <Text style={[styles.itemText, flex_style.one, flex_style.wrap]}>{item.title}</Text>
 </TouchableOpacity>
 );
 
 
-const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder }) => {
+const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton }) => {
   const [inputValue, setInputValue] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [items, setItems] = useState([]);
@@ -97,9 +97,11 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
       {reactIfView(!!inputValue && items?.length < 1,
         <Text style={[text_style.alignCenter, text_style.xs, text_style.fontColorRed]}>{loadTranslations(noItemsPlaceholder)}</Text>
       )}
-      <TouchableOpacity style={[btn_style.button, btn_style.buttonBlack, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => parentSetModalVisible(false)}>
-        <Text style={[text_style.bold, text_style.fontColorWhite]}>{loadTranslations("cancel")}</Text>
-      </TouchableOpacity>
+      {showCancelButton && 
+        <TouchableOpacity style={[btn_style.button, btn_style.buttonBlack, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => parentSetModalVisible(false)}>
+          <Text style={[text_style.bold, text_style.fontColorWhite]}>{loadTranslations("cancel")}</Text>
+        </TouchableOpacity>
+      }
       </View>
   );
 };

@@ -4,8 +4,11 @@ import { en, fr } from "./supportedLanguages.json";
 
 export function loadTranslations(key) {
   let lang = getDeviceLanguage();
+  const camelCaseKey = key.replace(/\s(.)/g, function(match, group1) {
+    return group1.toUpperCase();
+  });
   return loadSpecificKeyTranslation(
-    key.charAt(0).toLowerCase() + key.slice(1),
+    camelCaseKey.charAt(0).toLowerCase() + camelCaseKey.slice(1),
     lang
   );
 }
