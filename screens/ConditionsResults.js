@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, Image, StyleSheet, 
-  FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
 import {
   btn_style,
   flex_style,
@@ -158,11 +157,11 @@ const [initialLoad, setInitialLoad] = useState(true);
       setExpandedFish([...expandedFish, fish]);
     }
   };
-
+  
   const fetchConditionsForLure = async () => {
     setLoading(true)
     const response = await fetch(
-      `${environment.host}/api/conditions-for-lure?lureOptionsId=${lureOptionsId}`,
+      `${environment.host}/api/conditions-for-lure?id=${lureOptionsId}`,
       {
         method: "GET",
         headers: {

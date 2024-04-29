@@ -19,6 +19,7 @@
     "expo-camera": "^14.1.2",
     "expo-font": "^11.10.3",
     "expo-image-picker": "^14.7.1",
+    "expo-location": "~16.5.5",
     "expo-secure-store": "^12.8.1",
     "expo-status-bar": "~1.11.1",
     "formik": "^2.4.5",
