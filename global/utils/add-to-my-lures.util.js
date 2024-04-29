@@ -21,7 +21,6 @@ export async function addToMyLures(lureID, onPass, onFail, onFailDuplicate) {
             const errorMsg = json?.error ? json.error : 'AddToUserLures failed.';
             throw new Error(errorMsg)
         }
-        console.log(json);
         onPass();
     }
     catch (e) {
