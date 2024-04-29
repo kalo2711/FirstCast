@@ -24,20 +24,20 @@ import {reactIfView} from "../global/global-functions";
 import {
   primary_color,
   green_color,
-  width,
   black,
   IOS,
   NAV_CONDITIONS_FORM,
+  tutorial_styles,
   VALID,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
-import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
-import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import DropdownWithModal from "../components/autocomplete.js";
 import * as Location from 'expo-location';
 import { environment } from "../global/environment";
 import { responseDataHandler } from "../global/global-functions";
+import { getNextTutorialForPage } from "../global/utils/tutorial.utils";
+import TutorialTooltip from './TutorialTooltip'
 
 const ConditionsForm = () => {
   const [species, setSpecies] = useState(null);
@@ -219,24 +219,9 @@ const ConditionsForm = () => {
       </Text>
         <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("location")}</Text>
-        {reactIfView(currentTutorial == 'location',
-        <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 50}]}
-        backgroundColor={'rgba(0,0,0,0)'}
-        isVisible={currentTutorial == 'location'}
-        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetLocation")}</Text>}
-        placement="top"
-        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('location', NAV_CONDITIONS_FORM))}}
-        >
-          <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                  )
-            )}
-          </TooltipChildrenContext.Consumer>
-        </Tooltip>
-        )}
+        <TutorialTooltip conditions={currentTutorial == 'location'} style={tutorial_styles.singleLine} 
+          tutorial='location' translations='tutSetLocation' tutRoute={NAV_CONDITIONS_FORM}
+          setCurrentTutorial={setCurrentTutorial}/>
         </View>
 
       <DropdownWithModal
@@ -250,24 +235,9 @@ const ConditionsForm = () => {
         />
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
-        {reactIfView(currentTutorial == 'waterTemp',
-          <Tooltip
-            contentStyle={[{ backgroundColor: primary_color, height: 80 }]}
-            backgroundColor={'rgba(0,0,0,0)'}
-            isVisible={currentTutorial == 'waterTemp'}
-            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetTemperature")}</Text>}
-            placement="top"
-            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('waterTemp', NAV_CONDITIONS_FORM))}}
-          >
-            <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
-                )
-              )}
-            </TooltipChildrenContext.Consumer>
-          </Tooltip>
-        )}
+        <TutorialTooltip conditions={currentTutorial == 'waterTemp'} style={[{ backgroundColor: primary_color, height: 80 }]} 
+          tutorial='waterTemp' translations='tutSetTemperature' tutRoute={NAV_CONDITIONS_FORM}
+          setCurrentTutorial={setCurrentTutorial}/>
         </View>
       <TextInput
         value={temperature}
@@ -289,24 +259,9 @@ const ConditionsForm = () => {
         placeholderTextColor={black}
       />
       <View style={[flex_style.flex, flex_style.width100]}>
-      {reactIfView(currentTutorial == 'selectSpecies',
-        <Tooltip
-            contentStyle={[{backgroundColor: primary_color, height: 50}]}
-            backgroundColor={'rgba(0,0,0,0)'}
-            isVisible={currentTutorial == 'selectSpecies'}
-            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetSpecies")}</Text>}
-            placement="top"
-            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('selectSpecies', NAV_CONDITIONS_FORM))}}
-        >
-          <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                  )
-            )}
-          </TooltipChildrenContext.Consumer>
-        </Tooltip>
-        )}
+        <TutorialTooltip conditions={currentTutorial == 'selectSpecies'} style={tutorial_styles.doubleLine} 
+          tutorial='selectSpecies' translations='tutSetSpecies' tutRoute={NAV_CONDITIONS_FORM}
+          setCurrentTutorial={setCurrentTutorial}/>
       </View>
         <FishSelect visible={speciesModalVisible} selectedFish={species} onSelectFish={onSelectFish}></FishSelect>
         <View style={[flex_style.width100, margin_styles.bottom_md]}>
@@ -355,25 +310,9 @@ const ConditionsForm = () => {
             </View>
             )}
           <View style={[flex_style.flex, flex_style.width100]}>
-
-            {reactIfView(currentTutorial == 'date',
-          <Tooltip
-            contentStyle={[{ backgroundColor: primary_color, height: 60 }]}
-            backgroundColor={'rgba(0,0,0,0)'}
-            isVisible={currentTutorial == 'date'}
-            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetDate")}</Text>}
-            placement="top"
-            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('date', NAV_CONDITIONS_FORM))}}
-          >
-            <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
-                )
-              )}
-            </TooltipChildrenContext.Consumer>
-          </Tooltip>
-            )}
+            <TutorialTooltip conditions={currentTutorial == 'date'} style={tutorial_styles.doubleLine} 
+              tutorial='date' translations='tutSetDate' tutRoute={NAV_CONDITIONS_FORM}
+              setCurrentTutorial={setCurrentTutorial}/>
           </View>
           {reactIfView(Platform.OS !== "ios",
             <TouchableOpacity
@@ -404,25 +343,9 @@ const ConditionsForm = () => {
               )}
           
           <View style={[flex_style.flex, flex_style.width100]}>
-
-          {reactIfView(currentTutorial == 'time',
-          <Tooltip
-          contentStyle={[{ backgroundColor: primary_color, height: 50 }]}
-          backgroundColor={'rgba(0,0,0,0)'}
-          isVisible={currentTutorial == 'time'}
-          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetTime")}</Text>}
-          placement="top"
-          onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('time', NAV_CONDITIONS_FORM))}}
-          >
-            <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
-                )
-              )}
-            </TooltipChildrenContext.Consumer>
-          </Tooltip>
-          )}
+            <TutorialTooltip conditions={currentTutorial == 'time'} style={tutorial_styles.singleLine} 
+              tutorial='time' translations='tutSetTime' tutRoute={NAV_CONDITIONS_FORM}
+              setCurrentTutorial={setCurrentTutorial}/>
           </View>
   
           {reactIfView(Platform.OS != 'ios',
@@ -465,25 +388,9 @@ const ConditionsForm = () => {
         >
           {loadTranslations("waterClarity")}
         </Text>
-
-        {reactIfView(currentTutorial == 'waterClarity',
-          <Tooltip
-            contentStyle={[{ backgroundColor: primary_color, height: 60 }]}
-            backgroundColor={'rgba(0,0,0,0)'}
-            isVisible={currentTutorial == 'waterClarity'}
-            content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSetWater")}</Text>}
-            placement="top"
-            onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('waterClarity', NAV_CONDITIONS_FORM))}}
-          >
-            <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{ height: Platform.OS === 'android' ? 50 : 0, width: width }]}></View>
-                )
-              )}
-            </TooltipChildrenContext.Consumer>
-          </Tooltip>
-        )}
+        <TutorialTooltip conditions={currentTutorial == 'waterClarity'} style={tutorial_styles.doubleLine} 
+          tutorial='waterClarity' translations='tutSetWater' tutRoute={NAV_CONDITIONS_FORM}
+          setCurrentTutorial={setCurrentTutorial}/>
 
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.vertical_space_md]}>
           {waterClarities.map((waterClarityItem, index) => {
@@ -629,24 +536,9 @@ const ConditionsForm = () => {
         </View>
       )} */}
         <View style={[flex_style.flex, flex_style.width100]}>
-        {reactIfView(currentTutorial == 'findLures',
-        <Tooltip
-        contentStyle={[{backgroundColor: primary_color, height: 80}]}
-        backgroundColor={'rgba(0,0,0,0)'}
-        isVisible={currentTutorial == 'findLures'}
-        content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutConditionsSubmit")}</Text>}
-        placement="top"
-        onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('findLures', NAV_CONDITIONS_FORM))}}
-        >
-          <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) => (
-                reactIfView(!tooltipDuplicate,
-                  <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                  )
-            )}
-          </TooltipChildrenContext.Consumer>
-        </Tooltip>
-        )}
+          <TutorialTooltip conditions={currentTutorial == 'findLures'} style={tutorial_styles.doubleLine} 
+            tutorial='findLures' translations='tutConditionsSubmit' tutRoute={NAV_CONDITIONS_FORM}
+            setCurrentTutorial={setCurrentTutorial}/>
         </View>
       <TouchableOpacity
         onPress={handleFormSubmit}

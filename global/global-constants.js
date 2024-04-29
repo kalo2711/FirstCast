@@ -54,7 +54,12 @@ const POPUP_HEIGHT_L = 100;
 // Size for number of lines in tooltips
 const SINGLE_LINE = 50;
 const DOUBLE_LINE = 60;
-const WEATHER_MOON_LINE = 95
+const MULTI_LINE = 100
+const tutorial_styles = {
+  singleLine: [{backgroundColor: primary_color, height: SINGLE_LINE}],
+  doubleLine: [{backgroundColor: primary_color, height: DOUBLE_LINE}],
+  multiLine: [{backgroundColor: primary_color, height: MULTI_LINE}]
+}
 
 // Navigation
 const NAV_HOME_LIST = "HomeList";
@@ -68,7 +73,7 @@ const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
 const NAV_CONDITIONS_FORM = 'ConditionsForm'
 const NAV_LURES_FORM = 'Lures'
-const NAV_REQUEST_LURE_FORM = 'RequestNewLure'
+const NAV_REQUEST_LURE_FORM = 'RequestLure'
 const NAV_LURES_RESULTS = 'LuresResults'
 const NAV_CONDITIONS_RESULTS = 'ConditionsResults'
 
@@ -368,6 +373,7 @@ export {
   GRANTED,
   SINGLE_LINE,
   DOUBLE_LINE,
-  WEATHER_MOON_LINE,
+  MULTI_LINE,
   tutorial_transparent,
+  tutorial_styles,
 };
