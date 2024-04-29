@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Modal,FlatList, Image } from 'react-native';
 import FishSelectItem from "./fish-select-item";
+import { loadTranslations } from './global/localization';
 const FishSelect = ({ visible, selectedFish, onSelectFish }) => {
   const [searchText, setSearchText] = useState('');
 
@@ -35,7 +36,7 @@ const FishSelect = ({ visible, selectedFish, onSelectFish }) => {
       <View style={{ flex: 1, padding: 20 }}>
         <TextInput
           style={{ marginBottom: 20, padding: 10, borderWidth: 1, borderColor: 'gray', borderRadius: 5 }}
-          placeholder="Search fish..."
+          placeholder={loadTranslations('searchFish')}
           value={searchText}
           onChangeText={setSearchText}
         />

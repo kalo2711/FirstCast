@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity, Image } from 'react-native';
 import { flex_style, form_style, img_styles } from "./global/global-styles";
 import { black, primary_color, secondary_color } from "./global/global-constants";
+import { loadTranslations } from './global/localization';
 const FishSelectItem = ({ onSelectFish, isSelected, fish }) => {
 
   return (
@@ -10,7 +11,7 @@ const FishSelectItem = ({ onSelectFish, isSelected, fish }) => {
       onPress={(event) => onSelectFish(fish)}
     >
       <Image source={fish.image} style={[img_styles.rectangle_image_s]} />
-      <Text style={{ color: isSelected ? primary_color : 'black' }}>{fish.name}</Text>
+      <Text style={{ color: isSelected ? primary_color : 'black' }}>{loadTranslations(fish.name)}</Text>
     </TouchableOpacity>
   );
 };
