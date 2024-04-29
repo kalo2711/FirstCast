@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { environment } from "../global/environment";
 import {
+  Alert,
   View,
   Text,
   Image,
   TouchableOpacity,
   ScrollView,
-  Modal,
-  ActivityIndicator,
-  Platform,
   FlatList,
-  ListItem
 } from "react-native";
 import {
   btn_style,
@@ -20,28 +17,20 @@ import {
   padding_styles,
   text_style,
 } from "../global/global-styles";
-import { loadTranslations } from "../global/localization";
-import DropdownWithModal from "../components/autocomplete";
-import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import { NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
-import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
-import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
-import { getAuthToken} from '../global/utils/auth.utils';
+import { getDeviceLanguage, loadTranslations } from "../global/localization";
+import { responseDataHandler } from "../global/global-functions";
+import { height } from "../global/global-constants";
+import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
+import { terms, terms_fr } from '../authentication/terms';
 
 
 
 export default function LuresForm({ navigation }) {
   const [token, setToken] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [profile, setProfile] = useState({});
   const [lures, setLures] = useState([]);
-  const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
-  const [chosenItem, setChosenItem] = useState(null);
-  const [lureOptionIdSelected, setLureOptionIdSelected] = useState(null);
-  const [lureOptions, setLureOptions] = useState(null);
-  const [brandAndModalVisible, setBrandAndModalVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentTutorial, setCurrentTutorial] = useState(null);
-  const [initialLoad, setInitialLoad] = useState(true);
+  const [editScreen, setEditScreen] = useState(false);
+  const [term, setTerm] = useState(getDeviceLanguage().includes("fr") ? terms_fr : terms);
 
   useEffect(() => {
     async function getData(){
@@ -49,25 +38,32 @@ export default function LuresForm({ navigation }) {
       setToken(t);
     }
     getData();
-    // fetch(`/api/get/userNames?emails=${jwt_decode(token).id}`)
   }, []);
 
   useEffect(() => {
     if (token !== null){
       fetchUserLures();
+      fetchProfileInfo();
     }
   }, [token]);
 
-  const handleFormSubmit = () => {
-    navigation.navigate("LuresResults", {
-      lureOptionsId: lureOptionIdSelected ? lureOptionIdSelected : 3581,
+  async function fetchProfileInfo(){
+    const url = environment.host + "api/user/get/profileInfo";
+    let res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'x-app-auth': token
+      },
     });
-  };
-
-
+    data = await responseDataHandler(res, false);
+    if (data) {
+      data["user"]["displayName"] = data["user"]["displayName"].split('_')[0];
+      setProfile(data["user"]);
+    }
+  }
 
   async function fetchUserLures() {
-    console.log(token);
     const url = environment.host + "api/get-lures-for-user";
     let res = await fetch(url, {
       method: "GET",
@@ -76,108 +72,181 @@ export default function LuresForm({ navigation }) {
         'x-app-auth': token
       },
     });
-    console.log(res);
     data = await responseDataHandler(res, false);
-    console.log(data);
     if (data) {
       setLures(data);
     }
   }
 
-  async function onChangeText(text) {
-    const url = environment.host + "api/lure-autofill?lureName=" + text;
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        // 'x-app-auth': token
-      },
-    });
-    resp = await responseDataHandler(response, false);
-    if (resp) {
-      setBrandAndModelDataset(resp.map(lure => { return {title: lure.brand + ' ' + lure.model, image: lure.image, id: lure.id}}));
-    }
+  function showTerms(){
+    Alert.alert(loadTranslations("generalTerm"), term, [
+      {
+        text: "ok",
+        style: 'cancel',
+      }
+    ])
   }
 
-  async function onBrandAndModelSelect(item) {
-    setBrandAndModalVisible(false)
-    setChosenItem(item);
-    setBrandAndModelDataset([]);
-    setIsLoading(true)
 
-    const url = environment.host + "api/lure-options-autofill?lureId=" + item.id;
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        // 'x-app-auth': token
-      },
-    });
-    resp = await responseDataHandler(response, false);
-    setIsLoading(false)
-    if (resp) {
-      setLureOptions(resp);
-    }
-  }
-
-  return (
-    <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
-      <ScrollView
-        contentContainerStyle={[
-          flex_style.flex,
-          flex_style.flexContainer,
-          padding_styles.safetyTop,
-        ]}
-      >
-        <Text
+  if (!editScreen){
+    return (
+      <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
+        <TouchableOpacity
+          onPress={() => editScreen ? setEditScreen(false) : setEditScreen(true)}
           style={[
-            text_style.sm,
-            text_style.primaryColor,
-            margin_styles.bottom_md,
-            text_style.bold,
-            text_style.alignCenter,
+            btn_style.button,
+            btn_style.round, 
+            btn_style.buttonVerySmall,
+            margin_styles.top_md,
+            
           ]}
         >
-          {loadTranslations('profile')}
-        </Text>
-      </ScrollView>
-      {lures === null ? (
-        <Text>You have no lures.</Text>
-      ):(
-        <FlatList
-          data={lures}
-          renderItem={({item}) => 
-            <View
+          <Text
             style={[
-              flex_style.flex,
-              // flex_style.wrap,
-              flex_style.spaceBetween
-            ]}>
+              text_style.fontColorWhite,
+              text_style.bold,
+              flex_style.width100,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("edit")}
+          </Text>
+        </TouchableOpacity>
+        <ScrollView
+          contentContainerStyle={[
+            flex_style.flex,
+            flex_style.flexContainer
+          ]}
+        >
+          <Text
+            style={[
+              text_style.sm,
+              text_style.primaryColor,
+              margin_styles.bottom_md,
+              text_style.bold,
+              text_style.alignCenter,
+            ]}
+          >
+            {profile["displayName"]}'s {loadTranslations('profile')}
+          </Text>
+        </ScrollView>
+        {lures === null ? (
+          <Text>{loadTranslations("noUserLures")}</Text>
+        ):(
+          <FlatList
+            data={lures}
+            renderItem={({item}) => 
               <View
-                style={[
-                  flex_style.flex,
-                  flex_style.wrap,
-                  flex_style.spaceBetween,
-                  flex_style.width70
-                ]}>
-                <Text>{item["model"]} from {item["brand"]}</Text>
-                <Text>Colors:{item["color1"]} & {item["color2"]}</Text>
-                <Text>Size:{item["size"]}</Text>
-                <Text>Weight:{item["weight"]}</Text>
-                <Text>Brand:{item["brand"]}</Text>
-                <Text>Type:{item["type"]}</Text>
-                <Text>Price:{item["price"]}</Text>
-              </View>
-              <View style={[
-                flex_style.flexEnd,
-                flex_style.width30
-                ]}>
-                <Image source={{uri: item["image"]}} style={{width: 100, height: 50}}/>
-              </View>
-            </View>}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      )}
-    </View>
-  );
+              style={[
+                flex_style.flex,
+                flex_style.spaceBetween
+              ]}>
+                <View
+                  style={[
+                    flex_style.flex,
+                    flex_style.flexColumn,
+                    flex_style.wrap,
+                    flex_style.spaceBetween,
+                    flex_style.width70,
+                    margin_styles.vertical_space_md
+                  ]}>
+                  <Text>{item["model"]} from {item["brand"]}</Text>
+                  <Text>Colors:{item["color1"]} & {item["color2"]} </Text>
+                  <Text>Size:{item["size"]} </Text>
+                  <Text>Weight:{item["weight"]} </Text>
+                  <Text>Type:{item["type"]} </Text>
+                  <Text>Price:{item["price"]} </Text>
+                </View>
+                <View style={[
+                  flex_style.flexEnd,
+                  flex_style.width30
+                  ]}>
+                  <Image source={{uri: item["image"]}} style={{width: 100, height: 100, resizeMode: 'contain',}}/>
+                </View>
+              </View>}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        )}
+      </View>
+    );
+  }else {
+    return(
+      <View style={[padding_styles.space_md, padding_styles.safetyTop, { backgroundColor: 'white', height: height}]}>
+        <Text
+            style={[
+              text_style.sm,
+              text_style.primaryColor,
+              margin_styles.bottom_md,
+              text_style.bold,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("edit")} {loadTranslations("profile")}
+          </Text>
+        <TouchableOpacity
+            onPress={() => setAuthToken(null)}
+            style={[
+              btn_style.button, 
+              btn_style.round, 
+              btn_style.buttonFullWidth, 
+              margin_styles.vertical_space_l
+              
+            ]}
+          >
+            <Text
+              style={[
+                text_style.fontColorWhite,
+                text_style.bold,
+                flex_style.width100,
+                text_style.alignCenter,
+              ]}
+            >
+              {loadTranslations("Logout")}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={showTerms}
+            style={[
+              btn_style.button, 
+              btn_style.round, 
+              btn_style.buttonFullWidth, 
+              margin_styles.vertical_space_l
+              
+            ]}
+          >
+            <Text
+              style={[
+                text_style.fontColorWhite,
+                text_style.bold,
+                flex_style.width100,
+                text_style.alignCenter,
+              ]}
+            >
+              {loadTranslations("terms")}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => editScreen ? setEditScreen(false) : setEditScreen(true)}
+            style={[
+              btn_style.button, 
+              btn_style.round, 
+              btn_style.buttonFullWidth, 
+              margin_styles.vertical_space_l
+              
+            ]}
+          >
+            <Text
+              style={[
+                text_style.fontColorWhite,
+                text_style.bold,
+                flex_style.width100,
+                text_style.alignCenter,
+              ]}
+            >
+              {loadTranslations("cancel")}
+            </Text>
+          </TouchableOpacity>
+      </View>
+    );
+  }
 }

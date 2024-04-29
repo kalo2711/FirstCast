@@ -198,7 +198,7 @@ export const text_style = StyleSheet.create({
     textAlign: 'right'
   },
   alignLeft: {
-    textAlign: 'right'
+    textAlign: 'left'
   },
   error: {
     color: 'red',
@@ -292,6 +292,12 @@ export const btn_style = StyleSheet.create({
   },
   buttonSmall: {
     width: 200
+  },
+  buttonVerySmall: {
+    width: 50
+  },
+  buttonTopPadding: {
+    paddingTop: 10  
   },
   buttonFullWidth: {
     width: '100%'
