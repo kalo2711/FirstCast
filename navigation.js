@@ -68,7 +68,7 @@ export default function Navigation() {
 
   const homeColorCondition = () => {
     return (
-      currentPage !== NAV_GENERAL_PROFILE &&
+      currentPage !== NAV_PROFILE &&
       currentPage !== NAV_EDIT_PROFILE &&
       currentPage !== NAV_AUTHENTICATION
     );
