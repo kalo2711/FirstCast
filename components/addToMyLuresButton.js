@@ -52,7 +52,7 @@ export function AddToMyLureButton({ option }) {
 
     return (
         <View>
-            <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={onButtonPress} activeOpacity={isLoading ? 1 : 0.2}>
+            <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonReversed, btn_style.round, btn_style.buttonSmall, margin_styles.vertical_space_md]} onPress={onButtonPress} activeOpacity={isLoading ? 1 : 0.2}>
                 {isLoading ?
                     <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
                         <ActivityIndicator style={[]} size="large" color={primary_color} />
