@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  StyleSheet
 } from "react-native";
 import {
   btn_style,
   flex_style,
+  img_styles,
   margin_styles,
   padding_styles,
   text_style,
@@ -83,81 +85,84 @@ export default function Profile({ navigation }) {
     });
   }
 
+  const styles = StyleSheet.create({
+    itemContainer: {
+      flexDirection: 'row',
+      padding: 25,
+      alignItems: 'center',
+      marginVertical: 7,          
+      marginHorizontal: 10,   
+      borderRadius: 20,        
+      backgroundColor: 'rgba(247, 255, 247, 0.8)',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
+    },
+    detailsContainer: {
+      flex: 1,
+      marginLeft: 3,
+    }
+  });
+  
   return (
     <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
-      <TouchableOpacity
-        onPress={handleEditNav}
+      <View
         style={[
-          btn_style.button,
-          btn_style.round, 
-          btn_style.buttonVerySmall,
-          margin_styles.top_md,
-          
-        ]}
-      >
-        <Text
-          style={[
-            text_style.fontColorWhite,
-            text_style.bold,
-            flex_style.width100,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("edit")}
-        </Text>
-      </TouchableOpacity>
-      <ScrollView
-        contentContainerStyle={[
           flex_style.flex,
-          flex_style.flexContainer
+          flex_style.width100,
+          flex_style.spaceBetween,
+          padding_styles.space_md_vertical
         ]}
       >
         <Text
           style={[
             text_style.sm,
             text_style.primaryColor,
-            margin_styles.bottom_md,
             text_style.bold,
-            text_style.alignCenter,
           ]}
         >
           {profile["displayName"]}'s {loadTranslations('profile')}
         </Text>
-      </ScrollView>
+        <TouchableOpacity
+          onPress={handleEditNav}
+          style={[
+            btn_style.button,
+            btn_style.round, 
+            btn_style.buttonVerySmall,
+          ]}
+        >
+        <Text
+          style={[
+            text_style.fontColorWhite,
+            text_style.bold,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("edit")}
+        </Text>
+        </TouchableOpacity>
+      </View>
       {lures === null ? (
         <Text>{loadTranslations("noUserLures")}</Text>
       ):(
         <FlatList
           data={lures}
           renderItem={({item}) => 
-            <View
-            style={[
-              flex_style.flex,
-              flex_style.spaceBetween
-            ]}>
-              <View
-                style={[
-                  flex_style.flex,
-                  flex_style.flexColumn,
-                  flex_style.wrap,
-                  flex_style.spaceBetween,
-                  flex_style.width70,
-                  margin_styles.vertical_space_md
-                ]}>
-                <Text>{item["model"]} from {item["brand"]}</Text>
-                <Text>Colors:{item["color1"]} & {item["color2"]} </Text>
-                <Text>Size:{item["size"]} </Text>
-                <Text>Weight:{item["weight"]} </Text>
-                <Text>Type:{item["type"]} </Text>
-                <Text>Price:{item["price"]} </Text>
-              </View>
-              <View style={[
-                flex_style.flexEnd,
-                flex_style.width30
-                ]}>
-                <Image source={{uri: item["image"]}} style={{width: 100, height: 100, resizeMode: 'contain',}}/>
-              </View>
-            </View>}
+          <View style={styles.itemContainer}>
+            <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
+            <View style={styles.detailsContainer}>
+              <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
+              <Text>{loadTranslations('type')}: {item.type}</Text>
+              <Text>{loadTranslations('colors')}: {item.color1}/{item.color2}</Text>
+              <Text>{loadTranslations('weight')}: {item.weight}oz</Text>
+              <Text style={{ fontWeight: 'bold' }}>{loadTranslations('price')}: ${item.price}</Text>
+            </View>
+          </View>}
           keyExtractor={(item, index) => index.toString()}
         />
       )}
