@@ -21,7 +21,7 @@ export default function Authentication(props) {
     if (!authenticated) {
       checkAuthentication()
     } else {
-      navigate(NAV_CONDITIONS_FORM)
+      navigate(NAV_LURES_FORM)
     }
   }, [authenticated])
 
