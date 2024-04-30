@@ -11,10 +11,11 @@ import { primary_color, black } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 
+
 export default function LuresResults({ route }) {
   const [previousWeather, setPreviousWeather] = useState({
     "precipitation": false,
-    "windGust": 5.14
+    "windGust": 11,
   });
   const [moonPhase, setMoonPhase] = useState({
     "prevPhase": {
@@ -26,6 +27,14 @@ export default function LuresResults({ route }) {
       "daysUntilNext": 1
     }
   });
+
+  const moonPhaseLabels = {
+    1: 'Last Moon Phase: New Moon',
+    2: 'Last Moon Phase: First Quarter',
+    3: 'Last Moon Phase: Full Moon',
+    4: 'Last Moon Phase: Last Quarter'
+  };
+
   const [lures, setLures] = useState([
     {
     "image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_506__01_temp.jpg",
@@ -953,44 +962,50 @@ export default function LuresResults({ route }) {
     }
     ])
 
-  const moonPhaseLabels = {
-    1: 'New Moon',
-    2: 'First Quarter',
-    3: 'Full Moon',
-    4: 'Last Quarter'
-  };
-
-  const WeatherAndMoonPhase = ({ weather, moonPhase }) => (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <MaterialIcons name="dark-mode" size={22} color="black" />
-      <Text style={{ marginLeft: 5 }}>{moonPhaseLabels[moonPhase.prevPhase.phase]}</Text>
-    </View>
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <MaterialIcons name="water-drop" size={24} color="black" />
-      <Text style={{ marginLeft: 5 }}>{weather.precipitation ? 'Yes' : 'No'}</Text>
-    </View>
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      <MaterialIcons name="air" size={24} color="black" />
-      <Text style={{ marginLeft: 5 }}>{weather.windGust} mph</Text>
-    </View>
-    
-  </View>
-  );
+    const WeatherAndMoonPhase = ({ weather, moonPhase, waterCondition }) => (
+      <View style={styles.weatherContainer}>
+        <View style={styles.weatherItem}>
+          <MaterialIcons name="dark-mode" size={22} color="black" />
+          <Text style={{ marginLeft: 5 }}>
+            {moonPhase.prevPhase.phase === 3 || moonPhase.prevPhase.phase === 1 ?
+            'Fish might be full from feeding.' : moonPhaseLabels[moonPhase.prevPhase.phase]}
+          </Text>
+        </View>
+        <View style={styles.weatherItem}>
+          <MaterialIcons name="water-drop" size={24} color="black" />
+          <Text style={{ marginLeft: 5 }}>
+            {weather.precipitation ? 'It rained, fish likely fed yesterday!' : 'No precipitations, fish might be hungry!'}
+          </Text>
+        </View>
+        <View style={styles.weatherItem}>
+          <MaterialIcons name="air" size={24} color="black" />
+          <Text style={{ marginLeft: 5 }}>
+            {weather.windGust > 10 && waterCondition !== 'muddy' ? 'Wind yesterday, water is dirtier than expected.' : `${weather.windGust} mph`}
+          </Text>
+        </View>
+        <View style={styles.weatherItem}>
+          <MaterialIcons name="brightness-3" size={24} color="black" />
+          <Text style={{ marginLeft: 5 }}>
+            {moonPhase.nextPhase.daysUntilNext <= 2 && moonPhase.nextPhase.phase === 1 ? 'Next Moon Phase: Fish might be more active.' :
+             (moonPhase.nextPhase.phase === 2 || moonPhase.nextPhase.phase === 4) ? 'Next Mon Phase: Fish might be less active.' : ''}
+          </Text>
+        </View>
+      </View>
+    );
 
   const renderItem = ({ item }) => (
-  <View style={styles.itemContainer }>
-    <Image source={{ uri: item.image }} style={styles.image} />
-    <View style={styles.detailsContainer}>
-      <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
-      <Text>Type: {item.type}</Text>
-      <Text>Colors: {item.color1}/{item.color2}</Text>
-      <Text>Weight: {item.weight}g</Text>
-      <Text style={{ fontWeight: 'bold' }}>Price: ${item.price}</Text>
-      <Text>Effectiveness: {item.effectiveness}%</Text>
+    <View style={styles.itemContainer}>
+      <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
+      <View style={styles.detailsContainer}>
+        <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
+        <Text>Type: {item.type}</Text>
+        <Text>Colors: {item.color1}/{item.color2}</Text>
+        <Text>Weight: {item.weight}g</Text>
+        <Text style={{ fontWeight: 'bold' }}>Price: ${item.price}</Text>
+      </View>
     </View>
-  </View>
-);
+  );
+
   const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
@@ -1001,37 +1016,44 @@ export default function LuresResults({ route }) {
       borderRadius: 20,        
       backgroundColor: 'rgba(247, 255, 247, 0.8)',
       shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 1,
-},
-shadowOpacity: 0.22,
-shadowRadius: 2.22,
-
-elevation: 3,
-  
-      // Android Shadow
-      elevation: 10,
-      
-    },
-    image: {
-      width: 100,
-      height: 100,
-      marginRight: 10,
-      borderRadius: 100,
-      borderColor: 'white', 
-      borderWidth: 4,
-      
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
     },
     detailsContainer: {
-      flex: 1
+      flex: 1,
+      marginLeft: 3,
+    },
+    weatherContainer: {
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      padding: 10,
+      backgroundColor: 'rgba(253, 253, 253, 1)',
+      borderRadius: 20,
+      margin: 10,
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
+    },
+    weatherItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 5
     }
   });
-  
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
       <Image source={{ uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg" }} style={{ width: '100%', height: 330 }} />
+      <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15, marginTop: 9, marginBottom: 4, }}>
+      Lures recommended by expert Lucas Deschenes:
+    </Text>
       <WeatherAndMoonPhase weather={previousWeather} moonPhase={moonPhase} />
       <FlatList
         data={lures}
@@ -1041,3 +1063,4 @@ elevation: 3,
     </ScrollView>
   );
 }
+

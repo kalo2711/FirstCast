@@ -39,7 +39,7 @@ import * as Location from 'expo-location';
 import { environment } from "../global/environment";
 import { responseDataHandler } from "../global/global-functions";
 
-const ConditionsForm = () => {
+const ConditionsForm = ({ navigation })  => {
   const [species, setSpecies] = useState(null);
   const [speciesModalVisible, setSpeciesModalVisible] = useState(false);
   const [temperature, setTemperature] = useState("");
@@ -172,20 +172,36 @@ const ConditionsForm = () => {
     setSpecies(selectedFish)
   }
 
-  const handleFormSubmit = () => {
-    const speciesName = species.name
-    console.log({
-      speciesName,
-      location,
-      temperature,
-      date,
-      hour,
-      isSunny,
-      isRaining,
-      waterClarity,
-      biometricPressure,
-    });
+  const handleFormSubmit = async () => {
+
+    const payload = {
+      species: species.name,
+      location: geoCoordinates,
+      temperature: temperature,
+      date: date.toISOString(), 
+      hour: hour,
+      isSunny: isSunny,
+      isRaining: isRaining,
+      waterClarity: waterClarity,
+      structure: "Structure" 
+    };
+    const apiUrl = "http://192.168.2.11:3000/lures"; 
+  
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      navigation.navigate('LuresResults', { lures: result.data.lures }); 
+    } catch (error) {
+      console.error('Failed to fetch lures:', error);
+    }
   };
+  
 
   //Date + Time picker functions
   const onChange = (e, selectedDate) => {
@@ -496,138 +512,7 @@ const ConditionsForm = () => {
           })}
         </View>
       </View>
-
-
-      {/* {reactIfView(date.getDate() > ((new Date().getDate()) + 7),
-        <View styles={[flex_style.flex, flex_style.column, flex_style.width100]}>
-        <Text
-          style={[
-            text_style.primaryColor,
-            text_style.sm,
-            text_style.bold,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("weather")}
-        </Text>
-        <View
-          style={[
-            styles.switchContainer,
-            margin_styles.vertical_space_md,
-            flex_style.width100,
-          ]}
-        >
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("sun")}
-          </Text>
-          <Switch
-            value={isSunny}
-            onValueChange={setIsSunny}
-            trackColor={{ false: primary_color, true: green_color }}
-            thumbColor={isSunny ? "#f4f3f4" : "#f4f3f4"}
-          />
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("cloudy")}
-          </Text>
-        </View>
-
-        <View
-          style={[
-            styles.switchContainer,
-            margin_styles.vertical_space_md,
-            flex_style.width100,
-          ]}
-        >
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("dry")}
-          </Text>
-          <Switch
-            value={isRaining}
-            onValueChange={setIsRaining}
-            trackColor={{ false: primary_color, true: green_color }}
-            thumbColor={isRaining ? "#f4f3f4" : "#f4f3f4"}
-          />
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("raining")}
-          </Text>
-        </View>
-
-        <Text
-          style={[
-            text_style.primaryColor,
-            text_style.sm,
-            text_style.bold,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("bioPressure")}
-        </Text>
-
-        <View
-          style={[
-            styles.switchContainer,
-            margin_styles.vertical_space_md,
-            flex_style.width100,
-          ]}
-        >
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("low")}
-          </Text>
-          <Switch
-            value={isHighPressure}
-            onValueChange={setIsHighPressure}
-            style={styles.switch}
-            trackColor={{ false: primary_color, true: green_color }}
-            thumbColor={isHighPressure ? "#f4f3f4" : "#f4f3f4"}
-          />
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("high")}
-          </Text>
-          </View>
-        </View>
-      )} */}
+     
         <View style={[flex_style.flex, flex_style.width100]}>
         {reactIfView(currentTutorial == 'findLures',
         <Tooltip
