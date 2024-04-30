@@ -9,6 +9,7 @@ import {
   Modal,
   ActivityIndicator,
   Platform,
+  Button
 } from "react-native";
 import {
   btn_style,
@@ -18,10 +19,11 @@ import {
   padding_styles,
   text_style,
 } from "../global/global-styles";
+
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
+import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, tutorial_styles, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import { AddToMyLureButton } from "../components/addToMyLuresButton";
@@ -90,6 +92,7 @@ export default function LuresForm({ navigation }) {
     }
   }
 
+
   return (
     <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
       <ScrollView
@@ -148,6 +151,15 @@ export default function LuresForm({ navigation }) {
             <View style={[flex_style.one]}>
                 <Modal visible={brandAndModalVisible} animationType="slide">
                   <View style={[{ flex: 1, height: height, padding: 20, paddingTop: Platform.OS == 'ios' ? 80 : 0 }]}>
+
+                  <TutorialTooltip conditions={currentTutorial == 'lureSearch'}                 
+                  style={tutorial_styles.doubleLine}
+                  tutorial='lureSearch'
+                  translations='tutLureSearch'
+                  tutRoute={NAV_LURES_FORM}
+                  setCurrentTutorial={setCurrentTutorial}
+                  />
+
                     <DropdownWithModal noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
                   </View>
                 </Modal>
@@ -205,7 +217,16 @@ export default function LuresForm({ navigation }) {
                   <Text style={[text_style.bold, text_style.xs]}>{option?.color1}  {option?.color2 != option?.color1 ? ', '+option?.color2:''}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.size} {loadTranslations("inch")}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.weight} {loadTranslations("pound")}</Text>
+                 
+                  <TutorialTooltip conditions={currentTutorial == 'addToLures' && lureOptions?.length > 0 && index === 0}                 
+                  style={tutorial_styles.singleLine}
+                  tutorial='addToLures'
+                  translations='tutAddToLures'
+                  tutRoute={NAV_LURES_FORM}
+                  setCurrentTutorial={setCurrentTutorial}
+                  />
                   <AddToMyLureButton option={option}/>   
+
                 </TouchableOpacity>
               </View>
             )}
