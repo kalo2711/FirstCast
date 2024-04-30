@@ -27,6 +27,7 @@ import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUES
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import { AddToMyLureButton } from "../components/addToMyLuresButton";
+import TutorialTooltip from "./TutorialTooltip";
 
 
 export default function LuresForm({ navigation }) {
