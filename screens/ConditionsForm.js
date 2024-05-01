@@ -20,7 +20,7 @@ import {
   padding_styles,
   text_style,
 } from "../global/global-styles";
-import {reactIfView} from "../global/global-functions";
+import {navigate, reactIfView} from "../global/global-functions";
 import {
   primary_color,
   green_color,
@@ -29,6 +29,7 @@ import {
   IOS,
   NAV_CONDITIONS_FORM,
   VALID,
+  NAV_LURES_RESULTS,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
@@ -173,33 +174,21 @@ const ConditionsForm = ({ navigation })  => {
   }
 
   const handleFormSubmit = async () => {
-
-    const payload = {
+    // FORM
+    date.setHours(hour)
+    const routeParams = {
+      lat: geoCoordinates.lat,
+      long: geoCoordinates.lon,
       species: species.name,
       location: geoCoordinates,
       temperature: temperature,
-      date: date.toISOString(), 
-      hour: hour,
+      date: date.getTime(), 
       isSunny: isSunny,
       isRaining: isRaining,
       waterClarity: waterClarity,
       structure: "Structure" 
     };
-    const apiUrl = "http://192.168.2.11:3000/lures"; 
-  
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-      const result = await response.json();
-      navigation.navigate('LuresResults', { lures: result.data.lures }); 
-    } catch (error) {
-      console.error('Failed to fetch lures:', error);
-    }
+    navigate(NAV_LURES_RESULTS, routeParams)
   };
   
 
@@ -213,6 +202,7 @@ const ConditionsForm = ({ navigation })  => {
 
   return (
     <ScrollView
+      nestedScrollEnabled={true}
       contentContainerStyle={[
         flex_style.flex,
         flex_style.flexContainer,
@@ -534,7 +524,7 @@ const ConditionsForm = ({ navigation })  => {
         )}
         </View>
       <TouchableOpacity
-        onPress={handleFormSubmit}
+        onPress={event => handleFormSubmit()}
         style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
       >
         <Text

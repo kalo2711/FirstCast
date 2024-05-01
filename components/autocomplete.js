@@ -88,6 +88,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
               />
       {!!inputValue && (
         <FlatList
+        nestedScrollEnabled={true}
         style={styles.modalContainer}
         data={items}
         renderItem={renderItem}
