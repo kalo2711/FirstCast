@@ -61,7 +61,7 @@
         "pound": "(lbs)",
         "noLures": "We current do not have the lure you are trying to find. Please click cancel and request it so one of our guides can get the information on it.",
         "presentedBy": "Information provided by",
-        "price": "Price",
+        "price": "Price (CAD)",
         "primaryColor": "Primary Color",
         "register": "Register",
         "requestFailed": "Your request for this lure has failed, please try again",
@@ -85,7 +85,7 @@
         "waterClarity": "Water Clarity",
         "water_clarity": "Water Clarity",
         "weather": "Weather",
-        "weight": "Weight (oz)",
+        "weight": "Weight",
         "blue": "blue",
         "white": "white",
         "brown": "brown",
@@ -141,7 +141,22 @@
         "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
         "tutLureSubmit":"Once all required details are provided, click here to request the lure.",
         "navLures": "Lures",
-        "navConditions": "Conditions"
+        "navConditions": "Conditions",
+
+        "lastMoonPhaseNewMoon": "Last Moon Phase: New Moon",
+        "lastMoonPhaseFirstQuarter": "Last Moon Phase: First Quarter",
+        "lastMoonPhaseFullMoon": "Last Moon Phase: Full Moon",
+        "lastMoonPhaseLastQuarter": "Last Moon Phase: Last Quarter",
+        "fishFullFromFeeding": "Fish might be full from feeding.",
+        "rainedFishFed": "It rained, fish likely fed yesterday!",
+        "noPrecipitationsFishHungry": "No precipitations, fish might be hungry!",
+        "windYesterdayWaterDirty": "Wind yesterday, water is dirtier than expected.",
+        "nextMoonPhaseFishActive": "Next Moon Phase: Fish might be more active.",
+        "nextMoonPhaseFishLessActive": "Next Moon Phase: Fish might be less active.",
+        "mph": "mph",
+        "luresRecommendedByLucas": "Lures recommended by expert Lucas Deschenes:",
+        "colors": "Colors"
+        
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -198,7 +213,7 @@
         "type": "Type de leurre",
         "waterClarity": "Clarté de l'eau",
         "weather": "Temps",
-        "weight": "Poids (oz)",
+        "weight": "Poids",
         "blue": "bleu",
         "white": "bland",
         "brown": "brown",
@@ -284,6 +299,22 @@
         "speedFast": "Rapide",
         "depth": "Profondeur",
         "navLures": "Leurres",
-        "navConditions": "Conditions"
+        "navConditions": "Conditions",
+
+        "lastMoonPhaseNewMoon": "Dernière phase lunaire : Nouvelle Lune",
+        "lastMoonPhaseFirstQuarter": "Dernière phase lunaire : Premier Quartier",
+        "lastMoonPhaseFullMoon": "Dernière phase lunaire : Pleine Lune",
+        "lastMoonPhaseLastQuarter": "Dernière phase lunaire : Dernier Quartier",
+        "fishFullFromFeeding": "Les poissons pourraient être rassasiés après avoir mangé.",
+        "rainedFishFed": "Il a plu, les poissons ont probablement mangé hier !",
+        "noPrecipitationsFishHungry": "Pas de précipitations, les poissons pourraient être affamés !",
+        "windYesterdayWaterDirty": "Vent hier, l'eau est plus sale que prévu.",
+        "nextMoonPhaseFishActive": "Prochaine phase lunaire : Les poissons pourraient être plus actifs.",
+        "nextMoonPhaseFishLessActive": "Prochaine phase lunaire : Les poissons pourraient être moins actifs.",
+        "mph": "km/h",
+        "luresRecommendedByLucas": "Leurres recommandés par l'expert Lucas Deschenes :",
+        "colors": "Couleurs"
+        
+
     }
 }
