@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { environment } from "../global/environment";
 import {
   View,
@@ -6,9 +6,8 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  Modal,
-  ActivityIndicator,
-  Platform,
+  FlatList,
+  StyleSheet
 } from "react-native";
 import {
   btn_style,
@@ -18,97 +17,155 @@ import {
   padding_styles,
   text_style,
 } from "../global/global-styles";
-import { loadTranslations } from "../global/localization";
-import DropdownWithModal from "../components/autocomplete";
-import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import { NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, width } from "../global/global-constants";
-import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
-import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
+import { getDeviceLanguage, loadTranslations } from "../global/localization";
+import { responseDataHandler} from "../global/global-functions";
+import { height, NAV_EDIT_PROFILE } from "../global/global-constants";
+import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
+import { terms, terms_fr } from '../authentication/terms';
 
-export default function LuresForm({ navigation }) {
-  const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
-  const [chosenItem, setChosenItem] = useState(null);
-  const [lureOptionIdSelected, setLureOptionIdSelected] = useState(null);
-  const [lureOptions, setLureOptions] = useState(null);
-  const [brandAndModalVisible, setBrandAndModalVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentTutorial, setCurrentTutorial] = useState(null);
-  const [initialLoad, setInitialLoad] = useState(true);
+
+
+export default function Profile({ navigation }) {
+  const [token, setToken] = useState(null);
+  const [profile, setProfile] = useState({});
+  const [lures, setLures] = useState([]);
+  const [editScreen, setEditScreen] = useState(false);
+  const [term, setTerm] = useState(getDeviceLanguage().includes("fr") ? terms_fr : terms);
 
   useEffect(() => {
-    const getTut = async () => {
-      const tut = await getNextTutorialForPage(NAV_LURES_FORM)
-     setCurrentTutorial(tut)
+    async function getData(){
+      const t = await getAuthToken(false);
+      setToken(t);
     }
-   if (initialLoad) {
-     getTut();
-     setInitialLoad(false)
+    getData();
+  }, []);
+
+  useEffect(() => {
+    if (token !== null){
+      fetchUserLures();
+      fetchProfileInfo();
     }
- }, []);
+  }, [token]);
 
-  const handleFormSubmit = () => {
-    navigation.navigate("LuresResults", {
-      lureOptionsId: lureOptionIdSelected ? lureOptionIdSelected : 3581,
-    });
-  };
-
-  async function onChangeText(text) {
-    const url = environment.host + "api/lure-autofill?lureName=" + text;
-    const response = await fetch(url, {
+  async function fetchProfileInfo(){
+    const url = environment.host + "api/user/get/profileInfo";
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // 'x-app-auth': token
+        'x-app-auth': token
       },
     });
-    resp = await responseDataHandler(response, false);
-    if (resp) {
-      setBrandAndModelDataset(resp.map(lure => { return {title: lure.brand + ' ' + lure.model, image: lure.image, id: lure.id}}));
+    data = await responseDataHandler(res, false);
+    if (data) {
+      data["user"]["displayName"] = data["user"]["displayName"].split('_')[0];
+      setProfile(data["user"]);
     }
   }
 
-  async function onBrandAndModelSelect(item) {
-    setBrandAndModalVisible(false)
-    setChosenItem(item);
-    setBrandAndModelDataset([]);
-    setIsLoading(true)
-
-    const url = environment.host + "api/lure-options-autofill?lureId=" + item.id;
-    const response = await fetch(url, {
+  async function fetchUserLures() {
+    const url = environment.host + "api/get-lures-for-user";
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // 'x-app-auth': token
+        'x-app-auth': token
       },
     });
-    resp = await responseDataHandler(response, false);
-    setIsLoading(false)
-    if (resp) {
-      setLureOptions(resp);
+    data = await responseDataHandler(res, false);
+    if (data) {
+      setLures(data);
     }
   }
 
+  function handleEditNav(){
+    navigation.navigate(NAV_EDIT_PROFILE, {
+      token: token,
+      profile: profile
+    });
+  }
+
+  const styles = StyleSheet.create({
+    itemContainer: {
+      flexDirection: 'row',
+      padding: 25,
+      alignItems: 'center',
+      marginVertical: 7,          
+      marginHorizontal: 10,   
+      borderRadius: 20,        
+      backgroundColor: 'rgba(247, 255, 247, 0.8)',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
+    },
+    detailsContainer: {
+      flex: 1,
+      marginLeft: 3,
+    }
+  });
+  
   return (
     <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
-      <ScrollView
-        contentContainerStyle={[
+      <View
+        style={[
           flex_style.flex,
-          flex_style.flexContainer,
-          padding_styles.safetyTop,
+          flex_style.width100,
+          flex_style.spaceBetween,
+          padding_styles.space_md_vertical
         ]}
       >
         <Text
           style={[
             text_style.sm,
             text_style.primaryColor,
-            margin_styles.bottom_md,
+            text_style.bold,
+          ]}
+        >
+          {profile["displayName"]}'s {loadTranslations('profile')}
+        </Text>
+        <TouchableOpacity
+          onPress={handleEditNav}
+          style={[
+            btn_style.button,
+            btn_style.round, 
+            btn_style.buttonVerySmall,
+          ]}
+        >
+        <Text
+          style={[
+            text_style.fontColorWhite,
             text_style.bold,
             text_style.alignCenter,
           ]}
         >
-          {loadTranslations("profile")}
+          {loadTranslations("edit")}
         </Text>
-      </ScrollView>
+        </TouchableOpacity>
+      </View>
+      {lures === null ? (
+        <Text>{loadTranslations("noUserLures")}</Text>
+      ):(
+        <FlatList
+          data={lures}
+          renderItem={({item}) => 
+          <View style={styles.itemContainer}>
+            <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
+            <View style={styles.detailsContainer}>
+              <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
+              <Text>{loadTranslations('type')}: {item.type}</Text>
+              <Text>{loadTranslations('colors')}: {item.color1}/{item.color2}</Text>
+              <Text>{loadTranslations('weight')}: {item.weight}oz</Text>
+              <Text style={{ fontWeight: 'bold' }}>{loadTranslations('price')}: ${item.price}</Text>
+            </View>
+          </View>}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      )}
     </View>
   );
 }

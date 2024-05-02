@@ -20,7 +20,7 @@ import {
   navbar_styles,
   text_style,
 } from "./global/global-styles";
-import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import { Pressable, Text, View } from "react-native";
 import { loadTranslations } from "./global/localization";
 // import { getAuthToken } from "../../utils/auth.util";
@@ -104,6 +104,27 @@ export default function Navigation() {
                 }
               >
                 {loadTranslations("navLures")}
+              </Text>
+            </View>
+          </Pressable>
+          <Pressable
+            onPress={() => navigate(NAV_PROFILE)}
+            style={[
+              btn_style.button,
+              navbar_styles.halfWidth,
+              btn_style.backgroundColorNone,
+            ]}
+          >
+            <View style={flex_style.center}>
+              <AntDesign name="profile" size={ICON_SIZE_XS} color={currentPage === NAV_PROFILE ? primary_color : grey_color} />
+              <Text
+                style={
+                  currentPage === NAV_PROFILE
+                    ? text_style.fontColorBlack
+                    : text_style.fontColorGrey
+                }
+              >
+                {loadTranslations("profile")}
               </Text>
             </View>
           </Pressable>
