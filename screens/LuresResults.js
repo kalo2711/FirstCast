@@ -164,15 +164,17 @@ export default function LuresResults({ route }) {
       <Image source={{ uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg" }} style={{ width: '100%', height: 330 }} />
       <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15, marginTop: 9, marginBottom: 4, }}>
       {loadTranslations('luresRecommendedByLucas')}
-    </Text>
-    {weather && 
-      <WeatherAndMoonPhase weather={weather} moonPhase={moon} />
-    }
-      <FlatList
-        data={lures}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => `lure-${index}`}
-      />
+      </Text>
+      <ScrollView>
+        {weather && 
+          <WeatherAndMoonPhase weather={weather} moonPhase={moon} />
+        }
+          <FlatList
+            data={lures}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => `lure-${index}`}
+          />
+      </ScrollView>
     </View>
   );
 }
