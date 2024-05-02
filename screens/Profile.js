@@ -88,12 +88,12 @@ export default function Profile({ navigation }) {
   const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
-      padding: 25,
+      padding: 10,
       alignItems: 'center',
       marginVertical: 7,          
       marginHorizontal: 10,   
       borderRadius: 20,        
-      backgroundColor: 'rgba(247, 255, 247, 0.8)',
+      backgroundColor: 'rgb(251, 255, 251)',
       shadowColor: "#000",
       shadowOffset: {
         width: 0,

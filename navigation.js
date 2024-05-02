@@ -54,18 +54,6 @@ export default function Navigation() {
     checkAuthentication();
   });
 
-  const handleProfilePress = () => {
-    navigate(authenticated ? NAV_PROFILE : NAV_AUTHENTICATION);
-  };
-
-  const homeColorCondition = () => {
-    return (
-      currentPage !== NAV_PROFILE &&
-      currentPage !== NAV_EDIT_PROFILE &&
-      currentPage !== NAV_AUTHENTICATION
-    );
-  };
-
   return (
     <View>
       {!!authenticated ? (

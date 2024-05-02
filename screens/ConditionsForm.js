@@ -160,7 +160,7 @@ const ConditionsForm = ({ navigation })  => {
         setLocationName('');
         return
       }
-      let locationData = responseJSON.data.locationDetails;
+      let locationData = resp.locationDetails;
       setGeoCoordinates(locationData); 
     }
     catch (e) {
@@ -179,14 +179,15 @@ const ConditionsForm = ({ navigation })  => {
     const routeParams = {
       lat: geoCoordinates.lat,
       long: geoCoordinates.lon,
-      species: species.name,
+      species: species.id,
       location: geoCoordinates,
       temperature: temperature,
       date: date.getTime(), 
       isSunny: isSunny,
       isRaining: isRaining,
       waterClarity: waterClarity,
-      structure: "Structure" 
+      structure: "weed",
+      userLures: "false"
     };
     navigate(NAV_LURES_RESULTS, routeParams)
   };
@@ -496,7 +497,7 @@ const ConditionsForm = ({ navigation })  => {
             return (
               <TouchableOpacity key={waterClarityItem.name} style={[flex_style.flex, flex_style.column, flex_style.center]} onPress={event => setWaterClarity(waterClarityItem.name)}>
                 <Image source={waterClarityItem.image} style={[img_styles.rectangle_image_xxs, waterClarity == waterClarityItem.name ? btn_style.buttonReversed : null]}></Image>
-                <Text style={[waterClarity == waterClarityItem.name ? text_style.bold : null]}>{waterClarityItem.name}</Text>
+                <Text style={[waterClarity == waterClarityItem.name ? text_style.bold : null]}>{waterClarityItem.name} </Text>
               </TouchableOpacity>
             )
           })}

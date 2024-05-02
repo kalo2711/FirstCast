@@ -455,6 +455,12 @@ export const img_styles = StyleSheet.create({
     height: 50,
     resizeMode: 'contain'
   },
+  rectangle_image_xs: {
+    width: 100,
+    marginLeft: 10,
+    height: 70,
+    resizeMode: 'contain'
+  },
   rectangle_image_s: {
     width: 200,
     height: 100,

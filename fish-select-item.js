@@ -11,7 +11,7 @@ const FishSelectItem = ({ onSelectFish, isSelected, fish }) => {
       onPress={(event) => onSelectFish(fish)}
     >
       <Image source={fish.image} style={[img_styles.rectangle_image_s]} />
-      <Text style={{ color: isSelected ? primary_color : 'black' }}>{loadTranslations(fish.name)}</Text>
+      <Text style={{ color: isSelected ? primary_color : 'black' }}>{loadTranslations(fish.name)} </Text>
     </TouchableOpacity>
   );
 };

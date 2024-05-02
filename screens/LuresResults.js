@@ -33,8 +33,6 @@ export default function LuresResults({ route }) {
 
 
     useEffect(()=>{
-      console.log('rtest1')
-      console.log(route)
       if(route.params) {
         fetchResultsForConditons()
       }
@@ -43,8 +41,6 @@ export default function LuresResults({ route }) {
     const fetchResultsForConditons = async () => {
       setLoading(true)
       const url = `${environment.host}api/lures?lat=${route.params.lat}&long=${route.params.long}&species=${route.params.species}&structure=${route.params.structure}&waterClarity=${route.params.waterClarity}&userLures=${route.params.userLures}`
-      console.log('test1 :')
-      console.log(url)
       const response = await fetch(
         url,
         {
@@ -60,7 +56,6 @@ export default function LuresResults({ route }) {
 
   
       const res = await responseDataHandler(response);
-      console.log(res?.lures)
       setLoading(false);
       setLures(res?.lures);
       if(res?.moonPhases) {
@@ -82,29 +77,29 @@ export default function LuresResults({ route }) {
       <View style={styles.weatherContainer}>
         <View style={styles.weatherItem}>
           <MaterialIcons name="dark-mode" size={22} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {moonPhase.prevPhase.phase === 3 || moonPhase.prevPhase.phase === 1 ?
-            loadTranslations('fishFullFromFeeding') : moonPhaseLabels[moonPhase.prevPhase.phase]}
-          </Text>
+          {moonPhase.prevPhase.phase === 3 || moonPhase.prevPhase.phase === 1 ?
+          <Text style={{ marginLeft: 5 }}> {loadTranslations('fishFullFromFeeding')} </Text>:
+          <Text> {moonPhaseLabels[moonPhase.prevPhase.phase]} </Text> } 
         </View>
         <View style={styles.weatherItem}>
           <MaterialIcons name="water-drop" size={24} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {weather.precipitation ? loadTranslations('rainedFishFed') : loadTranslations('noPrecipitationsFishHungry')}
-          </Text>
+          {weather.precipitation ? 
+          <Text style={{ marginLeft: 5 }}>{loadTranslations('rainedFishFed')} </Text> : 
+          <Text style={{ marginLeft: 5 }}>{loadTranslations('noPrecipitationsFishHungry')}  </Text>}
         </View>
         <View style={styles.weatherItem}>
           <MaterialIcons name="air" size={24} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {weather.windGust > 10 && waterCondition !== 'muddy' ? loadTranslations('windYesterdayWaterDirty')  : `${weather.windGust} mph`}
-          </Text>
+          {weather.windGust > 10 && waterCondition !== 'Muddy' ? 
+          <Text style={{ marginLeft: 5 }}> {loadTranslations('windYesterdayWaterDirty')} </Text>  : 
+          <Text style={{ marginLeft: 5 }}> {`${weather.windGust} mph`} </Text>}
         </View>
         <View style={styles.weatherItem}>
           <MaterialIcons name="brightness-3" size={24} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {moonPhase.nextPhase.daysUntilNext <= 2 && moonPhase.nextPhase.phase === 1 ? loadTranslations('nextMoonPhaseFishActive') :
-             (moonPhase.nextPhase.phase === 2 || moonPhase.nextPhase.phase === 4) ? loadTranslations('nextMoonPhaseFishLessActive') : ''}
-          </Text>
+          {moonPhase.nextPhase.daysUntilNext <= 2 && moonPhase.nextPhase.phase === 1 ? 
+          <Text style={{ marginLeft: 5 }}>{loadTranslations('nextMoonPhaseFishActive')} </Text> :
+            (moonPhase.nextPhase.phase === 2 || moonPhase.nextPhase.phase === 4) ? 
+            <Text style={{ marginLeft: 5 }}>{loadTranslations('nextMoonPhaseFishLessActive')} </Text> :
+            <Text style={{ marginLeft: 5 }}> </Text>}
         </View>
       </View>
     );
@@ -130,7 +125,7 @@ export default function LuresResults({ route }) {
       marginVertical: 7,          
       marginHorizontal: 10,   
       borderRadius: 20,        
-      backgroundColor: 'rgba(247, 255, 247, 0.8)',
+      backgroundColor: 'rgb(251, 255, 251)',
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -163,21 +158,23 @@ export default function LuresResults({ route }) {
       marginBottom: 5
     }
   });
-
+  
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       <Image source={{ uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg" }} style={{ width: '100%', height: 330 }} />
       <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15, marginTop: 9, marginBottom: 4, }}>
       {loadTranslations('luresRecommendedByLucas')}
-    </Text>
-    {weather && 
-      <WeatherAndMoonPhase weather={weather} moonPhase={moon} />
-    }
-      <FlatList
-        data={lures}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => `lure-${index}`}
-      />
+      </Text>
+      <ScrollView>
+        {weather && 
+          <WeatherAndMoonPhase weather={weather} moonPhase={moon} waterCondition={route.params.waterClarity} />
+        }
+          <FlatList
+            data={lures}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => `lure-${index}`}
+          />
+      </ScrollView>
     </View>
   );
 }
