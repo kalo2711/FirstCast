@@ -19,7 +19,7 @@ export async function getAuthToken(navigateIfNotAuth = true) {
 
 export async function setAuthToken(token) {
   if (!token) {
-    // navigate(NAV_AUTHENTICATION)
+    navigate(NAV_AUTHENTICATION)
     return await SecureStore.setItemAsync(SECURE_STORE_ITEM_KEY, '')
   } else {
     return await SecureStore.setItemAsync(SECURE_STORE_ITEM_KEY, token)
