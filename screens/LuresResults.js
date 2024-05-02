@@ -125,7 +125,7 @@ export default function LuresResults({ route }) {
       marginVertical: 7,          
       marginHorizontal: 10,   
       borderRadius: 20,        
-      backgroundColor: 'rgba(247, 255, 247, 0.8)',
+      backgroundColor: 'rgb(251, 255, 251)',
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -158,7 +158,7 @@ export default function LuresResults({ route }) {
       marginBottom: 5
     }
   });
-  console.log(moon)
+  
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       <Image source={{ uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg" }} style={{ width: '100%', height: 330 }} />
