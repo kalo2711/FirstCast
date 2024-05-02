@@ -172,7 +172,22 @@ const ConditionsForm = () => {
     setSpecies(selectedFish)
   }
 
-  const handleFormSubmit = () => {
+  const handleLureFormSubmit = () => {
+    const speciesName = species.name
+    console.log({
+      speciesName,
+      location,
+      temperature,
+      date,
+      hour,
+      isSunny,
+      isRaining,
+      waterClarity,
+      biometricPressure,
+    });
+  };
+
+  const handleRodFormSubmit = () => {
     const speciesName = species.name
     console.log({
       speciesName,
@@ -649,7 +664,7 @@ const ConditionsForm = () => {
         )}
         </View>
       <TouchableOpacity
-        onPress={handleFormSubmit}
+        onPress={handleLureFormSubmit}
         style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
       >
         <Text
@@ -661,6 +676,21 @@ const ConditionsForm = () => {
           ]}
         >
           {loadTranslations("findLures")}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={handleRodFormSubmit}
+        style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
+      >
+        <Text
+          style={[
+            text_style.fontColorWhite,
+            text_style.bold,
+            flex_style.width100,
+            text_style.alignCenter,
+          ]}
+        >
+          {loadTranslations("findRods")}
         </Text>
       </TouchableOpacity>
     </ScrollView>
