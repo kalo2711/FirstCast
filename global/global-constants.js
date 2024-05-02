@@ -73,7 +73,7 @@ const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
 const NAV_CONDITIONS_FORM = 'ConditionsForm'
 const NAV_LURES_FORM = 'Lures'
-const NAV_REQUEST_LURE_FORM = 'RequestLure'
+const NAV_REQUEST_LURE_FORM = 'RequestNewLure'
 const NAV_LURES_RESULTS = 'LuresResults'
 const NAV_CONDITIONS_RESULTS = 'ConditionsResults'
 
