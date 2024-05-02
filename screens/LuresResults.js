@@ -11,6 +11,7 @@ import { NAV_LURES_RESULTS, tutorial_styles } from "../global/global-constants";
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { getNextTutorialForPage } from "../global/utils/tutorial.utils";
 import TutorialTooltip from './TutorialTooltip'
+import { AddToMyLureButton } from "../components/addToMyLuresButton";
 
 export default function LuresResults({ route }) {
   const [previousWeather, setPreviousWeather] = useState({
@@ -29,7 +30,7 @@ export default function LuresResults({ route }) {
   });
   const [lures, setLures] = useState([
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_506__01_temp.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_506__01_temp.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "0",
@@ -40,7 +41,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_fw__S19__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_fw__S19__01.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "0",
@@ -51,7 +52,7 @@ export default function LuresResults({ route }) {
     "price": 6.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssp5_ft.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssp5_ft.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "0",
@@ -62,7 +63,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_514__01_temp.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_514__01_temp.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "0",
@@ -73,7 +74,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_hhsgn__S19.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_hhsgn__S19.jpg",
     "color1": "grey",
     "color2": "gold",
     "size": "0",
@@ -84,7 +85,7 @@ export default function LuresResults({ route }) {
     "price": 6.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_rb__S19__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_rb__S19__01.jpg",
     "color1": "grey",
     "color2": "green",
     "size": "0",
@@ -95,7 +96,7 @@ export default function LuresResults({ route }) {
     "price": 6.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_sblu__S19__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_sblu__S19__01.jpg",
     "color1": "grey",
     "color2": "blue",
     "size": "0",
@@ -106,7 +107,7 @@ export default function LuresResults({ route }) {
     "price": 6.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_512__01_temp.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_512__01_temp.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "0",
@@ -117,7 +118,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_hhsg__S19__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_hhsg__S19__01.jpg",
     "color1": "green",
     "color2": "grey",
     "size": "0",
@@ -128,7 +129,7 @@ export default function LuresResults({ route }) {
     "price": 6.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssp5_rw.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssp5_rw.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "0",
@@ -139,7 +140,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_535__01_temp.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/t/etic-512-30_535__01_temp.jpg",
     "color1": "brown",
     "color2": "black",
     "size": "0",
@@ -150,7 +151,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_pink__S19__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_pink__S19__01.jpg",
     "color1": "grey",
     "color2": "red",
     "size": "0",
@@ -161,7 +162,7 @@ export default function LuresResults({ route }) {
     "price": 6.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/d/i/direct-lt0-yb_yellow---black.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/d/i/direct-lt0-yb_yellow---black.jpg",
     "color1": "gold",
     "color2": "grey",
     "size": "0",
@@ -172,7 +173,7 @@ export default function LuresResults({ route }) {
     "price": 6.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_s__S19__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-g22_s__S19__01.jpg",
     "color1": "grey",
     "color2": "purple",
     "size": "0",
@@ -183,7 +184,7 @@ export default function LuresResults({ route }) {
     "price": 6.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_glo-gl.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_glo-gl.jpg",
     "color1": "grey",
     "color2": "red",
     "size": "0.25",
@@ -194,7 +195,7 @@ export default function LuresResults({ route }) {
     "price": 8.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_fy.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_fy.jpg",
     "color1": "grey",
     "color2": "green",
     "size": "0.25",
@@ -205,7 +206,7 @@ export default function LuresResults({ route }) {
     "price": 8.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_zr.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_zr.jpg",
     "color1": "grey",
     "color2": "green",
     "size": "0.25",
@@ -216,7 +217,7 @@ export default function LuresResults({ route }) {
     "price": 8.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_nickel.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_nickel.jpg",
     "color1": "grey",
     "color2": "blue",
     "size": "0.25",
@@ -227,7 +228,7 @@ export default function LuresResults({ route }) {
     "price": 8.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_fo-arg.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_fo-arg.jpg",
     "color1": "grey",
     "color2": "green",
     "size": "0.25",
@@ -238,7 +239,7 @@ export default function LuresResults({ route }) {
     "price": 8.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_ch.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-4_ch.jpg",
     "color1": "grey",
     "color2": "green",
     "size": "0.25",
@@ -249,7 +250,7 @@ export default function LuresResults({ route }) {
     "price": 8.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_nickel.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_nickel.jpg",
     "color1": "grey",
     "color2": "red",
     "size": "0.33",
@@ -260,7 +261,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_ch.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_ch.jpg",
     "color1": "green",
     "color2": "grey",
     "size": "0.33",
@@ -271,7 +272,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_glo-lu.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_glo-lu.jpg",
     "color1": "grey",
     "color2": "blue",
     "size": "0.33",
@@ -282,7 +283,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_fy.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_fy.jpg",
     "color1": "chartreuse",
     "color2": "grey",
     "size": "0.33",
@@ -293,7 +294,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_zr.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_zr.jpg",
     "color1": "red",
     "color2": "grey",
     "size": "0.33",
@@ -304,7 +305,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_g-or.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/e/m/emery-5_g-or.jpg",
     "color1": "grey",
     "color2": "red",
     "size": "0.33",
@@ -315,7 +316,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/d/r/drifter-800j_34.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/d/r/drifter-800j_34.jpg",
     "color1": "purple",
     "color2": "grey",
     "size": "10",
@@ -326,7 +327,7 @@ export default function LuresResults({ route }) {
     "price": 34.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/d/r/drifter-800j_8.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/d/r/drifter-800j_8.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "10",
@@ -337,7 +338,7 @@ export default function LuresResults({ route }) {
     "price": 34.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/h/a/hard-sw105dc_purple-haze__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/h/a/hard-sw105dc_purple-haze__01.jpg",
     "color1": "purple",
     "color2": "grey",
     "size": "12",
@@ -348,7 +349,7 @@ export default function LuresResults({ route }) {
     "price": 7.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_gl-blu.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_gl-blu.jpg",
     "color1": "grey",
     "color2": "blue",
     "size": "3.25",
@@ -359,7 +360,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_rouge-chrome__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_rouge-chrome__01.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "3.25",
@@ -370,7 +371,7 @@ export default function LuresResults({ route }) {
     "price": 6.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_eb.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_eb.jpg",
     "color1": "blue",
     "color2": "grey",
     "size": "3.25",
@@ -381,7 +382,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_sc.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_sc.jpg",
     "color1": "brown",
     "color2": "black",
     "size": "3.25",
@@ -392,7 +393,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_bleu-cuivre__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_bleu-cuivre__01.jpg",
     "color1": "grey",
     "color2": "red",
     "size": "3.25",
@@ -403,7 +404,7 @@ export default function LuresResults({ route }) {
     "price": 6.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_bleu-chrome__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_bleu-chrome__01.jpg",
     "color1": "grey",
     "color2": "purple",
     "size": "3.25",
@@ -414,7 +415,7 @@ export default function LuresResults({ route }) {
     "price": 6.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_bluegl.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_bluegl.jpg",
     "color1": "grey",
     "color2": "blue",
     "size": "3.25",
@@ -425,7 +426,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_jaune-chrome__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_jaune-chrome__01.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "3.25",
@@ -436,7 +437,7 @@ export default function LuresResults({ route }) {
     "price": 6.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_oc-.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_oc-.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "3.25",
@@ -447,7 +448,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_bleu-or__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-celtis_bleu-or__01.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "3.25",
@@ -458,7 +459,7 @@ export default function LuresResults({ route }) {
     "price": 6.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_sgwb__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_sgwb__01.jpg",
     "color1": "grey",
     "color2": "blue",
     "size": "3.5",
@@ -469,7 +470,7 @@ export default function LuresResults({ route }) {
     "price": 5.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_g-red__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_g-red__01.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "3.5",
@@ -480,7 +481,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_cgwo__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_cgwo__01.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "3.5",
@@ -491,7 +492,7 @@ export default function LuresResults({ route }) {
     "price": 5.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_gw-40__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_gw-40__01.jpg",
     "color1": "grey",
     "color2": "darkslategrey",
     "size": "3.5",
@@ -502,7 +503,7 @@ export default function LuresResults({ route }) {
     "price": 5.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_scg__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_scg__01.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "3.5",
@@ -513,7 +514,7 @@ export default function LuresResults({ route }) {
     "price": 5.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_s-red__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_s-red__01.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "3.5",
@@ -524,7 +525,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_sgwr__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_sgwr__01.jpg",
     "color1": "grey",
     "color2": "red",
     "size": "3.5",
@@ -535,7 +536,7 @@ export default function LuresResults({ route }) {
     "price": 5.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_gwy__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_gwy__01.jpg",
     "color1": "white",
     "color2": "grey",
     "size": "3.5",
@@ -546,7 +547,7 @@ export default function LuresResults({ route }) {
     "price": 5.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_cgw50__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/c/a/cami9283-stdm_cgw50__01.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "3.5",
@@ -557,7 +558,7 @@ export default function LuresResults({ route }) {
     "price": 5.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_mj__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-s3_mj__01.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "3.5",
@@ -568,7 +569,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssph5_sm.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssph5_sm.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "3.75",
@@ -579,7 +580,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssph5_p-per1.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssph5_p-per1.jpg",
     "color1": "grey",
     "color2": "green",
     "size": "3.75",
@@ -590,7 +591,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssph5_rt.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-ssph5_rt.jpg",
     "color1": "blue",
     "color2": "grey",
     "size": "3.75",
@@ -601,7 +602,7 @@ export default function LuresResults({ route }) {
     "price": 5.49
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_cop.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_cop.jpg",
     "color1": "salmon",
     "color2": "black",
     "size": "4",
@@ -612,7 +613,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70-1_fw.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70-1_fw.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "4",
@@ -623,7 +624,7 @@ export default function LuresResults({ route }) {
     "price": 12.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_ghc.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_ghc.jpg",
     "color1": "brown",
     "color2": "black",
     "size": "4",
@@ -634,7 +635,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_gold.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_gold.jpg",
     "color1": "green",
     "color2": "black",
     "size": "4",
@@ -645,7 +646,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_sn.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_sn.jpg",
     "color1": "grey",
     "color2": "black",
     "size": "4",
@@ -656,7 +657,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_tiger-clown__01_temp.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_tiger-clown__01_temp.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "4",
@@ -667,7 +668,7 @@ export default function LuresResults({ route }) {
     "price": 12.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_shc.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-w70_shc.jpg",
     "color1": "grey",
     "color2": "black",
     "size": "4",
@@ -678,7 +679,7 @@ export default function LuresResults({ route }) {
     "price": 3.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_grey.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_grey.jpg",
     "color1": "grey",
     "color2": "black",
     "size": "5.25",
@@ -689,7 +690,7 @@ export default function LuresResults({ route }) {
     "price": 10.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_ghc.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_ghc.jpg",
     "color1": "green",
     "color2": "black",
     "size": "5.25",
@@ -700,7 +701,7 @@ export default function LuresResults({ route }) {
     "price": 10.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_hn.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_hn.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "5.25",
@@ -711,7 +712,7 @@ export default function LuresResults({ route }) {
     "price": 13.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_gold.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_gold.jpg",
     "color1": "green",
     "color2": "black",
     "size": "5.25",
@@ -722,7 +723,7 @@ export default function LuresResults({ route }) {
     "price": 10.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_shc.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c80_shc.jpg",
     "color1": "grey",
     "color2": "black",
     "size": "5.25",
@@ -733,7 +734,7 @@ export default function LuresResults({ route }) {
     "price": 10.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_tsg__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_tsg__01.jpg",
     "color1": "pink",
     "color2": "grey",
     "size": "5.5",
@@ -744,7 +745,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_kgt.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_kgt.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "5.5",
@@ -755,7 +756,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hbsd-b.JPG",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hbsd-b.JPG",
     "color1": "grey",
     "color2": "blue",
     "size": "5.5",
@@ -766,7 +767,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hmc.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hmc.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "5.5",
@@ -777,7 +778,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_bpo.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_bpo.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "5.5",
@@ -788,7 +789,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hsd.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hsd.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "5.5",
@@ -799,7 +800,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hrt.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bfmx5_hrt.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "5.5",
@@ -810,7 +811,7 @@ export default function LuresResults({ route }) {
     "price": 9.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_grey.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_grey.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "6",
@@ -821,7 +822,7 @@ export default function LuresResults({ route }) {
     "price": 11.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_tgcl__01_temp.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_tgcl__01_temp.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "6",
@@ -832,7 +833,7 @@ export default function LuresResults({ route }) {
     "price": 11.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_h.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_h.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "6",
@@ -843,7 +844,7 @@ export default function LuresResults({ route }) {
     "price": 16.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_sn.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_sn.jpg",
     "color1": "grey",
     "color2": "black",
     "size": "6",
@@ -854,7 +855,7 @@ export default function LuresResults({ route }) {
     "price": 11.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_ghc.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_ghc.jpg",
     "color1": "green",
     "color2": "black",
     "size": "6",
@@ -865,7 +866,7 @@ export default function LuresResults({ route }) {
     "price": 11.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_hn.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/b/r/brecks-c90_hn.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "6",
@@ -876,7 +877,7 @@ export default function LuresResults({ route }) {
     "price": 16.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/l/u/lucky-111650_36-pea.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/l/u/lucky-111650_36-pea.jpg",
     "color1": "grey",
     "color2": "grey",
     "size": "6.5",
@@ -887,7 +888,7 @@ export default function LuresResults({ route }) {
     "price": 10.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/l/u/lucky-111650_363.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/l/u/lucky-111650_363.jpg",
     "color1": "grey",
     "color2": "black",
     "size": "6.5",
@@ -898,7 +899,7 @@ export default function LuresResults({ route }) {
     "price": 10.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/d/i/direct-lt8-rw_red---white.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/d/i/direct-lt8-rw_red---white.jpg",
     "color1": "grey",
     "color2": "brown",
     "size": "8",
@@ -909,7 +910,7 @@ export default function LuresResults({ route }) {
     "price": 4.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/d/i/direct-lt8-yb_yellow---black.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/d/i/direct-lt8-yb_yellow---black.jpg",
     "color1": "gold",
     "color2": "grey",
     "size": "8",
@@ -920,7 +921,7 @@ export default function LuresResults({ route }) {
     "price": 4.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/n/o/normark-bmsh09_smelt__01.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/n/o/normark-bmsh09_smelt__01.jpg",
     "color1": "grey",
     "color2": "green",
     "size": "9",
@@ -931,7 +932,7 @@ export default function LuresResults({ route }) {
     "price": 6.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/m/u/musky-101_lper.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/m/u/musky-101_lper.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "9",
@@ -942,7 +943,7 @@ export default function LuresResults({ route }) {
     "price": 34.99
     },
     {
-    "image": "https://www.sail.ca/media/catalog/product/m/u/musky-101_lper.jpg",
+    "id":1,"image": "https://www.sail.ca/media/catalog/product/m/u/musky-101_lper.jpg",
     "color1": "brown",
     "color2": "grey",
     "size": "9",
@@ -1040,6 +1041,9 @@ export default function LuresResults({ route }) {
         setCurrentTutorial={setCurrentTutorial}/>
       <Text style={{ fontWeight: 'bold' }}>Price: ${item.price}</Text>
       <Text>Effectiveness: {item.effectiveness}%</Text>
+      
+      <AddToMyLureButton option={item}/>
+      
     </View>
   </View>
 );
