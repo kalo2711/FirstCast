@@ -82,7 +82,6 @@ const AddLureModal = (props) => {
   useEffect(() => {
     const getTut = async () => {
      const tut = await getNextTutorialForPage(NAV_REQUEST_LURE_FORM)
-     console.log(tut)
      setCurrentTutorial(tut)
     }
    if (initialLoad) {
