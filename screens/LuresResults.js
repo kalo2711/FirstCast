@@ -43,7 +43,7 @@ export default function LuresResults({ route }) {
     const fetchResultsForConditons = async () => {
       setLoading(true)
       const url = `${environment.host}api/lures?lat=${route.params.lat}&long=${route.params.long}&species=${route.params.species}&structure=${route.params.structure}&waterClarity=${route.params.waterClarity}&userLures=${route.params.userLures}`
-      console.log('test1 :')
+      console.log('test2 :')
       console.log(url)
       const response = await fetch(
         url,
@@ -60,7 +60,8 @@ export default function LuresResults({ route }) {
 
   
       const res = await responseDataHandler(response);
-      console.log(res?.lures)
+      console.log("test 3")
+      console.log(res?.lures.length)
       setLoading(false);
       setLures(res?.lures);
       if(res?.moonPhases) {
@@ -125,7 +126,7 @@ export default function LuresResults({ route }) {
   const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
-      padding: 10,
+      padding: 25,
       alignItems: 'center',
       marginVertical: 7,          
       marginHorizontal: 10,   

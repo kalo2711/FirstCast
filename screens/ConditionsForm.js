@@ -179,14 +179,15 @@ const ConditionsForm = ({ navigation })  => {
     const routeParams = {
       lat: geoCoordinates.lat,
       long: geoCoordinates.lon,
-      species: species.name,
+      species: species.name.toLowerCase(),
       location: geoCoordinates,
       temperature: temperature,
       date: date.getTime(), 
       isSunny: isSunny,
       isRaining: isRaining,
       waterClarity: waterClarity,
-      structure: "Structure" 
+      structure: "weed",
+      userLures: "false"
     };
     navigate(NAV_LURES_RESULTS, routeParams)
   };
