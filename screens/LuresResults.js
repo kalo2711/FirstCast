@@ -77,36 +77,36 @@ export default function LuresResults({ route }) {
       <View style={styles.weatherContainer}>
         <View style={styles.weatherItem}>
           <MaterialIcons name="dark-mode" size={22} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {moonPhase.prevPhase.phase === 3 || moonPhase.prevPhase.phase === 1 ?
-            loadTranslations('fishFullFromFeeding') : moonPhaseLabels[moonPhase.prevPhase.phase]}
-          </Text>
+          {moonPhase.prevPhase.phase === 3 || moonPhase.prevPhase.phase === 1 ?
+          <Text style={{ marginLeft: 5 }}> {loadTranslations('fishFullFromFeeding')} </Text>:
+          <Text> {moonPhaseLabels[moonPhase.prevPhase.phase]} </Text> } 
         </View>
         <View style={styles.weatherItem}>
           <MaterialIcons name="water-drop" size={24} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {weather.precipitation ? loadTranslations('rainedFishFed') : loadTranslations('noPrecipitationsFishHungry')}
-          </Text>
+          {weather.precipitation ? 
+          <Text style={{ marginLeft: 5 }}>{loadTranslations('rainedFishFed')} </Text> : 
+          <Text style={{ marginLeft: 5 }}>{loadTranslations('noPrecipitationsFishHungry')}  </Text>}
         </View>
         <View style={styles.weatherItem}>
           <MaterialIcons name="air" size={24} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {weather.windGust > 10 && waterCondition !== 'muddy' ? loadTranslations('windYesterdayWaterDirty')  : `${weather.windGust} mph`}
-          </Text>
+          {weather.windGust > 10 && waterCondition !== 'Muddy' ? 
+          <Text style={{ marginLeft: 5 }}> {loadTranslations('windYesterdayWaterDirty')} </Text>  : 
+          <Text style={{ marginLeft: 5 }}> {`${weather.windGust} mph`} </Text>}
         </View>
         <View style={styles.weatherItem}>
           <MaterialIcons name="brightness-3" size={24} color="black" />
-          <Text style={{ marginLeft: 5 }}>
-            {moonPhase.nextPhase.daysUntilNext <= 2 && moonPhase.nextPhase.phase === 1 ? loadTranslations('nextMoonPhaseFishActive') :
-             (moonPhase.nextPhase.phase === 2 || moonPhase.nextPhase.phase === 4) ? loadTranslations('nextMoonPhaseFishLessActive') : ''}
-          </Text>
+          {moonPhase.nextPhase.daysUntilNext <= 2 && moonPhase.nextPhase.phase === 1 ? 
+          <Text style={{ marginLeft: 5 }}>{loadTranslations('nextMoonPhaseFishActive')} </Text> :
+            (moonPhase.nextPhase.phase === 2 || moonPhase.nextPhase.phase === 4) ? 
+            <Text style={{ marginLeft: 5 }}>{loadTranslations('nextMoonPhaseFishLessActive')} </Text> :
+            <Text style={{ marginLeft: 5 }}> </Text>}
         </View>
       </View>
     );
 
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
-      <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_xs, { width: 100 }]} />
+      <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
       <View style={styles.detailsContainer}>
         <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
         <Text>{loadTranslations('type')}: {item.type}</Text>
@@ -120,7 +120,7 @@ export default function LuresResults({ route }) {
   const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
-      padding: 25,
+      padding: 10,
       alignItems: 'center',
       marginVertical: 7,          
       marginHorizontal: 10,   
@@ -158,7 +158,7 @@ export default function LuresResults({ route }) {
       marginBottom: 5
     }
   });
-
+  console.log(moon)
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       <Image source={{ uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg" }} style={{ width: '100%', height: 330 }} />
@@ -167,7 +167,7 @@ export default function LuresResults({ route }) {
       </Text>
       <ScrollView>
         {weather && 
-          <WeatherAndMoonPhase weather={weather} moonPhase={moon} />
+          <WeatherAndMoonPhase weather={weather} moonPhase={moon} waterCondition={route.params.waterClarity} />
         }
           <FlatList
             data={lures}

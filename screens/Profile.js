@@ -88,7 +88,7 @@ export default function Profile({ navigation }) {
   const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
-      padding: 25,
+      padding: 10,
       alignItems: 'center',
       marginVertical: 7,          
       marginHorizontal: 10,   
@@ -154,7 +154,7 @@ export default function Profile({ navigation }) {
           data={lures}
           renderItem={({item}) => 
           <View style={styles.itemContainer}>
-            <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_xs, { width: 100 }]} />
+            <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
             <View style={styles.detailsContainer}>
               <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
               <Text>{loadTranslations('type')}: {item.type}</Text>
