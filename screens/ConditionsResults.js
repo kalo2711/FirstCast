@@ -186,23 +186,21 @@ const [initialLoad, setInitialLoad] = useState(true);
     <View style={[flex_style.absoluteContainerFull, padding_styles.space_md, padding_styles.safetyTop]}>
       {Object.keys(conditions).map((fishSpecies, index) => (
         <View key={index} style={{ marginBottom: 10 }}>
-
-          <TutorialTooltip conditions={currentTutorial == 'Species' && index == 0} style={tutorial_styles.doubleLine} 
-            tutorial='Species' translations='tutSpecies' tutRoute={NAV_CONDITIONS_RESULTS}
-            setCurrentTutorial={setCurrentTutorial}/>
-
           <TouchableOpacity style={[btn_style.button, btn_style.round]} onPress={() => toggleFishExpansion(fishSpecies)}>
             <Text style={[text_style.bold, text_style.fontColorWhite]}>
               {loadTranslations(fishSpecies)}
             </Text>
           </TouchableOpacity>
+          <TutorialTooltip conditions={currentTutorial == 'Species' && index == 0} style={tutorial_styles.doubleLine} 
+            tutorial='Species' translations='tutSpecies' tutRoute={NAV_CONDITIONS_RESULTS}
+            setCurrentTutorial={setCurrentTutorial} placement='bottom'/>
           {expandedFish.includes(fishSpecies) && (
             <FlatList
               ListHeaderComponent={<View style={[flex_style.flex, flex_style.center, flex_style.column, margin_styles.vertical_space_md]}>
                 
                 <TutorialTooltip conditions={currentTutorial == 'ConditionsGuide' && index == 0} style={tutorial_styles.doubleLine} 
                   tutorial='ConditionsGuide' translations='tutConditionsGuide' tutRoute={NAV_CONDITIONS_RESULTS}
-                  setCurrentTutorial={setCurrentTutorial}/>
+                  setCurrentTutorial={setCurrentTutorial} tooltipStyle={{marginTop: 10}}/>
 
                 {reactIfView(expandedFish[0] == 'pike' || expandedFish[0] == 'walleye',
                   <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg"}}></Image>
