@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Image, FlatList, StyleSheet } from "react-native";
 import {
   btn_style,
@@ -7,13 +7,14 @@ import {
   text_style,
   img_styles,
 } from "../global/global-styles";
-import { primary_color, black } from "../global/global-constants";
+import { primary_color, black, NAV_LURES_RESULTS, tutorial_styles } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import { useEffect } from "react";
 import { environment } from "../global/environment";
 import { responseDataHandler } from "../global/global-functions";
 import { getAuthToken } from "../global/utils/auth.utils";
+import { getNextTutorialForPage } from "../global/utils/tutorial.utils";
+import TutorialTooltip from './TutorialTooltip'
 
 
 export default function LuresResults({ route }) {
@@ -30,13 +31,25 @@ export default function LuresResults({ route }) {
   const [lures, setLures] = useState(null)
   const [weather, setWeather] = useState(null)
   const [moon, setMoon] = useState(null)
-
+  const [currentTutorial, setCurrentTutorial] = useState(null);
+  const [initialLoad, setInitialLoad] = useState(true);
 
     useEffect(()=>{
       if(route.params) {
         fetchResultsForConditons()
       }
     },[])
+
+    useEffect(() => {
+      const getTut = async () => {
+        const tut = await getNextTutorialForPage(NAV_LURES_RESULTS)
+        setCurrentTutorial(tut)
+      }
+      if (initialLoad) {
+        getTut();
+        setInitialLoad(false)
+      }
+    }, []);
 
     const fetchResultsForConditons = async () => {
       setLoading(true)
@@ -73,8 +86,11 @@ export default function LuresResults({ route }) {
     }
 
 
-    const WeatherAndMoonPhase = ({ weather, moonPhase, waterCondition }) => (
+    const WeatherAndMoonPhase = ({ weather, moonPhase, waterCondition }) => (<>
       <View style={styles.weatherContainer}>
+        <TutorialTooltip conditions={currentTutorial == 'MoonPhase'} style={tutorial_styles.multiLine} 
+          tutorial='MoonPhase' translations='tutMoonPhase' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
         <View style={styles.weatherItem}>
           <MaterialIcons name="dark-mode" size={22} color="black" />
           <Text style={{ marginLeft: 5 }}>
@@ -82,6 +98,9 @@ export default function LuresResults({ route }) {
             loadTranslations('fishFullFromFeeding') : moonPhaseLabels[moonPhase.prevPhase.phase]}
           </Text>
         </View>
+        <TutorialTooltip conditions={currentTutorial == 'PreviousWeather'} style={tutorial_styles.multiLine} 
+          tutorial='PreviousWeather' translations='tutPreviousWeather' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
         <View style={styles.weatherItem}>
           <MaterialIcons name="water-drop" size={24} color="black" />
           <Text style={{ marginLeft: 5 }}>
@@ -102,16 +121,44 @@ export default function LuresResults({ route }) {
           </Text>
         </View>
       </View>
-    );
+    </>);
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item, index }) => (
     <View style={styles.itemContainer}>
       <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_xs, { width: 100 }]} />
       <View style={styles.detailsContainer}>
+        <TutorialTooltip conditions={currentTutorial == 'LureBrands' && index==0} style={tutorial_styles.singleLine} 
+          tutorial='LureBrands' translations='tutBrands' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
+          
+        <TutorialTooltip conditions={currentTutorial == 'LureModels' && index==0} style={tutorial_styles.singleLine} 
+          tutorial='LureModels' translations='tutModel' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
         <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
+
+        <TutorialTooltip conditions={currentTutorial == 'LureType' && index==0} style={tutorial_styles.singleLine} 
+          tutorial='LureType' translations='tutType' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
         <Text>{loadTranslations('type')}: {item.type}</Text>
+
+        <TutorialTooltip conditions={currentTutorial == 'LureColors' && index==0} style={tutorial_styles.doubleLine} 
+          tutorial='LureColors' translations='tutColors' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
         <Text>{loadTranslations('colors')}: {item.color1}/{item.color2}</Text>
+
+        <TutorialTooltip conditions={currentTutorial == 'LureSize' && index==0} style={tutorial_styles.singleLine} 
+          tutorial='LureSize' translations='tutSize' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
+        {/* size attr here */}
+        
+        <TutorialTooltip conditions={currentTutorial == 'LureWeight' && index==0} style={tutorial_styles.singleLine} 
+          tutorial='LureWeight' translations='tutWeight' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
         <Text>{loadTranslations('weight')}: {item.weight}oz</Text>
+
+        <TutorialTooltip conditions={currentTutorial == 'LurePrice' && index==0} style={tutorial_styles.doubleLine} 
+          tutorial='LurePrice' translations='tutPrice' tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}/>
         <Text style={{ fontWeight: 'bold' }}>{loadTranslations('price')}: ${item.price}</Text>
       </View>
     </View>
@@ -161,6 +208,9 @@ export default function LuresResults({ route }) {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <TutorialTooltip conditions={currentTutorial == 'ResultsGuide'} style={tutorial_styles.doubleLine} 
+        tutorial='ResultsGuide' translations='tutGuide' tutRoute={NAV_LURES_RESULTS}
+        setCurrentTutorial={setCurrentTutorial}/>
       <Image source={{ uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg" }} style={{ width: '100%', height: 330 }} />
       <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15, marginTop: 9, marginBottom: 4, }}>
       {loadTranslations('luresRecommendedByLucas')}
