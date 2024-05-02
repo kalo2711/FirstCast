@@ -3,7 +3,7 @@ import { loadTranslations } from "../global/localization";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import Icon from "react-native-ico-material-design";
 import { addToMyLures } from "../global/utils/add-to-my-lures.util";
-import { primary_color } from "../global/global-constants";
+import { ADD_ICON, COLOR_ERROR, COLOR_SUCCEED, X_ICON, primary_color } from "../global/global-constants";
 import {
     btn_style,
     flex_style,
@@ -36,18 +36,18 @@ export function AddToMyLureButton({ option }) {
 
     function onPass() {
         setButtonContent(loadTranslations('addToMyLuresSucceed'));
-        setButtonIcon('check-symbol');
-        setIconColor('green');
+        setButtonIcon(ADD_ICON);
+        setIconColor(COLOR_SUCCEED);
     }
     function onFail() {
         setButtonContent(loadTranslations('addToMyLuresFail'));
-        setButtonIcon('close-button');
-        setIconColor('red');
+        setButtonIcon(X_ICON);
+        setIconColor(COLOR_ERROR);
     }
     function onFailDupe() {
         setButtonContent(loadTranslations('addToMyLuresDupe'));
-        setButtonIcon('close-button');
-        setIconColor('red')
+        setButtonIcon(X_ICON);
+        setIconColor(COLOR_ERROR)
     }
 
     return (

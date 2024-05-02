@@ -129,6 +129,8 @@ const JOIN = "join";
 const CREATE = "create";
 const USD_ICON = "logo-usd";
 const HELP_ICON = "help-circle-outline";
+const ADD_ICON = "check-symbol";
+const X_ICON = "close-button";
 const HEIGHT_STRING = "height";
 const PADDING = "padding";
 const LARGE = "large";
@@ -142,6 +144,7 @@ const GRANTED = "granted";
 //text Color
 const COLOR_ERROR = "red";
 const COLOR_NORMAL = "black";
+const COLOR_SUCCEED = "green";
 
 //behavior
 const POSITION = "position";
@@ -272,6 +275,7 @@ export {
   FORM_INPUT,
   COLOR_ERROR,
   COLOR_NORMAL,
+  COLOR_SUCCEED,
   POST,
   JPG,
   NO,
@@ -332,6 +336,8 @@ export {
   DEFAULT_IMAGE,
   ERROR_ICON,
   CORRECT_ICON,
+  ADD_ICON,
+  X_ICON,
   MESSAGE,
   API_UPDATE_BLOCKED_DATE,
   CREATE_LOBBY,
