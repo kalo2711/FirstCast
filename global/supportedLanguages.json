@@ -146,8 +146,7 @@
         "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
         "tutLureSubmit":"Once all required details are provided, click here to request the lure.",
         "navLures": "Lures",
-        "navConditions": "Conditions",
-        "colors": "Colors"
+        "navConditions": "Conditions"
     },
     "fr": {
         "bioPressure": "Pression biométrique",
@@ -295,7 +294,6 @@
         "speedFast": "Rapide",
         "depth": "Profondeur",
         "navLures": "Leurres",
-        "navConditions": "Conditions",
-        "colors": "Couleurs"
+        "navConditions": "Conditions"
     }
 }
