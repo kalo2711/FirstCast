@@ -179,7 +179,7 @@ const ConditionsForm = ({ navigation })  => {
     const routeParams = {
       lat: geoCoordinates.lat,
       long: geoCoordinates.lon,
-      species: species.name.toLowerCase(),
+      species: species.id,
       location: geoCoordinates,
       temperature: temperature,
       date: date.getTime(), 

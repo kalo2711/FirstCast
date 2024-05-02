@@ -106,7 +106,7 @@ export default function LuresResults({ route }) {
 
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
-      <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
+      <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_xs, { width: 100 }]} />
       <View style={styles.detailsContainer}>
         <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
         <Text>{loadTranslations('type')}: {item.type}</Text>
