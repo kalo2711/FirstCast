@@ -1,20 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import {
-  CIRCLE,
-  CIRCLE_OUTLINE,
   ICON_SIZE_XS,
   NAV_AUTHENTICATION,
   NAV_EDIT_PROFILE,
   NAV_GENERAL_PROFILE,
   NAV_HOME_LIST,
   NAV_PROFILE,
+  NAV_CONDITIONS_FORM,
   NAV_LURES_FORM,
-  NAV_TUTORIAL,
-  PERSON,
-  PERSON_OUTLINE,
-  PROFILE,
-  black,
   grey_color,
+  lightgrey,
   primary_color,
 } from "./global/global-constants";
 import { navigate } from "./global/global-functions";
@@ -25,13 +20,12 @@ import {
   navbar_styles,
   text_style,
 } from "./global/global-styles";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
 import { Pressable, Text, View } from "react-native";
 import { loadTranslations } from "./global/localization";
 // import { getAuthToken } from "../../utils/auth.util";
 import { useNavigationState } from "@react-navigation/native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { setAuthToken } from "./global/utils/auth.utils";
+import { getAuthToken } from "./global/utils/auth.utils";
 
 export default function Navigation() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -52,31 +46,17 @@ export default function Navigation() {
 
   useEffect(() => {
     async function checkAuthentication() {
-      //   const token = await getAuthToken(false);
-      setAuthenticated(true);
+      const token = await getAuthToken(false);
+      if (token) {
+        setAuthenticated(true);
+      }
     }
     checkAuthentication();
   });
 
-  const handleProfilePress = () => {
-    navigate(authenticated ? NAV_PROFILE : NAV_AUTHENTICATION);
-  };
-
-  const handleHomePress = () => {
-    navigate(Conditions);
-  };
-
-  const homeColorCondition = () => {
-    return (
-      currentPage !== NAV_GENERAL_PROFILE &&
-      currentPage !== NAV_EDIT_PROFILE &&
-      currentPage !== NAV_AUTHENTICATION
-    );
-  };
-
   return (
     <View>
-      {true ? (
+      {!!authenticated ? (
         <View
           style={[
             flex_style.spaceEvenly,
@@ -86,54 +66,44 @@ export default function Navigation() {
           ]}
         >
           <Pressable
-            onPress={() => handleHomePress()}
-            style={[
-              btn_style.navButton,
-              navbar_styles.halfWidth,
-              btn_style.backgroundColorNone,
-            ]}
-            disabled={homeColorCondition()}
-          >
-            <View style={flex_style.center}>
-              <MaterialCommunityIcons
-                name={homeColorCondition() ? CIRCLE : CIRCLE_OUTLINE}
-                size={ICON_SIZE_XS}
-                color={homeColorCondition() ? black : grey_color}
-              />
-              <Text
-                style={
-                  homeColorCondition()
-                    ? text_style.fontColorBlack
-                    : text_style.fontColorGrey
-                }
-              >
-                {loadTranslations("generalHome")}
-              </Text>
-            </View>
-          </Pressable>
-          <Pressable
-            onPress={() => handleProfilePress()}
+            onPress={() => navigate(NAV_CONDITIONS_FORM)}
             style={[
               btn_style.button,
               navbar_styles.halfWidth,
               btn_style.backgroundColorNone,
             ]}
-            disabled={!homeColorCondition()}
           >
             <View style={flex_style.center}>
-              <Ionicons
-                name={!homeColorCondition() ? PERSON : PERSON_OUTLINE}
-                size={ICON_SIZE_XS}
-                color={!homeColorCondition() ? black : grey_color}
-              />
+              <FontAwesome5 name="cloud-sun" size={ICON_SIZE_XS} color={currentPage === NAV_CONDITIONS_FORM ? primary_color : grey_color} />
               <Text
                 style={
-                  !homeColorCondition()
+                  currentPage === NAV_CONDITIONS_FORM
                     ? text_style.fontColorBlack
                     : text_style.fontColorGrey
                 }
               >
-                {loadTranslations("generalProfile")}
+                {loadTranslations("navConditions")}
+              </Text>
+            </View>
+          </Pressable>
+          <Pressable
+            onPress={() => navigate(NAV_LURES_FORM)}
+            style={[
+              btn_style.button,
+              navbar_styles.halfWidth,
+              btn_style.backgroundColorNone,
+            ]}
+          >
+            <View style={flex_style.center}>
+              <Ionicons name="fish" size={ICON_SIZE_XS} color={currentPage === NAV_LURES_FORM ? primary_color : lightgrey} />
+              <Text
+                style={
+                  currentPage === NAV_LURES_FORM
+                    ? text_style.fontColorBlack
+                    : text_style.fontColorGrey
+                }
+              >
+                {loadTranslations("navLures")}
               </Text>
             </View>
           </Pressable>
