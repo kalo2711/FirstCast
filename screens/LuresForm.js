@@ -159,6 +159,14 @@ export default function LuresForm({ navigation }) {
                   setCurrentTutorial={setCurrentTutorial}
                   />
                     <DropdownWithModal noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
+                <TouchableOpacity
+                  onPress={() => { setBrandAndModalVisible(false) }}
+                  style={[btn_style.button, btn_style.round, btn_style.buttonReversed, margin_styles.top_md, flex_style.flex]}
+                >
+                  <Text style={[text_style.primaryColor,
+                  text_style.bold,
+                  text_style.alignCenter]}>{loadTranslations('close')}</Text>
+                </TouchableOpacity>
                   </View>
                 </Modal>
             </View>
