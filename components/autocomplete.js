@@ -25,7 +25,7 @@ const Item = ({item, onPress}) => (
 );
 
 
-const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton }) => {
+const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton, simple }) => {
   const [inputValue, setInputValue] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [items, setItems] = useState([]);
@@ -68,6 +68,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
   };
 
   const renderItem = ({ item }) => {
+    console.log(item);
     return (
       <Item
       item={item}
@@ -75,6 +76,18 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
     />
     );
   }
+
+  const renderSimpleItem = (item) => {
+    console.log(item);
+    return (
+      <Item
+      item={item}
+      onPress={() => handleSelectItem(item)}
+    />
+    );
+  }
+
+  
 
   return (
       <View style={[styles.container, {justifyContent: 'space-between'}]}>
@@ -87,6 +100,9 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           onChangeText={onType}
               />
       {!!inputValue && (
+        simple? 
+        items.map((item)=>{return renderSimpleItem(item)})
+        :
         <FlatList
         nestedScrollEnabled={true}
         style={styles.modalContainer}
@@ -94,6 +110,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
         renderItem={renderItem}
         keyExtractor={(item, index) => index}
       />
+        
       )}
       {reactIfView(!!inputValue && items?.length < 1,
         <Text style={[text_style.alignCenter, text_style.xs, text_style.fontColorRed]}>{loadTranslations(noItemsPlaceholder)}</Text>
