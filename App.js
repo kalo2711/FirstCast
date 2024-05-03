@@ -25,7 +25,7 @@ export default function App() {
     if (!fontLoaded) {
       setFontLoaded(true)
     }
-  })
+  },[fontLoaded])
 
   return <AppNavigator />;
 }

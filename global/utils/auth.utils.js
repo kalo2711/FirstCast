@@ -1,9 +1,8 @@
 import * as SecureStore from 'expo-secure-store'
 import { environment } from '../environment'
-import { JOIN_LOBBY, NAV_AUTHENTICATION, NAV_CONDITIONS_FORM, NAV_GENERAL_PROFILE, NAV_HOME_LIST, NAV_LURES_FORM, SECURE_STORE_ITEM_KEY, SecureStoreItemKey } from '../global-constants'
-import { navigate, responseDataHandler } from '../global-functions'
+import {  NAV_AUTHENTICATION, NAV_CONDITIONS_FORM, SECURE_STORE_ITEM_KEY } from '../global-constants'
+import { navigate } from '../global-functions'
 import { loadTranslations } from '../localization'
-import { Alert } from "react-native"
 
 export async function getAuthToken(navigateIfNotAuth = true) {
   const token = await SecureStore.getItemAsync(SECURE_STORE_ITEM_KEY)

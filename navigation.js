@@ -11,6 +11,8 @@ import {
   grey_color,
   lightgrey,
   primary_color,
+  NAV_CONDITIONS_RESULTS,
+  NAV_LURES_RESULTS,
 } from "./global/global-constants";
 import { navigate } from "./global/global-functions";
 import {
@@ -23,7 +25,6 @@ import {
 import { Ionicons, FontAwesome5, AntDesign } from "@expo/vector-icons";
 import { Pressable, Text, View } from "react-native";
 import { loadTranslations } from "./global/localization";
-// import { getAuthToken } from "../../utils/auth.util";
 import { useNavigationState } from "@react-navigation/native";
 import { getAuthToken } from "./global/utils/auth.utils";
 
@@ -39,12 +40,6 @@ export default function Navigation() {
   };
 
   useEffect(() => {
-    const currentRouteName =
-      navigationState?.routes[navigationState.index].name;
-    setCurrentPage(currentRouteName);
-  }, [navigationState, currentPage]);
-
-  useEffect(() => {
     async function checkAuthentication() {
       const token = await getAuthToken(false);
       if (token) {
@@ -52,11 +47,14 @@ export default function Navigation() {
       }
     }
     checkAuthentication();
-  });
+
+    const currentRouteName = navigationState?.routes[navigationState.index].name;
+    setCurrentPage(currentRouteName);
+  }, [navigationState, currentPage]);
 
   return (
     <View>
-      {!!authenticated ? (
+      {!!authenticated && currentPage !== NAV_AUTHENTICATION ? (
         <View
           style={[
             flex_style.spaceEvenly,
@@ -74,10 +72,10 @@ export default function Navigation() {
             ]}
           >
             <View style={flex_style.center}>
-              <FontAwesome5 name="cloud-sun" size={ICON_SIZE_XS} color={currentPage === NAV_CONDITIONS_FORM ? primary_color : grey_color} />
+              <FontAwesome5 name="cloud-sun" size={ICON_SIZE_XS} color={(currentPage === NAV_CONDITIONS_FORM || currentPage === NAV_LURES_RESULTS) ? primary_color : grey_color} />
               <Text
                 style={
-                  currentPage === NAV_CONDITIONS_FORM
+                  (currentPage === NAV_CONDITIONS_FORM || currentPage === NAV_LURES_RESULTS)
                     ? text_style.fontColorBlack
                     : text_style.fontColorGrey
                 }
@@ -95,10 +93,10 @@ export default function Navigation() {
             ]}
           >
             <View style={flex_style.center}>
-              <Ionicons name="fish" size={ICON_SIZE_XS} color={currentPage === NAV_LURES_FORM ? primary_color : lightgrey} />
+              <Ionicons name="fish" size={ICON_SIZE_XS} color={(currentPage === NAV_LURES_FORM || currentPage === NAV_CONDITIONS_RESULTS) ? primary_color : lightgrey} />
               <Text
                 style={
-                  currentPage === NAV_LURES_FORM
+                  (currentPage === NAV_LURES_FORM || currentPage === NAV_CONDITIONS_RESULTS)
                     ? text_style.fontColorBlack
                     : text_style.fontColorGrey
                 }

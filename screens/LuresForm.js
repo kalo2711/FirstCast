@@ -50,7 +50,7 @@ export default function LuresForm({ navigation }) {
 
   const handleFormSubmit = () => {
     navigation.navigate(NAV_CONDITIONS_RESULTS, {
-      lureOptionsId: lureOptionIdSelected ? lureOptionIdSelected : 3581,
+      lureOptionsId: lureOptionIdSelected,
     });
   };
 
@@ -113,7 +113,7 @@ export default function LuresForm({ navigation }) {
           {reactIfView(currentTutorial == 'brandOrModel',
           <View style={[flex_style.flex, flex_style.width100]}>
           <Tooltip
-          contentStyle={[{backgroundColor: primary_color, height: 50}]}
+          contentStyle={[{backgroundColor: primary_color, height: 60}]}
           backgroundColor={'rgba(0,0,0,0)'}
           isVisible={currentTutorial == 'brandOrModel'}
           content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBrandOrModel")}</Text>}
@@ -260,7 +260,7 @@ export default function LuresForm({ navigation }) {
         )}
         <TouchableOpacity
           onPress={handleFormSubmit}
-          style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
+          style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, lureOptionIdSelected ? null : btn_style.disabled]}
         >
           <Text
           style={[

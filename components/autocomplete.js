@@ -80,7 +80,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
       <View style={[styles.container, {justifyContent: 'space-between'}]}>
         <TextInput
           ref={inputRef}
-          style={[styles.input, { marginBottom: isModalVisible || !inputValue ? 0 : 50}]}
+          style={[styles.input]}
           value={inputValue}
           placeholder={placeholder}
           onFocus={toggleModal}
