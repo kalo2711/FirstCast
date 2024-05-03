@@ -24,14 +24,13 @@ import {
   white,
   IOS,
   NAV_REQUEST_LURE_FORM,
-  width
+  width,
+  tutorial_styles
 } from "./global/global-constants";
 import { environment } from "./global/environment";
 import { navigateBack, responseDataHandler } from "./global/global-functions";
 import { getAuthToken } from "./global/utils/auth.utils";
-import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
-import {reactIfView} from "./global/global-functions";
-import { getNextTutorialForPage, updateTutorialAndGetNext } from "./global/utils/tutorial.utils";
+import { getNextTutorialForPage } from "./global/utils/tutorial.utils";
 import TutorialTooltip from "./screens/TutorialTooltip";
 
 const AddLureModal = (props) => {
@@ -82,7 +81,6 @@ const AddLureModal = (props) => {
   useEffect(() => {
     const getTut = async () => {
      const tut = await getNextTutorialForPage(NAV_REQUEST_LURE_FORM)
-     console.log(tut)
      setCurrentTutorial(tut)
     }
    if (initialLoad) {
@@ -302,7 +300,7 @@ const AddLureModal = (props) => {
 
         <View style={[margin_styles.bottom_lg]}>
           <TutorialTooltip conditions={currentTutorial == 'photo'} style={tutorial_styles.doubleLine} 
-            tutorial='photo' translations='tutLureProto' tutRoute={NAV_REQUEST_LURE_FORM}
+            tutorial='photo' translations='tutLurePhoto' tutRoute={NAV_REQUEST_LURE_FORM}
             setCurrentTutorial={setCurrentTutorial}/>
           <View style={[flex_style.flex, {width: SpacingFormXLarge}]}>
             <Text>{loadTranslations("lurePhoto")}</Text>

@@ -139,16 +139,8 @@ export default function LuresForm({ navigation }) {
             </TouchableOpacity> : 
             <View style={[flex_style.one]}>
               <Modal visible={brandAndModalVisible} animationType="slide">
-                <TutorialTooltip conditions={currentTutorial == 'lureSearch'}                 
-                  style={tutorial_styles.doubleLine}
-                  tutorial='lureSearch'
-                  translations='tutLureSearch'
-                  tutRoute={NAV_LURES_FORM}
-                  setCurrentTutorial={setCurrentTutorial}
-                  placement="bottom"
-                />
                 <View style={[{ flex: 1, height: height, padding: 20, paddingTop: Platform.OS == 'ios' ? 80 : 0 }]}>
-                  <DropdownWithModal noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
+                  <DropdownWithModal placeholder={loadTranslations('tutLureSearch')} noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
                 </View>
             </Modal>
           </View>
