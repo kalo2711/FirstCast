@@ -16,7 +16,7 @@ export default function Authentication(props) {
   }
   useEffect(() => {
     async function checkAuthentication() {
-      setAuthenticatedRef(getAuthToken(false))
+      setAuthenticatedRef(getAuthToken())
     }
     if (!authenticated) {
       checkAuthentication()

@@ -119,7 +119,7 @@ const AddLureModal = (props) => {
     }
 
     const url = environment.host + '/api/custom/addLure'
-    const token = await getAuthToken(false)
+    const token = await getAuthToken();
     const response = await fetch(url, {
       method: 'POST',
       body: formData,

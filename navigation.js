@@ -41,7 +41,7 @@ export default function Navigation() {
 
   useEffect(() => {
     async function checkAuthentication() {
-      const token = await getAuthToken(false);
+      const token = await getAuthToken();
       if (token) {
         setAuthenticated(true);
       }
