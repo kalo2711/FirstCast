@@ -237,7 +237,12 @@ export const text_style = StyleSheet.create({
   fontColorPrimary: {
     fontFamily: 'open-sans-regular',
     color: primary_color
-  }
+  },
+  required: {
+    color: 'red',
+    fontSize: SpacingMedium,
+    marginLeft: SpacingExtraSmall
+  },
 })
 
 export const bio_style = StyleSheet.create({

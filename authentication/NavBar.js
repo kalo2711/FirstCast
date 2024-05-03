@@ -5,6 +5,7 @@ import LogIn from './Login.js'
 import SignUp from './SignUp.js'
 import { btn_style, margin_styles, flex_style, navbar_styles, padding_styles } from '../global/global-styles.js'
 import { loadTranslations } from '../global/localization.js'
+import { SpacingXLarge } from "../global/global-constants.js"
 
 const FIRST = 'first'
 const SECOND = 'second'
@@ -26,6 +27,7 @@ export default function NavBar(props) {
             btn_style.backgroundColorNone,
             padding_styles.none,
             activeButton === FIRST ? btn_style.buttonUnderline : null,
+            {height: SpacingXLarge}
           ]}
         >
           <Text>{loadTranslations("login")}</Text>
@@ -38,7 +40,8 @@ export default function NavBar(props) {
             activeButton === SECOND ? btn_style.buttonUnderline : null,
             navbar_styles.oneThirdWidth,
             btn_style.backgroundColorNone,
-            padding_styles.none
+            padding_styles.none,
+            {height: SpacingXLarge}
           ]}
         >
           <Text >{loadTranslations("signup")}</Text>

@@ -83,6 +83,7 @@ const RES_UNAUTHORIZED = "Unauthorized";
 const RES_VALID = "valid";
 
 // string-constant
+const ANDROID = "android";
 const IOS = "ios";
 const PASSWORD = "password";
 const EMAIL = "email";
@@ -353,6 +354,7 @@ export {
   HARDWAREBACKPRESS,
   lightgrey,
   USD_ICON,
+  ANDROID,
   IOS,
   HEIGHT_STRING,
   PADDING,
