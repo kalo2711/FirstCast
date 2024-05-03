@@ -198,7 +198,7 @@ const [initialLoad, setInitialLoad] = useState(true);
             <FlatList
               ListHeaderComponent={<View style={[flex_style.flex, flex_style.center, flex_style.column, margin_styles.vertical_space_md]}>
                 
-                <TutorialTooltip conditions={currentTutorial == 'ConditionsGuide' && index == 0} style={tutorial_styles.doubleLine} 
+git                 <TutorialTooltip conditions={currentTutorial == 'ConditionsGuide'} style={tutorial_styles.doubleLine} 
                   tutorial='ConditionsGuide' translations='tutConditionsGuide' tutRoute={NAV_CONDITIONS_RESULTS}
                   setCurrentTutorial={setCurrentTutorial} tooltipStyle={{marginTop: 10}}/>
 

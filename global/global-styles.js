@@ -84,8 +84,14 @@ export const flex_style = StyleSheet.create({
   width80: {
     width: '80%'
   },
+  width70: {
+    width: '70%'
+  },
   width50: {
     width: '50%'
+  },
+  width30: {
+    width: '30%'
   },
   flexBetweenContainer: {
     flexDirection: 'column',
@@ -192,7 +198,7 @@ export const text_style = StyleSheet.create({
     textAlign: 'right'
   },
   alignLeft: {
-    textAlign: 'right'
+    textAlign: 'left'
   },
   error: {
     color: 'red',
@@ -231,7 +237,12 @@ export const text_style = StyleSheet.create({
   fontColorPrimary: {
     fontFamily: 'open-sans-regular',
     color: primary_color
-  }
+  },
+  required: {
+    color: 'red',
+    fontSize: SpacingMedium,
+    marginLeft: SpacingExtraSmall
+  },
 })
 
 export const bio_style = StyleSheet.create({
@@ -286,6 +297,12 @@ export const btn_style = StyleSheet.create({
   },
   buttonSmall: {
     width: 200
+  },
+  buttonVerySmall: {
+    width: 50
+  },
+  buttonTopPadding: {
+    paddingTop: 10  
   },
   buttonFullWidth: {
     width: '100%'
@@ -441,6 +458,12 @@ export const img_styles = StyleSheet.create({
   rectangle_image_xxs: {
     width: 100,
     height: 50,
+    resizeMode: 'contain'
+  },
+  rectangle_image_xs: {
+    width: 100,
+    marginLeft: 10,
+    height: 70,
     resizeMode: 'contain'
   },
   rectangle_image_s: {

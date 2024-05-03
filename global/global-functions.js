@@ -23,18 +23,18 @@ export function navigateBack() {
   }
 }
 
-export async function responseDataHandler(response, navigateIfNotauth = true) {
+export async function responseDataHandler(response, navigateIfNotauth = false) {
   try {
-    responseJSON = await response.json();
+    let responseJSON = await response.json();
     if (responseJSON.status === RES_VALID) {
       return responseJSON.data;
     } else {
       return null;
     }
   } catch (e) {
-    // if (e.toString().includes(RES_UNAUTHORIZED) && navigateIfNotauth) {
-    //   await setAuthToken(null);
-    //   navigate(NAV_AUTHENTICATION);
-    // }
+    if (e.toString().includes(RES_UNAUTHORIZED) && navigateIfNotauth) {
+      await setAuthToken(null);
+      navigate(NAV_AUTHENTICATION);
+    }
   }
 }

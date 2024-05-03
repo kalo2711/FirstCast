@@ -68,6 +68,7 @@ const NAV_WHEEL_LOCATIONS = "LocationList";
 const NAV_GENERAL_PROFILE = "generalProfile";
 const NAV_TIME = "Time";
 const NAV_TUTORIAL = "Tutorial";
+const NAV_PROFILE = "Profile";
 const NAV_EDIT_PROFILE = "editProfile";
 const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
@@ -82,6 +83,7 @@ const RES_UNAUTHORIZED = "Unauthorized";
 const RES_VALID = "valid";
 
 // string-constant
+const ANDROID = "android";
 const IOS = "ios";
 const PASSWORD = "password";
 const EMAIL = "email";
@@ -298,6 +300,7 @@ export {
   API_REGISTER,
   API_GET_AD,
   API_GET_USER_INFO_AD,
+  NAV_PROFILE,
   NAV_EDIT_PROFILE,
   RES_UNAUTHORIZED,
   RES_VALID,
@@ -351,6 +354,7 @@ export {
   HARDWAREBACKPRESS,
   lightgrey,
   USD_ICON,
+  ANDROID,
   IOS,
   HEIGHT_STRING,
   PADDING,

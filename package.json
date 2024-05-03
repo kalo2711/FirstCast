@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "^6.9.26",
     "expo": "~50.0.15",
     "expo-camera": "^14.1.2",
+    "expo-checkbox": "^2.7.0",
     "expo-font": "^11.10.3",
     "expo-image-picker": "^14.7.1",
     "expo-location": "~16.5.5",

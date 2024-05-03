@@ -11,6 +11,7 @@ import {
   Platform,
   Image
 } from "react-native";
+import Checkbox from 'expo-checkbox';
 import {
   btn_style,
   flex_style,
@@ -20,7 +21,7 @@ import {
   padding_styles,
   text_style,
 } from "../global/global-styles";
-import {reactIfView} from "../global/global-functions";
+import {navigate, reactIfView} from "../global/global-functions";
 import {
   primary_color,
   green_color,
@@ -29,6 +30,8 @@ import {
   NAV_CONDITIONS_FORM,
   tutorial_styles,
   VALID,
+  NAV_LURES_RESULTS,
+  ANDROID,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
@@ -39,7 +42,7 @@ import { responseDataHandler } from "../global/global-functions";
 import { getNextTutorialForPage } from "../global/utils/tutorial.utils";
 import TutorialTooltip from './TutorialTooltip'
 
-const ConditionsForm = () => {
+const ConditionsForm = ({ navigation })  => {
   const [species, setSpecies] = useState(null);
   const [speciesModalVisible, setSpeciesModalVisible] = useState(false);
   const [temperature, setTemperature] = useState("");
@@ -52,17 +55,30 @@ const ConditionsForm = () => {
   const [isHighPressure, setIsHighPressure] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === IOS ? true : false);
   const [showTimePicker, setShowTimePicker] = useState(Platform.OS === IOS ? true : false);
-  const [fontLoaded, setFontLoaded] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [isStructureModalVisible, setStructureModalVisible] = useState(false);
   const [autofilledLocations, setAutofilledLocations] = useState([]);
   const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.501886', lon: '-73.567391' })
   const [locationName, setLocationName] = useState("");
+  const [userLures, setUserLures] = useState(false);
+  const [structure, setStructure] = useState("");
+  const [structureInput, setStructureInput] = useState("");
 
   const waterClarities = [
-    { id: 1, name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
-    { id: 2, name: loadTranslations('stained'), image: require('../assets/stained-water.jpg') },
-    { id: 3, name: loadTranslations('clear'), image: require('../assets/clear-water.jpg') },
+    { id: 'muddy', name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
+    { id: 'stained', name: loadTranslations('stained'), image: require('../assets/stained-water.jpg') },
+    { id: 'clear', name: loadTranslations('clear'), image: require('../assets/clear-water.jpg') },
+  ]
+
+  const structures = [
+    {id:"weed", title:loadTranslations("weed")},
+    {id:"rock", title:loadTranslations("rock")},
+    {id:"submerged_items", title:loadTranslations("submerged_items")},
+    {id:"drop", title:loadTranslations("drop")},
+    {id:"flat", title:loadTranslations("flat")},
+    {id:"point", title:loadTranslations("point")},
+    { id: "channel", title: loadTranslations("channel")}
   ]
   
   useEffect(() => {
@@ -92,7 +108,7 @@ const ConditionsForm = () => {
         console.error('Unable to fetch location: ' + e);
       }
     })();
-  }, []); // Empty dependency array to run only once
+  }, [initialLoad, currentTutorial]); // Empty dependency array to run only once
 
   const createQueryParametersForAutofill = (lat, lang, radius, value) => {
     return (
@@ -159,7 +175,7 @@ const ConditionsForm = () => {
         setLocationName('');
         return
       }
-      let locationData = responseJSON.data.locationDetails;
+      let locationData = resp.locationDetails;
       setGeoCoordinates(locationData); 
     }
     catch (e) {
@@ -172,31 +188,41 @@ const ConditionsForm = () => {
     setSpecies(selectedFish)
   }
 
-  const handleFormSubmit = () => {
-    const speciesName = species.name
-    console.log({
-      speciesName,
-      location,
-      temperature,
-      date,
-      hour,
-      isSunny,
-      isRaining,
-      waterClarity,
-      biometricPressure,
-    });
+  const handleFormSubmit = async () => {
+    if (structure && species) {      
+      date.setHours(hour)
+      const routeParams = {
+        lat: geoCoordinates.lat,
+        long: geoCoordinates.lon,
+        species: species.id,
+        location: geoCoordinates,
+        temperature: temperature,
+        date: date.getTime(), 
+        isSunny: isSunny,
+        isRaining: isRaining,
+        waterClarity: waterClarity,
+        structure: structure,
+        userLures: userLures
+      };
+      navigate(NAV_LURES_RESULTS, routeParams)
+    }
   };
+  
 
   //Date + Time picker functions
   const onChange = (e, selectedDate) => {
     setDate(selectedDate);
-    setShowDatePicker(false);
+    if (Platform.OS == ANDROID) {
+      setShowDatePicker(false);
+      setShowTimePicker(false)
+    }
   };
 
   //Return values
 
   return (
     <ScrollView
+      nestedScrollEnabled={true}
       contentContainerStyle={[
         flex_style.flex,
         flex_style.flexContainer,
@@ -218,8 +244,11 @@ const ConditionsForm = () => {
         {loadTranslations("howAreYouFishing")}
       </Text>
         <View style={[flex_style.flex, flex_style.width100]}>
-        <Text style={[text_style.xs]}>{loadTranslations("location")}</Text>
-        <TutorialTooltip conditions={currentTutorial == 'location'} style={tutorial_styles.singleLine} 
+          <View style={[flex_style.flex, flex_style.width100]}>
+            <Text style={[text_style.xs, text_style.alignLeft]}>{loadTranslations("location")}</Text>
+            <Text style={[text_style.required]}>*</Text>
+          </View>
+          <TutorialTooltip conditions={currentTutorial == 'location'} style={tutorial_styles.singleLine} 
           tutorial='location' translations='tutSetLocation' tutRoute={NAV_CONDITIONS_FORM}
           setCurrentTutorial={setCurrentTutorial}/>
         </View>
@@ -232,7 +261,29 @@ const ConditionsForm = () => {
             dataset={autofilledLocations}
             parentSetModalVisible={setModalVisible}
             setSelectedItem={onLocationSelected}
-        />
+      />
+      <View style={[flex_style.flex, flex_style.width100]}>
+        <TutorialTooltip conditions={currentTutorial == 'structure'} style={tutorial_styles.multiLine} 
+          tutorial='structure' translations='tutStructure' tutRoute={NAV_CONDITIONS_FORM}
+          setCurrentTutorial={setCurrentTutorial}/>
+        <View style={[flex_style.flex, flex_style.width100]}>
+          <Text style={[text_style.xs, text_style.alignLeft]}>{loadTranslations("structureInput")}</Text>
+          <Text style={[text_style.required]}>*</Text>
+        </View>
+      </View>
+        <DropdownWithModal
+            showCancelButton={false}
+            onChangeText={event => setStructureInput(event)}
+            noItemsPlaceholder='noStructure'
+            dataset={structures.filter(item => item?.title?.toLocaleLowerCase()?.includes(structureInput?.toLocaleLowerCase()))}
+            parentSetModalVisible={setStructureModalVisible}
+            setSelectedItem={event => setStructure(event.id)}
+      />
+      {reactIfView(!!structure,
+        <View style={[margin_styles.vertical_space_md]}>
+          <Text style={[text_style.xs]}>{loadTranslations("chosenStructure")}: {loadTranslations(structure)}</Text>
+        </View>
+        )}
       <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         <TutorialTooltip conditions={currentTutorial == 'waterTemp'} style={[{ backgroundColor: primary_color, height: 80 }]} 
@@ -268,9 +319,9 @@ const ConditionsForm = () => {
           {!species?.image ? 
             <TouchableOpacity
             onPress={() => {setSpeciesModalVisible(true)}}
-            style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed]}
+            style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed, flex_style.flex]}
             >
-              <Text
+              {/* <Text
                 style={[
                   text_style.primaryColor,
                   text_style.bold,
@@ -279,7 +330,11 @@ const ConditionsForm = () => {
                 ]}
               >
                 {loadTranslations("speciesSelect")}
-              </Text>
+            </Text> */}
+              <Text style={[text_style.primaryColor,
+                    text_style.bold,
+                    text_style.alignCenter]}>{loadTranslations("speciesSelect")}</Text>
+              <Text style={[text_style.required]}>*</Text>
           </TouchableOpacity> :
             <FishSelectItem isSelected={true} fish={species} onSelectFish={event => setSpeciesModalVisible(true)}></FishSelectItem>
           }
@@ -314,7 +369,7 @@ const ConditionsForm = () => {
               tutorial='date' translations='tutSetDate' tutRoute={NAV_CONDITIONS_FORM}
               setCurrentTutorial={setCurrentTutorial}/>
           </View>
-          {reactIfView(Platform.OS !== "ios",
+          {reactIfView(Platform.OS == ANDROID,
             <TouchableOpacity
             onPress={() => {setShowDatePicker(true)}}
             style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed]}
@@ -348,9 +403,9 @@ const ConditionsForm = () => {
               setCurrentTutorial={setCurrentTutorial}/>
           </View>
   
-          {reactIfView(Platform.OS != 'ios',
+          {reactIfView(Platform.OS == ANDROID,
             <TouchableOpacity
-            onPress={() => {setShowDatePicker(true)}}
+            onPress={() => {setShowTimePicker(true)}}
             style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, btn_style.buttonReversed, margin_styles.vertical_space_l]}
           >
             <Text
@@ -361,13 +416,29 @@ const ConditionsForm = () => {
                 text_style.alignCenter,
               ]}
             >
-              {date.getHours() + ":" + date.getMinutes()}
+              {(date.getHours() < 10 ? '0':'') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0':'') + date.getMinutes()}
             </Text>
           </TouchableOpacity>
           )}
 
         </View>
         
+      </View>
+
+      <View style={[
+          flex_style.flex,
+          flex_style.width100,
+          flex_style.center,
+          margin_styles.bottom_md,
+      ]}>
+
+        <Text style={[text_style.xs]}>{loadTranslations("myLures")}</Text>        
+        <Checkbox
+          style={[margin_styles.horizontal_space_s]}
+          value={userLures}
+          onValueChange={setUserLures}
+        />
+
       </View>
 
       <View
@@ -397,152 +468,21 @@ const ConditionsForm = () => {
             return (
               <TouchableOpacity key={waterClarityItem.name} style={[flex_style.flex, flex_style.column, flex_style.center]} onPress={event => setWaterClarity(waterClarityItem.name)}>
                 <Image source={waterClarityItem.image} style={[img_styles.rectangle_image_xxs, waterClarity == waterClarityItem.name ? btn_style.buttonReversed : null]}></Image>
-                <Text style={[waterClarity == waterClarityItem.name ? text_style.bold : null]}>{waterClarityItem.name}</Text>
+                <Text style={[waterClarity == waterClarityItem.name ? text_style.bold : null]}>{waterClarityItem.name} </Text>
               </TouchableOpacity>
             )
           })}
         </View>
       </View>
-
-
-      {/* {reactIfView(date.getDate() > ((new Date().getDate()) + 7),
-        <View styles={[flex_style.flex, flex_style.column, flex_style.width100]}>
-        <Text
-          style={[
-            text_style.primaryColor,
-            text_style.sm,
-            text_style.bold,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("weather")}
-        </Text>
-        <View
-          style={[
-            styles.switchContainer,
-            margin_styles.vertical_space_md,
-            flex_style.width100,
-          ]}
-        >
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("sun")}
-          </Text>
-          <Switch
-            value={isSunny}
-            onValueChange={setIsSunny}
-            trackColor={{ false: primary_color, true: green_color }}
-            thumbColor={isSunny ? "#f4f3f4" : "#f4f3f4"}
-          />
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("cloudy")}
-          </Text>
-        </View>
-
-        <View
-          style={[
-            styles.switchContainer,
-            margin_styles.vertical_space_md,
-            flex_style.width100,
-          ]}
-        >
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("dry")}
-          </Text>
-          <Switch
-            value={isRaining}
-            onValueChange={setIsRaining}
-            trackColor={{ false: primary_color, true: green_color }}
-            thumbColor={isRaining ? "#f4f3f4" : "#f4f3f4"}
-          />
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("raining")}
-          </Text>
-        </View>
-
-        <Text
-          style={[
-            text_style.primaryColor,
-            text_style.sm,
-            text_style.bold,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("bioPressure")}
-        </Text>
-
-        <View
-          style={[
-            styles.switchContainer,
-            margin_styles.vertical_space_md,
-            flex_style.width100,
-          ]}
-        >
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("low")}
-          </Text>
-          <Switch
-            value={isHighPressure}
-            onValueChange={setIsHighPressure}
-            style={styles.switch}
-            trackColor={{ false: primary_color, true: green_color }}
-            thumbColor={isHighPressure ? "#f4f3f4" : "#f4f3f4"}
-          />
-          <Text
-            style={[
-              text_style.sm,
-              text_style.black,
-              flex_style.one,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("high")}
-          </Text>
-          </View>
-        </View>
-      )} */}
+     
         <View style={[flex_style.flex, flex_style.width100]}>
           <TutorialTooltip conditions={currentTutorial == 'findLures'} style={tutorial_styles.doubleLine} 
             tutorial='findLures' translations='tutConditionsSubmit' tutRoute={NAV_CONDITIONS_FORM}
             setCurrentTutorial={setCurrentTutorial}/>
         </View>
       <TouchableOpacity
-        onPress={handleFormSubmit}
-        style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
+        onPress={event => handleFormSubmit()}
+        style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, !structure || !species ? btn_style.disabled : null]}
       >
         <Text
           style={[

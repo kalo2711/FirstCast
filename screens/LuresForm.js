@@ -54,7 +54,7 @@ export default function LuresForm({ navigation }) {
 
   const handleFormSubmit = () => {
     navigation.navigate(NAV_CONDITIONS_RESULTS, {
-      lureOptionsId: lureOptionIdSelected ? lureOptionIdSelected : 3581,
+      lureOptionsId: lureOptionIdSelected,
     });
   };
 
@@ -115,26 +115,13 @@ export default function LuresForm({ navigation }) {
         >
           {loadTranslations("selectLure")}
         </Text>
-          {reactIfView(currentTutorial == 'brandOrModel',
-          <View style={[flex_style.flex, flex_style.width100]}>
-          <Tooltip
-          contentStyle={[{backgroundColor: primary_color, height: 50}]}
-          backgroundColor={'rgba(0,0,0,0)'}
-          isVisible={currentTutorial == 'brandOrModel'}
-          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBrandOrModel")}</Text>}
-          placement="top"
-              onClose={async () => { setBrandAndModalVisible(true); setCurrentTutorial(await updateTutorialAndGetNext('brandOrModel', NAV_LURES_FORM))}}
-          >
-            <TooltipChildrenContext.Consumer>
-                {({ tooltipDuplicate }) => (
-                  reactIfView(!tooltipDuplicate,
-                    <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                    )
-              )}
-            </TooltipChildrenContext.Consumer>
-            </Tooltip>
-          </View>
-          )}
+          <TutorialTooltip conditions={currentTutorial == 'brandOrModel'}                 
+            style={tutorial_styles.doubleLine}
+            tutorial='brandOrModel'
+            translations='tutBrandOrModel'
+            tutRoute={NAV_LURES_FORM}
+            setCurrentTutorial={setCurrentTutorial}
+          />
           {!brandAndModalVisible ?
             <TouchableOpacity
               onPress={() => { setBrandAndModalVisible(true) }}
@@ -151,42 +138,28 @@ export default function LuresForm({ navigation }) {
               </Text>
             </TouchableOpacity> : 
             <View style={[flex_style.one]}>
-                <Modal visible={brandAndModalVisible} animationType="slide">
-                  <View style={[{ flex: 1, height: height, padding: 20, paddingTop: Platform.OS == 'ios' ? 80 : 0 }]}>
-
-                  <TutorialTooltip conditions={currentTutorial == 'lureSearch'}                 
+              <Modal visible={brandAndModalVisible} animationType="slide">
+                <TutorialTooltip conditions={currentTutorial == 'lureSearch'}                 
                   style={tutorial_styles.doubleLine}
                   tutorial='lureSearch'
                   translations='tutLureSearch'
                   tutRoute={NAV_LURES_FORM}
                   setCurrentTutorial={setCurrentTutorial}
-                  />
-
-                    <DropdownWithModal noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
-                  </View>
-                </Modal>
-            </View>
-        }
-          {reactIfView(currentTutorial == 'selectOptions' && lureOptions?.length > 0,
-          <View style={[flex_style.flex, flex_style.width100]}>
-          <Tooltip
-          contentStyle={[{backgroundColor: primary_color, height: 50}]}
-          backgroundColor={'rgba(0,0,0,0)'}
-          isVisible={currentTutorial == 'selectOptions'}
-          content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSelectOptions")}</Text>}
-          placement="top"
-              onClose={async () => {setCurrentTutorial(await updateTutorialAndGetNext('selectOptions', NAV_LURES_FORM))}}
-          >
-            <TooltipChildrenContext.Consumer>
-                {({ tooltipDuplicate }) => (
-                  reactIfView(!tooltipDuplicate,
-                    <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                    )
-              )}
-            </TooltipChildrenContext.Consumer>
-            </Tooltip>
+                  placement="bottom"
+                />
+                <View style={[{ flex: 1, height: height, padding: 20, paddingTop: Platform.OS == 'ios' ? 80 : 0 }]}>
+                  <DropdownWithModal noItemsPlaceholder={"noLures"} parentSetModalVisible={setBrandAndModalVisible} setSelectedItem={item => onBrandAndModelSelect(item)} dataset={brandAndModelDataset} onChangeText={ text => onChangeText(text)}></DropdownWithModal>
+                </View>
+            </Modal>
           </View>
-          )}
+        }
+        <TutorialTooltip conditions={currentTutorial == 'selectOptions' && lureOptions?.length > 0}                 
+          style={tutorial_styles.doubleLine}
+          tutorial='selectOptions'
+          translations='tutSelectOptions'
+          tutRoute={NAV_LURES_FORM}
+          setCurrentTutorial={setCurrentTutorial}
+        />
         {reactIfView(chosenItem?.id && !isLoading,
           <View style={[flex_style.flex, flex_style.column, flex_style.center, flex_style.width100]}>
             {lureOptions?.map((option, index) => 
@@ -196,36 +169,23 @@ export default function LuresForm({ navigation }) {
                   <Image style={[img_styles.rectangle_image_s]} source={{uri: option?.image}}></Image>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.brand}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.model}</Text>
-                  {reactIfView(index==0 && currentTutorial == 'optionDescritpion',
-                  <View style={[flex_style.flex, flex_style.width100]}>
-                  <Tooltip
-                  contentStyle={[{backgroundColor: primary_color, height: 50}]}
-                  backgroundColor={'rgba(0,0,0,0)'}
-                  isVisible={currentTutorial == 'optionDescritpion'}
-                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutOptionDetails")}</Text>}
-                  placement="top"
-                      onClose={async () => setCurrentTutorial(await updateTutorialAndGetNext('optionDescritpion', NAV_LURES_FORM))}
-                  >
-                    <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                            )
-                      )}
-                    </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                  </View>
-                )}
+                  <TutorialTooltip conditions={currentTutorial == 'optionDescritpion' && index==0}                 
+                    style={tutorial_styles.singleLine}
+                    tutorial='optionDescritpion'
+                    translations='tutOptionDetails'
+                    tutRoute={NAV_LURES_FORM}
+                    setCurrentTutorial={setCurrentTutorial}
+                  />
                   <Text style={[text_style.bold, text_style.xs]}>{option?.color1}  {option?.color2 != option?.color1 ? ', '+option?.color2:''}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.size} {loadTranslations("inch")}</Text>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.weight} {loadTranslations("pound")}</Text>
                  
                   <TutorialTooltip conditions={currentTutorial == 'addToLures' && lureOptions?.length > 0 && index === 0}                 
-                  style={tutorial_styles.singleLine}
-                  tutorial='addToLures'
-                  translations='tutAddToLures'
-                  tutRoute={NAV_LURES_FORM}
-                  setCurrentTutorial={setCurrentTutorial}
+                    style={tutorial_styles.singleLine}
+                    tutorial='addToLures'
+                    translations='tutAddToLures'
+                    tutRoute={NAV_LURES_FORM}
+                    setCurrentTutorial={setCurrentTutorial}
                   />
                   <AddToMyLureButton option={option}/>   
 
@@ -238,65 +198,39 @@ export default function LuresForm({ navigation }) {
           <ActivityIndicator style={[margin_styles.bottom_lg]} size="large" color={primary_color} />
         )}
       </ScrollView>
-      {reactIfView(currentTutorial == 'requestNewLure',
-                  <View style={[flex_style.flex, flex_style.width100]}>
-                  <Tooltip
-                  contentStyle={[{backgroundColor: primary_color, height: 60}]}
-                  backgroundColor={'rgba(0,0,0,0)'}
-                  isVisible={currentTutorial == 'requestNewLure'}
-                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutRequestNewLure")}</Text>}
-                  placement="top"
-                      onClose={async () => setCurrentTutorial(await updateTutorialAndGetNext('requestNewLure', NAV_LURES_FORM))}
-                  >
-                    <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                            )
-                      )}
-                    </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                  </View>
-        )}
+      <TutorialTooltip conditions={currentTutorial == 'requestNewLure'}                 
+        style={tutorial_styles.doubleLine}
+        tutorial='requestNewLure'
+        translations='tutRequestNewLure'
+        tutRoute={NAV_LURES_FORM}
+        setCurrentTutorial={setCurrentTutorial}
+      />
         <TouchableOpacity style={[btn_style.button, , btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={event => navigate(NAV_REQUEST_LURE_FORM)}>
           <Text style={[text_style.bold, text_style.fontColorPrimary]}>{loadTranslations("requestNewLure")}</Text>
       </TouchableOpacity>
-      {reactIfView(currentTutorial == 'submitButton',
-                  <View style={[flex_style.flex, flex_style.width100]}>
-                  <Tooltip
-                  contentStyle={[{backgroundColor: primary_color, height: 80}]}
-                  backgroundColor={'rgba(0,0,0,0)'}
-                  isVisible={currentTutorial == 'submitButton'}
-                  content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutSubmit")}</Text>}
-                  placement="top"
-                      onClose={async () => setCurrentTutorial(await updateTutorialAndGetNext('submitButton', NAV_LURES_FORM))}
-                  >
-                    <TooltipChildrenContext.Consumer>
-                        {({ tooltipDuplicate }) => (
-                          reactIfView(!tooltipDuplicate,
-                            <View style={[{height:Platform.OS === 'android' ? 50 : 0, width: width}]}></View>
-                            )
-                      )}
-                    </TooltipChildrenContext.Consumer>
-                    </Tooltip>
-                  </View>
-        )}
-        <TouchableOpacity
-          onPress={handleFormSubmit}
-          style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth]}
+      <TutorialTooltip conditions={currentTutorial == 'submitButton'}                 
+        style={tutorial_styles.multiLine}
+        tutorial='submitButton'
+        translations='tutSubmit'
+        tutRoute={NAV_LURES_FORM}
+        setCurrentTutorial={setCurrentTutorial}
+      />
+      <TouchableOpacity
+        onPress={handleFormSubmit}
+        style={[btn_style.button, btn_style.round, btn_style.buttonFullWidth, lureOptionIdSelected ? null : btn_style.disabled]}
+      >
+        <Text
+        style={[
+            text_style.fontColorWhite,
+            text_style.bold,
+            flex_style.width100,
+            text_style.alignCenter,
+          ]}
         >
-          <Text
-          style={[
-              text_style.fontColorWhite,
-              text_style.bold,
-              flex_style.width100,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("findConditions")}
-          </Text>
-        </TouchableOpacity>
-      </View>
+          {loadTranslations("findConditions")}
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 

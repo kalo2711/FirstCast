@@ -80,7 +80,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
       <View style={[styles.container, {justifyContent: 'space-between'}]}>
         <TextInput
           ref={inputRef}
-          style={[styles.input, { marginBottom: isModalVisible ? 0 : 50}]}
+          style={[styles.input]}
           value={inputValue}
           placeholder={placeholder}
           onFocus={toggleModal}
@@ -88,6 +88,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
               />
       {!!inputValue && (
         <FlatList
+        nestedScrollEnabled={true}
         style={styles.modalContainer}
         data={items}
         renderItem={renderItem}

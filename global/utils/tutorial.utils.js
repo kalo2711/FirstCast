@@ -10,7 +10,7 @@ export async function getNextTutorialForPage(page) {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'x-app-auth': await getAuthToken(false),
+          'x-app-auth': await getAuthToken(),
           'Content-Type': 'application/json',
         },
       })     
@@ -28,7 +28,7 @@ export async function updateTutorialAndGetNext(tutorial, page) {
   const url = environment['host'] + 'api/user/post/nextTutorial'
   if (tutorial != null) {
     try {
-      const userToken = await getAuthToken(false)
+      const userToken = await getAuthToken()
       const body = {
         page: page,
         tutorial: tutorial
