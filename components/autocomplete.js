@@ -77,18 +77,6 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
     );
   }
 
-  const renderSimpleItem = (item) => {
-    console.log(item);
-    return (
-      <Item
-      item={item}
-      onPress={() => handleSelectItem(item)}
-    />
-    );
-  }
-
-  
-
   return (
       <View style={[styles.container, {justifyContent: 'space-between'}]}>
         <TextInput
@@ -101,7 +89,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
               />
       {!!inputValue && (
         simple? 
-        items.map((item)=>{return renderSimpleItem(item)})
+        items.map((item)=>{return renderItem({item})})
         :
         <FlatList
         nestedScrollEnabled={true}
@@ -110,7 +98,6 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
         renderItem={renderItem}
         keyExtractor={(item, index) => index}
       />
-        
       )}
       {reactIfView(!!inputValue && items?.length < 1,
         <Text style={[text_style.alignCenter, text_style.xs, text_style.fontColorRed]}>{loadTranslations(noItemsPlaceholder)}</Text>
