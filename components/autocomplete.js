@@ -68,7 +68,6 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
   };
 
   const renderItem = ({ item }) => {
-    console.log(item);
     return (
       <Item
       item={item}
