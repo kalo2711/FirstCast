@@ -132,6 +132,7 @@
         "tutSelectOptions": "Select the lure with the options you want details on",
         "tutOptionDetails": "View the lures colors, size and weight here",
         "tutRequestNewLure": "If you dont see the lure you've searched for request it here",
+        "tutAddToLures":"Tap here to save the lure to your lure list.",
         "tutSubmit":"Once your lure is selected and has a green background click here to get the best conditions to use it in",
         
         "tutGuide": "The guide that has provided the information",
@@ -156,6 +157,7 @@
         "tutLureSecondaryColor":"Enter the lure's secondary color",
         "tutLurePhoto":"Lastly, submit a photo of the lure you want to request",
         "tutLureSubmit":"Once all required details are provided, click here to request the lure.",
+        "tutLureSearch":"Type in this textbox to find the lure you want.",
         "navLures": "Lures",
         "navConditions": "Conditions",
 
@@ -300,7 +302,7 @@
         "tutWeight": "Le poids du leurre en onces",
         "tutType": "Le type de leurre",
         "tutPrice": "Le prix en CAD du leurre dans notre magasin sélectionné",
-
+        "tutLureSearch":"Tapez cette zone de texte pour trouver le leurre que vous souhaitez.",
         "time": "Moment de la journée",
         "midday": "Entre 12h et 16h",
         "earlyLate": "Entre le lever du soleil et 12h. Entre 16h et le coucher du soleil",
@@ -333,7 +335,7 @@
         "depth": "Profondeur",
         "navLures": "Leurres",
         "navConditions": "Conditions",
-
+        "tutAddToLures":"Appuyez ici pour enregistrer le leurre dans votre liste de leurres.",
         "lastMoonPhaseNewMoon": "Dernière phase lunaire : Nouvelle Lune",
         "lastMoonPhaseFirstQuarter": "Dernière phase lunaire : Premier Quartier",
         "lastMoonPhaseFullMoon": "Dernière phase lunaire : Pleine Lune",
