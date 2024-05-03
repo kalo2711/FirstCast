@@ -26,9 +26,10 @@ import { navigate, reactIfView, responseDataHandler } from "../global/global-fun
 import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, tutorial_styles, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
-import { AddToMyLureButton } from "../components/addToMyLuresButton";
+import Icon from "react-native-ico-material-design";
+import { addToMyLures } from "../global/utils/add-to-my-lures.util";
 import TutorialTooltip from "./TutorialTooltip";
-
+import { setAuthToken } from "../global/utils/auth.utils";
 
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
@@ -300,3 +301,58 @@ export default function LuresForm({ navigation }) {
 }
 
 
+function AddToMyLureButton({ option }) {
+  const [buttonContent, setButtonContent] = useState(loadTranslations("addToMyLures"));
+  const [buttonIcon, setButtonIcon] = useState('add-plus-button')
+  const [iconColor, setIconColor] = useState('black');
+  const [isLoading, setLoading] = useState(false);
+
+  async function onButtonPress() {
+    try {
+      if (!isLoading) {
+        setLoading(true);
+        await addToMyLures(option.id, onPass, onFail, onFailDupe);
+        setLoading(false);
+      }
+    }
+    catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
+  }
+
+
+  function onPass() {
+    setButtonContent(loadTranslations('addToMyLuresSucceed'));
+    setButtonIcon('check-symbol');
+    setIconColor('green');
+  }
+  function onFail() {
+    setButtonContent(loadTranslations('addToMyLuresFail'));
+    setButtonIcon('close-button');
+    setIconColor('red');
+  }
+  function onFailDupe() {
+    setButtonContent(loadTranslations('addToMyLuresDupe'));
+    setButtonIcon('close-button');
+    setIconColor('red')
+  }
+
+  return (
+    <View>
+      <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={onButtonPress} activeOpacity={isLoading ? 1 : 0.2}>
+        {isLoading ?
+          <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
+            <ActivityIndicator style={[]} size="large" color={primary_color} />
+          </View>
+          :
+          <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
+            <Icon style={[margin_styles.horizontal_space_s]} name={buttonIcon} color={iconColor}></Icon>
+            <Text style={[text_style.bold, text_style.fontColorPrimary]}>{buttonContent}</Text>
+          </View>
+        }
+      </TouchableOpacity>
+    </View>
+
+  );
+}
