@@ -1,5 +1,6 @@
 {
     "en": {
+        "close":"Close",
         "bioPressure": "Biometric Pressure",
         "brand": "Lure brand",
         "brandOrModel": "Brand Or Model",
@@ -182,6 +183,7 @@
         
     },
     "fr": {
+        "close":"Fermer",
         "bioPressure": "Pression biométrique",
         "brand": "Marque de leurre",
         "brandOrModel": "Brand Ou Model",
