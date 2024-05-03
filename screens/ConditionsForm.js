@@ -11,6 +11,7 @@ import {
   Platform,
   Image
 } from "react-native";
+import Checkbox from 'expo-checkbox';
 import {
   btn_style,
   flex_style,
@@ -59,6 +60,7 @@ const ConditionsForm = ({ navigation })  => {
   const [autofilledLocations, setAutofilledLocations] = useState([]);
   const [geoCoordinates, setGeoCoordinates] = useState({ lat: '45.501886', lon: '-73.567391' })
   const [locationName, setLocationName] = useState("");
+  const [userLures, setUserLures] = useState(false);
 
   const waterClarities = [
     { id: 1, name: loadTranslations('muddy'), image: require('../assets/muddy-water.jpg') },
@@ -187,7 +189,7 @@ const ConditionsForm = ({ navigation })  => {
       isRaining: isRaining,
       waterClarity: waterClarity,
       structure: "weed",
-      userLures: "false"
+      userLures: userLures
     };
     navigate(NAV_LURES_RESULTS, routeParams)
   };
@@ -452,6 +454,22 @@ const ConditionsForm = ({ navigation })  => {
 
         </View>
         
+      </View>
+
+      <View style={[
+          flex_style.flex,
+          flex_style.width100,
+          flex_style.center,
+          margin_styles.bottom_md,
+      ]}>
+
+        <Text style={[text_style.xs]}>{loadTranslations("myLures")}</Text>        
+        <Checkbox
+          style={[margin_styles.horizontal_space_s]}
+          value={userLures}
+          onValueChange={setUserLures}
+        />
+
       </View>
 
       <View
