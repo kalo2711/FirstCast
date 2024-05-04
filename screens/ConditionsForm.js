@@ -361,7 +361,7 @@ const ConditionsForm = ({ navigation })  => {
         </Tooltip>
         )}
       </View>
-        <FishSelect visible={speciesModalVisible} selectedFish={species} onSelectFish={onSelectFish}></FishSelect>
+        <FishSelect visible={speciesModalVisible} setVisible={setSpeciesModalVisible} selectedFish={species} onSelectFish={onSelectFish}></FishSelect>
         <View style={[flex_style.width100, margin_styles.bottom_md]}>
           {!species?.image ? 
             <TouchableOpacity
