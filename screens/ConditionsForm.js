@@ -271,6 +271,7 @@ const ConditionsForm = ({ navigation })  => {
         </View>
 
       <DropdownWithModal
+            simple={true}
             showCancelButton={false}
             placeholder={locationName}
             onChangeText={getAutofilledLocations}
@@ -278,6 +279,7 @@ const ConditionsForm = ({ navigation })  => {
             dataset={autofilledLocations}
             parentSetModalVisible={setModalVisible}
             setSelectedItem={onLocationSelected}
+            
       />
       <View style={[flex_style.flex, flex_style.width100]}>
         <TutorialTooltip conditions={currentTutorial == 'structure'} style={tutorial_styles.multiLine} 
@@ -289,6 +291,7 @@ const ConditionsForm = ({ navigation })  => {
         </View>
       </View>
         <DropdownWithModal
+            simple={true}
             showCancelButton={false}
             onChangeText={event => setStructureInput(event)}
             noItemsPlaceholder='noStructure'
