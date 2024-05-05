@@ -330,6 +330,9 @@ export const btn_style = StyleSheet.create({
   },
   round: {
     borderRadius: 50
+  },
+  red: {
+    backgroundColor: 'red'
   }
 })
 

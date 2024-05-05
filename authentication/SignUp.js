@@ -29,7 +29,7 @@ import {
     text_style,
     btn_style,
   } from '../global/global-styles'
-import { setAuthToken, updateTokenInDatabase } from '../global/utils/auth.utils'
+import { getAuthToken, setAuthToken, updateTokenInDatabase } from '../global/utils/auth.utils'
 import { getDeviceLanguage, loadTranslations } from '../global/localization'
 import { environment } from "../global/environment"
 
@@ -70,8 +70,13 @@ function SignUp(props) {
       let responseJSON = await response.json()
       if (responseJSON[STATUS] == VALID) {
         const token = responseJSON[DATA][JWT]
-        setAuthToken(token)
-        updateTokenInDatabase(token)
+        setAuthToken(token).then(val => {
+          if (token) {
+            updateTokenInDatabase(token)
+          }
+        }).catch(error => {
+          console.error(error)
+        })
       } else {
         if (responseJSON[ERROR][CODE] == ER_DUP_ENTRY) {
           setError(loadTranslations('generalDuplicateEmailError')
