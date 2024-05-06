@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Modal,FlatList, Image } from 'react-native';
+import { View, Text, TextInput, Modal,FlatList, Image, TouchableOpacity } from 'react-native';
 import FishSelectItem from "./fish-select-item";
 import { loadTranslations } from './global/localization';
-const FishSelect = ({ visible, selectedFish, onSelectFish }) => {
+import { btn_style, flex_style, margin_styles, text_style } from './global/global-styles';
+const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish }) => {
   const [searchText, setSearchText] = useState('');
 
   const fishData = [
@@ -46,6 +47,14 @@ const FishSelect = ({ visible, selectedFish, onSelectFish }) => {
           keyExtractor={(item) => item.id.toString()}
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         />
+        <TouchableOpacity
+          onPress={() => { setVisible(false) }}
+          style={[btn_style.button, btn_style.round, btn_style.buttonReversed, margin_styles.top_md, flex_style.flex]}
+        >
+          <Text style={[text_style.primaryColor,
+          text_style.bold,
+          text_style.alignCenter]}>{loadTranslations('close')}</Text>
+        </TouchableOpacity>
       </View>
     </Modal>
   );

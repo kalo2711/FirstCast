@@ -25,7 +25,7 @@ const Item = ({item, onPress}) => (
 );
 
 
-const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton }) => {
+const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton, simple }) => {
   const [inputValue, setInputValue] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [items, setItems] = useState([]);
@@ -87,6 +87,9 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           onChangeText={onType}
               />
       {!!inputValue && (
+        simple? 
+        items.map((item)=>{return renderItem({item})})
+        :
         <FlatList
         nestedScrollEnabled={true}
         style={styles.modalContainer}
