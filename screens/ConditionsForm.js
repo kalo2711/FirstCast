@@ -105,6 +105,7 @@ const ConditionsForm = ({ navigation }) => {
     { id: "flat", title: loadTranslations("flat") },
     { id: "point", title: loadTranslations("point") },
     { id: "channel", title: loadTranslations("channel") },
+    { id: "bay", title: loadTranslations("bay") },
   ];
 
   useEffect(() => {

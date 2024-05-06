@@ -1,5 +1,6 @@
 {
   "en": {
+    "bay": "Bay",
     "close": "Close",
     "bioPressure": "Biometric Pressure",
     "brand": "Lure brand",
@@ -189,6 +190,7 @@
     "daysAgo": "days ago"
   },
   "fr": {
+    "bay":"baie",
     "close": "Fermer",
     "bioPressure": "Pression biométrique",
     "brand": "Marque de leurre",
