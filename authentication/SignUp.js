@@ -70,13 +70,11 @@ function SignUp(props) {
       let responseJSON = await response.json()
       if (responseJSON[STATUS] == VALID) {
         const token = responseJSON[DATA][JWT]
-        setAuthToken(token).then(val => {
-          if (token) {
-            updateTokenInDatabase(token)
-          }
-        }).catch(error => {
-          console.error(error)
-        })
+        setAuthToken(token)
+          .catch((e) => console.log(e))
+          .finally((t) => {
+            updateTokenInDatabase(token);
+          });
       } else {
         if (responseJSON[ERROR][CODE] == ER_DUP_ENTRY) {
           setError(loadTranslations('generalDuplicateEmailError')
