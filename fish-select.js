@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Modal,FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Modal,FlatList, Image, Platform, TouchableOpacity } from 'react-native';
 import FishSelectItem from "./fish-select-item";
 import { loadTranslations } from './global/localization';
 import { btn_style, flex_style, margin_styles, text_style } from './global/global-styles';
@@ -34,10 +34,11 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish }) => {
 
   return (
     <Modal visible={visible} animationType="slide">
-      <View style={{ flex: 1, padding: 20 }}>
+      <View style={{ flex: 1,paddingTop: Platform.OS === 'ios' ? 65 : StatusBar.currentHeight, padding: 20 }}>
         <TextInput
-          style={{ marginBottom: 20, padding: 10, borderWidth: 1, borderColor: 'gray', borderRadius: 5 }}
+          style={{ marginBottom: 20, padding: 10, borderWidth: 1, borderColor: 'gray', borderRadius: 5, }}
           placeholder={loadTranslations('searchFish')}
+          placeholderTextColor="#686868"
           value={searchText}
           onChangeText={setSearchText}
         />

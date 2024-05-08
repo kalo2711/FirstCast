@@ -33,9 +33,6 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   useEffect(() => {
     setItems([...dataset]);
-    if (dataset.length > 0) {
-      openKeyboard();
-    }
       return () => {
         keyboardDidHideListener.remove();
       };
@@ -52,12 +49,6 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   const toggleModal = () => {
     setIsModalVisible(true);
-  };
-
-  const openKeyboard = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
   };
 
   const handleSelectItem = (item) => {
