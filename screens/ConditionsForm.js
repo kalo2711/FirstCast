@@ -324,43 +324,6 @@ const ConditionsForm = ({ navigation }) => {
         setSelectedItem={onLocationSelected}
       />
       <View style={[flex_style.flex, flex_style.width100]}>
-        <TutorialTooltip
-          conditions={currentTutorial == "structure"}
-          style={tutorial_styles.multiLine}
-          tutorial="structure"
-          translations="tutStructure"
-          tutRoute={NAV_CONDITIONS_FORM}
-          setCurrentTutorial={setCurrentTutorial}
-        />
-        <View style={[flex_style.flex, flex_style.width100]}>
-          <Text style={[text_style.xs, text_style.alignLeft]}>
-            {loadTranslations("structureInput")}
-          </Text>
-          <Text style={[text_style.required]}>*</Text>
-        </View>
-      </View>
-      <DropdownWithModal
-        simple={true}
-        showCancelButton={false}
-        onChangeText={(event) => setStructureInput(event)}
-        noItemsPlaceholder="noStructure"
-        dataset={structures.filter((item) =>
-          item?.title
-            ?.toLocaleLowerCase()
-            ?.includes(structureInput?.toLocaleLowerCase())
-        )}
-        parentSetModalVisible={setStructureModalVisible}
-        setSelectedItem={(event) => setStructure(event.id)}
-      />
-      {reactIfView(
-        !!structure,
-        <View style={[margin_styles.vertical_space_md]}>
-          <Text style={[text_style.xs]}>
-            {loadTranslations("chosenStructure")}: {loadTranslations(structure)}
-          </Text>
-        </View>
-      )}
-      <View style={[flex_style.flex, flex_style.width100]}>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
         {reactIfView(
           currentTutorial == "waterTemp",
@@ -457,6 +420,7 @@ const ConditionsForm = ({ navigation }) => {
           </Tooltip>
         )}
       </View>
+      
       <FishSelect
         visible={speciesModalVisible}
         setVisible={setSpeciesModalVisible}
@@ -506,7 +470,43 @@ const ConditionsForm = ({ navigation }) => {
           ></FishSelectItem>
         )}
       </View>
-
+      <View style={[flex_style.flex, flex_style.width100]}>
+        <TutorialTooltip
+          conditions={currentTutorial == "structure"}
+          style={tutorial_styles.multiLine}
+          tutorial="structure"
+          translations="tutStructure"
+          tutRoute={NAV_CONDITIONS_FORM}
+          setCurrentTutorial={setCurrentTutorial}
+        />
+        <View style={[flex_style.flex, flex_style.width100]}>
+          <Text style={[text_style.xs, text_style.alignLeft]}>
+            {loadTranslations("structureInput")}
+          </Text>
+          <Text style={[text_style.required]}>*</Text>
+        </View>
+      </View>
+      <DropdownWithModal
+        simple={true}
+        showCancelButton={false}
+        onChangeText={(event) => setStructureInput(event)}
+        noItemsPlaceholder="noStructure"
+        dataset={structures.filter((item) =>
+          item?.title
+            ?.toLocaleLowerCase()
+            ?.includes(structureInput?.toLocaleLowerCase())
+        )}
+        parentSetModalVisible={setStructureModalVisible}
+        setSelectedItem={(event) => setStructure(event.id)}
+      />
+      {reactIfView(
+        !!structure,
+        <View style={[margin_styles.vertical_space_md]}>
+          <Text style={[text_style.xs]}>
+            {loadTranslations("chosenStructure")}: {loadTranslations(structure)}
+          </Text>
+        </View>
+      )}
       <View
         style={[
           flex_style.flex,
