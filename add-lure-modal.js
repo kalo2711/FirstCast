@@ -140,7 +140,7 @@ const AddLureModal = (props) => {
   }
 
   return (
-      <ScrollView style={{ flex: 1, padding: 20 }}>
+      <ScrollView style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 50 : StatusBar.currentHeight, padding: 20 }}>
         <Text style={[text_style.sm, text_style.bold, margin_styles.bottom_md, text_style.primaryColor, text_style.alignCenter]}>
             {loadTranslations("requestNewLure")}
         </Text>
@@ -308,7 +308,7 @@ const AddLureModal = (props) => {
           </View>
 
           <TextInput
-            style={[form_style.formControl, form_style.formControlHalfWidth , margin_styles.bottom_md]}
+            style={[form_style.formControl, form_style.formControlHalfWidth , margin_styles.bottom_xs]}
             value={weight}
             onChangeText={setWeight}
             keyboardType="numeric"
@@ -333,16 +333,16 @@ const AddLureModal = (props) => {
         </Tooltip>
         )}
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.bottom_sm]}>
-          <View style={[flex_style.flex, {width: SpacingFormXLarge}]}>
+          <View style={[flex_style.flex, {width: SpacingFormXLarge}, { marginTop: 60 }]}>
 
             <Text style={[text_style.xs, text_style.bold]}>
               {loadTranslations("type")}
             </Text>
-            <Text style={[form_style.form_control_required]}>*</Text>
+            <Text style={[form_style.form_control_required, { marginTop: 5 }]}>*</Text>
           </View>
-
+          <View style={[form_style.pickerWrapper, { marginTop: -22 }]}>
           <NativePicker
-            style={[{width: 200}]}
+            style={form_style.picker}
             selectedValue={type}
             onValueChange={(itemValue, itemIndex) => setType(itemValue)}
           >
@@ -350,6 +350,7 @@ const AddLureModal = (props) => {
               <NativePicker.Item key={option.id} label={option.lureType} value={option.lureType} />
             ))}
           </NativePicker>
+          </View>
         </View>
         
         {reactIfView(currentTutorial == 'primaryColor', <Tooltip
@@ -370,11 +371,12 @@ const AddLureModal = (props) => {
         </Tooltip>
         )}
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.bottom_sm]}>
-          <Text style={[text_style.xs, text_style.bold]}>
+          <Text style={[text_style.xs, text_style.bold, {marginTop: 60}]}>
               {loadTranslations("primaryColor")}
             </Text>
+            <View style={[form_style.pickerWrapper, { marginTop: -20 }]}>
             <NativePicker
-              style={[{width: 200}]}
+              style={form_style.picker}
               selectedValue={color1}
               onValueChange={(itemValue, itemIndex) => setColor1(itemValue)}
             >
@@ -382,6 +384,7 @@ const AddLureModal = (props) => {
                 <NativePicker.Item key={option.id} label={loadTranslations(option.color)} value={option.color} />
               ))}
             </NativePicker>
+            </View>
           </View>
         
         {reactIfView(currentTutorial == 'secondaryColor', <Tooltip
@@ -402,11 +405,12 @@ const AddLureModal = (props) => {
         </Tooltip>
         )}
         <View style={[flex_style.flex, flex_style.spaceBetween, margin_styles.bottom_sm]}>
-          <Text style={[text_style.xs, text_style.bold]}>
+          <Text style={[text_style.xs, text_style.bold, {alignSelf: 'center'}, {marginTop: 60}]}>
             {loadTranslations("secondaryColor")}
           </Text>
+          <View style={[form_style.pickerWrapper, { marginTop: -20 }]}>
           <NativePicker
-            style={[{width: 200}]}
+            style={form_style.picker}
             selectedValue={color2}
             onValueChange={(itemValue, itemIndex) => setColor2(itemValue)}
           >
@@ -414,6 +418,7 @@ const AddLureModal = (props) => {
               <NativePicker.Item key={option.id} label={loadTranslations(option.color)} value={option.color} />
             ))}
           </NativePicker>
+          </View>
         </View>
 
         {reactIfView(currentTutorial == 'photo', <Tooltip
@@ -433,7 +438,7 @@ const AddLureModal = (props) => {
           </TooltipChildrenContext.Consumer>
         </Tooltip>
         )}
-        <View style={[margin_styles.bottom_lg]}>
+        <View style={[margin_styles.bottom_lg, margin_styles.top_md]}>
           <View style={[flex_style.flex, {width: SpacingFormXLarge}]}>
             <Text>{loadTranslations("lurePhoto")}</Text>
             <Text style={[form_style.form_control_required]}>*</Text>
