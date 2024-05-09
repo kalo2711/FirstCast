@@ -491,6 +491,7 @@ const ConditionsForm = ({ navigation }) => {
         showCancelButton={false}
         onChangeText={(event) => setStructureInput(event)}
         noItemsPlaceholder="noStructure"
+        placeholder={structure}
         dataset={structures.filter((item) =>
           item?.title
             ?.toLocaleLowerCase()
@@ -499,14 +500,6 @@ const ConditionsForm = ({ navigation }) => {
         parentSetModalVisible={setStructureModalVisible}
         setSelectedItem={(event) => setStructure(event.id)}
       />
-      {reactIfView(
-        !!structure,
-        <View style={[margin_styles.vertical_space_md]}>
-          <Text style={[text_style.xs]}>
-            {loadTranslations("chosenStructure")}: {loadTranslations(structure)}
-          </Text>
-        </View>
-      )}
       <View
         style={[
           flex_style.flex,

@@ -53,7 +53,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   const handleSelectItem = (item) => {
     setSelectedItem(item);
-    setInputValue('')
+    setInputValue('');
     setIsModalVisible(false);
     Keyboard.dismiss();
   };
@@ -74,6 +74,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           style={[styles.input]}
           value={inputValue}
           placeholder={placeholder}
+          placeholderTextColor="#000"
           onFocus={toggleModal}
           onChangeText={onType}
               />
