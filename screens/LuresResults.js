@@ -109,30 +109,45 @@ export default function LuresResults({ route }) {
   }, []);
 
   const fetchResultsForConditons = async () => {
-    setLoading(true);
-    const url = `${environment.host}api/lures?lat=${route.params.lat}&long=${route.params.long}&species=${route.params.species}&structure=${route.params.structure}&waterClarity=${route.params.waterClarity}&userLures=${route.params.userLures}`;
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-app-auth": getAuthToken(),
-      },
-    });
 
-    const res = await responseDataHandler(response);
-    setLoading(false);
-    setLures(res?.lures);
-    if (res?.moonPhases) {
-      setMoon({
-        prevPhase: res?.moonPhases?.prevPhase,
-        nextPhase: res?.moonPhases?.nextPhase,
-      });
+    setLoading(true);
+    const onServerTimeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Request timeout')), 5000)
+    );
+    const url = `${environment.host}api/lures?lat=${route.params.lat}&long=${route.params.long}&species=${route.params.species}&structure=${route.params.structure}&waterClarity=${route.params.waterClarity}&userLures=${route.params.userLures}`;
+    try {
+      const response = await Promise.race([
+        fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-app-auth": getAuthToken(),
+          },
+        }),
+        onServerTimeout,
+      ]);
+
+      const res = await responseDataHandler(response);
+      setLoading(false);
+      setLures(res?.lures);
+      if (res?.moonPhases) {
+        setMoon({
+          prevPhase: res?.moonPhases?.prevPhase,
+          nextPhase: res?.moonPhases?.nextPhase,
+        });
+      }
+      if (res.previousWeather) {
+        setWeather({
+          precipitation: res?.previousWeather?.data?.precipitation,
+          windGust: res?.previousWeather?.data?.windGust,
+        });
+      }
     }
-    if (res.previousWeather) {
-      setWeather({
-        precipitation: res?.previousWeather?.data?.precipitation,
-        windGust: res?.previousWeather?.data?.windGust,
-      });
+    catch(e){
+      console.error(e);
+      console.log('timed out');
+      setLoading(false);
+      setLures([]);
     }
   };
 
@@ -359,7 +374,7 @@ export default function LuresResults({ route }) {
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <TutorialTooltip
-        conditions={currentTutorial == "ResultsGuide"}
+        conditions={currentTutorial == "ResultsGuide" && loading}
         style={tutorial_styles.doubleLine}
         tutorial="ResultsGuide"
         translations="tutGuide"
