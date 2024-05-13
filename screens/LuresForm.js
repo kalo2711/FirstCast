@@ -121,7 +121,8 @@ export default function LuresForm({ navigation }) {
           isVisible={currentTutorial == 'brandOrModel'}
           content={<Text style={[text_style.fontColorWhite]}>{loadTranslations("tutBrandOrModel")}</Text>}
           placement="top"
-              onClose={async () => { setBrandAndModalVisible(true); setCurrentTutorial(await updateTutorialAndGetNext('brandOrModel', NAV_LURES_FORM))}}
+              onClose={async () => { setCurrentTutorial(await updateTutorialAndGetNext('brandOrModel', NAV_LURES_FORM));
+            }}
           >
             <TooltipChildrenContext.Consumer>
                 {({ tooltipDuplicate }) => (
