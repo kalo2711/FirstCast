@@ -8,7 +8,8 @@ import {
     TouchableOpacity, 
     Alert, 
     ActivityIndicator, 
-    Platform
+    Platform,
+    StatusBar
 } from 'react-native';
 import { loadTranslations } from "./global/localization";
 import { btn_style, flex_style, form_style, margin_styles, text_style } from "./global/global-styles";
