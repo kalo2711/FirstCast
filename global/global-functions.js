@@ -6,6 +6,7 @@ import {
   RES_UNAUTHORIZED,
   RES_VALID,
 } from "./global-constants";
+import { setAuthToken } from "./utils/auth.utils";
 
 export function reactIfView(property, DOM) {
   return property && DOM;

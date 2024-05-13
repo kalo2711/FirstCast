@@ -19,8 +19,13 @@
       "bundleIdentifier": "com.first.cast",
       "LSMinimumSystemVersion": "13.0",
       "minimumDeploymentTarget": "13.0",
-      "NSLocationWhenInUseUsageDescription": "Allow Pick a Place to use your location to have a good starting point for fish locations. This is essential for the app to be functional.",
-      "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow Pick a Place to use your location to have a good starting point for fish locations. This is essential for the app to be functional."
+      "NSLocationWhenInUseUsageDescription": "We need your location to select the closest part in the map",
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location to select the closest part in the map",
+      "permissions": {
+        "location": {
+          "reason": "We need your location to select the closest part in the map"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -41,7 +46,9 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+          "NSLocationAlwaysAndWhenInUseUsageDescription":"Allow $(PRODUCT_NAME) to use your location to get the right lake",
+          "NSLocationAlwaysUsageDescription": "Allow $(PRODUCT_NAME) to use your location to get the right lake",
+          "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location to get the right lake."
         }
       ]
     ]
