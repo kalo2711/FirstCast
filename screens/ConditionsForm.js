@@ -78,6 +78,8 @@ const ConditionsForm = ({ navigation }) => {
   const [userLures, setUserLures] = useState(false);
   const [structure, setStructure] = useState("");
   const [structureInput, setStructureInput] = useState("");
+  const [tempVisable, setTempVisable] = useState(false);
+  const [daysUntilDate, setDaysUntilDate] = useState(0);
 
   const waterClarities = [
     {
@@ -235,6 +237,57 @@ const ConditionsForm = ({ navigation }) => {
     }
   };
 
+  async function getWeather(){
+    let url = `${environment.host}api/weather/get/weatherForLocation?lat=${geoCoordinates.lat}&lon=${geoCoordinates.lon}`;
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      let data = await responseDataHandler(response);
+      if (!data) {
+        console.error(
+          "Unable to get weather from location: API Response is not valid."
+        );
+        return;
+      }
+      let daily = data.daily;
+      console.log(daysUntilDate);
+      console.log(daily[daysUntilDate].temp.day);
+      setTemperature(daily[daysUntilDate].temp.day);
+    } catch (e) {
+      console.error("Unable to get geoCoordinates from location: " + e);
+    }
+
+  }
+
+  useEffect(() =>{
+    if (locationName){
+      let today = new Date().getDate();
+      let target = new Date(date).getDate();
+      let difference = Math.abs(target - today);
+      let days = Math.ceil(difference / (1000 * 60 * 60 * 24));
+      if(days >= 0 && days <= 7) {
+        setDaysUntilDate(days);
+        getWeather();
+      }else {
+        setTempVisable(true);
+      }
+    }
+  },[date, geoCoordinates]);
+
+  useEffect(async() =>{
+    if (daysUntilDate){
+      await getWeather();
+    }
+  },[daysUntilDate]);
+
+  useEffect(async() =>{
+    console.log(temperature);
+  },[temperature]);
+
   //Date + Time picker functions
   const onChange = (e, selectedDate) => {
     setDate(selectedDate);
@@ -322,63 +375,6 @@ const ConditionsForm = ({ navigation }) => {
         dataset={autofilledLocations}
         parentSetModalVisible={setModalVisible}
         setSelectedItem={onLocationSelected}
-      />
-      <View style={[flex_style.flex, flex_style.width100]}>
-        <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
-        {reactIfView(
-          currentTutorial == "waterTemp",
-          <Tooltip
-            contentStyle={[{ backgroundColor: primary_color, height: 80 }]}
-            backgroundColor={"rgba(0,0,0,0)"}
-            isVisible={currentTutorial == "waterTemp"}
-            content={
-              <Text style={[text_style.fontColorWhite]}>
-                {loadTranslations("tutSetTemperature")}
-              </Text>
-            }
-            placement="top"
-            onClose={async () => {
-              setCurrentTutorial(
-                await updateTutorialAndGetNext("waterTemp", NAV_CONDITIONS_FORM)
-              );
-            }}
-          >
-            <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) =>
-                reactIfView(
-                  !tooltipDuplicate,
-                  <View
-                    style={[
-                      {
-                        height: Platform.OS === "android" ? 50 : 0,
-                        width: width,
-                      },
-                    ]}
-                  ></View>
-                )
-              }
-            </TooltipChildrenContext.Consumer>
-          </Tooltip>
-        )}
-      </View>
-      <TextInput
-        value={temperature}
-        onChangeText={(text) => {
-          const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
-          setTemperature(sanitizedText);
-        }}
-        keyboardType="numeric"
-        onBlur={() => {
-          if (temperature) {
-            setTemperature(`${temperature}°C`);
-          }
-        }}
-        onFocus={() => {
-          setTemperature(temperature.replace(" °C", ""));
-        }}
-        maxLength={2}
-        style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
-        placeholderTextColor={black}
       />
       <View style={[flex_style.flex, flex_style.width100]}>
         {reactIfView(
@@ -671,7 +667,64 @@ const ConditionsForm = ({ navigation }) => {
           )}
         </View>
       </View>
-
+      <View style={[flex_style.flexColumn, flex_style.width100, !tempVisable ? { display: 'none' } : null]}>
+        <Text style={[text_style.xxs, text_style.alignCenter]}>{loadTranslations("dateExceeds8Days")}</Text>
+        <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
+        {reactIfView(
+          currentTutorial == "waterTemp",
+          <Tooltip
+            contentStyle={[{ backgroundColor: primary_color, height: 80 }]}
+            backgroundColor={"rgba(0,0,0,0)"}
+            isVisible={currentTutorial == "waterTemp"}
+            content={
+              <Text style={[text_style.fontColorWhite]}>
+                {loadTranslations("tutSetTemperature")}
+              </Text>
+            }
+            placement="top"
+            onClose={async () => {
+              setCurrentTutorial(
+                await updateTutorialAndGetNext("waterTemp", NAV_CONDITIONS_FORM)
+              );
+            }}
+          >
+            <TooltipChildrenContext.Consumer>
+              {({ tooltipDuplicate }) =>
+                reactIfView(
+                  !tooltipDuplicate,
+                  <View
+                    style={[
+                      {
+                        height: Platform.OS === "android" ? 50 : 0,
+                        width: width,
+                      },
+                    ]}
+                  ></View>
+                )
+              }
+            </TooltipChildrenContext.Consumer>
+          </Tooltip>
+        )}
+        <TextInput
+          value={temperature}
+          onChangeText={(text) => {
+            const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
+            setTemperature(sanitizedText);
+          }}
+          keyboardType="numeric"
+          onBlur={() => {
+            if (temperature) {
+              setTemperature(`${temperature}°C`);
+            }
+          }}
+          onFocus={() => {
+            setTemperature(temperature.replace(" °C", ""));
+          }}
+          maxLength={2}
+          style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
+          placeholderTextColor={black}
+        />
+      </View>
       <View
         style={[
           flex_style.flex,
@@ -686,6 +739,7 @@ const ConditionsForm = ({ navigation }) => {
           value={userLures}
           onValueChange={setUserLures}
         />
+
       </View>
 
       <View
