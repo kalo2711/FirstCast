@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Modal,FlatList, Image, Platform, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Modal,FlatList, Image, Platform, TouchableOpacity, StatusBar } from 'react-native';
 import FishSelectItem from "./fish-select-item";
 import { loadTranslations } from './global/localization';
 import { btn_style, flex_style, margin_styles, text_style } from './global/global-styles';
