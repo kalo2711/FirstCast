@@ -9,7 +9,7 @@ import {
   Keyboard,
   FlatList,
 } from 'react-native';
-import { SpacingLarge, width } from "../global/global-constants";
+import { SpacingLarge, width, black } from "../global/global-constants";
 import { btn_style, flex_style, img_styles, margin_styles, text_style } from "../global/global-styles";
 import { loadTranslations } from "../global/localization";
 import { reactIfView } from "../global/global-functions";
@@ -74,7 +74,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           style={[styles.input]}
           value={inputValue}
           placeholder={placeholder}
-          placeholderTextColor="#000"
+          placeholderTextColor={black}
           onFocus={toggleModal}
           onChangeText={onType}
               />
