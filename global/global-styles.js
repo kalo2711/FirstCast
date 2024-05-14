@@ -145,6 +145,16 @@ export const form_style = StyleSheet.create({
     color: 'red',
     fontSize: 16,
     marginLeft: 5
+  },
+  pickerWrapper: {
+    height: 130, 
+    overflow: 'hidden',
+    marginBottom: 0, 
+    alignItems: 'center',
+  },
+  picker: {
+    width: 200,
+    height: 130, 
   }
 })
 
@@ -330,6 +340,9 @@ export const btn_style = StyleSheet.create({
   },
   round: {
     borderRadius: 50
+  },
+  red: {
+    backgroundColor: 'red'
   }
 })
 
@@ -390,9 +403,6 @@ export const margin_styles = StyleSheet.create({
   },
   top_xs: {
     marginTop: SpacingExtraSmall
-  },
-  top_md: {
-    marginTop: SpacingMedium
   },
   top_lg: {
     marginTop: SpacingLarge
