@@ -1,36 +1,54 @@
 {
   "expo": {
-    "name": "first-cast",
+    "name": "First Cast",
     "slug": "first-cast",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#003362"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.first.cast",
+      "LSMinimumSystemVersion": "13.0",
+      "minimumDeploymentTarget": "13.0",
+      "NSLocationWhenInUseUsageDescription": "We need your location to select the closest part in the map",
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location to select the closest part in the map",
+      "permissions": {
+        "location": {
+          "reason": "We need your location to select the closest part in the map"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#003362"
+      },
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.INTERNET"
+      ],
+      "package": "com.first.cast"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
     "plugins": [
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+          "NSLocationAlwaysAndWhenInUseUsageDescription":"Allow $(PRODUCT_NAME) to use your location to get the right lake",
+          "NSLocationAlwaysUsageDescription": "Allow $(PRODUCT_NAME) to use your location to get the right lake",
+          "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location to get the right lake."
         }
       ]
     ]

@@ -110,7 +110,7 @@ export default function Profile({ navigation }) {
   });
   
   return (
-    <View style={[padding_styles.space_md,{ backgroundColor: 'white', height: height}]}>
+    <View style={[padding_styles.space_md,padding_styles.safetyTop,{ backgroundColor: 'white', height: height}]}>
       <View
         style={[
           flex_style.flex,

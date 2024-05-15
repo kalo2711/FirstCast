@@ -32,15 +32,17 @@ export async function updateTokenInDatabase(token) {
       const userToken = {
         token: token,
       }
-      await fetch(url, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'x-app-auth': token,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(userToken),
-      })      
-      navigate(NAV_CONDITIONS_FORM)
+      })   
+      if (response) {
+        navigate(NAV_CONDITIONS_FORM)
+      }
     } catch (e) {
       console.log(e)
       setError(loadTranslations("generalUpdateTokenError") + e)

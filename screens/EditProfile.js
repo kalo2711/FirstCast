@@ -14,14 +14,14 @@ import {
 } from "../global/global-styles";
 import { getDeviceLanguage, loadTranslations } from "../global/localization";
 import { height, NAV_PROFILE } from "../global/global-constants";
-import { setAuthToken} from '../global/utils/auth.utils';
+import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
 import { terms, terms_fr } from '../authentication/terms';
+import { environment } from "../global/environment";
+import { responseDataHandler } from "../global/global-functions";
 
 
 
 export default function EditProfile({ navigation, route }) {
-  const { token } = route.params;
-  const { profile } = route.params.profile
   const [term, setTerm] = useState(getDeviceLanguage().includes("fr") ? terms_fr : terms);
 
   function showTerms(){
@@ -33,8 +33,19 @@ export default function EditProfile({ navigation, route }) {
     ])
   }
 
-  function handleProfileNav(){
-    navigation.navigate(NAV_PROFILE);
+  async function deleteAccount(){
+    const url = environment.authHost + 'api/user/post/deleteUser'
+    const token = await getAuthToken()
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'x-app-auth': token
+      },
+    })
+    resp = await responseDataHandler(response)
+    if (resp) {
+      setAuthToken(null)
+    }
   }
 
   return(
@@ -50,6 +61,27 @@ export default function EditProfile({ navigation, route }) {
         >
           {loadTranslations("edit")} {loadTranslations("profile")}
         </Text>
+        <TouchableOpacity
+          onPress={showTerms}
+          style={[
+            btn_style.button, 
+            btn_style.round, 
+            btn_style.buttonFullWidth, 
+            btn_style.buttonReversed,
+            margin_styles.vertical_space_l
+            
+          ]}
+        >
+          <Text
+            style={[
+              text_style.bold,
+              flex_style.width100,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("terms")}
+          </Text>
+        </TouchableOpacity>
       <TouchableOpacity
           onPress={() => setAuthToken(null)}
           style={[
@@ -70,15 +102,15 @@ export default function EditProfile({ navigation, route }) {
           >
             {loadTranslations("Logout")}
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={showTerms}
+      </TouchableOpacity>
+      <TouchableOpacity
+          onPress={deleteAccount}
           style={[
             btn_style.button, 
             btn_style.round, 
             btn_style.buttonFullWidth, 
-            margin_styles.vertical_space_l
-            
+            margin_styles.vertical_space_l,
+            btn_style.red
           ]}
         >
           <Text
@@ -89,28 +121,7 @@ export default function EditProfile({ navigation, route }) {
               text_style.alignCenter,
             ]}
           >
-            {loadTranslations("terms")}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate(NAV_PROFILE)}
-          style={[
-            btn_style.button, 
-            btn_style.round, 
-            btn_style.buttonFullWidth, 
-            margin_styles.vertical_space_l
-            
-          ]}
-        >
-          <Text
-            style={[
-              text_style.fontColorWhite,
-              text_style.bold,
-              flex_style.width100,
-              text_style.alignCenter,
-            ]}
-          >
-            {loadTranslations("cancel")}
+            {loadTranslations("deleteAccount")}
           </Text>
         </TouchableOpacity>
     </View>

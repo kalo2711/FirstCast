@@ -25,7 +25,7 @@ const Item = ({item, onPress}) => (
 );
 
 
-const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton }) => {
+const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton, simple }) => {
   const [inputValue, setInputValue] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [items, setItems] = useState([]);
@@ -33,9 +33,6 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   useEffect(() => {
     setItems([...dataset]);
-    if (dataset.length > 0) {
-      openKeyboard();
-    }
       return () => {
         keyboardDidHideListener.remove();
       };
@@ -52,12 +49,6 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   const toggleModal = () => {
     setIsModalVisible(true);
-  };
-
-  const openKeyboard = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
   };
 
   const handleSelectItem = (item) => {
@@ -87,6 +78,9 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           onChangeText={onType}
               />
       {!!inputValue && (
+        simple? 
+        items.map((item)=>{return renderItem({item})})
+        :
         <FlatList
         nestedScrollEnabled={true}
         style={styles.modalContainer}
