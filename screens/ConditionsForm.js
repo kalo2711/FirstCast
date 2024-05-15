@@ -703,7 +703,6 @@ const ConditionsForm = ({ navigation }) => {
           value={userLures}
           onValueChange={setUserLures}
         />
-
       </View>
 
       <View
