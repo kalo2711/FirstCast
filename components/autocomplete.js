@@ -17,7 +17,6 @@ import { reactIfView } from "../global/global-functions";
 const Item = ({item, onPress}) => (
   <TouchableOpacity
   style={[styles.itemButton, flex_style.flex, ,flex_style.alignCenter]}
-  //this line turn off the drop down press event
   onPress={(event) =>onPress(item)}
 >
   {(reactIfView(item.image,<Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{ uri: item.image }} /> ))}
@@ -79,10 +78,9 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           onFocus={toggleModal}
           onChangeText={onType}
               />
-      {/* items.map((item)=>{return renderItem({item})}) */}
       {!!inputValue && (
         simple? 
-        items.map((item) => renderItem({ item, key: item.id.toString() }))  // Assuming 'item.id' is the unique identifier
+        items.map((item) => renderItem({ item, key: item.id.toString() })) 
         :
         <FlatList
         nestedScrollEnabled={true}
