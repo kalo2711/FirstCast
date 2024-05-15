@@ -232,61 +232,25 @@ const ConditionsForm = ({ navigation }) => {
         waterClarity: waterClarity,
         structure: structure,
         userLures: userLures,
+        daysUntilDate: daysUntilDate
       };
       navigate(NAV_LURES_RESULTS, routeParams);
     }
   };
 
-  async function getWeather(){
-    let url = `${environment.host}api/weather/get/weatherForLocation?lat=${geoCoordinates.lat}&lon=${geoCoordinates.lon}`;
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      let data = await responseDataHandler(response);
-      if (!data) {
-        console.error(
-          "Unable to get weather from location: API Response is not valid."
-        );
-        return;
-      }
-      let daily = data.daily;
-      console.log(daysUntilDate);
-      console.log(daily[daysUntilDate].temp.day);
-      setTemperature(daily[daysUntilDate].temp.day);
-    } catch (e) {
-      console.error("Unable to get geoCoordinates from location: " + e);
-    }
-
-  }
-
   useEffect(() =>{
-    if (locationName){
+    if (date){
       let today = new Date().getDate();
       let target = new Date(date).getDate();
       let difference = Math.abs(target - today);
-      let days = Math.ceil(difference / (1000 * 60 * 60 * 24));
-      if(days >= 0 && days <= 7) {
-        setDaysUntilDate(days);
-        getWeather();
+      if(difference >= 0 && difference <= 7) {
+        setDaysUntilDate(difference);
+        setTempVisable(false);
       }else {
         setTempVisable(true);
       }
     }
-  },[date, geoCoordinates]);
-
-  useEffect(async() =>{
-    if (daysUntilDate){
-      await getWeather();
-    }
-  },[daysUntilDate]);
-
-  useEffect(async() =>{
-    console.log(temperature);
-  },[temperature]);
+  },[date]);
 
   //Date + Time picker functions
   const onChange = (e, selectedDate) => {
