@@ -78,6 +78,8 @@ const ConditionsForm = ({ navigation }) => {
   const [userLures, setUserLures] = useState(false);
   const [structure, setStructure] = useState("");
   const [structureInput, setStructureInput] = useState("");
+  const [tempVisable, setTempVisable] = useState(false);
+  const [daysUntilDate, setDaysUntilDate] = useState(0);
 
   const waterClarities = [
     {
@@ -230,10 +232,25 @@ const ConditionsForm = ({ navigation }) => {
         waterClarity: waterClarity,
         structure: structure,
         userLures: userLures,
+        daysUntilDate: daysUntilDate
       };
       navigate(NAV_LURES_RESULTS, routeParams);
     }
   };
+
+  useEffect(() =>{
+    if (date){
+      let today = new Date().getDate();
+      let target = new Date(date).getDate();
+      let difference = Math.abs(target - today);
+      if(difference >= 0 && difference <= 7) {
+        setDaysUntilDate(difference);
+        setTempVisable(false);
+      }else {
+        setTempVisable(true);
+      }
+    }
+  },[date]);
 
   //Date + Time picker functions
   const onChange = (e, selectedDate) => {
@@ -322,63 +339,6 @@ const ConditionsForm = ({ navigation }) => {
         dataset={autofilledLocations}
         parentSetModalVisible={setModalVisible}
         setSelectedItem={onLocationSelected}
-      />
-      <View style={[flex_style.flex, flex_style.width100]}>
-        <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
-        {reactIfView(
-          currentTutorial == "waterTemp",
-          <Tooltip
-            contentStyle={[{ backgroundColor: primary_color, height: 80 }]}
-            backgroundColor={"rgba(0,0,0,0)"}
-            isVisible={currentTutorial == "waterTemp"}
-            content={
-              <Text style={[text_style.fontColorWhite]}>
-                {loadTranslations("tutSetTemperature")}
-              </Text>
-            }
-            placement="top"
-            onClose={async () => {
-              setCurrentTutorial(
-                await updateTutorialAndGetNext("waterTemp", NAV_CONDITIONS_FORM)
-              );
-            }}
-          >
-            <TooltipChildrenContext.Consumer>
-              {({ tooltipDuplicate }) =>
-                reactIfView(
-                  !tooltipDuplicate,
-                  <View
-                    style={[
-                      {
-                        height: Platform.OS === "android" ? 50 : 0,
-                        width: width,
-                      },
-                    ]}
-                  ></View>
-                )
-              }
-            </TooltipChildrenContext.Consumer>
-          </Tooltip>
-        )}
-      </View>
-      <TextInput
-        value={temperature}
-        onChangeText={(text) => {
-          const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
-          setTemperature(sanitizedText);
-        }}
-        keyboardType="numeric"
-        onBlur={() => {
-          if (temperature) {
-            setTemperature(`${temperature}°C`);
-          }
-        }}
-        onFocus={() => {
-          setTemperature(temperature.replace(" °C", ""));
-        }}
-        maxLength={2}
-        style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
-        placeholderTextColor={black}
       />
       <View style={[flex_style.flex, flex_style.width100]}>
         {reactIfView(
@@ -491,6 +451,7 @@ const ConditionsForm = ({ navigation }) => {
         showCancelButton={false}
         onChangeText={(event) => setStructureInput(event)}
         noItemsPlaceholder="noStructure"
+        placeholder={structure}
         dataset={structures.filter((item) =>
           item?.title
             ?.toLocaleLowerCase()
@@ -499,14 +460,6 @@ const ConditionsForm = ({ navigation }) => {
         parentSetModalVisible={setStructureModalVisible}
         setSelectedItem={(event) => setStructure(event.id)}
       />
-      {reactIfView(
-        !!structure,
-        <View style={[margin_styles.vertical_space_md]}>
-          <Text style={[text_style.xs]}>
-            {loadTranslations("chosenStructure")}: {loadTranslations(structure)}
-          </Text>
-        </View>
-      )}
       <View
         style={[
           flex_style.flex,
@@ -678,7 +631,64 @@ const ConditionsForm = ({ navigation }) => {
           )}
         </View>
       </View>
-
+      <View style={[flex_style.flexColumn, flex_style.width100, !tempVisable ? { display: 'none' } : null]}>
+        <Text style={[text_style.xxs, text_style.alignCenter]}>{loadTranslations("dateExceeds8Days")}</Text>
+        <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
+        {reactIfView(
+          currentTutorial == "waterTemp",
+          <Tooltip
+            contentStyle={[{ backgroundColor: primary_color, height: 80 }]}
+            backgroundColor={"rgba(0,0,0,0)"}
+            isVisible={currentTutorial == "waterTemp"}
+            content={
+              <Text style={[text_style.fontColorWhite]}>
+                {loadTranslations("tutSetTemperature")}
+              </Text>
+            }
+            placement="top"
+            onClose={async () => {
+              setCurrentTutorial(
+                await updateTutorialAndGetNext("waterTemp", NAV_CONDITIONS_FORM)
+              );
+            }}
+          >
+            <TooltipChildrenContext.Consumer>
+              {({ tooltipDuplicate }) =>
+                reactIfView(
+                  !tooltipDuplicate,
+                  <View
+                    style={[
+                      {
+                        height: Platform.OS === "android" ? 50 : 0,
+                        width: width,
+                      },
+                    ]}
+                  ></View>
+                )
+              }
+            </TooltipChildrenContext.Consumer>
+          </Tooltip>
+        )}
+        <TextInput
+          value={temperature}
+          onChangeText={(text) => {
+            const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
+            setTemperature(sanitizedText);
+          }}
+          keyboardType="numeric"
+          onBlur={() => {
+            if (temperature) {
+              setTemperature(`${temperature}°C`);
+            }
+          }}
+          onFocus={() => {
+            setTemperature(temperature.replace(" °C", ""));
+          }}
+          maxLength={2}
+          style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}
+          placeholderTextColor={black}
+        />
+      </View>
       <View
         style={[
           flex_style.flex,
