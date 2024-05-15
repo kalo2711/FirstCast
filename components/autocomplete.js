@@ -17,7 +17,8 @@ import { reactIfView } from "../global/global-functions";
 const Item = ({item, onPress}) => (
   <TouchableOpacity
   style={[styles.itemButton, flex_style.flex, ,flex_style.alignCenter]}
-  onPress={(event) => onPress(item)}
+  //this line turn off the drop down press event
+  onPress={(event) =>onPress(item)}
 >
   {(reactIfView(item.image,<Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{ uri: item.image }} /> ))}
   <Text style={[styles.itemText, flex_style.one, flex_style.wrap]}>{item.title}</Text>
@@ -33,19 +34,18 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   useEffect(() => {
     setItems([...dataset]);
-      return () => {
-        keyboardDidHideListener.remove();
-      };
   }, [dataset]);
 
+  useEffect(() => {
+    if (!isModalVisible) {
+      setTimeout(() => Keyboard.dismiss(), 50);
+    }
+  }, [isModalVisible]);
+   
   const onType = (text) => {
     setInputValue(text);
     onChangeText(text);
   };
-    
-  const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-    setIsModalVisible(false);
-  });
 
   const toggleModal = () => {
     setIsModalVisible(true);
@@ -61,8 +61,9 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
   const renderItem = ({ item }) => {
     return (
       <Item
+      key={item.id.toString()}
       item={item}
-      onPress={() => handleSelectItem(item)}
+      onPress={() =>{handleSelectItem(item)}}
     />
     );
   }
@@ -78,16 +79,17 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           onFocus={toggleModal}
           onChangeText={onType}
               />
+      {/* items.map((item)=>{return renderItem({item})}) */}
       {!!inputValue && (
         simple? 
-        items.map((item)=>{return renderItem({item})})
+        items.map((item) => renderItem({ item, key: item.id.toString() }))  // Assuming 'item.id' is the unique identifier
         :
         <FlatList
         nestedScrollEnabled={true}
         style={styles.modalContainer}
         data={items}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => item.id.toString()}
       />
       )}
       {reactIfView(!!inputValue && items?.length < 1,
