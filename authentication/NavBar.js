@@ -30,7 +30,7 @@ export default function NavBar(props) {
             {height: SpacingXLarge}
           ]}
         >
-          <Text>{loadTranslations("login")} </Text>
+          <Text>{loadTranslations("login")}</Text>
         </Pressable>
 
         <Pressable
@@ -44,7 +44,7 @@ export default function NavBar(props) {
             {height: SpacingXLarge}
           ]}
         >
-          <Text >{loadTranslations("signup")} </Text>
+          <Text >{loadTranslations("signup")}</Text>
         </Pressable>
 
       </View>
