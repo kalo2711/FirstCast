@@ -77,6 +77,7 @@ const NAV_LURES_FORM = 'Lures'
 const NAV_REQUEST_LURE_FORM = 'RequestNewLure'
 const NAV_LURES_RESULTS = 'LuresResults'
 const NAV_CONDITIONS_RESULTS = 'ConditionsResults'
+const NAV_PAYMENT = "Payment";
 
 // Responses
 const RES_UNAUTHORIZED = "Unauthorized";
@@ -303,6 +304,7 @@ export {
   API_GET_USER_INFO_AD,
   NAV_PROFILE,
   NAV_EDIT_PROFILE,
+  NAV_PAYMENT,
   RES_UNAUTHORIZED,
   RES_VALID,
   HOME,

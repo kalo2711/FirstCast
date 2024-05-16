@@ -317,6 +317,9 @@ export const btn_style = StyleSheet.create({
   buttonFullWidth: {
     width: '100%'
   },
+  buttonOneThirdWidth: {
+    width: '33%'
+  },
   buttonDisabled: {
     backgroundColor: lightgrey
   },
@@ -341,6 +344,7 @@ export const btn_style = StyleSheet.create({
   round: {
     borderRadius: 50
   },
+  
   red: {
     backgroundColor: 'red'
   }

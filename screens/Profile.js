@@ -19,7 +19,7 @@ import {
 } from "../global/global-styles";
 import { getDeviceLanguage, loadTranslations } from "../global/localization";
 import { responseDataHandler} from "../global/global-functions";
-import { height, NAV_EDIT_PROFILE } from "../global/global-constants";
+import { height, NAV_EDIT_PROFILE, NAV_PAYMENT } from "../global/global-constants";
 import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
 import { terms, terms_fr } from '../authentication/terms';
 
@@ -85,6 +85,13 @@ export default function Profile({ navigation }) {
     });
   }
 
+  function handleSubNav(){
+    navigation.navigate(NAV_PAYMENT, {
+      token: token,
+      profile: profile
+    });
+  }
+
   const styles = StyleSheet.create({
     itemContainer: {
       flexDirection: 'row',
@@ -128,24 +135,47 @@ export default function Profile({ navigation }) {
         >
           {profile["displayName"]}'s {loadTranslations('profile')}
         </Text>
-        <TouchableOpacity
-          onPress={handleEditNav}
-          style={[
-            btn_style.button,
-            btn_style.round, 
-            btn_style.buttonVerySmall,
-          ]}
-        >
-        <Text
-          style={[
-            text_style.fontColorWhite,
-            text_style.bold,
-            text_style.alignCenter,
-          ]}
-        >
-          {loadTranslations("edit")}
-        </Text>
-        </TouchableOpacity>
+        <View
+           style={[
+            flex_style.flex,
+          ]}>
+          <TouchableOpacity
+            onPress={handleEditNav}
+            style={[
+              btn_style.button,
+              btn_style.round, 
+              btn_style.buttonVerySmall,
+            ]}
+          >
+          <Text
+            style={[
+              text_style.fontColorWhite,
+              text_style.bold,
+              text_style.alignCenter,
+            ]}
+          >
+            {loadTranslations("edit")}
+          </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleSubNav}
+            style={[
+              btn_style.button,
+              btn_style.round, 
+              btn_style.buttonVerySmall,
+            ]}
+          >
+          <Text
+            style={[
+              text_style.fontColorWhite,
+              text_style.bold,
+              text_style.alignCenter,
+            ]}
+          >
+            Go Pro
+          </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       {lures === null ? (
         <Text>{loadTranslations("noUserLures")}</Text>
