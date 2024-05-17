@@ -13,6 +13,7 @@ import {
   padding_styles,
   text_style,
   img_styles,
+  margin_styles,
 } from "../global/global-styles";
 import {
   primary_color,
@@ -368,6 +369,8 @@ export default function LuresResults({ route }) {
         placement="bottom"
         tooltipStyle={[{ marginTop: 100 }]}
       />
+       {lures && lures.length > 0 ? (
+      <>
       <Image
         source={{ uri: expertImage }}
         style={{ width: "100%", height: 330 }}
@@ -397,6 +400,14 @@ export default function LuresResults({ route }) {
           keyExtractor={(item, index) => `lure-${index}`}
         />
       </ScrollView>
+       </>
+    ) : (
+      <View style={[margin_styles.vertical_space_xxl]}>
+        <Text style={[text_style.apple_auth, text_style.alignCenter]}>
+          {loadTranslations("noLureForConditions")}
+        </Text>
+      </View>
+    )}
     </View>
   );
 }
