@@ -266,6 +266,7 @@ const ConditionsForm = ({ navigation }) => {
   return (
     <ScrollView
       nestedScrollEnabled={true}
+      keyboardShouldPersistTaps='always'
       contentContainerStyle={[
         flex_style.flex,
         flex_style.flexContainer,

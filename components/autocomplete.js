@@ -33,18 +33,19 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   useEffect(() => {
     setItems([...dataset]);
+      return () => {
+        keyboardDidHideListener.remove();
+      };
   }, [dataset]);
-
-  useEffect(() => {
-    if (!isModalVisible) {
-      setTimeout(() => Keyboard.dismiss(), 50);
-    }
-  }, [isModalVisible]);
    
   const onType = (text) => {
     setInputValue(text);
     onChangeText(text);
   };
+  
+  const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+    setIsModalVisible(false);
+  });
 
   const toggleModal = () => {
     setIsModalVisible(true);
