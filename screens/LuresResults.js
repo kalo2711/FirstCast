@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 import {
   btn_style,
@@ -22,6 +23,7 @@ import {
   tutorial_styles,
   ICON_SIZE_S,
   SpacingExtraSmall,
+  height,
 } from "../global/global-constants";
 import { loadTranslations } from "../global/localization";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
@@ -52,33 +54,33 @@ export default function LuresResults({ route }) {
   const expertConfig = {
     pike: {
       image:
-        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg",
-      caption: loadTranslations("luresRecommendedByLucas"),
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
+      caption: loadTranslations("luresRecommendedByHugo"),
     },
     walleye: {
       image:
-        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg",
-      caption: loadTranslations("luresRecommendedByLucas"),
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
+      caption: loadTranslations("luresRecommendedByHugo"),
     },
     lakeTrout: {
       image:
-        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
-      caption: loadTranslations("luresRecommendedByHugo"),
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg",
+      caption: loadTranslations("luresRecommendedByLucas"),
     },
     rainbowTrout: {
       image:
-        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
-      caption: loadTranslations("luresRecommendedByHugo"),
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg",
+      caption: loadTranslations("luresRecommendedByLucas"),
     },
     brookTrout: {
       image:
-        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
-      caption: loadTranslations("luresRecommendedByHugo"),
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg",
+      caption: loadTranslations("luresRecommendedByLucas"),
     },
     brownTrout: {
       image:
-        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
-      caption: loadTranslations("luresRecommendedByHugo"),
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg",
+      caption: loadTranslations("luresRecommendedByLucas"),
     },
   };
 
@@ -357,36 +359,34 @@ export default function LuresResults({ route }) {
     },
   });
 
-  return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
-      <TutorialTooltip
-        conditions={currentTutorial == "ResultsGuide"}
-        style={tutorial_styles.doubleLine}
-        tutorial="ResultsGuide"
-        translations="tutGuide"
-        tutRoute={NAV_LURES_RESULTS}
-        setCurrentTutorial={setCurrentTutorial}
-        placement="bottom"
-        tooltipStyle={[{ marginTop: 100 }]}
-      />
-       {lures && lures.length > 0 ? (
-      <>
-      <Image
-        source={{ uri: expertImage }}
-        style={{ width: "100%", height: 330 }}
-      />
-      <Text
-        style={{
-          textAlign: "center",
-          fontWeight: "bold",
-          fontSize: 15,
-          marginTop: 9,
-          marginBottom: 4,
-        }}
-      >
-        {caption}
-      </Text>
-      <ScrollView>
+  const renderHeader = () => {
+    return (
+      <View>
+        <TutorialTooltip
+          conditions={currentTutorial == "ResultsGuide"}
+          style={tutorial_styles.doubleLine}
+          tutorial="ResultsGuide"
+          translations="tutGuide"
+          tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}
+          placement="bottom"
+          tooltipStyle={[{ marginTop: 100 }]}
+        />
+        <Image
+          source={{ uri: expertImage }}
+          style={{ width: "100%", height: 330 }}
+        />
+        <Text
+          style={{
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: 15,
+            marginTop: 9,
+            marginBottom: 4,
+          }}
+        >
+          {caption}
+        </Text>
         {weather && (
           <WeatherAndMoonPhase
             weather={weather}
@@ -394,20 +394,68 @@ export default function LuresResults({ route }) {
             waterCondition={route.params.waterClarity}
           />
         )}
-        <FlatList
-          data={lures}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => `lure-${index}`}
-        />
-      </ScrollView>
-       </>
-    ) : (
-      <View style={[margin_styles.vertical_space_xxl]}>
-        <Text style={[text_style.apple_auth, text_style.alignCenter]}>
-          {loadTranslations("noLureForConditions")}
-        </Text>
       </View>
-    )}
+    );
+  };
+
+  return (
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      {loading && <View style={[flex_style.center, flex_style.flex, {height: height}]}><ActivityIndicator style={[margin_styles.top_lg, flex_style.center]} size="large" color={primary_color} /></View>}
+      {!loading && (
+        <View>
+        <TutorialTooltip
+          conditions={currentTutorial == "ResultsGuide"}
+          style={tutorial_styles.doubleLine}
+          tutorial="ResultsGuide"
+          translations="tutGuide"
+          tutRoute={NAV_LURES_RESULTS}
+          setCurrentTutorial={setCurrentTutorial}
+          placement="bottom"
+          tooltipStyle={[{ marginTop: 100 }]}
+        />
+        {lures && lures.length > 0 ? (
+          <View>
+            <Image
+              source={{ uri: expertImage }}
+              style={{ width: "100%", height: 330 }}
+            />
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+                fontSize: 15,
+                marginTop: 9,
+                marginBottom: 4,
+              }}
+            >
+              {caption}
+            </Text>
+            <FlatList
+              style={[margin_styles.bottom_lg]}
+              ListHeaderComponent={
+                <View>
+                  {weather && (
+                    <WeatherAndMoonPhase
+                      weather={weather}
+                      moonPhase={moon}
+                      waterCondition={route.params.waterClarity}
+                    />
+                  )}
+                </View>
+              }
+              data={lures}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => `lure-${index}`}
+            />
+          </View>
+          ) :
+            ( <View style={[margin_styles.vertical_space_xxl]}>
+              <Text style={[text_style.apple_auth, text_style.alignCenter]}>
+                {loadTranslations("noLureForConditions")}
+              </Text>
+            </View>)}
+        </View>
+      )}
     </View>
   );
 }
