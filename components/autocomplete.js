@@ -42,7 +42,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
     setInputValue(text);
     onChangeText(text);
   };
-  
+
   const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
     setIsModalVisible(false);
   });
@@ -63,7 +63,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
       <Item
       key={item.id.toString()}
       item={item}
-      onPress={() =>{handleSelectItem(item)}}
+      onPress={() =>handleSelectItem(item)}
     />
     );
   }
