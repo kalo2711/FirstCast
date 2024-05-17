@@ -10,13 +10,13 @@ export default function ControlFlash(props){
     <TouchableOpacity
       onPress={() => {
         props.setFlashType(
-          props.flashType === Camera.Constants.FlashMode.torch
-            ? props.camera.Constants.FlashMode.off
-            : props.camera.Constants.FlashMode.torch
+          props.flashType === 'off'
+            ? 'off'
+            : 'on'
         );
       }}>
       {
-        props.flashType === Camera.Constants.FlashMode.torch ? 
+        props.flashType === 'off' ? 
           <MaterialIcons name="flash-off" size={ICON_SIZE} padding={SpacingSmall} color="white" /> :
           <Entypo name="flash" size={ICON_SIZE} padding={SpacingSmall} color="white" />          
       }

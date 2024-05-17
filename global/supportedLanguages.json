@@ -2,6 +2,7 @@
   "en": {
     "bay": "Bay",
     "close": "Close",
+    "cameraPerm":"We need your permission to show the camera",
     "bioPressure": "Biometric Pressure",
     "brand": "Lure brand",
     "brandOrModel": "Brand Or Model",
@@ -193,6 +194,7 @@
   "fr": {
     "bay":"baie",
     "close": "Fermer",
+    "cameraPerm":"Nous avons besoin de votre autorisation pour montrer la caméra",
     "bioPressure": "Pression biométrique",
     "brand": "Marque de leurre",
     "brandOrModel": "Brand Ou Model",
