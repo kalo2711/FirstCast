@@ -188,7 +188,8 @@
     "lastMoonPhase": "Last moon phase: ",
     "in": "dans",
     "days": "days",
-    "daysAgo": "days ago"
+    "daysAgo": "days ago",
+    "noLureForConditions": "We currently do not have the data for the criteria entered, please try different conditions."
   },
   "fr": {
     "bay":"baie",
@@ -377,6 +378,7 @@
     "lastMoonPhase": "Dernière phase lunaire: ",
     "in": "dans",
     "days": "jours",
-    "daysAgo": "jours passés"
+    "daysAgo": "jours passés",
+    "noLureForConditions": "Nous n'avons actuellement pas de données pour les critères saisis, veuillez essayer des conditions différentes."
   }
 }
