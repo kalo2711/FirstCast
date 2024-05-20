@@ -169,7 +169,7 @@ export default function LuresResults({ route }) {
               {moonPhase.prevPhase.daysSinceLast} {loadTranslations("daysAgo")}
               {moonPhase.prevPhase.phase === 1 ||
               moonPhase.prevPhase.phase === 3
-                ? ` : ${loadTranslations("fishFullFromFeeding")}`
+                ? ` : ${loadTranslations("fishFullFromFeedingMoon")}`
                 : ""}
             </Text>
             <Text style={{ marginLeft: SpacingExtraSmall }}>
@@ -194,7 +194,7 @@ export default function LuresResults({ route }) {
               {loadTranslations("daysAgo")}
               {moonPhase.prevPhase.phase === 1 ||
               moonPhase.prevPhase.phase === 3
-                ? ` : ${loadTranslations("fishFullFromFeeding")}`
+                ? ` : ${loadTranslations("fishFullFromFeedingMoon")}`
                 : ""}
             </Text>
             <Text style={{ marginLeft: SpacingExtraSmall }}>

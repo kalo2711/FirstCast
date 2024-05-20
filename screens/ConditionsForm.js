@@ -10,6 +10,7 @@ import {
   ScrollView,
   Platform,
   Image,
+  Switch,
 } from "react-native";
 import Checkbox from "expo-checkbox";
 import {
@@ -33,6 +34,7 @@ import {
   NAV_LURES_RESULTS,
   ANDROID,
   tutorial_styles,
+  secondary_color,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
@@ -340,7 +342,7 @@ const ConditionsForm = ({ navigation }) => {
         parentSetModalVisible={setModalVisible}
         setSelectedItem={onLocationSelected}
       />
-      <View style={[flex_style.flex, flex_style.width100]}>
+      <View style={[flex_style.flex, flex_style.width100, margin_styles.top_md]}>
         {reactIfView(
           currentTutorial == "selectSpecies",
           <Tooltip
@@ -430,36 +432,6 @@ const ConditionsForm = ({ navigation }) => {
           ></FishSelectItem>
         )}
       </View>
-      <View style={[flex_style.flex, flex_style.width100]}>
-        <TutorialTooltip
-          conditions={currentTutorial == "structure"}
-          style={tutorial_styles.multiLine}
-          tutorial="structure"
-          translations="tutStructure"
-          tutRoute={NAV_CONDITIONS_FORM}
-          setCurrentTutorial={setCurrentTutorial}
-        />
-        <View style={[flex_style.flex, flex_style.width100]}>
-          <Text style={[text_style.xs, text_style.alignLeft]}>
-            {loadTranslations("structureInput")}
-          </Text>
-          <Text style={[text_style.required]}>*</Text>
-        </View>
-      </View>
-      <DropdownWithModal
-        simple={true}
-        showCancelButton={false}
-        onChangeText={(event) => setStructureInput(event)}
-        noItemsPlaceholder="noStructure"
-        placeholder={structure}
-        dataset={structures.filter((item) =>
-          item?.title
-            ?.toLocaleLowerCase()
-            ?.includes(structureInput?.toLocaleLowerCase())
-        )}
-        parentSetModalVisible={setStructureModalVisible}
-        setSelectedItem={(event) => setStructure(event.id)}
-      />
       <View
         style={[
           flex_style.flex,
@@ -468,7 +440,7 @@ const ConditionsForm = ({ navigation }) => {
           margin_styles.bottom_md,
         ]}
       >
-        <View style={[flex_style.flex, flex_style.column, flex_style.width100]}>
+        <View style={[flex_style.flex, flex_style.column, flex_style.width100, margin_styles.top_xs]}>
           {reactIfView(
             showDatePicker,
             <View style={[flex_style.flex, flex_style.center]}>
@@ -610,7 +582,7 @@ const ConditionsForm = ({ navigation }) => {
                 btn_style.round,
                 btn_style.buttonFullWidth,
                 btn_style.buttonReversed,
-                margin_styles.vertical_space_l,
+                margin_styles.top_md,
               ]}
             >
               <Text
@@ -631,6 +603,36 @@ const ConditionsForm = ({ navigation }) => {
           )}
         </View>
       </View>
+      <View style={[flex_style.flex, flex_style.width100]}>
+        <TutorialTooltip
+          conditions={currentTutorial == "structure"}
+          style={tutorial_styles.multiLine}
+          tutorial="structure"
+          translations="tutStructure"
+          tutRoute={NAV_CONDITIONS_FORM}
+          setCurrentTutorial={setCurrentTutorial}
+        />
+        <View style={[flex_style.flex, flex_style.width100]}>
+          <Text style={[text_style.xs, text_style.alignLeft]}>
+            {loadTranslations("structureInput")}
+          </Text>
+          <Text style={[text_style.required]}>*</Text>
+        </View>
+      </View>
+      <DropdownWithModal
+        simple={true}
+        showCancelButton={false}
+        onChangeText={(event) => setStructureInput(event)}
+        noItemsPlaceholder="noStructure"
+        placeholder={structure}
+        dataset={structures.filter((item) =>
+          item?.title
+            ?.toLocaleLowerCase()
+            ?.includes(structureInput?.toLocaleLowerCase())
+        )}
+        parentSetModalVisible={setStructureModalVisible}
+        setSelectedItem={(event) => setStructure(event.id)}
+      />
       <View style={[flex_style.flexColumn, flex_style.width100, !tempVisable ? { display: 'none' } : null]}>
         <Text style={[text_style.xxs, text_style.alignCenter]}>{loadTranslations("dateExceeds8Days")}</Text>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>
@@ -693,16 +695,18 @@ const ConditionsForm = ({ navigation }) => {
         style={[
           flex_style.flex,
           flex_style.width100,
-          flex_style.center,
+          flex_style.spaceBetween,
           margin_styles.bottom_md,
         ]}
       >
         <Text style={[text_style.xs]}>{loadTranslations("myLures")}</Text>
-        <Checkbox
-          style={[margin_styles.horizontal_space_s]}
-          value={userLures}
-          onValueChange={setUserLures}
-        />
+              <Switch
+        trackColor={{false: primary_color, true: primary_color}}
+        thumbColor={userLures ? secondary_color : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={setUserLures}
+        value={userLures}
+      />
       </View>
 
       <View
@@ -780,10 +784,11 @@ const ConditionsForm = ({ navigation }) => {
                 <Image
                   source={waterClarityItem.image}
                   style={[
-                    img_styles.rectangle_image_xxs,
+                    img_styles.circular_image_holder,
                     waterClarity == waterClarityItem.name
-                      ? btn_style.buttonReversed
-                      : null,
+                    ? btn_style.buttonReversed
+                    : null,
+                    img_styles.round,
                   ]}
                 ></Image>
                 <Text

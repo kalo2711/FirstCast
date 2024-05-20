@@ -169,26 +169,26 @@ export const z_index = StyleSheet.create({
 
 export const text_style = StyleSheet.create({
   bold: {
-    fontFamily: 'open-sans-bold'
+    fontFamily: 'sf-bold'
   },
   xl: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     fontSize: 55
   },
   md: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     fontSize: 34
   },
   sm: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     fontSize: 21
   },
   xxs: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     fontSize: 13
   },
   xs: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     fontSize: 15
   },
   apple_auth: {
@@ -215,7 +215,7 @@ export const text_style = StyleSheet.create({
     textAlign: 'center'
   },
   whiteTitle: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     fontSize: headerLargeFont,
     fontStyle: 'italic'
   },
@@ -225,27 +225,27 @@ export const text_style = StyleSheet.create({
     fontSize: headerLargeFont
   },
   fontColorWhite: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     color: white
   },
   fontColorPurple: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     color: primary_color
   },
   fontColorBlack: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     color: black
   },
   fontColorRed: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     color: 'red'
   },
   fontColorGrey: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     color: grey_color
   },
   fontColorPrimary: {
-    fontFamily: 'open-sans-regular',
+    fontFamily: 'sf-regular',
     color: primary_color
   },
   required: {
@@ -278,7 +278,7 @@ export const btn_style = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    // fontFamily: 'open-sans-bold'
+    // fontFamily: 'sf-bold'
   },
   buttonUnderline: {
     borderBottomColor: black,
@@ -293,7 +293,7 @@ export const btn_style = StyleSheet.create({
   buttonBlackReversed: {
     borderColor: black,
     borderWidth: 1,
-    backgroundColor: 'transparent'
+    backgroundColor: 'white'
   },
   lightOpacity: {
     borderWidth: 1,
@@ -425,9 +425,9 @@ export const img_styles = StyleSheet.create({
   },
   circular_image_holder: {
     borderWidth: 1,
-    width: 150,
-    height: 150,
-    borderRadius: 150
+    width: 100,
+    height: 100,
+    borderRadius: 100
   },
   icon_xs: {
     flex: 1,

@@ -8,10 +8,10 @@ export default function App() {
   useEffect(() => {
     const loadFonts = async () => {
       await Font.loadAsync({
-        "open-sans-light": require("./assets/fonts/OpenSans-Light.ttf"),
-        "open-sans-regular": require("./assets/fonts/OpenSans-Regular.ttf"),
-        "open-sans-medium": require("./assets/fonts/OpenSans-Medium.ttf"),
-        "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+        "sf-light": require("./assets/fonts/SF-Pro-Text-Bold.ttf"),
+        "sf-regular": require("./assets/fonts/SF-Pro.ttf"),
+        "sf-medium": require("./assets/fonts/SF-Pro-Text-Semibold.ttf"),
+        "sf-bold": require("./assets/fonts/SF-Pro-Text-Bold.ttf"),
         // Add more font variations if needed
       });
     };
