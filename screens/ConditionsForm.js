@@ -35,6 +35,7 @@ import {
   ANDROID,
   tutorial_styles,
   secondary_color,
+  API_STRUCTURES_FOR_SPECIES,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
@@ -217,6 +218,7 @@ const ConditionsForm = ({ navigation }) => {
   const onSelectFish = (selectedFish) => {
     setSpeciesModalVisible(false);
     setSpecies(selectedFish);
+    getStructuresForSpecies(selectedFish.name);
   };
 
   const handleFormSubmit = async () => {
@@ -256,12 +258,24 @@ const ConditionsForm = ({ navigation }) => {
 
   //Date + Time picker functions
   const onChange = (e, selectedDate) => {
-    setDate(selectedDate);
+    setDate(new Date(selectedDate.getTime()));
     if (Platform.OS == ANDROID) {
       setShowDatePicker(false);
       setShowTimePicker(false);
     }
   };
+
+  const getStructuresForSpecies = async (species) => {
+    // When passing in time, make sure to split string by spaces. You need [Fri, May, 23,] and so on
+    const url = environment.host + API_STRUCTURES_FOR_SPECIES + species
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    //console.log(response)
+  }
 
   //Return values
 
@@ -625,7 +639,7 @@ const ConditionsForm = ({ navigation }) => {
         showCancelButton={false}
         onChangeText={(event) => setStructureInput(event)}
         noItemsPlaceholder="noStructure"
-        placeholder={structure}
+        placeholder={species != null ? structure : "Please select a fish species"}
         dataset={structures.filter((item) =>
           item?.title
             ?.toLocaleLowerCase()
@@ -633,6 +647,7 @@ const ConditionsForm = ({ navigation }) => {
         )}
         parentSetModalVisible={setStructureModalVisible}
         setSelectedItem={(event) => setStructure(event.id)}
+        textEditable={species != null}
       />
       <View style={[flex_style.flexColumn, flex_style.width100, !tempVisable ? { display: 'none' } : null]}>
         <Text style={[text_style.xxs, text_style.alignCenter]}>{loadTranslations("dateExceeds8Days")}</Text>
