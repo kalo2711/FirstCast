@@ -8,7 +8,7 @@
 
 export const environment = {
   production: true,
-  host: "https://pickaplaceint.com/main/",
-  authHost: "https://pickaplaceint.com/auth/",
+  host: "https://firstcast.org/main/",
+  authHost: "https://firstcast.org/auth/",
   imageBucket: "https://storage.googleapis.com/puggum-bucket/"
 }

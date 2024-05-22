@@ -9,7 +9,7 @@ import {
   Keyboard,
   FlatList,
 } from 'react-native';
-import { SpacingLarge, width } from "../global/global-constants";
+import { SpacingLarge, width, black } from "../global/global-constants";
 import { btn_style, flex_style, img_styles, margin_styles, text_style } from "../global/global-styles";
 import { loadTranslations } from "../global/localization";
 import { reactIfView } from "../global/global-functions";
@@ -17,7 +17,7 @@ import { reactIfView } from "../global/global-functions";
 const Item = ({item, onPress}) => (
   <TouchableOpacity
   style={[styles.itemButton, flex_style.flex, ,flex_style.alignCenter]}
-  onPress={(event) => onPress(item)}
+  onPress={(event) =>onPress(item)}
 >
   {(reactIfView(item.image,<Image style={[img_styles.icon_xxs, margin_styles.horizontal_space_md]} source={{ uri: item.image }} /> ))}
   <Text style={[styles.itemText, flex_style.one, flex_style.wrap]}>{item.title}</Text>
@@ -37,12 +37,12 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
         keyboardDidHideListener.remove();
       };
   }, [dataset]);
-
+   
   const onType = (text) => {
     setInputValue(text);
     onChangeText(text);
   };
-    
+
   const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
     setIsModalVisible(false);
   });
@@ -53,7 +53,7 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
 
   const handleSelectItem = (item) => {
     setSelectedItem(item);
-    setInputValue('')
+    setInputValue('');
     setIsModalVisible(false);
     Keyboard.dismiss();
   };
@@ -61,8 +61,9 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
   const renderItem = ({ item }) => {
     return (
       <Item
+      key={item.id.toString()}
       item={item}
-      onPress={() => handleSelectItem(item)}
+      onPress={() =>handleSelectItem(item)}
     />
     );
   }
@@ -74,19 +75,20 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
           style={[styles.input]}
           value={inputValue}
           placeholder={placeholder}
+          placeholderTextColor={black}
           onFocus={toggleModal}
           onChangeText={onType}
               />
       {!!inputValue && (
         simple? 
-        items.map((item)=>{return renderItem({item})})
+        items.map((item) => renderItem({ item, key: item.id.toString() })) 
         :
         <FlatList
         nestedScrollEnabled={true}
         style={styles.modalContainer}
         data={items}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => item.id.toString()}
       />
       )}
       {reactIfView(!!inputValue && items?.length < 1,

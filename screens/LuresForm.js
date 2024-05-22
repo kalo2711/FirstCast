@@ -23,7 +23,7 @@ import {
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, tutorial_styles, width } from "../global/global-constants";
+import { ICON_SIZE_XS, NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, tutorial_styles, width } from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import Icon from "react-native-ico-material-design";
@@ -171,7 +171,8 @@ export default function LuresForm({ navigation }) {
           <View style={[flex_style.flex, flex_style.column, flex_style.center, flex_style.width100]}>
             {lureOptions?.map((option, index) => 
               <View key={index} style={[flex_style.flex, flex_style.column, flex_style.center]}>
-                <TouchableOpacity style={[flex_style.flex, flex_style.column, flex_style.center, flex_style.width100, padding_styles.vertical_space_md, {paddingBottom:SpacingMedium, backgroundColor: lureOptionIdSelected == option.id ? secondary_color_faded : 'transparent'}]}
+                <TouchableOpacity style={[flex_style.flex, flex_style.column, flex_style.center, flex_style.width100, padding_styles.vertical_space_md,
+                { padding: SpacingMedium, borderWidth: lureOptionIdSelected == option.id ? 10 : 0, borderRadius: 50, borderColor: secondary_color_faded }, margin_styles.vertical_space_l]}
                 onPress={() => setLureOptionIdSelected(option.id)}>
                   <Image style={[img_styles.rectangle_image_s]} source={{uri: option?.image}}></Image>
                   <Text style={[text_style.bold, text_style.xs]}>{option?.brand}</Text>
@@ -281,15 +282,15 @@ function AddToMyLureButton({ option }) {
 
   return (
     <View>
-      <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={onButtonPress} activeOpacity={isLoading ? 1 : 0.2}>
+      <TouchableOpacity enabled={false} style={[btn_style.button, btn_style.buttonBlackReversed, btn_style.round, btn_style.buttonFullWidth, margin_styles.vertical_space_md]} onPress={onButtonPress} activeOpacity={isLoading ? 1 : 0.2}>
         {isLoading ?
           <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
             <ActivityIndicator style={[]} size="large" color={primary_color} />
           </View>
           :
-          <View style={[padding_styles.space_s, flex_style.flex, flex_style.center]}>
-            <Icon style={[margin_styles.horizontal_space_s]} name={buttonIcon} color={iconColor}></Icon>
-            <Text style={[text_style.bold, text_style.fontColorPrimary]}>{buttonContent}</Text>
+          <View style={[flex_style.flex, flex_style.center, padding_styles.space_md_horizontal]}>
+            <Icon style={[margin_styles.horizontal_space_s]} size={ICON_SIZE_XS} name={buttonIcon} color={iconColor}></Icon>
+            <Text style={[text_style.bold, text_style.fontColorBlack]}>{buttonContent}</Text>
           </View>
         }
       </TouchableOpacity>
