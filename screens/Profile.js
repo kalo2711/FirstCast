@@ -86,10 +86,7 @@ export default function Profile({ navigation }) {
   }
 
   function handleSubNav(){
-    navigation.navigate(NAV_PAYMENT, {
-      token: token,
-      profile: profile
-    });
+    navigation.navigate(NAV_PAYMENT);
   }
 
   const styles = StyleSheet.create({
