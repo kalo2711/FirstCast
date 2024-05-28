@@ -187,7 +187,18 @@
     "lastMoonPhase": "Last moon phase: ",
     "in": "dans",
     "days": "days",
-    "daysAgo": "days ago"
+    "daysAgo": "days ago",
+    "monthly": "per month",
+    "yearly": "per year (80% off!)",
+    "life": "for life",
+    "cancelAnytime": "cancel anytime",
+    "startFreeTrial": "Start a 7 day free trial",
+    "tryFreeTrial": "Try 7 days for free!",
+    "firstCastPlusMoto": "FIRSTCAST - Fishings never been so easy",
+    "noPayment": "No payment method required",
+    "lureResults": "On the Lure Results Page, discover your optimized lure recommendations based on your Conditions Form inputs and expert insights.",
+    "conditionResults": "In the Conditions Results section, we combine your lure details with factors like species, season, water clarity, and time of day to offer personalized recommendations.",
+    "lureRequest": "We are constantly seeking to improve. Using the Lure Request page, you can help us expand our lure database by submitting details about lures that are not currently available."
   },
   "fr": {
     "bay":"baie",
@@ -375,6 +386,17 @@
     "lastMoonPhase": "Dernière phase lunaire: ",
     "in": "dans",
     "days": "jours",
-    "daysAgo": "jours passés"
+    "daysAgo": "jours passés",
+    "monthly": "par mois",
+    "yearly": "par an (80% de réduction!)",
+    "life": "pour la vie",
+    "cancelAnytime": "annuler à tout moment",
+    "startFreeTrial": "Commencez un essai gratuit de 7 jours",
+    "tryFreeTrial": "essayez 7 jours gratuitement!",
+    "firstCastPlusMoto": "FIRSTCAST - La pêche n'a jamais été aussi facile",
+    "noPayment": "Aucun mode de paiement requis",
+    "lureResults": "Sur la page des Résultats des Leurres, découvrez vos recommandations de leurres optimisées en fonction des entrées de votre formulaire de conditions et des informations d'experts.",
+    "conditionResults": "Dans la section Résultats des conditions, nous combinons les détails de votre leurre avec des facteurs tels que l'espèce, la saison, la clarté de l'eau et l'heure de la journée pour proposer des recommandations personnalisées.",
+    "lureRequest": "Nous cherchons constamment à nous améliorer. En utilisant la page Demande de leurres, vous pouvez nous aider à élargir notre base de données de leurres en soumettant des détails sur les leurres qui ne sont actuellement pas disponibles."
   }
 }

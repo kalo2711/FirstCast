@@ -20,6 +20,8 @@ import {
   SpacingMedium, 
   SpacingXLarge, 
   VALID, 
+  RES_VALID,
+  NAV_PAYMENT,
   primary_color, 
   secondary_color, 
   white,
@@ -29,7 +31,7 @@ import {
 } from "./global/global-constants";
 import { environment } from "./global/environment";
 import { navigateBack, responseDataHandler } from "./global/global-functions";
-import { getAuthToken } from "./global/utils/auth.utils";
+import { getAuthToken, checkForValidSub } from "./global/utils/auth.utils";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import {reactIfView} from "./global/global-functions";
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "./global/utils/tutorial.utils";
@@ -96,48 +98,55 @@ const AddLureModal = (props) => {
   }
 
   async function onSubmit() {
-    setLoading(true)
-    let formData = new FormData()
-    formData.append("brand", brand)
-    formData.append("model", model)
-    formData.append("type", type)
-    formData.append("color1", color1)
-    formData.append("color2", color2)
-    formData.append("size", size)
-    formData.append("weight", weight)
-    formData.append("price", price)
-    formData.append("store", store)
+    const validSub = await checkForValidSub();
+    console.log(validSub);
+    if (validSub === RES_VALID){
+      setLoading(true)
+      let formData = new FormData()
+      formData.append("brand", brand)
+      formData.append("model", model)
+      formData.append("type", type)
+      formData.append("color1", color1)
+      formData.append("color2", color2)
+      formData.append("size", size)
+      formData.append("weight", weight)
+      formData.append("price", price)
+      formData.append("store", store)
 
-    let file_name;
-    if (!!photoURI){
-      file_name = (photoURI.split("/"))[11];
-      formData.append("format", "jpg");
-      formData.append("media", {
-        name: file_name,
-        uri: photoURI,
-        type: 'image/jpg'
-      });
+      let file_name;
+      if (!!photoURI){
+        file_name = (photoURI.split("/"))[11];
+        formData.append("format", "jpg");
+        formData.append("media", {
+          name: file_name,
+          uri: photoURI,
+          type: 'image/jpg'
+        });
+      }
+
+      const url = environment.host + '/api/custom/addLure'
+      const token = await getAuthToken(false)
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'x-app-auth': token
+        },
+      })
+      resp = await responseDataHandler(response)
+      setLoading(false)
+
+      Alert.alert('', resp != null ? loadTranslations("requestSucceed") : loadTranslations("requestFailed"), [
+        {
+          text: 'OK',
+          onPress: () => resp != null ? navigateBack() : null,
+        },
+      ]);
+    }else {
+      props.navigation.navigate(NAV_PAYMENT);
     }
-
-    const url = environment.host + '/api/custom/addLure'
-    const token = await getAuthToken(false)
-    const response = await fetch(url, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'x-app-auth': token
-      },
-    })
-    resp = await responseDataHandler(response)
-    setLoading(false)
-
-    Alert.alert('', resp != null ? loadTranslations("requestSucceed") : loadTranslations("requestFailed"), [
-      {
-        text: 'OK',
-        onPress: () => resp != null ? navigateBack() : null,
-      },
-    ]);
+    
   }
 
   return (

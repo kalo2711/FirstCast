@@ -22,13 +22,13 @@ import {
 import { loadTranslations } from "../global/localization";
 import DropdownWithModal from "../components/autocomplete";
 import { navigate, reactIfView, responseDataHandler } from "../global/global-functions";
-import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, SpacingMedium, height, primary_color, secondary_color_faded, tutorial_styles, width } from "../global/global-constants";
+import { NAV_CONDITIONS_FORM, NAV_CONDITIONS_RESULTS, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, NAV_PAYMENT, SpacingMedium, height, primary_color, secondary_color_faded, tutorial_styles, width, RES_VALID, INVALID} from "../global/global-constants";
 import Tooltip, { TooltipChildrenContext } from 'react-native-walkthrough-tooltip';
 import { getNextTutorialForPage, updateTutorialAndGetNext } from "../global/utils/tutorial.utils";
 import Icon from "react-native-ico-material-design";
 import { addToMyLures } from "../global/utils/add-to-my-lures.util";
 import TutorialTooltip from "./TutorialTooltip";
-import { setAuthToken } from "../global/utils/auth.utils";
+import { setAuthToken, checkForValidSub } from "../global/utils/auth.utils";
 
 export default function LuresForm({ navigation }) {
   const [brandAndModelDataset, setBrandAndModelDataset] = useState([]);
@@ -51,10 +51,15 @@ export default function LuresForm({ navigation }) {
     }
  }, []);
 
-  const handleFormSubmit = () => {
-    navigation.navigate(NAV_CONDITIONS_RESULTS, {
-      lureOptionsId: lureOptionIdSelected,
-    });
+  const handleFormSubmit = async() => {
+    const validSub = await checkForValidSub();
+    if (validSub === RES_VALID) {
+      navigation.navigate(NAV_CONDITIONS_RESULTS, {
+        lureOptionsId: lureOptionIdSelected,
+      });
+    }else {
+      navigation.navigate(NAV_PAYMENT);
+    }
   };
 
   async function onChangeText(text) {

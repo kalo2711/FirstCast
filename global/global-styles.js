@@ -100,6 +100,10 @@ export const flex_style = StyleSheet.create({
   },
   whiteBackground: {
     backgroundColor: 'white'
+  },
+  borderRadiusTopCorners: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   }
 })
 
@@ -317,8 +321,14 @@ export const btn_style = StyleSheet.create({
   buttonFullWidth: {
     width: '100%'
   },
+  buttonHalfWidth: {
+    width: '50%'
+  },
   buttonOneThirdWidth: {
     width: '33%'
+  },
+  buttonTwoThirdWidth: {
+    width: '66%'
   },
   buttonDisabled: {
     backgroundColor: lightgrey
@@ -433,6 +443,11 @@ export const img_styles = StyleSheet.create({
     height: 150,
     borderRadius: 150
   },
+  icon_ss: {
+    height: height / 8,
+    width: height / 8,
+    resizeMode: 'contain'
+  },
   icon_xs: {
     flex: 1,
     height: height / 5,
@@ -505,6 +520,9 @@ export const img_styles = StyleSheet.create({
   square_image_xlg: {
     width: 200,
     height: 200
+  },
+  slight_border: {
+    borderRadius: 10
   }
 })
 

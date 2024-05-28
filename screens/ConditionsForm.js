@@ -30,7 +30,9 @@ import {
   IOS,
   NAV_CONDITIONS_FORM,
   VALID,
+  RES_VALID,
   NAV_LURES_RESULTS,
+  NAV_PAYMENT,
   ANDROID,
   tutorial_styles,
 } from "../global/global-constants";
@@ -48,6 +50,7 @@ import * as Location from "expo-location";
 import { environment } from "../global/environment";
 import { responseDataHandler } from "../global/global-functions";
 import TutorialTooltip from "./TutorialTooltip";
+import {checkForValidSub} from "../global/utils/auth.utils"
 
 const ConditionsForm = ({ navigation }) => {
   const [species, setSpecies] = useState(null);
@@ -216,23 +219,29 @@ const ConditionsForm = ({ navigation }) => {
   };
 
   const handleFormSubmit = async () => {
-    if (structure && species) {
-      date.setHours(hour);
-      const routeParams = {
-        lat: geoCoordinates.lat,
-        long: geoCoordinates.lon,
-        species: species.id,
-        location: geoCoordinates,
-        temperature: temperature,
-        date: date.getTime(),
-        isSunny: isSunny,
-        isRaining: isRaining,
-        waterClarity: waterClarity,
-        structure: structure,
-        userLures: userLures,
+    const validSub = await checkForValidSub();
+    if (validSub === RES_VALID){
+      if (structure && species) {
+        date.setHours(hour);
+        const routeParams = {
+          lat: geoCoordinates.lat,
+          long: geoCoordinates.lon,
+          species: species.id,
+          location: geoCoordinates,
+          temperature: temperature,
+          date: date.getTime(),
+          isSunny: isSunny,
+          isRaining: isRaining,
+          waterClarity: waterClarity,
+          structure: structure,
+          userLures: userLures,
       };
       navigate(NAV_LURES_RESULTS, routeParams);
     }
+    }else {
+      navigation.navigate(NAV_PAYMENT);
+    }
+    
   };
 
   //Date + Time picker functions
