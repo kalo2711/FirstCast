@@ -19,8 +19,8 @@ import {
 } from "../global/global-styles";
 import { getDeviceLanguage, loadTranslations } from "../global/localization";
 import { responseDataHandler} from "../global/global-functions";
-import { height, NAV_EDIT_PROFILE, NAV_PAYMENT } from "../global/global-constants";
-import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
+import { height, NAV_EDIT_PROFILE, NAV_PAYMENT, INVALID } from "../global/global-constants";
+import { getAuthToken, setAuthToken, checkForValidSub} from '../global/utils/auth.utils';
 import { terms, terms_fr } from '../authentication/terms';
 
 
@@ -31,11 +31,14 @@ export default function Profile({ navigation }) {
   const [lures, setLures] = useState([]);
   const [editScreen, setEditScreen] = useState(false);
   const [term, setTerm] = useState(getDeviceLanguage().includes("fr") ? terms_fr : terms);
-
+  const [validSub, setValidSub] = useState('');
+  
   useEffect(() => {
     async function getData(){
       const t = await getAuthToken(false);
+      const sub = await checkForValidSub();
       setToken(t);
+      setValidSub(sub);
     }
     getData();
   }, []);
@@ -141,7 +144,7 @@ export default function Profile({ navigation }) {
             style={[
               btn_style.button,
               btn_style.round, 
-              btn_style.buttonVerySmall,
+              {width: 75, marginRight: 5}
             ]}
           >
           <Text
@@ -154,24 +157,28 @@ export default function Profile({ navigation }) {
             {loadTranslations("edit")}
           </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleSubNav}
-            style={[
-              btn_style.button,
-              btn_style.round, 
-              btn_style.buttonVerySmall,
-            ]}
-          >
-          <Text
-            style={[
-              text_style.fontColorWhite,
-              text_style.bold,
-              text_style.alignCenter,
-            ]}
-          >
-            Go Pro
-          </Text>
-          </TouchableOpacity>
+          {validSub === INVALID && (
+            <TouchableOpacity
+              onPress={handleSubNav}
+              style={[
+                btn_style.button,
+                btn_style.round, 
+                {width: 75}
+              ]}
+            >
+            <Text
+              style={[
+                text_style.fontColorWhite,
+                text_style.bold,
+                text_style.alignCenter,
+                
+              ]}
+            >
+              {loadTranslations("sub")}
+            </Text>
+            </TouchableOpacity>
+          )}
+          
         </View>
       </View>
       {lures === null ? (

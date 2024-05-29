@@ -57,6 +57,9 @@ export const flex_style = StyleSheet.create({
   alignCenter: {
     alignItems: 'center',
   },
+  alignEnd: {
+    alignItems: 'flex-end'
+  },
   justifyCenter: {
     justifyContent: 'center',
   },
@@ -104,6 +107,17 @@ export const flex_style = StyleSheet.create({
   borderRadiusTopCorners: {
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20
+  },
+  borderRadiusTopCorners_xs: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5
+  },
+  borderRadiusBottomCorners_xs: {
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5
+  },
+  backgroundColorPrimary: {
+    backgroundColor: primary_color
   }
 })
 
@@ -182,6 +196,10 @@ export const text_style = StyleSheet.create({
   md: {
     fontFamily: 'open-sans-regular',
     fontSize: 34
+  },
+  s: {
+    fontFamily: 'open-sans-regular',
+    fontSize: 26
   },
   sm: {
     fontFamily: 'open-sans-regular',
@@ -324,6 +342,12 @@ export const btn_style = StyleSheet.create({
   buttonHalfWidth: {
     width: '50%'
   },
+  buttonTwoFifthWidth: {
+    width: '40%'
+  },
+  buttonFourFifthWidth: {
+    width: '80%'
+  },
   buttonOneThirdWidth: {
     width: '33%'
   },
@@ -354,7 +378,12 @@ export const btn_style = StyleSheet.create({
   round: {
     borderRadius: 50
   },
-  
+  borderWidth1: {
+    borderWidth: 1
+  },
+  borderWidth2: {
+    borderWidth: 2
+  },
   red: {
     backgroundColor: 'red'
   }
@@ -390,6 +419,9 @@ export const margin_styles = StyleSheet.create({
   },
   horizontal_space_lg: {
     marginHorizontal: SpacingLarge
+  },
+  none:{
+    margin: 0
   },
   space_xs: {
     margin: SpacingExtraSmall
@@ -530,8 +562,14 @@ export const padding_styles = StyleSheet.create({
   none: {
     padding: 0
   },
+  noneVertical: {
+    paddingVertical: 0
+  },
   safetyTop: {
     paddingTop: 50
+  },
+  minorTop: {
+    paddingTop: 10
   },
   space_xs: {
     padding: SpacingExtraSmall

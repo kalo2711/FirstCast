@@ -99,7 +99,6 @@ const AddLureModal = (props) => {
 
   async function onSubmit() {
     const validSub = await checkForValidSub();
-    console.log(validSub);
     if (validSub === RES_VALID){
       setLoading(true)
       let formData = new FormData()
