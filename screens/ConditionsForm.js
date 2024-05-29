@@ -12,6 +12,7 @@ import {
   Image,
   Switch,
 } from "react-native";
+import { Picker as NativePicker } from '@react-native-picker/picker';
 import Checkbox from "expo-checkbox";
 import {
   btn_style,
@@ -83,6 +84,16 @@ const ConditionsForm = ({ navigation }) => {
   const [structureInput, setStructureInput] = useState("");
   const [tempVisable, setTempVisable] = useState(false);
   const [daysUntilDate, setDaysUntilDate] = useState(0);
+  const [structureList, setStructureList] = useState([
+    { id: "weed", title: loadTranslations("weed") },
+    { id: "rock", title: loadTranslations("rock") },
+    { id: "submerged_items", title: loadTranslations("submerged_items") },
+    { id: "drop", title: loadTranslations("drop") },
+    { id: "flat", title: loadTranslations("flat") },
+    { id: "point", title: loadTranslations("point") },
+    { id: "channel", title: loadTranslations("channel") },
+    { id: "bay", title: loadTranslations("bay") },
+  ])
 
   const waterClarities = [
     {
@@ -102,16 +113,32 @@ const ConditionsForm = ({ navigation }) => {
     },
   ];
 
-  const structures = [
-    { id: "weed", title: loadTranslations("weed") },
-    { id: "rock", title: loadTranslations("rock") },
-    { id: "submerged_items", title: loadTranslations("submerged_items") },
-    { id: "drop", title: loadTranslations("drop") },
-    { id: "flat", title: loadTranslations("flat") },
-    { id: "point", title: loadTranslations("point") },
-    { id: "channel", title: loadTranslations("channel") },
-    { id: "bay", title: loadTranslations("bay") },
-  ];
+  const createStructuresObjects = (structs) => {
+    const structObjects = []
+    // 'tree' and 'rock' get replaced with 'submerged_items'
+    if (structs.includes("tree") || structs.includes("rock")) {
+      structs.splice(structs.indexOf("tree"), 1)
+      structs.splice(structs.indexOf("crass"), 1)
+      structs.push("submerged_items")
+    }
+    for (const struct of structs) {
+      structObjects.push({id: struct, title: loadTranslations(struct)})
+    }
+    return structObjects
+  }
+
+  const getStructuresForSpecies = async (species, date, coords) => {
+    const url = `${environment.host}${API_STRUCTURES_FOR_SPECIES}${species}`
+    + `&time=${date}&coords=${coords.lat},${coords.lon}`
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    let data = await response.json()
+    return createStructuresObjects(data.data[0])
+  }
 
   useEffect(() => {
     const getTut = async () => {
@@ -215,10 +242,11 @@ const ConditionsForm = ({ navigation }) => {
     }
   };
 
-  const onSelectFish = (selectedFish) => {
+  const onSelectFish = async (selectedFish) => {
     setSpeciesModalVisible(false);
     setSpecies(selectedFish);
-    getStructuresForSpecies(selectedFish.name);
+    const structuresForSpecies = await getStructuresForSpecies(selectedFish.id, date.getTime(), geoCoordinates)
+    setStructureList([...structuresForSpecies])
   };
 
   const handleFormSubmit = async () => {
@@ -264,18 +292,6 @@ const ConditionsForm = ({ navigation }) => {
       setShowTimePicker(false);
     }
   };
-
-  const getStructuresForSpecies = async (species) => {
-    // When passing in time, make sure to split string by spaces. You need [Fri, May, 23,] and so on
-    const url = environment.host + API_STRUCTURES_FOR_SPECIES + species
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    //console.log(response)
-  }
 
   //Return values
 
@@ -634,21 +650,20 @@ const ConditionsForm = ({ navigation }) => {
           <Text style={[text_style.required]}>*</Text>
         </View>
       </View>
-      <DropdownWithModal
-        simple={true}
-        showCancelButton={false}
-        onChangeText={(event) => setStructureInput(event)}
-        noItemsPlaceholder="noStructure"
-        placeholder={species != null ? structure : "Please select a fish species"}
-        dataset={structures.filter((item) =>
-          item?.title
-            ?.toLocaleLowerCase()
-            ?.includes(structureInput?.toLocaleLowerCase())
-        )}
-        parentSetModalVisible={setStructureModalVisible}
-        setSelectedItem={(event) => setStructure(event.id)}
-        textEditable={species != null}
-      />
+      <View style={[form_style.pickerWrapper, {marginTop: -22}]}>
+        <NativePicker
+          style={form_style.picker}
+          selectedValue={structure}
+          onValueChange={(itemValue, itemIndex) =>
+            setStructure(itemValue)
+          }
+          prompt="Select a structure"
+        >
+          {structureList.map((option) => (
+            <NativePicker.Item key={option.id} label={option.title} value={option.title}/>
+          ))}  
+        </NativePicker>
+      </View>
       <View style={[flex_style.flexColumn, flex_style.width100, !tempVisable ? { display: 'none' } : null]}>
         <Text style={[text_style.xxs, text_style.alignCenter]}>{loadTranslations("dateExceeds8Days")}</Text>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>

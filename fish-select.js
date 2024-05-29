@@ -25,10 +25,9 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish }) => {
   ];
 
   const renderItem = ({ item }) => {
-    let fish = item;
     const isSelected = selectedFish && selectedFish.id === item.id;
     return (
-      <FishSelectItem onSelectFish={onSelectFish} isSelected={isSelected} fish={fish}></FishSelectItem>
+      <FishSelectItem onSelectFish={onSelectFish} isSelected={isSelected} fish={item}></FishSelectItem>
     );
   };
 
