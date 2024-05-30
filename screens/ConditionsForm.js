@@ -113,20 +113,6 @@ const ConditionsForm = ({ navigation }) => {
     },
   ];
 
-  const createStructuresObjects = (structs) => {
-    const structObjects = []
-    // 'tree' and 'rock' get replaced with 'submerged_items'
-    if (structs.includes("tree") || structs.includes("rock")) {
-      structs.splice(structs.indexOf("tree"), 1)
-      structs.splice(structs.indexOf("crass"), 1)
-      structs.push("submerged_items")
-    }
-    for (const struct of structs) {
-      structObjects.push({id: struct, title: loadTranslations(struct)})
-    }
-    return structObjects
-  }
-
   const getStructuresForSpecies = async (species, date, coords) => {
     const url = `${environment.host}${API_STRUCTURES_FOR_SPECIES}${species}`
     + `&time=${date}&coords=${coords.lat},${coords.lon}`
@@ -137,7 +123,7 @@ const ConditionsForm = ({ navigation }) => {
       },
     })
     let data = await response.json()
-    return createStructuresObjects(data.data[0])
+    return data.data
   }
 
   useEffect(() => {
@@ -660,7 +646,7 @@ const ConditionsForm = ({ navigation }) => {
           prompt="Select a structure"
         >
           {structureList.map((option) => (
-            <NativePicker.Item key={option.id} label={option.title} value={option.title}/>
+            <NativePicker.Item key={option.id} label={loadTranslations(option.title)} value={loadTranslations(option.title)}/>
           ))}  
         </NativePicker>
       </View>
