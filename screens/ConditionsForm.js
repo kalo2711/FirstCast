@@ -85,15 +85,15 @@ const ConditionsForm = ({ navigation }) => {
   const [tempVisable, setTempVisable] = useState(false);
   const [daysUntilDate, setDaysUntilDate] = useState(0);
   const [structureList, setStructureList] = useState([
-    { id: "weed", title: loadTranslations("weed") },
-    { id: "rock", title: loadTranslations("rock") },
-    { id: "submerged_items", title: loadTranslations("submerged_items") },
-    { id: "drop", title: loadTranslations("drop") },
-    { id: "flat", title: loadTranslations("flat") },
-    { id: "point", title: loadTranslations("point") },
-    { id: "channel", title: loadTranslations("channel") },
-    { id: "bay", title: loadTranslations("bay") },
-  ])
+    { id: "weed", title: "weed" },
+    { id: "rock", title: "rock" },
+    { id: "submerged_items", title: "submerged_items" },
+    { id: "drop", title: "drop" },
+    { id: "flat", title: "flat" },
+    { id: "point", title: "point" },
+    { id: "channel", title: "channel" },
+    { id: "bay", title: "bay" },
+])
 
   const waterClarities = [
     {
@@ -271,8 +271,10 @@ const ConditionsForm = ({ navigation }) => {
   },[date]);
 
   //Date + Time picker functions
-  const onChange = (e, selectedDate) => {
+  const onChange = async (e, selectedDate) => {
     setDate(new Date(selectedDate.getTime()));
+    const structuresForSpecies = await getStructuresForSpecies(species, date.getTime(), geoCoordinates)
+    setStructureList([...structuresForSpecies])
     if (Platform.OS == ANDROID) {
       setShowDatePicker(false);
       setShowTimePicker(false);
