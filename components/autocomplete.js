@@ -25,7 +25,7 @@ const Item = ({item, onPress}) => (
 );
 
 
-const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton, simple, textEditable=true }) => {
+const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem, parentSetModalVisible, noItemsPlaceholder, showCancelButton, simple }) => {
   const [inputValue, setInputValue] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [items, setItems] = useState([]);
@@ -72,13 +72,12 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
       <View style={[styles.container, {justifyContent: 'space-between'}]}>
         <TextInput
           ref={inputRef}
-          style={textEditable ? [styles.input] : [styles.blockedInput]}
+          style={[styles.input]}
           value={inputValue}
           placeholder={placeholder}
           placeholderTextColor={black}
           onFocus={toggleModal}
           onChangeText={onType}
-          editable={textEditable}
               />
       {!!inputValue && (
         simple? 
@@ -118,14 +117,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 5
-  },
-  blockedInput: {
-    width: width - SpacingLarge,
-    height: 40,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 5,
-    backgroundColor: "grey"
   },
   itemButton: {
     padding: 10,
