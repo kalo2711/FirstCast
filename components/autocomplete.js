@@ -81,14 +81,14 @@ const DropdownWithModal = ({ dataset, onChangeText, placeholder, setSelectedItem
               />
       {!!inputValue && (
         simple? 
-        items.map((item) => renderItem({ item, key: item.id.toString() })) 
+        items.map((item, index) => renderItem({ item, key: index })) 
         :
         <FlatList
         nestedScrollEnabled={true}
         style={styles.modalContainer}
         data={items}
         renderItem={renderItem}
-        keyExtractor={(item, index) => item.id.toString()}
+        keyExtractor={(item, index) => index}
       />
       )}
       {reactIfView(!!inputValue && items?.length < 1,
