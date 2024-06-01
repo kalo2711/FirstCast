@@ -12,6 +12,7 @@ import {
   Image,
   Switch,
 } from "react-native";
+import { Picker as NativePicker } from '@react-native-picker/picker';
 import Checkbox from "expo-checkbox";
 import {
   btn_style,
@@ -35,6 +36,7 @@ import {
   ANDROID,
   tutorial_styles,
   secondary_color,
+  API_STRUCTURES_FOR_SPECIES,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
@@ -82,6 +84,16 @@ const ConditionsForm = ({ navigation }) => {
   const [structureInput, setStructureInput] = useState("");
   const [tempVisable, setTempVisable] = useState(false);
   const [daysUntilDate, setDaysUntilDate] = useState(0);
+  const [structureList, setStructureList] = useState([
+    { id: "weed", title: "weed" },
+    { id: "rock", title: "rock" },
+    { id: "submerged_items", title: "submerged_items" },
+    { id: "drop", title: "drop" },
+    { id: "flat", title: "flat" },
+    { id: "point", title: "point" },
+    { id: "channel", title: "channel" },
+    { id: "bay", title: "bay" },
+])
 
   const waterClarities = [
     {
@@ -101,16 +113,18 @@ const ConditionsForm = ({ navigation }) => {
     },
   ];
 
-  const structures = [
-    { id: "weed", title: loadTranslations("weed") },
-    { id: "rock", title: loadTranslations("rock") },
-    { id: "submerged_items", title: loadTranslations("submerged_items") },
-    { id: "drop", title: loadTranslations("drop") },
-    { id: "flat", title: loadTranslations("flat") },
-    { id: "point", title: loadTranslations("point") },
-    { id: "channel", title: loadTranslations("channel") },
-    { id: "bay", title: loadTranslations("bay") },
-  ];
+  const getStructuresForSpecies = async (species, date, coords) => {
+    const url = `${environment.host}${API_STRUCTURES_FOR_SPECIES}${species}`
+    + `&time=${date}&coords=${coords.lat},${coords.lon}`
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    let data = await response.json()
+    return data.data
+  }
 
   useEffect(() => {
     const getTut = async () => {
@@ -214,9 +228,11 @@ const ConditionsForm = ({ navigation }) => {
     }
   };
 
-  const onSelectFish = (selectedFish) => {
+  const onSelectFish = async (selectedFish) => {
     setSpeciesModalVisible(false);
     setSpecies(selectedFish);
+    const structuresForSpecies = await getStructuresForSpecies(selectedFish.id, date.getTime(), geoCoordinates)
+    setStructureList([...structuresForSpecies])
   };
 
   const handleFormSubmit = async () => {
@@ -255,8 +271,10 @@ const ConditionsForm = ({ navigation }) => {
   },[date]);
 
   //Date + Time picker functions
-  const onChange = (e, selectedDate) => {
-    setDate(selectedDate);
+  const onChange = async (e, selectedDate) => {
+    setDate(new Date(selectedDate.getTime()));
+    const structuresForSpecies = await getStructuresForSpecies(species, date.getTime(), geoCoordinates)
+    setStructureList([...structuresForSpecies])
     if (Platform.OS == ANDROID) {
       setShowDatePicker(false);
       setShowTimePicker(false);
@@ -620,20 +638,20 @@ const ConditionsForm = ({ navigation }) => {
           <Text style={[text_style.required]}>*</Text>
         </View>
       </View>
-      <DropdownWithModal
-        simple={true}
-        showCancelButton={false}
-        onChangeText={(event) => setStructureInput(event)}
-        noItemsPlaceholder="noStructure"
-        placeholder={structure}
-        dataset={structures.filter((item) =>
-          item?.title
-            ?.toLocaleLowerCase()
-            ?.includes(structureInput?.toLocaleLowerCase())
-        )}
-        parentSetModalVisible={setStructureModalVisible}
-        setSelectedItem={(event) => setStructure(event.id)}
-      />
+      <View style={[form_style.pickerWrapper, {marginTop: -22}]}>
+        <NativePicker
+          style={form_style.picker}
+          selectedValue={structure}
+          onValueChange={(itemValue, itemIndex) =>
+            setStructure(itemValue)
+          }
+          prompt="Select a structure"
+        >
+          {structureList.map((option) => (
+            <NativePicker.Item key={option.id} label={loadTranslations(option.title)} value={loadTranslations(option.title)}/>
+          ))}  
+        </NativePicker>
+      </View>
       <View style={[flex_style.flexColumn, flex_style.width100, !tempVisable ? { display: 'none' } : null]}>
         <Text style={[text_style.xxs, text_style.alignCenter]}>{loadTranslations("dateExceeds8Days")}</Text>
         <Text style={[text_style.xs]}>{loadTranslations("temperature")}</Text>

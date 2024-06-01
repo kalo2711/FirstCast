@@ -162,6 +162,7 @@ const API_UPDATE_BLOCKED_DATE = "/api/user/post/updateBlockedDate";
 const API_LOGIN_GOOGLE = "api/user/post/loginGoogle";
 const API_GET_AD = "api/advertisements/getAdvertisement?id=";
 const API_GET_USER_INFO_AD = "api/advertisements/getReferalInfoForAd?id=";
+const API_STRUCTURES_FOR_SPECIES = "api/structures-for-species?species="
 
 //errors
 const TYPE_ERROR = "TypeError";
@@ -381,4 +382,5 @@ export {
   MULTI_LINE,
   tutorial_transparent,
   tutorial_styles,
+  API_STRUCTURES_FOR_SPECIES,
 };
