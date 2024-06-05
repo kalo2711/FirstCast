@@ -28,7 +28,6 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
 
   useEffect(()=>{
     setLocationFish(undefined);
-    console.log('fish refresh')
     const url = environment.host + `/api/species-per-location?lat=${lat}&long=${long}`
     fetch(url)
     .then(resp=>resp.json())
