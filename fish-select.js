@@ -60,7 +60,8 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
           onChangeText={setSearchText}
         />
         {
-          locationFish && locationFish.length == 0 ? <Text>We were unable to obtain the fish for this location. Try another.</Text>:
+          locationFish && locationFish.length == 0 ? 
+          <Text>{loadTranslations('noFishInLocation')}</Text>:
           (locationFish?
             <FlatList
               data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
