@@ -24,7 +24,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
     { id: 'steelhead', name: 'Steelhead', image: require('./assets/fish/steelhead.jpg') },
     { id: 'walleye', name: 'Walleye', image: require('./assets/fish/walleye.jpg') },
   ];
-//http://localhost:3000/api/species-per-location?lat=45&long=-73
+  
   useEffect(()=>{
     setLocationFish(undefined);
     console.log('fish refresh')
@@ -37,7 +37,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
     .catch(e=>{
       console.error(e);
       setLocationFish([]);
-    }).finally(()=>{console.log(locationFish)})
+    })
   },[visible])
 
 
