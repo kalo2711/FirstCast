@@ -4,6 +4,7 @@ import { environment } from "./global/environment";
 import FishSelectItem from "./fish-select-item";
 import { loadTranslations } from './global/localization';
 import { btn_style, flex_style, margin_styles, text_style } from './global/global-styles';
+import { primary_color } from "./global/global-constants";
 const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long}) => {
   const [searchText, setSearchText] = useState('');
   const [locationFish,setLocationFish] = useState(undefined);
@@ -24,7 +25,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
     { id: 'steelhead', name: 'Steelhead', image: require('./assets/fish/steelhead.jpg') },
     { id: 'walleye', name: 'Walleye', image: require('./assets/fish/walleye.jpg') },
   ];
-  
+
   useEffect(()=>{
     setLocationFish(undefined);
     console.log('fish refresh')
@@ -68,7 +69,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
               renderItem={renderItem}
               keyExtractor={(item) => item.id.toString()}
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-            />:<ActivityIndicator/>)
+            />:<ActivityIndicator style={[margin_styles.bottom_lg,{flex: 1}]} size="large" color={primary_color}/>)
         }
         <TouchableOpacity
           onPress={() => { setVisible(false) }}
