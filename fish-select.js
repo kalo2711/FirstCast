@@ -26,7 +26,8 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
   ];
 //http://localhost:3000/api/species-per-location?lat=45&long=-73
   useEffect(()=>{
-    setLocationFish(undefined)
+    setLocationFish(undefined);
+    console.log('fish refresh')
     const url = environment.host + `/api/species-per-location?lat=${lat}&long=${long}`
     fetch(url)
     .then(resp=>resp.json())
@@ -35,9 +36,9 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
     })
     .catch(e=>{
       console.error(e);
-      setLocationFish(null);
-    })
-  },[])
+      setLocationFish([]);
+    }).finally(()=>{console.log(locationFish)})
+  },[visible])
 
 
 
@@ -59,13 +60,14 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
           onChangeText={setSearchText}
         />
         {
-          locationFish?
-        <FlatList
-          data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-        />:<ActivityIndicator/>
+          locationFish && locationFish.length == 0 ? <Text>We were unable to obtain the fish for this location. Try another.</Text>:
+          (locationFish?
+            <FlatList
+              data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id.toString()}
+              ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+            />:<ActivityIndicator/>)
         }
         <TouchableOpacity
           onPress={() => { setVisible(false) }}
