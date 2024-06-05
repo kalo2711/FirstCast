@@ -7,6 +7,9 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
+  Pressable,
+  Modal,
+  TouchableOpacity,
 } from "react-native";
 import {
   btn_style,
@@ -20,6 +23,7 @@ import {
   primary_color,
   black,
   NAV_LURES_RESULTS,
+  NAV_MOON_WEATHER_INFO,
   tutorial_styles,
   ICON_SIZE_S,
   SpacingExtraSmall,
@@ -28,7 +32,7 @@ import {
 import { loadTranslations } from "../global/localization";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { environment } from "../global/environment";
-import { reactIfView, responseDataHandler } from "../global/global-functions";
+import { reactIfView, responseDataHandler, navigate } from "../global/global-functions";
 import { getAuthToken } from "../global/utils/auth.utils";
 import { getNextTutorialForPage } from "../global/utils/tutorial.utils";
 import TutorialTooltip from "./TutorialTooltip";
@@ -50,6 +54,7 @@ export default function LuresResults({ route }) {
   const [initialLoad, setInitialLoad] = useState(true);
   const [expertImage, setExpertImage] = useState("");
   const [caption, setCaption] = useState("");
+  const [cyclesModalVisible, setCyclesModalVisible] = useState(false);
 
   const expertConfig = {
     pike: {
@@ -146,24 +151,26 @@ export default function LuresResults({ route }) {
         {reactIfView(
           moonPhase.prevPhase.daysSinceLast === 0 &&
             moonPhase.nextPhase.daysUntilNext === 0, //day of
-          <Text style={{ marginLeft: SpacingExtraSmall }}>
-            {loadTranslations(`todayMoonPhase${moonPhase.prevPhase.phase}`)}
-            {moonPhase.prevPhase.phase === 2 || moonPhase.prevPhase.phase === 4
-              ? ` : ${loadTranslations("fishLessActive")}`
-              : ""}
-            {moonPhase.prevPhase.phase === 1 || moonPhase.prevPhase.phase === 3
-              ? ` : ${loadTranslations("fishMoreActive")}`
-              : ""}
-            {loadTranslations("nextMoonPhase")}:{" "}
-            {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)}{" "}
-            {loadTranslations("in")} {moonPhase.nextPhase.daysUntilNext}{" "}
-            {loadTranslations("days")}
-          </Text>
+          <View style={{flex: 1}}>
+            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+              {loadTranslations(`todayMoonPhase${moonPhase.prevPhase.phase}`)}
+              {moonPhase.prevPhase.phase === 2 || moonPhase.prevPhase.phase === 4
+                ? ` : ${loadTranslations("fishLessActive")}`
+                : ""}
+              {moonPhase.prevPhase.phase === 1 || moonPhase.prevPhase.phase === 3
+                ? ` : ${loadTranslations("fishMoreActive")}`
+                : ""}
+              {loadTranslations("nextMoonPhase")}:{" "}
+              {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)}{" "}
+              {loadTranslations("in")} {moonPhase.nextPhase.daysUntilNext}{" "}
+              {loadTranslations("days")}
+            </Text>
+          </View>
         )}
         {reactIfView(
           moonPhase.prevPhase.daysSinceLast === 1, // day before
-          <View>
-            <Text style={{ marginLeft: SpacingExtraSmall }}>
+          <View style={{flex: 1}}>
+            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
               {loadTranslations("lastMoonPhase")}:{" "}
               {loadTranslations(`lastMoonPhase${moonPhase.prevPhase.phase}`)}{" "}
               {moonPhase.prevPhase.daysSinceLast} {loadTranslations("daysAgo")}
@@ -172,7 +179,7 @@ export default function LuresResults({ route }) {
                 ? ` : ${loadTranslations("fishFullFromFeedingMoon")}`
                 : ""}
             </Text>
-            <Text style={{ marginLeft: SpacingExtraSmall }}>
+            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
               {loadTranslations("nextMoonPhase")}:{" "}
               {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)} in{" "}
               {moonPhase.nextPhase.daysUntilNext} {loadTranslations("days")}
@@ -186,19 +193,19 @@ export default function LuresResults({ route }) {
         {reactIfView(
           moonPhase.prevPhase.daysSinceLast !== 1 &&
             moonPhase.prevPhase.daysSinceLast !== 0, //else
-          <View>
-            <Text style={{ marginLeft: SpacingExtraSmall }}>
-              {loadTranslations("lastMoonPhase")}:{" "}
+          <View style={{flex: 1}}>
+            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+              {loadTranslations("lastMoonPhase")}{" "}
               {loadTranslations(`lastMoonPhase${moonPhase.prevPhase.phase}`)}{" "}
               {Math.abs(moonPhase.prevPhase.daysSinceLast)}{" "}
               {loadTranslations("daysAgo")}
               {moonPhase.prevPhase.phase === 1 ||
               moonPhase.prevPhase.phase === 3
-                ? ` : ${loadTranslations("fishFullFromFeedingMoon")}`
+                ? ` ${loadTranslations("fishFullFromFeedingMoon")}`
                 : ""}
             </Text>
-            <Text style={{ marginLeft: SpacingExtraSmall }}>
-              {loadTranslations("nextMoonPhase")}:{" "}
+            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+              {loadTranslations("nextMoonPhase")}{" "}
               {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)} in{" "}
               {moonPhase.nextPhase.daysUntilNext} {loadTranslations("days")}
               {moonPhase.nextPhase.daysUntilNext <= 2 &&
@@ -225,6 +232,18 @@ export default function LuresResults({ route }) {
             : `${weather.windGust} mph`}
         </Text>
       </View>
+      <TouchableOpacity
+        onPress={() => navigate(NAV_MOON_WEATHER_INFO)}
+        style={[
+          btn_style.button
+        ]}
+        >
+        <View>
+          <Text style={text_style.fontColorWhite}>
+            Learn more
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 
