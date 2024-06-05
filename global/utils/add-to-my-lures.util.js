@@ -3,7 +3,7 @@ import { getAuthToken } from "./auth.utils";
 export async function addToMyLures(lureID, onPass, onFail, onFailDuplicate) {
     try {
         const url = environment.host + '/api/add-to-user-lures'
-        const token = await getAuthToken(false)
+        const token = await getAuthToken()
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify({ lureOption: lureID }),

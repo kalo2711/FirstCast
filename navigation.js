@@ -40,8 +40,9 @@ export default function Navigation() {
   };
 
   useEffect(() => {
+    const isInStartPage = currentPage === NAV_AUTHENTICATION || currentPage == null || currentPage === undefined
     async function checkAuthentication() {
-      const token = await getAuthToken(false);
+      const token = await getAuthToken(!isInStartPage);
       if (token) {
         setAuthenticated(true);
       }
