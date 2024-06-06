@@ -61,7 +61,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
         />
         {
           locationFish && locationFish.length == 0 ? 
-          <Text>{loadTranslations('noFishInLocation')}</Text>:
+          <Text style={{flex: 1}}>{loadTranslations('noFishInLocation')}</Text>:
           (locationFish?
             <FlatList
               data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
