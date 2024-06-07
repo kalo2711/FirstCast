@@ -139,7 +139,7 @@ export default function Profile({ navigation }) {
             >
               {loadTranslations("profileLures")}
             </Text>
-            <Icon style={[margin_styles.horizontal_space_s]} size={ICON_SIZE_XS} name={myLuresOpen? 'expand-arrow':'expand-button'} color={primary_color}></Icon>
+            <Icon style={[margin_styles.left_s]} size={ICON_SIZE_XS} name={myLuresOpen? 'expand-arrow':'expand-button'} color={primary_color}></Icon>
           </TouchableOpacity>
           {myLuresOpen && (
             <MyLures
