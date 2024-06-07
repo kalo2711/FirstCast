@@ -23,7 +23,8 @@ import {
   primary_color,
   black,
   NAV_LURES_RESULTS,
-  NAV_MOON_WEATHER_INFO,
+  NAV_MOON_INFO,
+  NAV_WEATHER_INFO,
   tutorial_styles,
   ICON_SIZE_S,
   SpacingExtraSmall,
@@ -232,18 +233,34 @@ export default function LuresResults({ route }) {
             : `${weather.windGust} mph`}
         </Text>
       </View>
-      <TouchableOpacity
-        onPress={() => navigate(NAV_MOON_WEATHER_INFO)}
-        style={[
-          btn_style.button
-        ]}
-        >
-        <View>
-          <Text style={text_style.fontColorWhite}>
-            Learn more
-          </Text>
-        </View>
-      </TouchableOpacity>
+      <View style={{flexDirection: 'row', justifyContent: "space-evenly"}}>
+        <TouchableOpacity
+          onPress={() => navigate(NAV_MOON_INFO)}
+          style={[
+            btn_style.button,
+            {width: 150}
+          ]}
+          >
+          <View>
+            <Text style={text_style.fontColorWhite}>
+              About lunar cycles
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigate(NAV_WEATHER_INFO)}
+          style={[
+            btn_style.button,
+            {width: 150}
+          ]}
+          >
+          <View>
+            <Text style={text_style.fontColorWhite}>
+              About weather
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 

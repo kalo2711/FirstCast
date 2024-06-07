@@ -41,13 +41,6 @@ const moonCycleInfo = [
   {title: loadTranslations("bioRhythmsTitle"), text: loadTranslations("infoBioRhythms")}
 ]
 
-const weatherInfo = [
-  {title: loadTranslations("tempTitle"), text: loadTranslations("infoTemperature")},
-  {title: loadTranslations("pressureTitle"), text: loadTranslations("infoPressure")},
-  {title: loadTranslations("windTitle"), text: loadTranslations("infoWind")},
-  {title: loadTranslations("rainTitle"), text: loadTranslations("infoRain")}
-]
-
 const InfoItem = ({title, text}) => {
   return (
     <View style={{marginBottom: 10}}>
@@ -57,7 +50,7 @@ const InfoItem = ({title, text}) => {
   )
 }
 
-function MoonWeatherInfo() {
+function MoonInfo() {
   return (<>
     <ScrollView style={{padding: 20, marginTop: 30}}>
       <Text style={{fontStyle: "italic"}}>
@@ -68,18 +61,6 @@ function MoonWeatherInfo() {
       </Text>
       <FlatList 
         data={moonCycleInfo}
-        renderItem={({item}) => {
-          return (
-            <InfoItem title={item.title} text={item.text}/>
-          )
-        }}
-      />
-      <Text style={{fontWeight: "bold", fontSize: 24}}>
-        Weather
-      </Text>
-      <FlatList 
-        style={{paddingBottom: 20}}
-        data={weatherInfo}
         renderItem={({item}) => {
           return (
             <InfoItem title={item.title} text={item.text}/>
@@ -98,4 +79,4 @@ function MoonWeatherInfo() {
   </>)
 }
 
-export default MoonWeatherInfo;
+export default MoonInfo;
