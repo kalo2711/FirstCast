@@ -33,7 +33,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
     fetch(url)
     .then(resp=>resp.json())
     .then(json=>{
-      setLocationFish(fishData.filter(fish => json.includes(fish.name)));
+      setLocationFish(fishData.filter(fish => json.data.includes(fish.name)));
     })
     .catch(e=>{
       console.error(e);
