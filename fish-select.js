@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Modal,FlatList, Image, Platform, TouchableOpacity, StatusBar } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TextInput, Modal,FlatList, Image, Platform, TouchableOpacity, StatusBar, ActivityIndicator } from 'react-native';
+import { environment } from "./global/environment";
 import FishSelectItem from "./fish-select-item";
 import { loadTranslations } from './global/localization';
 import { btn_style, flex_style, margin_styles, text_style } from './global/global-styles';
-const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish }) => {
+import { primary_color } from "./global/global-constants";
+const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long}) => {
   const [searchText, setSearchText] = useState('');
-
+  const [locationFish,setLocationFish] = useState([]);
+  const [loading,setLoading] = useState(false);
   const fishData = [
     { id: 'atlanticSalmon', name: 'Atlantic Salmon', image: require('./assets/fish/atlanticSalmon.png') },
     { id: 'bass', name: 'Bass', image: require('./assets/fish/bass.jpg') },
@@ -24,6 +27,23 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish }) => {
     { id: 'walleye', name: 'Walleye', image: require('./assets/fish/walleye.jpg') },
   ];
 
+  useEffect(()=>{
+    setLoading(true);
+    const url = environment.host + `/api/species-per-location?lat=${lat}&long=${long}`
+    fetch(url)
+    .then(resp=>resp.json())
+    .then(json=>{
+      setLocationFish(fishData.filter(fish => json.data.includes(fish.name)));
+    })
+    .catch(e=>{
+      console.error(e);
+      setLocationFish([]);
+    })
+    .finally(()=>{
+      setLoading(false);
+    })
+  },[visible])
+
   const renderItem = ({ item }) => {
     const isSelected = selectedFish && selectedFish.id === item.id;
     return (
@@ -41,12 +61,17 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish }) => {
           value={searchText}
           onChangeText={setSearchText}
         />
-        <FlatList
-          data={fishData.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-        />
+        {
+          loading ? <ActivityIndicator style={[margin_styles.bottom_lg,{flex: 1}]} size="large" color={primary_color}/>:
+          (locationFish.length == 0?
+            <Text style={{flex: 1}}>{loadTranslations('noFishInLocation')}</Text>:
+            <FlatList
+              data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id.toString()}
+              ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+            />)
+        }
         <TouchableOpacity
           onPress={() => { setVisible(false) }}
           style={[btn_style.button, btn_style.round, btn_style.buttonReversed, margin_styles.top_md, flex_style.flex]}
