@@ -106,23 +106,6 @@ export default function Intent({ navigation }) {
     }
   }
 
-  async function onSetSubscription(subType){
-    const url = environment.authHost + "api/user/addsubinfo";
-    let res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        'x-app-auth': token
-      },
-      body: JSON.stringify({"subType": subType})
-    });
-    let responseJSON = await res.json();
-    if (responseJSON.status === RES_VALID) {
-      Alert.alert('Subscribed');
-    } else {
-      Alert.alert('Problem occured');
-    }
-  }
 
   const createCustomer = async () => {
     const displayName = await fetchName();
