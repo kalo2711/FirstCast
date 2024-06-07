@@ -24,9 +24,10 @@ import {
 } from "../global/global-styles";
 import { getDeviceLanguage, loadTranslations } from "../global/localization";
 import { responseDataHandler} from "../global/global-functions";
-import { height, NAV_EDIT_PROFILE } from "../global/global-constants";
+import { height, ICON_SIZE_XS, NAV_EDIT_PROFILE, primary_color } from "../global/global-constants";
 import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
 import { terms, terms_fr } from '../authentication/terms';
+import Icon from "react-native-ico-material-design";
 
 
 export default function Profile({ navigation }) {
@@ -77,8 +78,6 @@ export default function Profile({ navigation }) {
     });
   }
 
-
-  
   return (
     <View style={[padding_styles.space_md,padding_styles.safetyTop,{ backgroundColor: 'white', height: height}]}>
       <View
@@ -117,17 +116,11 @@ export default function Profile({ navigation }) {
         </Text>
         </TouchableOpacity>
       </View>
-      {
-        token !== null &&
-        (myLuresOpen ?
-          <MyLures
-            data={lures}
-            visible={myLuresOpen}
-            setVisible={() => { setMyLuresOpen(false) }}
-            token={token}/> :
+      {token !== null && (
+        <>
           <TouchableOpacity
             onPress={() => {
-              setMyLuresOpen(true);
+              setMyLuresOpen(!myLuresOpen);
             }}
             style={[
               btn_style.button,
@@ -146,45 +139,55 @@ export default function Profile({ navigation }) {
             >
               {loadTranslations("profileLures")}
             </Text>
-          </TouchableOpacity>)
-      }
+            <Icon style={[margin_styles.horizontal_space_s]} size={ICON_SIZE_XS} name={myLuresOpen? 'expand-arrow':'expand-button'} color={primary_color}></Icon>
+          </TouchableOpacity>
+          {myLuresOpen && (
+            <MyLures
+              data={lures}
+              visible={myLuresOpen}
+              setVisible={() => { setMyLuresOpen(false); }}
+              token={token}
+            />
+          )}
+        </>
+      )}
     </View>
   );
 }
 
-function MyLures({ visible, setVisible,token}){
+function MyLures({ visible,token}){
 
   const [data,setData] = useState([]);
   const [loading,setLoading] = useState(false);
   
   useEffect(()=>{
-    try{
-      setLoading(true);
-      if (visible){
-        async function fetchUserLures() {
-         const url = environment.host + "api/get-lures-for-user";
-         let res = await fetch(url, {
-           method: "GET",
-           headers: {
-             "Content-Type": "application/json",
-             'x-app-auth': token
-           },
-         });
-         json = await responseDataHandler(res, false);
-         if (json) {
-           setData(json);
-         }
-       }
-       fetchUserLures();
-     }
+    try {
+      if (visible) {
+          async function fetchUserLures() {
+            setLoading(true);
+            const url = environment.host + "api/get-lures-for-user";
+            let res = await fetch(url, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                'x-app-auth': token
+              },
+            });
+            json = await responseDataHandler(res, false);
+            if (json) {
+              setData(json);
+              setLoading(false);
+            }
+          }
+          fetchUserLures();
+      }
     }
     catch(e){
       console.error(e);
       setData([]);
-    }
-    finally{
       setLoading(false);
     }
+    
   },[visible])
 
   const styles = StyleSheet.create({
@@ -213,11 +216,11 @@ function MyLures({ visible, setVisible,token}){
 
 
   return (
-    <Modal visible={visible} animationType="slide">
+    
       <View style={{ flex: 1,paddingTop: Platform.OS === 'ios' ? 65 : StatusBar.currentHeight, padding: 20 }}>
          {loading?
          <ActivityIndicator style={[margin_styles.bottom_lg,{flex: 1}]} size="large" color={primary_color}/>:
-         (data.length == 0?
+         (data.length === 0?
           <Text style={{flex: 1}}>{loadTranslations('noUserLures')}</Text>:
           <FlatList
             data={data}
@@ -235,16 +238,8 @@ function MyLures({ visible, setVisible,token}){
             keyExtractor={(item, index) => index.toString()}
           />
          )}
-        <TouchableOpacity
-          onPress={() => { setVisible(false) }}
-          style={[btn_style.button, btn_style.round, btn_style.buttonReversed, margin_styles.top_md, flex_style.flex]}
-        >
-          <Text style={[text_style.primaryColor,
-          text_style.bold,
-          text_style.alignCenter]}>{loadTranslations('close')}</Text>
-        </TouchableOpacity>
       </View>
-    </Modal>
+  
   );
   
 }
