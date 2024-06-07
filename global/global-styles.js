@@ -377,6 +377,9 @@ export const margin_styles = StyleSheet.create({
   horizontal_space_lg: {
     marginHorizontal: SpacingLarge
   },
+  left_s: {
+    marginLeft: SpacingSmall
+  },
   space_xs: {
     margin: SpacingExtraSmall
   },

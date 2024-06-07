@@ -407,6 +407,8 @@ const ConditionsForm = ({ navigation }) => {
         setVisible={setSpeciesModalVisible}
         selectedFish={species}
         onSelectFish={onSelectFish}
+        lat={geoCoordinates.lat}
+        long={geoCoordinates.lon}
       ></FishSelect>
       <View style={[flex_style.width100, margin_styles.bottom_md]}>
         {!species?.image ? (
