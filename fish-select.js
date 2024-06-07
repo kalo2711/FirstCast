@@ -63,13 +63,14 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
         />
         {
           loading ? <ActivityIndicator style={[margin_styles.bottom_lg,{flex: 1}]} size="large" color={primary_color}/>:
-          (locationFish?
+          (locationFish.length == 0?
+            <Text style={{flex: 1}}>{loadTranslations('noFishInLocation')}</Text>:
             <FlatList
               data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
               renderItem={renderItem}
               keyExtractor={(item) => item.id.toString()}
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-            />:<Text style={{flex: 1}}>{loadTranslations('noFishInLocation')}</Text>)
+            />)
         }
         <TouchableOpacity
           onPress={() => { setVisible(false) }}
