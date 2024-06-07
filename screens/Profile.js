@@ -6,8 +6,13 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Platform,
+  StatusBar,
+  TextInput,
   FlatList,
-  StyleSheet
+  StyleSheet,
+  Modal,
+  ActivityIndicator
 } from "react-native";
 import {
   btn_style,
@@ -24,13 +29,14 @@ import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
 import { terms, terms_fr } from '../authentication/terms';
 
 
-
 export default function Profile({ navigation }) {
   const [token, setToken] = useState(null);
   const [profile, setProfile] = useState({});
   const [lures, setLures] = useState([]);
   const [editScreen, setEditScreen] = useState(false);
   const [term, setTerm] = useState(getDeviceLanguage().includes("fr") ? terms_fr : terms);
+
+  const [myLuresOpen, setMyLuresOpen] = useState(false);
 
   useEffect(() => {
     async function getData(){
@@ -42,7 +48,6 @@ export default function Profile({ navigation }) {
 
   useEffect(() => {
     if (token !== null){
-      fetchUserLures();
       fetchProfileInfo();
     }
   }, [token]);
@@ -63,20 +68,7 @@ export default function Profile({ navigation }) {
     }
   }
 
-  async function fetchUserLures() {
-    const url = environment.host + "api/get-lures-for-user";
-    let res = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        'x-app-auth': token
-      },
-    });
-    data = await responseDataHandler(res, false);
-    if (data) {
-      setLures(data);
-    }
-  }
+  
 
   function handleEditNav(){
     navigation.navigate(NAV_EDIT_PROFILE, {
@@ -85,29 +77,7 @@ export default function Profile({ navigation }) {
     });
   }
 
-  const styles = StyleSheet.create({
-    itemContainer: {
-      flexDirection: 'row',
-      padding: 10,
-      alignItems: 'center',
-      marginVertical: 7,          
-      marginHorizontal: 10,   
-      borderRadius: 20,        
-      backgroundColor: 'rgb(251, 255, 251)',
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.22,
-      shadowRadius: 2.22,
-      elevation: 3,
-    },
-    detailsContainer: {
-      flex: 1,
-      marginLeft: 3,
-    }
-  });
+
   
   return (
     <View style={[padding_styles.space_md,padding_styles.safetyTop,{ backgroundColor: 'white', height: height}]}>
@@ -147,25 +117,134 @@ export default function Profile({ navigation }) {
         </Text>
         </TouchableOpacity>
       </View>
-      {lures === null ? (
-        <Text>{loadTranslations("noUserLures")}</Text>
-      ):(
-        <FlatList
-          data={lures}
-          renderItem={({item}) => 
-          <View style={styles.itemContainer}>
-            <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
-            <View style={styles.detailsContainer}>
-              <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
-              <Text>{loadTranslations('type')}: {item.type}</Text>
-              <Text>{loadTranslations('colors')}: {item.color1}/{item.color2}</Text>
-              <Text>{loadTranslations('weight')}: {item.weight}oz</Text>
-              <Text style={{ fontWeight: 'bold' }}>{loadTranslations('price')}: ${item.price}</Text>
-            </View>
-          </View>}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      )}
+      {
+        token !== null &&
+        (myLuresOpen ?
+          <MyLures
+            data={lures}
+            visible={myLuresOpen}
+            setVisible={() => { setMyLuresOpen(false) }}
+            token={token}/> :
+          <TouchableOpacity
+            onPress={() => {
+              setMyLuresOpen(true);
+            }}
+            style={[
+              btn_style.button,
+              btn_style.round,
+              btn_style.buttonFullWidth,
+              btn_style.buttonReversed,
+              flex_style.flex,
+            ]}
+          >
+            <Text
+              style={[
+                text_style.primaryColor,
+                text_style.bold,
+                text_style.alignCenter,
+              ]}
+            >
+              {loadTranslations("profileLures")}
+            </Text>
+          </TouchableOpacity>)
+      }
     </View>
   );
+}
+
+function MyLures({ visible, setVisible,token}){
+
+  const [data,setData] = useState([]);
+  const [loading,setLoading] = useState(false);
+  
+  useEffect(()=>{
+    try{
+      setLoading(true);
+      if (visible){
+        async function fetchUserLures() {
+         const url = environment.host + "api/get-lures-for-user";
+         let res = await fetch(url, {
+           method: "GET",
+           headers: {
+             "Content-Type": "application/json",
+             'x-app-auth': token
+           },
+         });
+         json = await responseDataHandler(res, false);
+         if (json) {
+           setData(json);
+         }
+       }
+       fetchUserLures();
+     }
+    }
+    catch(e){
+      console.error(e);
+      setData([]);
+    }
+    finally{
+      setLoading(false);
+    }
+  },[visible])
+
+  const styles = StyleSheet.create({
+    itemContainer: {
+      flexDirection: 'row',
+      padding: 10,
+      alignItems: 'center',
+      marginVertical: 7,          
+      marginHorizontal: 10,   
+      borderRadius: 20,        
+      backgroundColor: 'rgb(251, 255, 251)',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
+    },
+    detailsContainer: {
+      flex: 1,
+      marginLeft: 3,
+    }
+  });
+
+
+  return (
+    <Modal visible={visible} animationType="slide">
+      <View style={{ flex: 1,paddingTop: Platform.OS === 'ios' ? 65 : StatusBar.currentHeight, padding: 20 }}>
+         {loading?
+         <ActivityIndicator style={[margin_styles.bottom_lg,{flex: 1}]} size="large" color={primary_color}/>:
+         (data.length == 0?
+          <Text style={{flex: 1}}>{loadTranslations('noUserLures')}</Text>:
+          <FlatList
+            data={data}
+            renderItem={({ item }) =>
+              <View style={styles.itemContainer}>
+                <Image source={{ uri: item.image }} style={[img_styles.rectangle_image_s, { width: 100 }]} />
+                <View style={styles.detailsContainer}>
+                  <Text style={{ fontWeight: 'bold' }}>{item.brand} - {item.model}</Text>
+                  <Text>{loadTranslations('type')}: {item.type}</Text>
+                  <Text>{loadTranslations('colors')}: {item.color1}/{item.color2}</Text>
+                  <Text>{loadTranslations('weight')}: {item.weight}oz</Text>
+                  <Text style={{ fontWeight: 'bold' }}>{loadTranslations('price')}: ${item.price}</Text>
+                </View>
+              </View>}
+            keyExtractor={(item, index) => index.toString()}
+          />
+         )}
+        <TouchableOpacity
+          onPress={() => { setVisible(false) }}
+          style={[btn_style.button, btn_style.round, btn_style.buttonReversed, margin_styles.top_md, flex_style.flex]}
+        >
+          <Text style={[text_style.primaryColor,
+          text_style.bold,
+          text_style.alignCenter]}>{loadTranslations('close')}</Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
+  );
+  
 }
