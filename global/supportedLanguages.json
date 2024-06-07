@@ -211,7 +211,16 @@
     "infoTemperature":"Fish are cold-blooded and their activity levels are influenced by water temperature. Warmer means increased metabolism; colder means reduced activity.",
     "infoPressure":"Approaching storms often bring low air pressure, which can make fish more active. Rising air pressure, usually after a storm, can make fish lethargic and less likely to bite.",
     "infoWind":"Wind can oxygenate the water surface, pushing food sources (plankton, insects) towards the shore and attracting the fish. However, strong winds aren't exactly fun to fish in.",
-    "infoRain":"Light rain can increase oxygen levels in the water and wash insects into the water. Heavy rain can disrupt the water clarity and temperature."
+    "infoRain":"Light rain can increase oxygen levels in the water and wash insects into the water. Heavy rain can disrupt the water clarity and temperature.",
+    "windInfo":"Here's how wind speeds can affect your fishing experience.",
+    "waterMoveTitle":"Water Movement",
+    "fishActivityTitle":"Fish Activity",
+    "waterClarityTitle":"Water Clarity",
+    "challengesTitle":"Angler Challenges",
+    "infoWaterMove":"Moderate wind stirs up the water surface, increasing oxygen levels and pushing food sources like insects and plankton towards the shore, attracting fish.",
+    "infoFishActivity":"Wind can make fish more active and willing to feed, especially near windward shores where food is concentrated.",
+    "infoWaterClarity":"Strong winds can churn up sediment, reducing water clarity. This can make fish more cautious and affect their feeding behavior.",
+    "infoChallenges":"High winds can make boat control difficult, casting less precise, and overall fishing conditions more challenging and uncomfortable."
   },
   "fr": {
     "bay":"baie",
@@ -423,6 +432,15 @@
     "infoTemperature":"Les poissons sont des animaux à sang froid et leur niveau d'activité est influencé par la température de l'eau. Plus l'eau est chaude, plus le métabolisme est élevé; plus elle est froide, plus l'activité est réduite",
     "infoPressure":"Les tempêtes entraînent souvent une baisse de la pression atmosphérique, ce qui peut rendre les poissons plus actifs. L'augmentation de la pression atmosphérique, généralement après une tempête, peut rendre les poissons léthargiques et moins susceptibles de mordre.",
     "infoWind":"Le vent permet d'oxygéner la surface de l'eau, de pousser les sources de nourriture (plancton, insectes) vers le rivage et d'attirer les poissons. Cependant, les vents forts ne sont pas vraiment agréables pour pêcher.",
-    "infoRain":"Une pluie légère peut augmenter le taux d'oxygène dans l'eau et entraîner les insectes dans l'eau. Une pluie forte peut perturber la clarté et la température de l'eau."
+    "infoRain":"Une pluie légère peut augmenter le taux d'oxygène dans l'eau et entraîner les insectes dans l'eau. Une pluie forte peut perturber la clarté et la température de l'eau.",
+    "windInfo":"Voici comment la vitesse du vent peut affecter votre expérience de pêche.",
+    "waterMoveTitle":"Mouvement de l'eau ",
+    "fishActivityTitle":"Activité des poissons",
+    "waterClarityTitle":"Clarté de l'eau",
+    "challengesTitle":"Défis du pêcheur",
+    "infoWaterMove":"Un vent modéré agite la surface de l’eau, augmentant les niveaux d’oxygène et poussant les sources de nourriture comme les insectes et le plancton vers le rivage, attirant ainsi les poissons.",
+    "infoFishActivity":"Le vent peut rendre les poissons plus actifs et plus désireux de se nourrir, en particulier près des côtes exposées au vent où la nourriture est concentrée.",
+    "infoWaterClarity":"Les vents forts peuvent soulever des sédiments, réduisant la clarté de l'eau. Cela peut rendre les poissons plus prudents et affecter leur comportement alimentaire.",
+    "infoChallenges":"Les vents forts peuvent rendre le contrôle du bateau difficile, le lancer moins précis et les conditions de pêche générales plus difficiles et inconfortables."
   }
 }

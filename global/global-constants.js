@@ -79,6 +79,7 @@ const NAV_LURES_RESULTS = 'LuresResults'
 const NAV_CONDITIONS_RESULTS = 'ConditionsResults'
 const NAV_MOON_INFO = 'MoonInfo'
 const NAV_WEATHER_INFO = 'WeatherInfo'
+const NAV_WIND_INFO = 'WindInfo'
 
 // Responses
 const RES_UNAUTHORIZED = "Unauthorized";
@@ -386,5 +387,6 @@ export {
   tutorial_styles,
   API_STRUCTURES_FOR_SPECIES,
   NAV_MOON_INFO,
-  NAV_WEATHER_INFO
+  NAV_WEATHER_INFO,
+  NAV_WIND_INFO
 };

@@ -25,6 +25,7 @@ import {
   NAV_LURES_RESULTS,
   NAV_MOON_INFO,
   NAV_WEATHER_INFO,
+  NAV_WIND_INFO,
   tutorial_styles,
   ICON_SIZE_S,
   SpacingExtraSmall,
@@ -147,120 +148,119 @@ export default function LuresResults({ route }) {
 
   const WeatherAndMoonPhase = ({ weather, moonPhase, waterCondition }) => (
     <View style={styles.weatherContainer}>
-      <View style={styles.weatherItem}>
-        <MaterialIcons name="dark-mode" size={ICON_SIZE_S} color="black" />
-        {reactIfView(
-          moonPhase.prevPhase.daysSinceLast === 0 &&
-            moonPhase.nextPhase.daysUntilNext === 0, //day of
-          <View style={{flex: 1}}>
-            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
-              {loadTranslations(`todayMoonPhase${moonPhase.prevPhase.phase}`)}
-              {moonPhase.prevPhase.phase === 2 || moonPhase.prevPhase.phase === 4
-                ? ` : ${loadTranslations("fishLessActive")}`
-                : ""}
-              {moonPhase.prevPhase.phase === 1 || moonPhase.prevPhase.phase === 3
-                ? ` : ${loadTranslations("fishMoreActive")}`
-                : ""}
-              {loadTranslations("nextMoonPhase")}:{" "}
-              {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)}{" "}
-              {loadTranslations("in")} {moonPhase.nextPhase.daysUntilNext}{" "}
-              {loadTranslations("days")}
-            </Text>
-          </View>
-        )}
-        {reactIfView(
-          moonPhase.prevPhase.daysSinceLast === 1, // day before
-          <View style={{flex: 1}}>
-            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
-              {loadTranslations("lastMoonPhase")}:{" "}
-              {loadTranslations(`lastMoonPhase${moonPhase.prevPhase.phase}`)}{" "}
-              {moonPhase.prevPhase.daysSinceLast} {loadTranslations("daysAgo")}
+      <TouchableOpacity
+        onPress={() => navigate(NAV_MOON_INFO)}
+      >
+        <View style={[styles.weatherItem, {paddingBottom: 15, justifyContent: 'space-between'}]}>
+          <MaterialIcons name="dark-mode" size={ICON_SIZE_S} color="black" />
+          {reactIfView(
+            moonPhase.prevPhase.daysSinceLast === 0 &&
+              moonPhase.nextPhase.daysUntilNext === 0, //day of
+            <View style={{flex: 1}}>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {loadTranslations(`todayMoonPhase${moonPhase.prevPhase.phase}`)}
+              </Text>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {moonPhase.prevPhase.phase === 2 || moonPhase.prevPhase.phase === 4
+                  ? ` : ${loadTranslations("fishLessActive")}`
+                  : ""}
+                {moonPhase.prevPhase.phase === 1 || moonPhase.prevPhase.phase === 3
+                  ? ` : ${loadTranslations("fishMoreActive")}`
+                  : ""}
+              </Text>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {loadTranslations("nextMoonPhase")}:{" "}
+                {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)}{" "}
+                {loadTranslations("in")} {moonPhase.nextPhase.daysUntilNext}{" "}
+                {loadTranslations("days")}
+              </Text>
+            </View>
+          )}
+          {reactIfView(
+            moonPhase.prevPhase.daysSinceLast === 1, // day before
+            <View style={{flex: 1}}>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {loadTranslations("lastMoonPhase")}{" "}
+                {loadTranslations(`lastMoonPhase${moonPhase.prevPhase.phase}`)}{" "}
+                {moonPhase.prevPhase.daysSinceLast} {loadTranslations("daysAgo")}
+              </Text>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
               {moonPhase.prevPhase.phase === 1 ||
-              moonPhase.prevPhase.phase === 3
-                ? ` : ${loadTranslations("fishFullFromFeedingMoon")}`
+                moonPhase.prevPhase.phase === 3
+                  ? `${loadTranslations("fishFullFromFeedingMoon")}`
+                  : ""}
+              </Text>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {loadTranslations("nextMoonPhase")}{" "}
+                {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)} in{" "}
+                {moonPhase.nextPhase.daysUntilNext} {loadTranslations("days")}
+                {moonPhase.nextPhase.daysUntilNext <= 2 &&
+                moonPhase.nextPhase.phase === 1
+                  ? ` : ${loadTranslations("fishMoreActive")}`
+                  : ""}
+              </Text>
+            </View>
+          )}
+          {reactIfView(
+            moonPhase.prevPhase.daysSinceLast !== 1 &&
+              moonPhase.prevPhase.daysSinceLast !== 0, //else
+            <View style={{flex: 1}}>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {loadTranslations("lastMoonPhase")}{" "}
+                {loadTranslations(`lastMoonPhase${moonPhase.prevPhase.phase}`)}{" "}
+                {Math.abs(moonPhase.prevPhase.daysSinceLast)}{" "}
+                {loadTranslations("daysAgo")}
+              </Text>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {moonPhase.prevPhase.phase === 1 ||
+                  moonPhase.prevPhase.phase === 3
+                    ? ` ${loadTranslations("fishFullFromFeedingMoon")}`
                 : ""}
-            </Text>
-            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
-              {loadTranslations("nextMoonPhase")}:{" "}
-              {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)} in{" "}
-              {moonPhase.nextPhase.daysUntilNext} {loadTranslations("days")}
-              {moonPhase.nextPhase.daysUntilNext <= 2 &&
-              moonPhase.nextPhase.phase === 1
-                ? ` : ${loadTranslations("fishMoreActive")}`
-                : ""}
-            </Text>
-          </View>
-        )}
-        {reactIfView(
-          moonPhase.prevPhase.daysSinceLast !== 1 &&
-            moonPhase.prevPhase.daysSinceLast !== 0, //else
+              </Text>
+              <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
+                {loadTranslations("nextMoonPhase")}{" "}
+                {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)} in{" "}
+                {moonPhase.nextPhase.daysUntilNext} {loadTranslations("days")}
+                {moonPhase.nextPhase.daysUntilNext <= 2 &&
+                moonPhase.nextPhase.phase === 1
+                  ? ` : ${loadTranslations("fishMoreActive")}`
+                  : ""}
+              </Text>
+            </View>
+          )}
+          <ArrowItem/>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigate(NAV_WEATHER_INFO)}
+      >
+        <View style={[styles.weatherItem, {paddingBottom: 15, justifyContent: 'space-between'}]}>
+          <MaterialIcons name="water-drop" size={ICON_SIZE_S} color="black" />
           <View style={{flex: 1}}>
-            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
-              {loadTranslations("lastMoonPhase")}{" "}
-              {loadTranslations(`lastMoonPhase${moonPhase.prevPhase.phase}`)}{" "}
-              {Math.abs(moonPhase.prevPhase.daysSinceLast)}{" "}
-              {loadTranslations("daysAgo")}
-              {moonPhase.prevPhase.phase === 1 ||
-              moonPhase.prevPhase.phase === 3
-                ? ` ${loadTranslations("fishFullFromFeedingMoon")}`
-                : ""}
-            </Text>
-            <Text style={{ marginLeft: SpacingExtraSmall, flexShrink: 1 }}>
-              {loadTranslations("nextMoonPhase")}{" "}
-              {loadTranslations(`lastMoonPhase${moonPhase.nextPhase.phase}`)} in{" "}
-              {moonPhase.nextPhase.daysUntilNext} {loadTranslations("days")}
-              {moonPhase.nextPhase.daysUntilNext <= 2 &&
-              moonPhase.nextPhase.phase === 1
-                ? ` : ${loadTranslations("fishMoreActive")}`
-                : ""}
+            <Text style={{ marginLeft: 5, flexShrink: 1 }}>
+              {weather.precipitation
+                ? loadTranslations("rainedFishFed")
+                : loadTranslations("noPrecipitationsFishHungry")}
             </Text>
           </View>
-        )}
-      </View>
-      <View style={styles.weatherItem}>
-        <MaterialIcons name="water-drop" size={ICON_SIZE_S} color="black" />
-        <Text style={{ marginLeft: 5 }}>
-          {weather.precipitation
-            ? loadTranslations("rainedFishFed")
-            : loadTranslations("noPrecipitationsFishHungry")}
-        </Text>
-      </View>
-      <View style={styles.weatherItem}>
-        <MaterialIcons name="air" size={ICON_SIZE_S} color="black" />
-        <Text style={{ marginLeft: SpacingExtraSmall }}>
-          {weather.windGust > 10 && waterCondition !== "Muddy"
-            ? loadTranslations("windYesterdayWaterDirty")
-            : `${weather.windGust} mph`}
-        </Text>
-      </View>
-      <View style={{flexDirection: 'row', justifyContent: "space-evenly"}}>
-        <TouchableOpacity
-          onPress={() => navigate(NAV_MOON_INFO)}
-          style={[
-            btn_style.button,
-            {width: 150}
-          ]}
-          >
-          <View>
-            <Text style={text_style.fontColorWhite}>
-              About lunar cycles
-            </Text>
+          <ArrowItem/>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigate(NAV_WIND_INFO)}
+      >
+        <View style={[styles.weatherItem, {justifyContent: 'space-between'}]}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <MaterialIcons name="air" size={ICON_SIZE_S} color="black" />
+          <Text style={{ marginLeft: SpacingExtraSmall }}>
+            {weather.windGust > 10 && waterCondition !== "Muddy"
+              ? loadTranslations("windYesterdayWaterDirty")
+              : `${weather.windGust} mph`}
+          </Text>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigate(NAV_WEATHER_INFO)}
-          style={[
-            btn_style.button,
-            {width: 150}
-          ]}
-          >
-          <View>
-            <Text style={text_style.fontColorWhite}>
-              About weather
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+          <ArrowItem/>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 
@@ -352,6 +352,14 @@ export default function LuresResults({ route }) {
       </View>
     </View>
   );
+
+  const ArrowItem = () => {
+    return (
+      <Text style={{color: 'grey', fontWeight: 'bold', paddingLeft: 9, paddingRight: 9,
+        fontSize: 20, borderWidth: 1, borderRadius: 60, textAlign: 'center', marginLeft: 5 }}>{'>'}
+      </Text>
+    )
+  }
 
   const styles = StyleSheet.create({
     itemContainer: {
