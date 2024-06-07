@@ -7,7 +7,8 @@ import { btn_style, flex_style, margin_styles, text_style } from './global/globa
 import { primary_color } from "./global/global-constants";
 const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long}) => {
   const [searchText, setSearchText] = useState('');
-  const [locationFish,setLocationFish] = useState(undefined);
+  const [locationFish,setLocationFish] = useState([]);
+  const [loading,setLoading] = useState(false);
   const fishData = [
     { id: 'atlanticSalmon', name: 'Atlantic Salmon', image: require('./assets/fish/atlanticSalmon.png') },
     { id: 'bass', name: 'Bass', image: require('./assets/fish/bass.jpg') },
@@ -27,7 +28,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
   ];
 
   useEffect(()=>{
-    setLocationFish(undefined);
+    setLoading(true);
     const url = environment.host + `/api/species-per-location?lat=${lat}&long=${long}`
     fetch(url)
     .then(resp=>resp.json())
@@ -38,9 +39,10 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
       console.error(e);
       setLocationFish([]);
     })
+    .finally(()=>{
+      setLoading(false);
+    })
   },[visible])
-
-
 
   const renderItem = ({ item }) => {
     const isSelected = selectedFish && selectedFish.id === item.id;
@@ -60,15 +62,14 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
           onChangeText={setSearchText}
         />
         {
-          locationFish && locationFish.length == 0 ? 
-          <Text style={{flex: 1}}>{loadTranslations('noFishInLocation')}</Text>:
+          loading ? <ActivityIndicator style={[margin_styles.bottom_lg,{flex: 1}]} size="large" color={primary_color}/>:
           (locationFish?
             <FlatList
               data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
               renderItem={renderItem}
               keyExtractor={(item) => item.id.toString()}
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-            />:<ActivityIndicator style={[margin_styles.bottom_lg,{flex: 1}]} size="large" color={primary_color}/>)
+            />:<Text style={{flex: 1}}>{loadTranslations('noFishInLocation')}</Text>)
         }
         <TouchableOpacity
           onPress={() => { setVisible(false) }}
