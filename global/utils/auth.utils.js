@@ -61,9 +61,10 @@ export async function checkForValidSub(){
     }
   });
   const data = await responseDataHandler(res, false);
-  if (data.sub) {
-    return data.sub;
-  }else {
-    return null;
+  if (data.sub){
+    if (data.sub.status === "active" || data.sub.status === "trialing") {
+      return true;
+    }
   }
+  return false;
 }

@@ -70,6 +70,7 @@ const NAV_TIME = "Time";
 const NAV_TUTORIAL = "Tutorial";
 const NAV_PROFILE = "Profile";
 const NAV_EDIT_PROFILE = "editProfile";
+const NAV_SUBSCRIPTION = "subscription";
 const NAV_AD_PAGE = "adPage";
 const NAV_NEW_ADVERTISEMENT = "newAdvertisement";
 const NAV_CONDITIONS_FORM = 'ConditionsForm'
@@ -151,6 +152,12 @@ const POSITION = "position";
 
 //key
 const SECURE_STORE_ITEM_KEY = "x-app-auth";
+
+//stripe
+const PUBLISHABLE_KEY = "pk_test_51PGnqy2KlPR4WPV4nrstLcxXRX6liwvockQuXwf4uaNR7fBTaDNMHsP0wSUMQeMDbBN7zyjXRZhxNsjILpK0GCn500xrJIQsyc";
+const MONTHLY_PRICE_ID = "price_1PLodv2KlPR4WPV4y4Ld6jZa";
+const YEARLY_PRICE_ID = "price_1PLoeR2KlPR4WPV45sp6NvsM";
+const LIFETIME_PIRCE_ID = "price_1PLofJ2KlPR4WPV4IrF4SZbL";
 
 //url
 const API_REGISTER = "api/user/post/registerGoogle";
@@ -304,6 +311,7 @@ export {
   API_GET_USER_INFO_AD,
   NAV_PROFILE,
   NAV_EDIT_PROFILE,
+  NAV_SUBSCRIPTION,
   NAV_PAYMENT,
   RES_UNAUTHORIZED,
   RES_VALID,
@@ -383,4 +391,8 @@ export {
   MULTI_LINE,
   tutorial_transparent,
   tutorial_styles,
+  PUBLISHABLE_KEY,
+  MONTHLY_PRICE_ID,
+  YEARLY_PRICE_ID,
+  LIFETIME_PIRCE_ID,
 };

@@ -31,8 +31,7 @@ export default function Profile({ navigation }) {
   const [lures, setLures] = useState([]);
   const [editScreen, setEditScreen] = useState(false);
   const [term, setTerm] = useState(getDeviceLanguage().includes("fr") ? terms_fr : terms);
-  const [validSub, setValidSub] = useState('');
-  
+  const [validSub, setValidSub] = useState(null);
   useEffect(() => {
     async function getData(){
       const t = await getAuthToken(false);
@@ -157,7 +156,7 @@ export default function Profile({ navigation }) {
             {loadTranslations("edit")}
           </Text>
           </TouchableOpacity>
-          {validSub === INVALID && (
+          {!validSub && (
             <TouchableOpacity
               onPress={handleSubNav}
               style={[

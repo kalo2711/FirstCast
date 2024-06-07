@@ -13,7 +13,7 @@ import {
   text_style,
 } from "../global/global-styles";
 import { getDeviceLanguage, loadTranslations } from "../global/localization";
-import { height, NAV_PROFILE } from "../global/global-constants";
+import { height, NAV_PROFILE, NAV_SUBSCRIPTION } from "../global/global-constants";
 import { getAuthToken, setAuthToken} from '../global/utils/auth.utils';
 import { terms, terms_fr } from '../authentication/terms';
 import { environment } from "../global/environment";
@@ -80,6 +80,29 @@ export default function EditProfile({ navigation, route }) {
             ]}
           >
             {loadTranslations("terms")}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(NAV_SUBSCRIPTION, {
+            token: route.token,
+          })}
+          style={[
+            btn_style.button, 
+            btn_style.round, 
+            btn_style.buttonFullWidth, 
+            btn_style.buttonReversed,
+            margin_styles.vertical_space_l
+            
+          ]}
+        >
+          <Text
+            style={[
+              text_style.bold,
+              flex_style.width100,
+              text_style.alignCenter,
+            ]}
+          >
+            Subscription
           </Text>
         </TouchableOpacity>
       <TouchableOpacity

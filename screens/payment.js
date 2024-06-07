@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useStripe } from '@stripe/stripe-react-native';
 import {
+  Alert,
   View,
   Text,
   ScrollView,
@@ -19,12 +20,9 @@ import {
   margin_styles
 } from "../global/global-styles";
 import {
-  primary_color,
-  black,
-  NAV_LURES_RESULTS,
-  tutorial_styles,
-  ICON_SIZE_S,
-  SpacingExtraSmall,
+  MONTHLY_PRICE_ID,
+  YEARLY_PRICE_ID,
+  LIFETIME_PIRCE_ID,
   RES_VALID,
   NAV_PROFILE
 } from "../global/global-constants";
@@ -42,7 +40,8 @@ export default function Intent({ navigation }) {
   const [token, setToken] = useState("");
   const [subInfo, setSubInfo] = useState({});
   const [subType, setSubType] = useState("");
-  
+  const [customerId, setCustomerId] = useState("");
+
   useEffect(() => {
     getToken();
   }, []);
@@ -55,7 +54,7 @@ export default function Intent({ navigation }) {
   }, [token]);
 
   async function getToken(){
-      const t = await getAuthToken(false);
+      const t = await getAuthToken();
       setToken(t);
     }
 
@@ -72,8 +71,38 @@ export default function Intent({ navigation }) {
     const data = await responseDataHandler(res, false);
     if (data) {
       setSubInfo(data);
+    }
+  }
+
+  async function fetchName(){
+    const url = environment.host + "api/user/get/profileInfo";
+    let res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'x-app-auth': token
+      },
+    });
+    const data = await responseDataHandler(res, false);
+    if (data) {
+      return data["user"]["displayName"];
+    }
+  }
+
+  async function fetchCustomerOnDB(){
+    const url = environment.authHost + "api/user/customer";
+    let res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'x-app-auth': token
+      },
+    });
+    const data = await responseDataHandler(res, false);
+    if (data) {
+      return data.id;
     }else {
-      console.error("error");
+      return null;
     }
   }
 
@@ -95,64 +124,149 @@ export default function Intent({ navigation }) {
     }
   }
 
-  const createIntent = async (amount) => {
-    const url = `${environment.host}/payments/intent`;
+  const createCustomer = async () => {
+    const displayName = await fetchName();
+    const customerExists = await fetchCustomerOnDB();
+    if (customerExists !== null){
+      //use the customer id form the database
+      setCustomerId(customerExists);
+    }else{
+      //create customer
+      const url = environment.authHost + "api/user/createCustomer";
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-app-auth': token
+        },
+        body:JSON.stringify({
+          name: displayName
+        }),
+      });
+      data = await responseDataHandler(response, false);
+      if (data) {
+        setCustomerId(data);
+        return data;
+      }
+    }
+    
+  };
+
+  const createSubscription = async (cusId, priceId, trial) => {
+    const url = environment.authHost + 'api/user/addsubinfo';
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-app-auth': token
+      },
+      body: JSON.stringify({
+        priceId: priceId,
+        customerId: cusId,
+        trial: trial
+      }),
+    });
+    if (response.status === 200) {
+      const subscription = await response.json();
+      return subscription;
+    }
+  };
+
+  const setupIntent = async (cusId) => {
+    const url = environment.host + "payments/setupIntent";
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-app-auth": getAuthToken(),
+        "x-app-auth": token,
       },
-      body: JSON.stringify({amount: amount})
+      body: JSON.stringify({customerId: cusId})
     });
-    
 
     let responseJSON = await response.json();
     if (responseJSON.status === RES_VALID) {
-      return responseJSON.paymentIntent;
-    } else {
-      return null;
+      return responseJSON.setupIntent;
     }
   };
 
-  const onCheckout = async () => {
+  const setDefaultPayment = async (cusId) => {
+    const url = environment.host + "payments/setDefault";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-app-auth": token,
+      },
+      body: JSON.stringify({customerId: cusId})
+    });
+    let responseJSON = await response.json();
+    if (responseJSON.status === RES_VALID) {
+      return true;
+    }else {
+      return false;
+    }
+  };
+  
+
+  const openPaymentSheet = async () => {
+    const { error } = await presentPaymentSheet();
+
+    if (error) {
+      Alert.alert(`Error code: ${error.code}`, error.message);
+    } else {
+      Alert.alert('Success', 'Your payment method has been set up successfully!');
+    }
+  };
+
+  const onSubscribe = async () => {
+    let trial = 0;
     if (subInfo.trialUsed === 1){
-      let amount = 0;
+      //trial is used
+      trial = 0;
+    }else {
+      trial = 7;
+    }
+    // to determine price id
+    let priceID = '';
       switch (subType){
         case 'M':
-          amount = 495;
+          priceID = MONTHLY_PRICE_ID;
           break;
         case 'Y':
-          amount = 995;
+          priceID = YEARLY_PRICE_ID;
           break;
         case 'L':
-          amount = 9995;
+          priceID = LIFETIME_PIRCE_ID;
         break;
       }
-      // 1. Create a payment intent
-      const response = await createIntent(amount);
-      // 2. Initialize the Payment sheet
-      const initResponse = await initPaymentSheet({
-        merchantDisplayName: 'notJust.dev',
-        paymentIntentClientSecret: response,
-      });
-      if (initResponse.error) {
-        Alert.alert('Something went wrong');
-        return;
+    //1-create customer(if exists, get from db)
+      const cusId = await createCustomer();
+    //2-setup setup intent
+      const clientSecret = await setupIntent(cusId);
+    //3-get payment methode
+      const initializePaymentSheet = async () => {
+        if (!clientSecret) return;
+    
+        const { error } = await initPaymentSheet({
+          setupIntentClientSecret: clientSecret,
+          merchantDisplayName: 'First Cast'
+        });
+    
+        if (error) {
+          Alert.alert('Something went wrong', error.message);
+        } else {
+          // Successfully initialized
+          await openPaymentSheet();
+        }
+      };
+      await initializePaymentSheet();
+    //3-set payment method as default
+      const defaultPaymentUpdated = await setDefaultPayment(cusId);
+    //4-create sub
+      if (defaultPaymentUpdated){
+        const sub = await createSubscription(cusId, priceID, trial);
       }
-      
-      // 3. Present the Payment Sheet from Stripe
-      const { error: paymentError } = await presentPaymentSheet();
-
-      if (paymentError) {
-        Alert.alert(`Error code: ${paymentError.code}`, paymentError.message);
-        return;
-      } 
-    }
-    // 4. If payment ok -> set subscription
-    onSetSubscription(subType);
-    navigation.navigate(NAV_PROFILE);
-  };
+  }
 
   return (
     <ScrollView
@@ -320,7 +434,7 @@ export default function Intent({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              onCheckout();
+              onSubscribe();
             }}
             style={[
               btn_style.button,
