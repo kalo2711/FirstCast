@@ -130,16 +130,22 @@ export default function Profile({ navigation }) {
               flex_style.flex,
             ]}
           >
-            <Text
+           <View style={[
+            flex_style.flex,
+            flex_style.center
+           ]}>
+           <Text
               style={[
                 text_style.primaryColor,
                 text_style.bold,
                 text_style.alignCenter,
+                padding_styles.horizontal_s
               ]}
             >
               {loadTranslations("profileLures")}
             </Text>
-            <Icon style={[margin_styles.left_s]} size={ICON_SIZE_XS} name={myLuresOpen? 'expand-arrow':'expand-button'} color={primary_color}></Icon>
+            <Icon style={[]} size={ICON_SIZE_XS} name={myLuresOpen? 'expand-arrow':'expand-button'} color={primary_color}></Icon>
+           </View>
           </TouchableOpacity>
           {myLuresOpen && (
             <MyLures
