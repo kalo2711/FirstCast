@@ -361,7 +361,7 @@ const ConditionsForm = ({ navigation }) => {
         parentSetModalVisible={setModalVisible}
         setSelectedItem={onLocationSelected}
       />
-      <View style={[flex_style.flex, flex_style.width100, margin_styles.top_md]}>
+      <View style={[flex_style.flex, flex_style.width100, margin_styles.top_lg]}>
         {reactIfView(
           currentTutorial == "selectSpecies",
           <Tooltip
