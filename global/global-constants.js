@@ -226,7 +226,7 @@ const FISH_STRUCTURES = [
     {name: 'drop', image: require('../assets/structures/Drop.jpg') },
     {name: 'flat', image: require('../assets/structures/Flat.jpg') },
     {name: 'submerged', image: require('../assets/structures/2d-Submerged_Items.png') },
-    {name: 'stream', image: require('../assets/structures/Stream.png') },
+    {name: 'stream', image: require('../assets/structures/Stream.jpeg') },
     {name: 'point', image: require('../assets/structures/Point.jpg') },
     {name: 'weed', image: require('../assets/structures/2d-Weed.jpg') },
     {name: 'bay', image: require('../assets/structures/bay.jpg') },
