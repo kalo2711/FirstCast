@@ -1,6 +1,6 @@
 import { getDeviceLanguage, loadTranslations } from "../global/localization";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   StyleSheet,
   View,
@@ -37,6 +37,7 @@ import {
   tutorial_styles,
   secondary_color,
   API_STRUCTURES_FOR_SPECIES,
+  white,
 } from "../global/global-constants";
 import FishSelect from "../fish-select.js";
 import FishSelectItem from "../fish-select-item.js";
@@ -52,6 +53,7 @@ import * as Location from "expo-location";
 import { environment } from "../global/environment";
 import { responseDataHandler } from "../global/global-functions";
 import TutorialTooltip from "./TutorialTooltip";
+import GoogleMap from '../components/GoogleMap.js'
 
 const ConditionsForm = ({ navigation }) => {
   const [species, setSpecies] = useState(null);
@@ -75,12 +77,12 @@ const ConditionsForm = ({ navigation }) => {
   const [isStructureModalVisible, setStructureModalVisible] = useState(false);
   const [autofilledLocations, setAutofilledLocations] = useState([]);
   const [geoCoordinates, setGeoCoordinates] = useState({
-    lat: "45.501886",
-    lon: "-73.567391",
+    lat: 45.645524,
+    lon: -73.586019,
   });
   const [locationName, setLocationName] = useState("");
   const [userLures, setUserLures] = useState(false);
-  const [structure, setStructure] = useState("");
+  const [structure, setStructure] = useState("Weed");
   const [structureInput, setStructureInput] = useState("");
   const [tempVisable, setTempVisable] = useState(false);
   const [daysUntilDate, setDaysUntilDate] = useState(0);
@@ -92,8 +94,11 @@ const ConditionsForm = ({ navigation }) => {
     { id: "flat", title: "flat" },
     { id: "point", title: "point" },
     { id: "channel", title: "channel" },
+    { id: "stream", title: "stream" },
     { id: "bay", title: "bay" },
-])
+  ])
+  
+  const scrollViewRef = useRef(null);
 
   const waterClarities = [
     {
@@ -126,11 +131,17 @@ const ConditionsForm = ({ navigation }) => {
     return data.data
   }
 
+  function scrollToRef() {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ y: (width + 200), animated: true });
+    }
+  }
+
   useEffect(() => {
     const getTut = async () => {
       const tut = await getNextTutorialForPage(NAV_CONDITIONS_FORM);
       setCurrentTutorial(tut);
-    };
+    }
     if (initialLoad) {
       getTut();
       setInitialLoad(false);
@@ -222,7 +233,7 @@ const ConditionsForm = ({ navigation }) => {
         return;
       }
       let locationData = resp.locationDetails;
-      setGeoCoordinates(locationData);
+      setGeoCoordinates({ lat: locationData.lat, lon: locationData.lon});
     } catch (e) {
       console.error("Unable to get geoCoordinates from location: " + e);
     }
@@ -238,6 +249,7 @@ const ConditionsForm = ({ navigation }) => {
   const handleFormSubmit = async () => {
     if (structure && species) {
       date.setHours(hour);
+
       const routeParams = {
         lat: geoCoordinates.lat,
         long: geoCoordinates.lon,
@@ -285,6 +297,7 @@ const ConditionsForm = ({ navigation }) => {
 
   return (
     <ScrollView
+      ref={scrollViewRef}
       nestedScrollEnabled={true}
       keyboardShouldPersistTaps='always'
       contentContainerStyle={[
@@ -292,7 +305,7 @@ const ConditionsForm = ({ navigation }) => {
         flex_style.flexContainer,
         padding_styles.safetyTop,
         padding_styles.space_md,
-        { flexWrap: "wrap" },
+        { flexWrap: "wrap", backgroundColor: white },
       ]}
     >
       <Text
@@ -327,6 +340,7 @@ const ConditionsForm = ({ navigation }) => {
             }
             placement="top"
             onClose={async () => {
+              scrollToRef()
               setCurrentTutorial(
                 await updateTutorialAndGetNext("location", NAV_CONDITIONS_FORM)
               );
@@ -351,7 +365,7 @@ const ConditionsForm = ({ navigation }) => {
         )}
       </View>
 
-      <DropdownWithModal
+      {/* <DropdownWithModal
         simple={true}
         showCancelButton={false}
         placeholder={locationName}
@@ -360,8 +374,16 @@ const ConditionsForm = ({ navigation }) => {
         dataset={autofilledLocations}
         parentSetModalVisible={setModalVisible}
         setSelectedItem={onLocationSelected}
-      />
-      <View style={[flex_style.flex, flex_style.width100, margin_styles.top_lg]}>
+      /> */}
+      {reactIfView(geoCoordinates?.lat,
+        <GoogleMap
+          latitude={geoCoordinates?.lat}
+          longitude={geoCoordinates?.lon}
+          location={geoCoordinates}
+          setLocation={(coords)=> {setGeoCoordinates(coords)}}
+        ></GoogleMap>
+      )}
+      <View style={[flex_style.flex, flex_style.width100, margin_styles.top_md]}>
         {reactIfView(
           currentTutorial == "selectSpecies",
           <Tooltip
@@ -424,21 +446,12 @@ const ConditionsForm = ({ navigation }) => {
               flex_style.flex,
             ]}
           >
-            {/* <Text
-                style={[
-                  text_style.primaryColor,
-                  text_style.bold,
-                  text_style.alignCenter,
-                  flex_style.width100,
-                ]}
-              >
-                {loadTranslations("speciesSelect")}
-            </Text> */}
             <Text
               style={[
                 text_style.primaryColor,
                 text_style.bold,
                 text_style.alignCenter,
+                flex_style.width50
               ]}
             >
               {loadTranslations("speciesSelect")}
@@ -529,6 +542,7 @@ const ConditionsForm = ({ navigation }) => {
                   text_style.primaryColor,
                   text_style.bold,
                   text_style.alignCenter,
+                  flex_style.width100
                 ]}
               >
                 {date.toDateString()}
@@ -695,7 +709,7 @@ const ConditionsForm = ({ navigation }) => {
         <TextInput
           value={temperature}
           onChangeText={(text) => {
-            const sanitizedText = text.replace(/[^0-9]/g, "").slice(0, 2);
+            const sanitizedText = text?.replace(/[^0-9]/g, "").slice(0, 2);
             setTemperature(sanitizedText);
           }}
           keyboardType="numeric"
@@ -705,7 +719,7 @@ const ConditionsForm = ({ navigation }) => {
             }
           }}
           onFocus={() => {
-            setTemperature(temperature.replace(" °C", ""));
+            setTemperature(temperature?.replace(" °C", ""));
           }}
           maxLength={2}
           style={[form_style.formControl, text_style.xs, margin_styles.bottom_md]}

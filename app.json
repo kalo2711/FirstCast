@@ -2,7 +2,7 @@
   "expo": {
     "name": "First Cast",
     "slug": "first-cast",
-    "version": "1.0.7",
+    "version": "1.0.10",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -17,6 +17,9 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.first.cast",
+      "config": {
+        "googleMapsApiKey": "AIzaSyDCG-KE-wuY-T3gNabidFduJJeBBpytWuY"
+      },
       "LSMinimumSystemVersion": "13.0",
       "minimumDeploymentTarget": "13.0",
       "NSLocationWhenInUseUsageDescription": "We need your location to select the closest part in the map",
@@ -28,6 +31,11 @@
       }
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB-MSaTA15IDjYXUGJPgI6qgVcuVAaEkX4"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#003362"
@@ -46,11 +54,16 @@
       [
         "expo-location",
         {
-          "NSLocationAlwaysAndWhenInUseUsageDescription":"Allow $(PRODUCT_NAME) to use your location to get the right lake",
+          "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to use your location to get the right lake",
           "NSLocationAlwaysUsageDescription": "Allow $(PRODUCT_NAME) to use your location to get the right lake",
           "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location to get the right lake."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e35353c4-bf96-4b37-8fa2-87abd86c40cf"
+      }
+    }
   }
 }

@@ -66,8 +66,11 @@ const ConditionsResults = ({ route }) => {
                 {reactIfView(expandedFish[0] == 'pike' || expandedFish[0] == 'walleye',
                   <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg"}}></Image>
                 )}
-                {reactIfView(expandedFish[0] == 'lakeTrout' || expandedFish[0] == 'rainbowTrout' || expandedFish[0] == 'brookTrout' || expandedFish[0] == 'brownTrout',
-                  <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(1).jpg"}}></Image>
+                {reactIfView(expandedFish[0] == 'lakeTrout' || expandedFish[0] == 'rainbowTrout' || expandedFish[0] == 'brookTrout' || expandedFish[0] == 'brownTrout' || expandedFish[0] == 'atlanticSalmon',
+                  <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg"}}></Image>
+                )}
+                {reactIfView(expandedFish[0] == 'musky',
+                  <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/jaques_vadbonqeur.jpeg"}}></Image>
                 )}
                 <Text style={[text_style.xs, text_style.bold]}>{loadTranslations("presentedBy")}</Text>
               </View>}

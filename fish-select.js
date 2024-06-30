@@ -19,9 +19,9 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
     { id: 'chinookSalmon', name: 'Chinook Salmon', image: require('./assets/fish/chinook.jpg') },
     { id: 'crappie', name: 'Crappie', image: require('./assets/fish/crappie.jpg') },
     { id: 'lakeTrout', name: 'Lake Trout', image: require('./assets/fish/lakeTrout.jpg') },
-    { id: 'ouinaniche', name: 'Ouinaniche', image: require('./assets/fish/ouananiche.jpg') },
-    { id: 'perch', name: 'Perch', image: require('./assets/fish/perch.jpg') },
     { id: 'pike', name: 'Pike', image: require('./assets/fish/pike.jpg') },
+    { id: 'perch', name: 'Perch', image: require('./assets/fish/perch.jpg') },
+    { id: 'musky', name: 'Musky', image: require('./assets/fish/musky.jpg') },
     { id: 'rainbowTrout', name: 'Rainbow Trout', image: require('./assets/fish/rainbowTrout.jpg') },
     { id: 'steelhead', name: 'Steelhead', image: require('./assets/fish/steelhead.jpg') },
     { id: 'walleye', name: 'Walleye', image: require('./assets/fish/walleye.jpg') },
@@ -33,7 +33,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
     fetch(url)
     .then(resp=>resp.json())
     .then(json=>{
-      setLocationFish(fishData.filter(fish => json.data.includes(fish.name)));
+      setLocationFish(fishData.filter(fish => json?.data?.includes(fish.name)));
     })
     .catch(e=>{
       console.error(e);
@@ -66,7 +66,7 @@ const FishSelect = ({ visible, setVisible, selectedFish, onSelectFish,lat,long})
           (locationFish.length == 0?
             <Text style={{flex: 1}}>{loadTranslations('noFishInLocation')}</Text>:
             <FlatList
-              data={locationFish.filter(fish => fish.name.toLowerCase().includes(searchText.toLowerCase()))}
+              data={locationFish.filter(fish => fish?.name?.toLowerCase()?.includes(searchText.toLowerCase()))}
               renderItem={renderItem}
               keyExtractor={(item) => item.id.toString()}
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
