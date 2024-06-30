@@ -201,6 +201,9 @@ export const text_style = StyleSheet.create({
   secondaryColor: {
     color: secondary_color
   },
+  link: {
+    color: 'blue'
+  },
   alignCenter: {
     textAlign: 'center'
   },
@@ -343,6 +346,9 @@ export const btn_style = StyleSheet.create({
   },
   red: {
     backgroundColor: 'red'
+  },
+  link: {
+    color: primary_color
   }
 })
 

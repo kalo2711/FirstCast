@@ -13,12 +13,14 @@ import Authentication from "./authentication/auth";
 import { navigationRef } from './global/global-functions'
 import { NAV_AUTHENTICATION, NAV_CONDITIONS_FORM, NAV_LURES_FORM, NAV_REQUEST_LURE_FORM, NAV_PROFILE, NAV_EDIT_PROFILE } from "./global/global-constants";
 import AddLureModal from "./add-lure-modal";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const RootStack = createNativeStackNavigator();
 
 function AppNavigator() {
   return (
     <SafeAreaProvider>
+      <GestureHandlerRootView>
       <NavigationContainer ref={navigationRef}>
         <RootStack.Navigator
           initialRouteName="Authentication"
@@ -37,7 +39,8 @@ function AppNavigator() {
           <RootStack.Screen name={NAV_EDIT_PROFILE} component={EditProfile} />
         </RootStack.Navigator>
         <Navigation />
-      </NavigationContainer>
+        </NavigationContainer>
+        </GestureHandlerRootView>
     </SafeAreaProvider>
   );
 }
