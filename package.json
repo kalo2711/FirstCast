@@ -1,6 +1,6 @@
 {
   "name": "first-cast",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
