@@ -1,9 +1,9 @@
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Platform } from 'react-native'
 import { flex_style, margin_styles } from '../global/global-styles'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { width } from '../global/global-constants'
 import MapView from 'react-native-maps'
-import { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+import { Marker, PROVIDER_GOOGLE, PROVIDER_DEFAULT } from 'react-native-maps'
 
 const LATITUDE_DELTA = 0.015;
 const LONGITUDE_DELTA = 0.0121;
@@ -42,7 +42,8 @@ export default function GoogleMap(props) {
         min-height={width}
       >
         <MapView
-          provider={PROVIDER_GOOGLE}
+          provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
+
           region={region}
           onRegionChangeComplete={onRegionChangeComplete}
           style={styles.map}
