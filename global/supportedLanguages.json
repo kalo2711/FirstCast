@@ -203,7 +203,10 @@
     "in": "dans",
     "days": "days",
     "daysAgo": "days ago",
-    "noLureForConditions": "We currently do not have the data for the criteria entered, please try different conditions."
+    "noLureForConditions": "We currently do not have the data for the criteria entered, please try different conditions.",
+    "applyFilters": "Apply Filters",
+    "filter": "Filter",
+    "noResultsMatchFilters": "Sorry, no results match your filters. Try something different for better results!"
   },
   "fr": {
     "bay":"baie",
@@ -407,6 +410,9 @@
     "in": "dans",
     "days": "jours",
     "daysAgo": "jours passés",
-    "noLureForConditions": "Nous n'avons actuellement pas de données pour les critères saisis, veuillez essayer des conditions différentes."
+    "noLureForConditions": "Nous n'avons actuellement pas de données pour les critères saisis, veuillez essayer des conditions différentes.",
+    "applyFilters": "Appliquer les filtres",
+    "filter": "Filtre",
+    "noResultsMatchFilters": "Désolé, aucun résultat ne correspond à vos filtres. Essayez autre chose pour de meilleurs résultats!"
   }
 }

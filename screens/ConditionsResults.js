@@ -100,7 +100,7 @@ const ConditionsResults = ({ route }) => {
        {(!loading && (!conditions || Object.keys(conditions).length === 0)) && (
       <View style={[flex_style.flex, flex_style.column]}>
         <Text style={[text_style.bold, text_style.alignCenter, text_style.fontColorRed]}>
-          Sorry, no results match your filters. Try something different for better results!
+          {loadTranslations('noResultsMatchFilters')}
           </Text>
           <TouchableOpacity style={[btn_style.button, btn_style.round, styles.speciesButton]} onPress={() => applyFilters([])}>
             <Text style={[text_style.bold, text_style.fontColorWhite]}>
@@ -115,7 +115,7 @@ const ConditionsResults = ({ route }) => {
     <View style={styles.filterContainer}>
       <Pressable onPress={() => setFilterModalVisible(true)} style={styles.filterButton}>
         <Ionicons name="filter" size={26} color={grey_dark_color} />
-        <Text style={styles.filterText}>Filter</Text>
+        <Text style={styles.filterText}>{loadTranslations('filter')}</Text>
       </Pressable>
     </View>
     <TouchableOpacity style={[btn_style.button, btn_style.round, styles.speciesButton]} onPress={() => toggleFishExpansion(fishSpecies)}>

@@ -53,10 +53,10 @@ const FilterModal = ({ visible, onClose, applyFilters, conditions }) => {
         ))}
         <View style={[flex_style.flex, flex_style.column, flex_style.width100]}>
           <TouchableOpacity style={styles.button} onPress={() => applyFilters(selectedFilters)}>
-            <Text style={styles.buttonText}>Apply Filters</Text>
+            <Text style={styles.buttonText}>{loadTranslations('applyFilters')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={onClose}>
-            <Text style={styles.buttonText}>Close</Text>
+            <Text style={styles.buttonText}>{loadTranslations('close')}</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
