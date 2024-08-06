@@ -38,7 +38,7 @@
       }
     },
     "android": {
-      "versionCode": 10,
+      "versionCode": 11,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyB-MSaTA15IDjYXUGJPgI6qgVcuVAaEkX4"
