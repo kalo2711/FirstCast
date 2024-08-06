@@ -139,15 +139,20 @@ const ConditionsForm = ({ navigation }) => {
 
   useEffect(() => {
     const getTut = async () => {
-      const tut = await getNextTutorialForPage(NAV_CONDITIONS_FORM);
-      setCurrentTutorial(tut);
-    }
+      try {
+        const tut = await getNextTutorialForPage(NAV_CONDITIONS_FORM);
+        setCurrentTutorial(tut);
+        setInitialLoad(false); // Move this inside the try block
+      } catch (error) {
+        console.error("Failed to fetch tutorial:", error);
+      }
+    };
+
     if (initialLoad) {
       getTut();
-      setInitialLoad(false);
     }
 
-    (async () => {
+    const fetchLocation = async () => {
       try {
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== "granted") {
@@ -160,10 +165,12 @@ const ConditionsForm = ({ navigation }) => {
           lon: location.coords.longitude,
         });
       } catch (e) {
-        console.error("Unable to fetch location: " + e);
+        console.error("Unable to fetch location:", e);
       }
-    })();
-  }, [initialLoad, currentTutorial]); // Empty dependency array to run only once
+    };
+
+    fetchLocation();
+  }, []); // Run only once on mount
 
   const createQueryParametersForAutofill = (lat, lang, radius, value) => {
     return (

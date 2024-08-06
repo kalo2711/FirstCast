@@ -21,6 +21,7 @@ const ConditionsResults = ({ route }) => {
   const [loading, setLoading] = useState(false)
   const [expandedFish, setExpandedFish] = useState([]);
   const [conditions, setConditions] = useState(null);
+  const [originalConditions, setOriginalConditions] = useState(null);
   const [lureOptionsId, setLureOptionsId] = useState(route.params.lureOptionsId);
   const [modalVisible, setModalVisible] = useState(false);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
@@ -55,29 +56,36 @@ const ConditionsResults = ({ route }) => {
     const res = await responseDataHandler(response)
     setLoading(false)
     setConditions(res);
+    setOriginalConditions({...res});
   };
 
   const applyFilters = (filters) => {
     const filteredConditions = {};
 
-    Object.keys(conditions).forEach(fishSpecies => {
-      const filteredResults = conditions[fishSpecies].filter(condition => {
-        const matchWaterCondition = filters.waterCondition.length === 0 || filters.waterCondition.includes(condition.water_clarity);
-        const matchWeatherCondition = filters.weatherCondition.length === 0 || filters.weatherCondition.includes(condition.weather);
-        const matchTimeCondition = filters.timeCondition.length === 0 || filters.timeCondition.includes(condition.time);
-        const matchFishingStructure = filters.fishingStructure.length === 0 || filters.fishingStructure.some(struct => condition.structure.includes(struct));
-        const matchDepth = filters.depth.length === 0 || filters.depth.includes(condition.depth > 10 ? 'Deep' : 'Shallow');
-
-        return matchWaterCondition && matchWeatherCondition && matchTimeCondition && matchFishingStructure && matchDepth;
+    if (filters.length === 0) {
+      setConditions(originalConditions);
+      setFilterModalVisible(false);
+    }
+    else {
+      Object.keys(conditions).forEach(fishSpecies => {
+        const filteredResults = conditions[fishSpecies].filter(condition => {
+          const matchWaterCondition = filters.waterCondition.length === 0 || filters.waterCondition.includes(condition.water_clarity);
+          const matchWeatherCondition = filters.weatherCondition.length === 0 || filters.weatherCondition.includes(condition.weather);
+          const matchTimeCondition = filters.timeCondition.length === 0 || filters.timeCondition.includes(condition.time);
+          const matchFishingStructure = filters.fishingStructure.length === 0 || filters.fishingStructure.some(struct => condition.structure.includes(struct));
+          const matchDepth = filters.depth.length === 0 || filters.depth.includes(condition.depth > 10 ? 'Deep' : 'Shallow');
+  
+          return matchWaterCondition && matchWeatherCondition && matchTimeCondition && matchFishingStructure && matchDepth;
+        });
+  
+        if (filteredResults.length > 0) {
+          filteredConditions[fishSpecies] = filteredResults;
+        }
       });
-
-      if (filteredResults.length > 0) {
-        filteredConditions[fishSpecies] = filteredResults;
-      }
-    });
-
-    setConditions(filteredConditions);
-    setFilterModalVisible(false);
+  
+      setConditions(filteredConditions);
+      setFilterModalVisible(false);
+    }
   };
 
   const Card = ({ children }) => (
@@ -90,10 +98,15 @@ const ConditionsResults = ({ route }) => {
   return (
     <View style={[flex_style.absoluteContainerFull, padding_styles.space_md, padding_styles.safetyTop]}>
        {(!loading && (!conditions || Object.keys(conditions).length === 0)) && (
-      <View style={[flex_style.flex, flex_style.center]}>
+      <View style={[flex_style.flex, flex_style.column]}>
         <Text style={[text_style.bold, text_style.alignCenter, text_style.fontColorRed]}>
           Sorry, no results match your filters. Try something different for better results!
-        </Text>
+          </Text>
+          <TouchableOpacity style={[btn_style.button, btn_style.round, styles.speciesButton]} onPress={() => applyFilters([])}>
+            <Text style={[text_style.bold, text_style.fontColorWhite]}>
+              {loadTranslations('reset')}
+            </Text>
+        </TouchableOpacity>
       </View>
     )}
       {(!!conditions && !loading) && Object.keys(conditions).map((fishSpecies, index) => (
