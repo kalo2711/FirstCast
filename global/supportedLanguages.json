@@ -77,7 +77,7 @@
     "noUserLures": "You do not have any lures.",
     "noFishInLocation": "The fish for this location could not be obtained. Please enter a different location.",
     "profile": "Profile",
-    "presentedBy": "Information provided by",
+    "presentedBy": "Information provided by our expert:",
     "price": "Price",
     "primaryColor": "Primary Color",
     "register": "Register",
@@ -196,6 +196,9 @@
     "luresRecommendedByLucas": "Lures recommended by expert Lucas Deschenes:",
     "luresRecommendedByFirstCast": "Lures recommended by First Cast",
     "luresRecommendedByJaques": "Lures recommended by Jaques Vadeboncoeur",
+    "infoProvidedByLucas": "Info provided by expert Lucas Deschenes:",
+    "infoProvidedByFirstCast": "Info provided by First Cast",
+    "infoProvidedByJaques": "Info provided by Jaques Vadeboncoeur",
     "colors": "Colors",
     "todayMoonPhase": "Today's moon phase: ",
     "nextMoonPhase": "Next moon phase: ",
@@ -203,7 +206,10 @@
     "in": "dans",
     "days": "days",
     "daysAgo": "days ago",
-    "noLureForConditions": "We currently do not have the data for the criteria entered, please try different conditions."
+    "noLureForConditions": "We currently do not have the data for the criteria entered, please try different conditions.",
+    "applyFilters": "Apply Filters",
+    "filter": "Filter",
+    "noResultsMatchFilters": "Sorry, no results match your filters. Try something different for better results!"
   },
   "fr": {
     "bay":"baie",
@@ -241,7 +247,7 @@
     "model": "Modèle de leurre",
     "muddy": "Boueux",
     "primaryColor": "Couleur Primaire",
-    "presentedBy": "Informations fournies par",
+    "presentedBy": "Informations fournies par notre expert:",
     "register": "Enregister",
     "lurePhoto": "Image de Lure",
     "myLures": "Utiliser ma boîte à pêche",
@@ -400,6 +406,9 @@
     "luresRecommendedByLucas": "Leurres recommandés par l'expert Lucas Deschenes :",
     "luresRecommendedByFirstCast": "Leurres recommandés par First Cast",
     "luresRecommendedByJaques": "Leurres recommandés par Jaques Vadeboncoeur",
+    "infoProvidedByLucas": "Info donner par expert Lucas Deschenes:",
+    "infoProvidedByFirstCast": "Info donner par First Cast",
+    "infoProvidedByJaques": "Info donner par expert Jaques Vadeboncoeur",
     "colors": "Couleurs",
     "todayMoonPhase": "Phase lunaire aujourd'hui: ",
     "nextMoonPhase": "Prochaine phase lunaire: ",
@@ -407,6 +416,9 @@
     "in": "dans",
     "days": "jours",
     "daysAgo": "jours passés",
-    "noLureForConditions": "Nous n'avons actuellement pas de données pour les critères saisis, veuillez essayer des conditions différentes."
+    "noLureForConditions": "Nous n'avons actuellement pas de données pour les critères saisis, veuillez essayer des conditions différentes.",
+    "applyFilters": "Appliquer les filtres",
+    "filter": "Filtre",
+    "noResultsMatchFilters": "Désolé, aucun résultat ne correspond à vos filtres. Essayez autre chose pour de meilleurs résultats!"
   }
 }

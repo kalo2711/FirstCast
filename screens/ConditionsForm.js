@@ -50,6 +50,7 @@ import {
 } from "../global/utils/tutorial.utils";
 import DropdownWithModal from "../components/autocomplete.js";
 import * as Location from "expo-location";
+import {LocationAccuracy} from "expo-location"
 import { environment } from "../global/environment";
 import { responseDataHandler } from "../global/global-functions";
 import TutorialTooltip from "./TutorialTooltip";
@@ -139,32 +140,42 @@ const ConditionsForm = ({ navigation }) => {
 
   useEffect(() => {
     const getTut = async () => {
-      const tut = await getNextTutorialForPage(NAV_CONDITIONS_FORM);
-      setCurrentTutorial(tut);
-    }
+      try {
+        const tut = await getNextTutorialForPage(NAV_CONDITIONS_FORM);
+        setCurrentTutorial(tut);
+        setInitialLoad(false); // Move this inside the try block
+      } catch (error) {
+        console.error("Failed to fetch tutorial:", error);
+      }
+    };
+
     if (initialLoad) {
       getTut();
-      setInitialLoad(false);
     }
+  }, []); // Run only once on mount
 
-    (async () => {
-      try {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== "granted") {
-          setErrorMsg("Permission to access location was denied");
-          return;
+
+    // Effect for handling location permissions and fetching location
+    useEffect(() => {
+      const fetchLocation = async () => {
+        try {
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== "granted") {
+            setErrorMsg("Permission to access location was denied");
+            return;
+          }
+          let location = await Location.getCurrentPositionAsync({ accuracy: LocationAccuracy.Lowest });
+          setGeoCoordinates({
+            lat: location.coords.latitude,
+            lon: location.coords.longitude,
+          });
+        } catch (e) {
+          console.error("Unable to fetch location:", e);
         }
-        let location = await Location.getCurrentPositionAsync({});
-        setGeoCoordinates({
-          lat: location.coords.latitude,
-          lon: location.coords.longitude,
-        });
-      } catch (e) {
-        console.error("Unable to fetch location: " + e);
-      }
-    })();
-  }, [initialLoad, currentTutorial]); // Empty dependency array to run only once
-
+      };
+  
+      fetchLocation();
+    }, []); // Run only once on mount
   const createQueryParametersForAutofill = (lat, lang, radius, value) => {
     return (
       "lat=" +
