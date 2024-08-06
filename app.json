@@ -2,7 +2,7 @@
   "expo": {
     "name": "First Cast",
     "slug": "first-cast",
-    "version": "1.0.10",
+    "version": "1.0.12",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -24,6 +24,13 @@
       "minimumDeploymentTarget": "13.0",
       "NSLocationWhenInUseUsageDescription": "We need your location to select the closest part in the map",
       "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location to select the closest part in the map",
+      "infoPlist": {
+        "NSCameraUsageDescription": "We need to access your camera to take a picture of the lure",
+        "NSLocationWhenInUseUsageDescription": "We need your location to select the closest part in the map to know what species are nearby",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "We need your location to select the closest part in the map",
+        "NSContactsUsageDescription": "App would like to access your Contacts to enhance your experience with local guides.",
+        "NSMicrophoneUsageDescription": "App needs microphone access to record audio for the file you will submit to add a new lure"
+      },
       "permissions": {
         "location": {
           "reason": "We need your location to select the closest part in the map"
@@ -31,6 +38,7 @@
       }
     },
     "android": {
+      "versionCode": 10,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyB-MSaTA15IDjYXUGJPgI6qgVcuVAaEkX4"

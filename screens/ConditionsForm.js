@@ -50,6 +50,7 @@ import {
 } from "../global/utils/tutorial.utils";
 import DropdownWithModal from "../components/autocomplete.js";
 import * as Location from "expo-location";
+import {LocationAccuracy} from "expo-location"
 import { environment } from "../global/environment";
 import { responseDataHandler } from "../global/global-functions";
 import TutorialTooltip from "./TutorialTooltip";
@@ -151,27 +152,30 @@ const ConditionsForm = ({ navigation }) => {
     if (initialLoad) {
       getTut();
     }
-
-    const fetchLocation = async () => {
-      try {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== "granted") {
-          setErrorMsg("Permission to access location was denied");
-          return;
-        }
-        let location = await Location.getCurrentPositionAsync({});
-        setGeoCoordinates({
-          lat: location.coords.latitude,
-          lon: location.coords.longitude,
-        });
-      } catch (e) {
-        console.error("Unable to fetch location:", e);
-      }
-    };
-
-    fetchLocation();
   }, []); // Run only once on mount
 
+
+    // Effect for handling location permissions and fetching location
+    useEffect(() => {
+      const fetchLocation = async () => {
+        try {
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== "granted") {
+            setErrorMsg("Permission to access location was denied");
+            return;
+          }
+          let location = await Location.getCurrentPositionAsync({ accuracy: LocationAccuracy.Lowest });
+          setGeoCoordinates({
+            lat: location.coords.latitude,
+            lon: location.coords.longitude,
+          });
+        } catch (e) {
+          console.error("Unable to fetch location:", e);
+        }
+      };
+  
+      fetchLocation();
+    }, []); // Run only once on mount
   const createQueryParametersForAutofill = (lat, lang, radius, value) => {
     return (
       "lat=" +

@@ -11,7 +11,7 @@ import {
 import { getAuthToken } from "../global/utils/auth.utils";
 import { reactIfView, responseDataHandler } from "../global/global-functions";
 import { loadTranslations } from "../global/localization";
-import { FISH_STRUCTURES, SpacingMedium, grey_dark_color, primary_color } from "../global/global-constants";
+import { FISH_STRUCTURES, SpacingMedium, grey_dark_color, primary_color, width } from "../global/global-constants";
 import { environment } from "../global/environment";
 import { Ionicons, Octicons } from "@expo/vector-icons";
 import FilterModal from './FilterModal';
@@ -26,7 +26,57 @@ const ConditionsResults = ({ route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
 
-
+  const expertConfig = {
+    pike: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
+      caption: loadTranslations("InfoProvidedByHugo"),
+    },
+    walleye: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg",
+      caption: loadTranslations("InfoProvidedByHugo"),
+    },
+    lakeTrout: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg",
+      caption: loadTranslations("InfoProvidedByLucas"),
+    },
+    rainbowTrout: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg",
+      caption: loadTranslations("InfoProvidedByLucas"),
+    },
+    brookTrout: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg",
+      caption: loadTranslations("InfoProvidedByLucas"),
+    },
+    brownTrout: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg",
+      caption: loadTranslations("InfoProvidedByLucas"),
+    },
+    perch: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/Untitled%20(30).png",
+      caption: loadTranslations("InfoProvidedByFirstCast"),
+    },
+    bass: {
+      image:
+        "https://storage.googleapis.com/puggum-bucket/Untitled%20(30).png",
+      caption: loadTranslations("InfoProvidedByFirstCast"),
+    },
+    atlanticSalmon: {
+      image:
+      "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg",
+      caption: loadTranslations("InfoProvidedByLucas"),
+    },
+    musky: {
+      image: "https://storage.googleapis.com/puggum-bucket/jaques_vadbonqeur.jpeg",
+      caption: loadTranslations("luresRecommendedByJaques")
+    }
+  };
 
   useEffect(() => {
     fetchConditionsForLure();
@@ -39,6 +89,10 @@ const ConditionsResults = ({ route }) => {
       setExpandedFish([...expandedFish, fish]);
     }
   };
+
+  function getGuideName(species) {
+    return expertConfig[species]?.caption
+  }
 
   const fetchConditionsForLure = async () => {
     setLoading(true)
@@ -96,7 +150,7 @@ const ConditionsResults = ({ route }) => {
   
   
   return (
-    <View style={[flex_style.absoluteContainerFull, padding_styles.space_md, padding_styles.safetyTop]}>
+    <View style={[flex_style.absoluteContainerFull, {backgroundColor: 'white'}, padding_styles.safetyTop]}>
        {(!loading && (!conditions || Object.keys(conditions).length === 0)) && (
       <View style={[flex_style.flex, flex_style.column]}>
         <Text style={[text_style.bold, text_style.alignCenter, text_style.fontColorRed]}>
@@ -110,33 +164,33 @@ const ConditionsResults = ({ route }) => {
       </View>
     )}
       {(!!conditions && !loading) && Object.keys(conditions).map((fishSpecies, index) => (
-        <View key={index} style={{ marginBottom: 10 }}>
-          <View style={styles.buttonContainer}>
-    <View style={styles.filterContainer}>
-      <Pressable onPress={() => setFilterModalVisible(true)} style={styles.filterButton}>
-        <Ionicons name="filter" size={26} color={grey_dark_color} />
-        <Text style={styles.filterText}>{loadTranslations('filter')}</Text>
-      </Pressable>
-    </View>
-    <TouchableOpacity style={[btn_style.button, btn_style.round, styles.speciesButton]} onPress={() => toggleFishExpansion(fishSpecies)}>
-      <Text style={[text_style.bold, text_style.fontColorWhite]}>
-        {loadTranslations(fishSpecies)}
-      </Text>
-    </TouchableOpacity>
+        <View key={index} style={[{ marginBottom: 10 }]}>
+                    <View style={[styles.buttonContainer,padding_styles.space_md]}>
+          <View style={[styles.filterContainer]}>
+            <Pressable onPress={() => setFilterModalVisible(true)} style={styles.filterButton}>
+              <Ionicons name="filter" size={26} color={grey_dark_color} />
+              <Text style={styles.filterText}>{loadTranslations('filter')}</Text>
+              </Pressable>
+          </View>
+          <TouchableOpacity style={[btn_style.button, btn_style.round, styles.speciesButton]} onPress={() => toggleFishExpansion(fishSpecies)}>
+            <Text style={[text_style.bold, text_style.fontColorWhite]}>
+              {loadTranslations(fishSpecies)}
+            </Text>
+          </TouchableOpacity>
           </View>
           {expandedFish.includes(fishSpecies) && (
             <FlatList
-              ListHeaderComponent={<View style={[flex_style.flex, flex_style.center, flex_style.column, margin_styles.vertical_space_md]}>
+              ListHeaderComponent={<View style={[flex_style.flex, flex_style.center, flex_style.column]}>
                 {reactIfView(expandedFish[0] == 'pike' || expandedFish[0] == 'walleye',
-                  <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg"}}></Image>
+                  <Image style={[{height: width, 'width': width}]} source={{uri: "https://storage.googleapis.com/puggum-bucket/Screenshot%202024-04-20%20at%206.14.24%E2%80%AFPM%20(2).jpg"}}></Image>
                 )}
                 {reactIfView(expandedFish[0] == 'lakeTrout' || expandedFish[0] == 'rainbowTrout' || expandedFish[0] == 'brookTrout' || expandedFish[0] == 'brownTrout' || expandedFish[0] == 'atlanticSalmon',
-                  <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg"}}></Image>
+                  <Image style={[{height: width, 'width': width}]} source={{uri: "https://storage.googleapis.com/puggum-bucket/lucas_guide.jpg"}}></Image>
                 )}
                 {reactIfView(expandedFish[0] == 'musky',
-                  <Image style={[img_styles.rectangle_image_md]} source={{uri: "https://storage.googleapis.com/puggum-bucket/jaques_vadbonqeur.jpeg"}}></Image>
+                  <Image style={[{height: width, 'width': width}]} source={{uri: "https://storage.googleapis.com/puggum-bucket/jaques_vadbonqeur.jpeg"}}></Image>
                 )}
-                <Text style={[text_style.xs, text_style.bold, { marginTop: 20 }]}>{loadTranslations("presentedBy")}</Text>
+                <Text style={[text_style.xs, text_style.bold, text_style.alignCenter, margin_styles.top_md]}>{getGuideName(expandedFish[0])}</Text>
               </View>}
               data={conditions[fishSpecies]}
               renderItem={({ item }) => (
